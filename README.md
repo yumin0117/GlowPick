@@ -1,6 +1,7 @@
 # GlowPick
 
 **AI 기반 화장품 전성분 분석 및 맞춤형 모델링팩 컨설팅 서비스**
+* **웹 실행**: [홈페이지프로토타입](https://yumin0117.github.io/GlowPick/BeautyAI/index.html)
 
 ## 1. 프로젝트 소개
 
