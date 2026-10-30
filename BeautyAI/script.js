@@ -1,6 +1,4 @@
-// GlowPick 통합 프론트엔드 프로토타입
-// 실제 사진 OCR 및 Gemini API 호출은 하지 않습니다.
-// 사용자 입력은 브라우저에서만 처리하며 서버로 전송하지 않습니다.
+import { analyze, health } from "./api-client.js";
 
 const $ = (id) => document.getElementById(id);
 const files = { cosmetic: null, pack: null };
@@ -64,13 +62,14 @@ function setupUpload(prefix) {
 
   function setImage(file, input) {
     if (!file) return;
+    clearUpload();
     if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-      alert("JPG, PNG, WEBP 파일만 지원합니다.");
+      $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "JPG, PNG, WEBP 파일만 지원합니다.";
       input.value = "";
       return;
     }
     if (file.size > 10 * 1024 * 1024) {
-      alert("이미지는 최대 10MB까지 업로드할 수 있어요.");
+      $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "이미지는 최대 10MB까지 업로드할 수 있어요.";
       input.value = "";
       return;
     }
@@ -87,7 +86,7 @@ function setupUpload(prefix) {
 
   gallery.addEventListener("change", () => setImage(gallery.files[0], gallery));
   camera.addEventListener("change", () => setImage(camera.files[0], camera));
-  remove.addEventListener("click", () => {
+  function clearUpload() {
     files[prefix] = null;
     gallery.value = "";
     camera.value = "";
@@ -98,7 +97,9 @@ function setupUpload(prefix) {
     $(prefix === "cosmetic" ? "results" : "packResults").classList.add("hidden");
     if (previewUrls[prefix]) URL.revokeObjectURL(previewUrls[prefix]);
     previewUrls[prefix] = null;
-  });
+    $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "";
+  }
+  remove.addEventListener("click", clearUpload);
 
   document.addEventListener("click", (event) => {
     if (!event.target.closest('[data-upload="' + prefix + '"]')) closeMenu();
@@ -142,17 +143,6 @@ function renderTags(element, values) {
   });
 }
 
-function addCard(container, title, description) {
-  const card = document.createElement("article");
-  card.className = "recommend-card";
-  const name = document.createElement("h4");
-  name.textContent = title;
-  const text = document.createElement("p");
-  text.textContent = description;
-  card.append(name, text);
-  container.appendChild(card);
-}
-
 function addIngredient(container, title, description) {
   const item = document.createElement("div");
   item.className = "ingredient-item";
@@ -164,44 +154,6 @@ function addIngredient(container, title, description) {
   container.appendChild(item);
 }
 
-// 5. 화장품 분석 화면 (API 미연동: 시연용 데이터만 표시)
-$("cosmeticAnalyze").addEventListener("click", () => {
-  const data = getCosmeticInput();
-  const message = $("cosmeticMessage");
-  if (!data.image) {
-    message.textContent = "화장품 전성분 라벨 사진을 먼저 업로드해 주세요.";
-    return;
-  }
-  if (!data.concerns.length) {
-    message.textContent = "피부 고민을 하나 이상 선택해 주세요.";
-    return;
-  }
-  message.textContent = "";
-  $("resultProduct").textContent = data.productName || "업로드한 화장품";
-  $("resultSkin").textContent = data.skinType === "잘 모르겠음" ? "피부 타입 미확인" : data.skinType;
-  renderTags($("resultTags"), data.concerns);
-
-  const recommendationArea = $("cosmeticRecommendations");
-  recommendationArea.replaceChildren();
-  if (data.concerns.some(c => ["건조함", "속건조"].includes(c))) {
-    addCard(recommendationArea, "💧 장벽 보습 크림 (예시)", "글리세린·세라마이드 계열 보습 성분을 고려해 보세요.");
-  }
-  if (data.concerns.some(c => ["민감함", "홍조", "피부 열감"].includes(c))) {
-    addCard(recommendationArea, "🌿 진정 관리 (예시)", "판테놀이나 병풀 성분을 포함한 순한 제품 유형을 살펴보세요.");
-  }
-  if (data.concerns.some(c => ["여드름", "트러블", "피지", "모공"].includes(c))) {
-    addCard(recommendationArea, "🫧 가벼운 보습제 (예시)", "피부 상태에 맞는 가벼운 보습제를 고려해 보세요.");
-  }
-  if (data.concerns.some(c => ["칙칙한 피부톤", "탄력", "주름"].includes(c))) {
-    addCard(recommendationArea, "☀️ 기본 피부 관리 (예시)", "보습과 자외선 차단을 기본으로 관리해 보세요.");
-  }
-  if (!recommendationArea.children.length) {
-    addCard(recommendationArea, "♡ 기본 루틴 (예시)", "순한 세안제, 보습제, 자외선 차단제를 기본으로 고려해 보세요.");
-  }
-  $("results").classList.remove("hidden");
-  $("results").scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
 // 6. 기존 화장품 고민을 모델링팩으로 복사
 $("copyConcerns").addEventListener("click", () => {
   const cosmeticConcerns = [...document.querySelectorAll('input[name="concern"]:checked')].map(el => el.value);
@@ -211,54 +163,155 @@ $("copyConcerns").addEventListener("click", () => {
   $("packMessage").textContent = cosmeticConcerns.length
     ? "위에서 선택한 고민을 가져왔어요. 필요한 항목은 수정할 수 있어요."
     : "위에서 선택한 피부 고민이 없어요. 아래에서 직접 선택해 주세요.";
+  $("packResults").classList.add("hidden");
 });
 
-// 7. 보유 모델링팩에 대한 앰플/세럼 활용 예시
-const ampouleGroups = [
-  { concerns: ["건조함", "속건조"], name: "💧 글리세린·히알루론산 보습 앰플", desc: "건조함이 고민일 때 팩 전후의 보습 단계에서 사용할 후보 성분이에요." },
-  { concerns: ["피부 열감", "홍조", "민감함"], name: "🌿 판테놀·병풀 진정 세럼", desc: "피부가 민감할 때 자극이 적은 진정 중심 제품을 살펴볼 수 있어요." },
-  { concerns: ["여드름", "트러블"], name: "🫧 가벼운 진정·보습 앰플", desc: "트러블이 고민이라면 향이 강하거나 자극적인 제품보다 순한 보습을 우선해 보세요." },
-  { concerns: ["피지", "모공"], name: "✨ 나이아신아마이드 세럼", desc: "피지 관리에 활용되는 성분이에요. 고함량 제품은 피부 반응을 확인하세요." },
-  { concerns: ["칙칙한 피부톤"], name: "☀️ 피부톤 관리 세럼", desc: "나이아신아마이드 등을 별도 스킨케어 단계에서 고려할 수 있어요." },
-  { concerns: ["탄력", "주름"], name: "♡ 보습·탄력 관리 세럼", desc: "보습 중심 성분을 선택하고 낮에는 자외선 차단을 병행해 보세요." }
-];
+const extractionLabels = {
+  complete: "전성분 판독 완료", partial: "일부만 판독됨", unreadable: "판독 불가",
+  no_ingredients: "전성분 영역 없음", multiple_products: "여러 제품이 함께 보임"
+};
+let busy = false;
 
-$("packAnalyze").addEventListener("click", () => {
-  const data = getPackInput();
-  const message = $("packMessage");
-  if (!data.image && !data.packName) {
-    message.textContent = "보유 모델링팩의 제품명 또는 라벨 사진을 입력해 주세요.";
-    return;
+function renderResult(prefix, response, input) {
+  const extraction = response.extraction;
+  if (!extraction || !Array.isArray(extraction.ingredients)) {
+    throw new Error("사진 판독 응답을 확인하지 못했어요.");
   }
-  if (!data.concerns.length) {
-    message.textContent = "모델링팩으로 관리할 피부 고민을 하나 이상 선택해 주세요.";
-    return;
+  const analysis = response.analysis || {};
+  const isMock = response.meta?.isMock === true;
+  const state = extractionLabels[extraction.status] || "상태 확인 필요";
+  const banner = $(prefix + "ResultStatus");
+  banner.textContent = isMock
+    ? "모의 연동 시험 · 업로드한 사진을 AI로 판독한 결과가 아니에요."
+    : `실제 Gemini 응답 · ${state}`;
+  if (response.meta?.promptStatus === "draft") banner.textContent += " · 임시 프롬프트";
+  banner.dataset.mode = isMock ? "mock" : "live";
+  banner.dataset.extractionStatus = extraction.status;
+  $(prefix + "Summary").textContent = analysis.summary || "";
+  $(prefix + "Summary").dataset.analysisStatus = analysis.status || "unknown";
+  $(prefix + "RawText").textContent = extraction.rawText || "읽은 원문이 없어요.";
+  const ingredients = $(prefix + "Ingredients");
+  ingredients.replaceChildren();
+  for (const ingredient of extraction.ingredients) {
+    const item = document.createElement("li");
+    item.textContent = ingredient;
+    ingredients.append(item);
   }
-  message.textContent = "";
-  $("packResultName").textContent = data.packName || "사진으로 등록한 모델링팩";
-  renderTags($("packResultTags"), data.concerns);
-
-  const target = $("ampouleRecommendations");
-  target.replaceChildren();
-  ampouleGroups.filter(group => group.concerns.some(c => data.concerns.includes(c)))
-    .forEach(group => addIngredient(target, group.name, group.desc));
-  if (!target.children.length) addIngredient(target, "♡ 기본 보습 앰플", "피부 자극이 적은 보습 제품을 우선 고려해 보세요.");
-
-  // 중요: 혼합 '허용' 선택은 증빙이 아닌 사용자 진술임
-  if (data.mixStatus === "prohibited") {
-    $("mixGuidance").textContent = "제품 설명서에서 혼합을 금지했다면 앰플이나 세럼을 모델링팩에 직접 섞지 마세요.";
-  } else if (data.mixStatus === "allowed") {
-    $("mixGuidance").textContent = "사용자가 제조사의 혼합 허용 안내를 확인했다고 선택했어요. 다만 어떤 앰플을 얼마만큼 넣어도 되는지 확인되지 않았으므로 지금은 직접 혼합을 권하지 않아요. 정확한 제품 지침 확인 후 판단해야 해요.";
+  if (!ingredients.children.length) {
+    const item = document.createElement("li");
+    item.textContent = "확정해서 표시할 성분이 없어요.";
+    ingredients.append(item);
+  }
+  const notes = $(prefix + "IngredientNotes");
+  notes.replaceChildren();
+  for (const note of analysis.ingredientNotes || []) {
+    addIngredient(notes, note.ingredient, note.explanation);
+  }
+  if (!notes.children.length) {
+    addIngredient(notes, "성분 기능 설명", analysis.status === "needs_evidence"
+      ? "검토 완료 근거가 준비되면 기능 설명을 제공해요. 현재는 개인 적합성이나 추천을 판단하지 않아요."
+      : "전성분을 판독한 뒤 근거가 있는 설명을 확인할 수 있어요.");
+  }
+  const warnings = $(prefix + "Warnings");
+  warnings.replaceChildren();
+  const messages = [extraction.nextAction, ...(extraction.warnings || []),
+    ...(extraction.uncertainSpans || []).map(text => "판독 불확실: " + text),
+    ...(analysis.warnings || [])].filter(Boolean);
+  for (const message of messages.length ? messages : ["사진 원문과 성분 목록을 직접 대조해 주세요."]) {
+    const paragraph = document.createElement("p");
+    paragraph.className = "result-paragraph";
+    paragraph.textContent = message;
+    warnings.append(paragraph);
+  }
+  const sources = $(prefix + "Sources");
+  sources.replaceChildren();
+  for (const source of analysis.sources || []) {
+    let url;
+    try { url = new URL(source.sourceUrl); } catch { continue; }
+    if (!["https:", "http:"].includes(url.protocol)) continue;
+    const link = document.createElement("a");
+    link.className = "recommend-card";
+    link.textContent = `${source.ingredient} · ${source.evidenceId}`;
+    link.href = url.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    sources.append(link);
+  }
+  $(prefix + "SourcesBlock").classList.toggle("hidden", !sources.children.length);
+  const name = extraction.productName || input.productName || input.packName || "업로드한 제품";
+  if (prefix === "cosmetic") {
+    $("resultProduct").textContent = name;
+    $("resultSkin").textContent = input.skinType;
+    renderTags($("resultTags"), input.concerns);
   } else {
-    $("mixGuidance").textContent = "제조사의 혼합 가능 여부가 확인되지 않았어요. 임의로 앰플이나 세럼을 팩에 넣지 말고, 우선 제품 설명서대로 사용하세요.";
+    $("packResultName").textContent = name;
+    renderTags($("packResultTags"), input.concerns);
+    $("mixGuidance").textContent = response.mixing?.status === "unknown"
+      ? "혼합 가능 여부 미확인. " + response.mixing.reason
+      : "현재는 직접 혼합 가능 여부를 판단하지 않아요. 제품 설명서를 확인해 주세요.";
   }
-  $("separateGuidance").textContent = "현재는 추천 성분이 들어 있는 앰플·세럼을 모델링팩과 별도의 스킨케어 단계에 사용하는 방법을 우선 제안해요. 피부에 자극이 생기면 사용을 중단하세요.";
-  $("packResults").classList.remove("hidden");
-  $("packResults").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function runAnalysis(prefix) {
+  if (busy) return;
+  const input = prefix === "cosmetic" ? getCosmeticInput() : getPackInput();
+  const message = $(prefix + "Message");
+  const section = $(prefix === "cosmetic" ? "results" : "packResults");
+  section.classList.add("hidden");
+  message.textContent = "";
+  if (!input.image) {
+    message.textContent = "전성분이 보이는 라벨 사진을 먼저 업로드해 주세요.";
+    return;
+  }
+  if (!input.concerns.length) {
+    message.textContent = "피부 고민을 하나 이상 선택해 주세요.";
+    return;
+  }
+  const controls = [...document.querySelectorAll("input, textarea, button")];
+  const disabledBefore = controls.map(control => control.disabled);
+  busy = true;
+  controls.forEach(control => control.disabled = true);
+  message.textContent = "사진 분석을 요청했어요. 대기열과 판독에 시간이 걸릴 수 있어요…";
+  const { image, ...request } = input;
+  try {
+    const response = await analyze(prefix === "cosmetic" ? "/analyze_cosmetic" : "/consult_modeling_pack", image, request);
+    if (!response.ok) {
+      const detail = response.error || {};
+      throw new Error(`${detail.message || "분석을 완료하지 못했어요."} (${detail.code || "UNKNOWN"} · 요청 ${response.requestId || "-"})`);
+    }
+    renderResult(prefix, response, request);
+    section.classList.remove("hidden");
+    message.textContent = response.meta?.isMock
+      ? "모의 연동 시험 결과예요. 실제 판독 결과로 사용하지 마세요."
+      : extractionLabels[response.extraction.status] || "결과를 확인해 주세요.";
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (error) {
+    section.classList.add("hidden");
+    message.textContent = error.message || "연결을 확인하고 다시 시도해 주세요.";
+  } finally {
+    controls.forEach((control, index) => control.disabled = disabledBefore[index]);
+    busy = false;
+  }
+}
+
+$("cosmeticAnalyze").addEventListener("click", () => runAnalysis("cosmetic"));
+$("packAnalyze").addEventListener("click", () => runAnalysis("pack"));
+document.querySelectorAll("input:not([type=file]), textarea").forEach(control => {
+  const hideResults = () => {
+    $("results").classList.add("hidden");
+    $("packResults").classList.add("hidden");
+    $("cosmeticMessage").textContent = "";
+    $("packMessage").textContent = "";
+  };
+  control.addEventListener("input", hideResults);
+  control.addEventListener("change", hideResults);
 });
 
-// 백엔드 연동 시:
-// getCosmeticInput() -> { image, productName, skinType, concerns, extraConcern }
-// getPackInput()     -> { image, packName, skinType, concerns, mixStatus, notes }
-// 서버에 FormData로 전달하고 분석 응답을 위 결과 영역에 렌더링하면 됩니다.
-// Gemini API 키는 브라우저 JS가 아닌 백엔드 환경변수에 보관하세요.
+health().then(status => {
+  $("serverStatus").textContent = status.mode === "mock"
+    ? "모의 연동 모드 · 사진을 AI로 판독하지 않아요."
+    : status.readyForLive ? "Gemini 연결 준비됨 · 제품 라벨 사진을 올려주세요."
+      : "서버 API 키가 아직 설정되지 않았어요. 담당자에게 알려주세요.";
+}).catch(() => {
+  $("serverStatus").textContent = "서버 연결을 확인하지 못했어요. 분석 요청 시 다시 연결해요.";
+});

@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# GlowPick backend local files
+.venv/
+.env
+API_KEY.txt
+__pycache__/
+*.pyc
+private_runs/
+*.zip
+.pytest_cache/

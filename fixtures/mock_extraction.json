@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "productName": null,
+  "rawText": "TEST_INGREDIENT_A, TEST_INGREDIENT_B",
+  "ingredients": ["TEST_INGREDIENT_A", "TEST_INGREDIENT_B"],
+  "uncertainSpans": [],
+  "warnings": ["연동 시험용 가상 성분입니다. 실제 사진을 판독한 결과가 아닙니다."],
+  "nextAction": ""
+}

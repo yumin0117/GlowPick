@@ -1,0 +1,1037 @@
+[
+  {
+    "product_id": "P001",
+    "version": "web-20261030",
+    "position": 1,
+    "raw_name": "Squalane",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E001"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 1,
+    "raw_name": "Snail Secretion Filtrate",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 2,
+    "raw_name": "Betaine",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 3,
+    "raw_name": "Butylene Glycol",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 4,
+    "raw_name": "1,2-Hexanediol",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 5,
+    "raw_name": "Sodium Polyacrylate",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 6,
+    "raw_name": "Phenoxyethanol",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 7,
+    "raw_name": "Sodium Hyaluronate",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 8,
+    "raw_name": "Allantoin",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 9,
+    "raw_name": "Ethyl Hexanediol",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 10,
+    "raw_name": "Carbomer",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 11,
+    "raw_name": "Panthenol",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 12,
+    "raw_name": "Arginine",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P002",
+    "version": "web-20261030",
+    "position": 13,
+    "raw_name": "Aqua/Water",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E002"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 1,
+    "raw_name": "규조토",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 2,
+    "raw_name": "글루코오스",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 3,
+    "raw_name": "칼슘설페이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 4,
+    "raw_name": "알진",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 5,
+    "raw_name": "테트라소듐파이로포스페이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 6,
+    "raw_name": "마그네슘옥사이드",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 7,
+    "raw_name": "셀룰로오스검",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 8,
+    "raw_name": "티트리잎가루(1,500ppm)",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 9,
+    "raw_name": "페퍼민트오일",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 10,
+    "raw_name": "데하이드로아세틱애씨드",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 11,
+    "raw_name": "울트라마린",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 12,
+    "raw_name": "알란토인",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 13,
+    "raw_name": "포타슘알지네이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 14,
+    "raw_name": "아데노신",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 15,
+    "raw_name": "쇠비름가루",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P003",
+    "version": "web-20261030",
+    "position": 16,
+    "raw_name": "병풀잎/줄기가루",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E003"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 1,
+    "raw_name": "정제수",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 2,
+    "raw_name": "글리세린",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 3,
+    "raw_name": "다이프로필렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 4,
+    "raw_name": "부틸렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 5,
+    "raw_name": "소듐하이알루로네이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 6,
+    "raw_name": "1,2-헥산다이올",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 7,
+    "raw_name": "하이드록시아세토페논",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 8,
+    "raw_name": "옥틸도데세스-16",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 9,
+    "raw_name": "잔탄검",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 10,
+    "raw_name": "다이소듐이디티에이",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 11,
+    "raw_name": "로즈우드오일",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 12,
+    "raw_name": "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 13,
+    "raw_name": "다이포타슘글리시리제이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 14,
+    "raw_name": "하이드롤라이즈드콜라겐",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 15,
+    "raw_name": "판테놀",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 16,
+    "raw_name": "토타롤",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 17,
+    "raw_name": "밤부사 불가리스수",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 18,
+    "raw_name": "트레할로오스",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 19,
+    "raw_name": "알란토인",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 20,
+    "raw_name": "스피룰리나 플라텐시스가루",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 21,
+    "raw_name": "세라마이드엔피",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 22,
+    "raw_name": "베타인",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 23,
+    "raw_name": "황금추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 24,
+    "raw_name": "삼백초추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 25,
+    "raw_name": "버지니아풍년화잎추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 26,
+    "raw_name": "티트리추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 27,
+    "raw_name": "알로에베라잎추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 28,
+    "raw_name": "쇠비름추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P004",
+    "version": "web-20261030",
+    "position": 29,
+    "raw_name": "병풀추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E004"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 1,
+    "raw_name": "정제수",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 2,
+    "raw_name": "다이프로필렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 3,
+    "raw_name": "소듐하이알루로네이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 4,
+    "raw_name": "1,2-헥산다이올",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 5,
+    "raw_name": "하이드록시아세토페논",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 6,
+    "raw_name": "잔탄검",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 7,
+    "raw_name": "옥틸도데세스-16",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 8,
+    "raw_name": "라벤더오일",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 9,
+    "raw_name": "다이소듐이디티에이",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 10,
+    "raw_name": "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 11,
+    "raw_name": "부틸렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 12,
+    "raw_name": "글리세린",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 13,
+    "raw_name": "토타롤",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 14,
+    "raw_name": "아스코빅애씨드",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 15,
+    "raw_name": "아데노신",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 16,
+    "raw_name": "다이포타슘글리시리제이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 17,
+    "raw_name": "나이아신아마이드",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 18,
+    "raw_name": "밤부사 불가리스수",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 19,
+    "raw_name": "비피다발효여과물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 20,
+    "raw_name": "황금추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 21,
+    "raw_name": "삼백초추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 22,
+    "raw_name": "버지니아풍년화잎추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 23,
+    "raw_name": "티트리추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 24,
+    "raw_name": "쇠비름추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 25,
+    "raw_name": "병풀추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 26,
+    "raw_name": "진주추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 27,
+    "raw_name": "갈락토미세스발효여과물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 28,
+    "raw_name": "프로판다이올",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P005",
+    "version": "web-20261030",
+    "position": 29,
+    "raw_name": "에틸헥실글리세린",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E005"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 1,
+    "raw_name": "정제수",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 2,
+    "raw_name": "글리세린",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 3,
+    "raw_name": "다이프로필렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 4,
+    "raw_name": "부틸렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 5,
+    "raw_name": "소듐하이알루로네이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 6,
+    "raw_name": "1,2-헥산다이올",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 7,
+    "raw_name": "하이드록시아세토페논",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 8,
+    "raw_name": "잔탄검",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 9,
+    "raw_name": "다이소듐이디티에이",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 10,
+    "raw_name": "옥틸도데세스-16",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 11,
+    "raw_name": "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 12,
+    "raw_name": "다이포타슘글리시리제이트",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 13,
+    "raw_name": "티트리잎오일",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 14,
+    "raw_name": "토타롤",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 15,
+    "raw_name": "알란토인",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 16,
+    "raw_name": "밤부사 불가리스수",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 17,
+    "raw_name": "펜틸렌글라이콜",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 18,
+    "raw_name": "황금추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 19,
+    "raw_name": "삼백초추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 20,
+    "raw_name": "버지니아풍년화잎추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 21,
+    "raw_name": "락토바실러스발효용해물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 22,
+    "raw_name": "티트리추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 23,
+    "raw_name": "쇠비름추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 24,
+    "raw_name": "병풀추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 25,
+    "raw_name": "가지열매추출물",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 26,
+    "raw_name": "마데카소사이드",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  },
+  {
+    "product_id": "P006",
+    "version": "web-20261030",
+    "position": 27,
+    "raw_name": "아시아티코사이드",
+    "normalized_name": null,
+    "mapping_status": "not_mapped",
+    "evidence_id": "E006"
+  }
+]

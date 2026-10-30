@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GlowPick | AI 뷰티 컨설턴트</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -62,6 +62,7 @@
           <span class="eyebrow">COSMETIC ANALYSIS</span>
           <h2>나의 화장품 분석하기</h2>
           <p>전성분이 표시된 사진과 피부 정보를 입력해 주세요.</p>
+          <p id="serverStatus" class="tiny-note" role="status">서버 연결 확인 중…</p>
         </div>
         <div class="form-grid">
           <section class="panel">
@@ -119,29 +120,30 @@
               <label class="choice"><input type="checkbox" name="concern" value="주름"><span>주름</span></label>
             </div>
             <label class="field-label" for="extraConcern">추가 피부 고민 <small>선택</small></label>
-            <textarea id="extraConcern" rows="3" placeholder="예: 볼 쪽이 자주 따갑고 오후에는 건조해져요."></textarea>
+            <textarea id="extraConcern" maxlength="2000" rows="3" placeholder="예: 볼 쪽이 자주 따갑고 오후에는 건조해져요."></textarea>
           </section>
         </div>
         <div class="action-bar">
-          <button type="button" id="cosmeticAnalyze" class="button button-primary">✦ 성분 분석 결과 미리보기</button>
+          <button type="button" id="cosmeticAnalyze" class="button button-primary">✦ 라벨 성분 분석하기</button>
           <p id="cosmeticMessage" class="form-message" role="status"></p>
-          <p class="tiny-note">현재는 화면 시연용입니다. 사진과 피부 정보는 서버로 전송되지 않습니다.</p>
+          <p class="tiny-note">분석을 누르면 사진이 Gemini로 전송됩니다. 피부 정보는 근거가 있는 설명 단계에만 사용해요. 개인정보가 없는 제품 라벨을 올려주세요.</p>
         </div>
       </div>
     </section>
 
-    <!-- 2. 기존 성분 분석 결과 영역 -->
-    <section id="results" class="results section-padding hidden">
+    <!-- 실제 서버 응답 표시: 정답이나 예시 성분을 미리 넣지 않음 -->
+    <section id="results" class="results section-padding hidden" aria-live="polite">
       <div class="container">
-        <div class="section-heading"><span class="eyebrow">BEAUTY REPORT</span><h2>나의 피부 맞춤 분석 결과</h2><p>AI 응답이 표시될 결과 화면이에요.</p></div>
-        <div class="demo-banner">DEMO · 실제 라벨 사진을 읽지 않았습니다. 아래 성분은 업로드한 제품과 무관한 시연용 예시예요.</div>
-        <div class="summary-card"><div class="summary-head"><span>INGREDIENT REPORT</span><span class="skin-tag" id="resultSkin"></span></div><h3 id="resultProduct"></h3><p>실제 성분 판별은 백엔드 Gemini API 연동 후 제공됩니다.</p><div id="resultTags" class="tag-list"></div></div>
+        <div class="section-heading"><span class="eyebrow">BEAUTY REPORT</span><h2>라벨 판독과 성분 설명</h2><p>사진에서 읽은 내용과 설명 근거를 따로 확인해요.</p></div>
+        <div class="demo-banner" id="cosmeticResultStatus"></div>
+        <div class="summary-card"><div class="summary-head"><span>INGREDIENT REPORT</span><span class="skin-tag" id="resultSkin"></span></div><h3 id="resultProduct"></h3><p id="cosmeticSummary"></p><div id="resultTags" class="tag-list"></div></div>
         <div class="result-grid">
-          <article class="result-card good"><div class="result-symbol">✓</div><h3>도움이 될 수 있는 성분</h3><div class="ingredient-item"><strong>글리세린 (예시)</strong><p>피부 수분 유지에 도움을 줄 수 있는 보습 성분이에요.</p></div><div class="ingredient-item"><strong>판테놀 (예시)</strong><p>보습과 피부 장벽 관리에 도움을 줄 수 있어요.</p></div></article>
-          <article class="result-card caution"><div class="result-symbol">!</div><h3>확인이 필요한 성분</h3><div class="ingredient-item"><strong>향료 (예시)</strong><p>향료에 민감한 사람은 자극이나 알레르기 반응이 나타날 수 있어요.</p></div></article>
-          <article class="result-card more"><div class="result-symbol">＋</div><h3>추가로 고려할 성분</h3><div class="ingredient-item"><strong>세라마이드 (예시)</strong><p>건조함이 고민이라면 장벽 보습 성분을 고려할 수 있어요. 필수 성분이라는 뜻은 아니에요.</p></div></article>
+          <article class="result-card good"><div class="result-symbol">✓</div><h3>사진에서 읽은 성분</h3><ol id="cosmeticIngredients" class="ingredient-list"></ol></article>
+          <article class="result-card more"><div class="result-symbol">＋</div><h3>검토된 근거에 따른 설명</h3><div id="cosmeticIngredientNotes"></div></article>
+          <article class="result-card caution"><div class="result-symbol">!</div><h3>확인할 내용과 다음 단계</h3><div id="cosmeticWarnings"></div></article>
         </div>
-        <div class="recommend-block"><h3>맞춤 스킨케어 제안</h3><div class="recommend-grid" id="cosmeticRecommendations"></div></div>
+        <details class="response-details"><summary>사진에서 읽은 원문 보기</summary><pre id="cosmeticRawText"></pre></details>
+        <div class="recommend-block hidden" id="cosmeticSourcesBlock"><h3>설명에 사용된 근거</h3><div class="recommend-grid" id="cosmeticSources"></div></div>
       </div>
     </section>
 
@@ -151,10 +153,10 @@
         <div class="section-heading"><span class="eyebrow">PERSONAL MODELING PACK CARE</span><h2>가지고 있는 모델링팩, 더 잘 활용하기</h2><p>보유한 모델링팩과 피부 고민에 맞춰 함께 사용할 앰플·세럼을 제안해요.</p></div>
         <div class="form-grid">
           <section class="panel">
-            <div class="panel-title"><span class="number">01</span><div><h3>내 모델링팩 정보</h3><p>제품명 또는 라벨 사진을 알려주세요.</p></div></div>
-            <label class="field-label" for="packName">모델링팩 이름 <small>제품명 또는 사진 중 하나 필수</small></label>
+            <div class="panel-title"><span class="number">01</span><div><h3>내 모델링팩 정보</h3><p>전성분이 보이는 라벨 사진을 올려주세요.</p></div></div>
+            <label class="field-label" for="packName">모델링팩 이름 <small>선택</small></label>
             <input id="packName" class="text-input" type="text" maxlength="100" placeholder="예: A 모델링팩, 콜라겐 모델링팩">
-            <span class="field-label" id="packPhotoLabel">모델링팩 라벨 사진 <small>선택</small></span>
+            <span class="field-label" id="packPhotoLabel">모델링팩 전성분 라벨 사진 <b class="required">*</b></span>
             <div class="upload-wrapper" data-upload="pack">
               <button class="upload-main" type="button" id="packUploadButton" aria-labelledby="packPhotoLabel packUploadButton" aria-expanded="false" aria-controls="packUploadMenu">
                 <span class="upload-emoji">🫧</span><strong>모델링팩 사진 업로드</strong><span>파일 선택 또는 카메라 촬영</span><small>JPG, PNG, WEBP · 최대 10MB</small>
@@ -195,25 +197,28 @@
               <label class="choice"><input type="checkbox" name="packConcern" value="주름"><span>주름</span></label>
             </div>
             <label class="field-label" for="packNotes">추가로 알려줄 정보 <small>선택</small></label>
-            <textarea id="packNotes" rows="4" placeholder="예: 팩 사용 후 당김이 있어요. 향이 강한 제품은 잘 맞지 않아요."></textarea>
+            <textarea id="packNotes" maxlength="2000" rows="4" placeholder="예: 팩 사용 후 당김이 있어요. 향이 강한 제품은 잘 맞지 않아요."></textarea>
           </section>
         </div>
-        <div class="action-bar"><button type="button" id="packAnalyze" class="button button-primary">✦ 맞춤 앰플·세럼 제안 미리보기</button><p id="packMessage" class="form-message" role="status"></p></div>
+        <div class="action-bar"><button type="button" id="packAnalyze" class="button button-primary">✦ 모델링팩 라벨 분석하기</button><p id="packMessage" class="form-message" role="status"></p></div>
 
         <section id="packResults" class="pack-results hidden" aria-live="polite">
-          <div class="demo-banner">DEMO · 실제 라벨 성분 및 제조사 혼합 지침을 확인한 결과가 아닙니다. 아래는 피부 고민 기반 UI 시연용 정보예요.</div>
-          <div class="summary-card"><div class="summary-head"><span>MODELING PACK CONSULTATION</span><span class="skin-tag" id="packResultName">보유 제품</span></div><h3>내 모델링팩 맞춤 활용 제안</h3><div class="tag-list" id="packResultTags"></div></div>
+          <div class="demo-banner" id="packResultStatus"></div>
+          <div class="summary-card"><div class="summary-head"><span>MODELING PACK CONSULTATION</span><span class="skin-tag" id="packResultName"></span></div><h3>내 모델링팩 라벨 확인</h3><p id="packSummary"></p><div class="tag-list" id="packResultTags"></div></div>
           <div class="pack-result-grid">
-            <article class="result-card good"><div class="result-symbol">💧</div><h3>함께 고려할 앰플·세럼</h3><div id="ampouleRecommendations"></div></article>
+            <article class="result-card good"><div class="result-symbol">✓</div><h3>사진에서 읽은 성분</h3><ol id="packIngredients" class="ingredient-list"></ol></article>
             <article class="result-card caution"><div class="result-symbol">!</div><h3>모델링팩에 직접 혼합해도 될까?</h3><p id="mixGuidance" class="result-paragraph"></p></article>
-            <article class="result-card more"><div class="result-symbol">♡</div><h3>별도로 사용하는 대안</h3><p id="separateGuidance" class="result-paragraph"></p></article>
+            <article class="result-card more"><div class="result-symbol">♡</div><h3>확인할 내용과 다음 단계</h3><div id="packWarnings"></div></article>
           </div>
-          <div class="note-box safety-note"><strong>확인해 주세요</strong><p>현재 UI는 실제 제품을 분석하지 않아요. 제조사에서 혼합을 허용하지 않거나 특정 앰플과의 호환성이 확인되지 않았다면 직접 섞지 마세요. 피부 열감이 심하고 통증·붓기가 동반되면 제품 사용을 중단하고 진료를 고려하세요.</p></div>
+          <div id="packIngredientNotes" class="note-box"></div>
+          <details class="response-details"><summary>사진에서 읽은 원문 보기</summary><pre id="packRawText"></pre></details>
+          <div class="recommend-block hidden" id="packSourcesBlock"><h3>설명에 사용된 근거</h3><div class="recommend-grid" id="packSources"></div></div>
+          <div class="note-box safety-note"><strong>혼합 판단</strong><p>혼합 허용 선택은 사용자 입력이에요. 특정 모델링팩과 앰플의 검토 완료 근거가 없어 지금은 직접 혼합을 권하지 않아요. 제품 설명서를 확인해 주세요.</p></div>
         </section>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><div><strong>✦ GlowPick</strong><p>나의 피부를 이해하는 AI 뷰티 컨설턴트</p></div><span>© 2026 GlowPick · UI PROTOTYPE</span></div></footer>
+  <footer class="footer"><div class="container footer-inner"><div><strong>✦ GlowPick</strong><p>나의 피부를 이해하는 AI 뷰티 컨설턴트</p></div><span>© 2026 GlowPick · Gemini 연결 개발 버전</span></div></footer>
 </body>
 </html>

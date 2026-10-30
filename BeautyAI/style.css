@@ -52,6 +52,12 @@ a {
   display: none !important;
 }
 
+.ingredient-list { padding-left: 22px; font-size: 13px; overflow-wrap: anywhere; }
+.ingredient-list li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+.response-details { margin-top: 24px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; }
+.response-details pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 12px; }
+button:disabled { opacity: .6; cursor: wait; transform: none; }
+
 .section-padding {
   padding: 88px 0;
   scroll-margin-top: 78px;
