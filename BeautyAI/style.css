@@ -1,0 +1,1012 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --pink: #d2788d;
+  --pink-dark: #b65770;
+  --pink-light: #fff0f3;
+  --ink: #332e33;
+  --muted: #827a80;
+  --line: #eae4e6;
+  --soft: #faf7f7;
+  --shadow: 0 12px 32px rgba(82, 48, 60, .055);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font: 15px/1.7 'DM Sans', 'Noto Sans KR', sans-serif;
+  word-break: keep-all;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: min(1160px, 92%);
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.section-padding {
+  padding: 88px 0;
+  scroll-margin-top: 78px;
+}
+
+/* =====================================
+   상단 메뉴
+===================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, .97);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 74px;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--pink-dark);
+}
+
+.site-header nav {
+  display: flex;
+  gap: 30px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.site-header nav a:hover {
+  color: var(--pink-dark);
+}
+
+/* =====================================
+   메인 화면
+===================================== */
+
+.hero {
+  overflow: hidden;
+  background: linear-gradient(
+    115deg,
+    #fff 0%,
+    #fff8f9 57%,
+    #f8e7ec 100%
+  );
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  min-height: 515px;
+  gap: 24px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  color: var(--pink-dark);
+}
+
+.hero h1 {
+  margin: 18px 0;
+  font-size: clamp(33px, 4vw, 49px);
+  line-height: 1.4;
+  letter-spacing: -2px;
+}
+
+.hero h1 em {
+  color: var(--pink-dark);
+  font-style: normal;
+}
+
+.hero p {
+  margin: 0 0 26px;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 12px;
+  padding: 14px 23px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background .2s, transform .2s;
+}
+
+.button-primary {
+  border: 1px solid var(--pink);
+  background: var(--pink);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
+.button-outline {
+  border: 1px solid var(--pink);
+  background: white;
+  color: var(--pink-dark);
+}
+
+.button-outline:hover {
+  background: var(--pink-light);
+}
+
+/* =====================================
+   메인 화장품 일러스트
+===================================== */
+
+.hero-art {
+  min-height: 400px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.hero-orbit {
+  width: min(380px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(125deg, #f6d5df, #fff8fa);
+  position: absolute;
+}
+
+.bottle {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(
+    17px 18px 15px rgba(95, 50, 65, .16)
+  );
+}
+
+.bottle-cap {
+  width: 75px;
+  height: 52px;
+  margin: auto;
+  border-radius: 8px 8px 2px 2px;
+  background: linear-gradient(
+    90deg,
+    #dfb0bf,
+    #fff0f3,
+    #dc9daf
+  );
+}
+
+.bottle-body {
+  width: 180px;
+  height: 240px;
+  border: 2px solid rgba(255, 255, 255, .8);
+  border-radius: 20px 20px 33px 33px;
+  background: linear-gradient(
+    110deg,
+    #e9b7c5,
+    #fff3f5 49%,
+    #e2acbe
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bottle-body small {
+  letter-spacing: 2px;
+  font-size: 11px;
+  margin-bottom: 25px;
+}
+
+.bottle-body strong {
+  font-size: 27px;
+  letter-spacing: 3px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.bottle-body span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-top: 28px;
+}
+
+.float-tag {
+  position: absolute;
+  z-index: 3;
+  background: #fff;
+  padding: 10px 15px;
+  border: 1px solid #f1e0e5;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-left {
+  top: 28%;
+  left: 2%;
+}
+
+.tag-right {
+  right: 0;
+  bottom: 20%;
+}
+
+/* =====================================
+   공통 영역
+===================================== */
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-heading h2 {
+  font-size: clamp(25px, 3vw, 33px);
+  letter-spacing: -1px;
+  margin: 10px 0 7px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.step-grid,
+.result-grid,
+.recommend-grid,
+.pack-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.step-card {
+  position: relative;
+  text-align: center;
+  padding: 29px 21px;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+}
+
+.step-no {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.step-icon {
+  display: grid;
+  place-items: center;
+  background: var(--pink-light);
+  width: 68px;
+  height: 68px;
+  margin: 10px auto 20px;
+  border-radius: 17px;
+  font-size: 30px;
+}
+
+.step-card h3 {
+  font-size: 16px;
+  margin: 0 0 7px;
+}
+
+.step-card p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* =====================================
+   화장품 분석 입력 영역
+===================================== */
+
+.analysis {
+  background: var(--soft);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.panel {
+  min-width: 0;
+  padding: 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-bottom: 22px;
+  margin-bottom: 23px;
+  border-bottom: 1px solid var(--line);
+}
+
+.number {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 13px;
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  font-weight: 800;
+}
+
+.panel-title h3 {
+  font-size: 19px;
+  margin: 0;
+}
+
+.panel-title p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.field-label {
+  display: block;
+  margin: 22px 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.field-label small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  margin-left: 5px;
+}
+
+.required {
+  color: #b7435e;
+}
+
+.text-input,
+textarea {
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid #dcd5d9;
+  outline: none;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.text-input:focus,
+textarea:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px var(--pink-light);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 95px;
+}
+
+/* =====================================
+   사진 업로드
+===================================== */
+
+.upload-main {
+  width: 100%;
+  min-height: 174px;
+  background: #fff9fa;
+  border: 2px dashed #e5b7c3;
+  border-radius: 13px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-align: center;
+}
+
+.upload-main:hover,
+.upload-main[aria-expanded="true"] {
+  background: var(--pink-light);
+  border-color: var(--pink);
+}
+
+.upload-emoji {
+  font-size: 30px;
+}
+
+.upload-main strong {
+  font-size: 14px;
+}
+
+.upload-main span:not(.upload-emoji),
+.upload-main small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.upload-menu {
+  display: grid;
+  gap: 8px;
+  padding: 11px;
+  margin-top: 10px;
+  border: 1px solid #efdde2;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.upload-choice {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 13px;
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.upload-choice:hover {
+  border-color: var(--pink);
+  background: #fff8fa;
+}
+
+.upload-choice > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: var(--pink-light);
+  border-radius: 9px;
+  font-size: 24px;
+}
+
+.upload-choice > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-choice strong {
+  font-size: 13px;
+}
+
+.upload-choice small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.image-preview {
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 230px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.image-preview p {
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.small-button {
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  color: var(--pink-dark);
+  font-size: 12px;
+}
+
+.note-box,
+.hint-box,
+.skin-description {
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 17px;
+  font-size: 12px;
+}
+
+.note-box {
+  background: #f8f7f5;
+}
+
+.note-box p {
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.hint-box {
+  background: var(--pink-light);
+  color: #945367;
+}
+
+/* =====================================
+   피부 타입 및 고민 선택
+===================================== */
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.choice {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.choice span {
+  display: flex;
+  align-items: center;
+  min-height: 47px;
+  padding: 10px 12px;
+  border: 1px solid #e5dfe2;
+  border-radius: 10px;
+  background: white;
+  color: #5c5359;
+  font-size: 12px;
+  transition: .15s;
+}
+
+.choice input:checked + span {
+  border-color: var(--pink);
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  font-weight: 800;
+}
+
+.choice input:focus-visible + span {
+  outline: 3px solid #deb0bd;
+  outline-offset: 2px;
+}
+
+.choice span:hover {
+  border-color: var(--pink);
+}
+
+.skin-description {
+  background: #fff8fa;
+  border: 1px solid #f0dfe4;
+  min-height: 88px;
+}
+
+.skin-description strong {
+  color: var(--pink-dark);
+  font-size: 13px;
+}
+
+.skin-description p {
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.radio-stack {
+  display: grid;
+  gap: 9px;
+}
+
+.action-bar {
+  text-align: center;
+  margin-top: 26px;
+}
+
+.form-message {
+  color: #a83e56;
+  font-size: 12px;
+  min-height: 20px;
+  margin: 9px 0 0;
+}
+
+.tiny-note {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* =====================================
+   화장품 성분 분석 결과
+===================================== */
+
+.demo-banner {
+  padding: 13px 17px;
+  border-radius: 10px;
+  background: #fff5e5;
+  color: #875e29;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  background: linear-gradient(
+    115deg,
+    #fff3f6,
+    #fffaf9
+  );
+  border: 1px solid #f1e0e5;
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 21px;
+}
+
+.summary-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--pink-dark);
+  letter-spacing: 1px;
+}
+
+.skin-tag {
+  padding: 6px 12px;
+  background: white;
+  border-radius: 30px;
+  letter-spacing: normal;
+}
+
+.summary-card h3 {
+  margin: 14px 0 4px;
+  font-size: 23px;
+}
+
+.summary-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.tag-list span {
+  padding: 5px 11px;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--pink-dark);
+  font-size: 11px;
+}
+
+/* 결과 카드 - 상단 색상 테두리 없음 */
+
+.result-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  padding: 23px;
+  background: #fff;
+}
+
+.result-symbol {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 13px;
+}
+
+.result-card.good .result-symbol {
+  background: #edf7f0;
+  color: #3f8059;
+}
+
+.result-card.caution .result-symbol {
+  background: #fff4e6;
+  color: #9b6528;
+}
+
+.result-card h3 {
+  font-size: 16px;
+  margin: 0 0 15px;
+}
+
+.ingredient-item {
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+.ingredient-item strong {
+  font-size: 13px;
+}
+
+.ingredient-item p,
+.result-paragraph {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 5px 0 0;
+  line-height: 1.9;
+}
+
+.recommend-block {
+  margin-top: 52px;
+}
+
+.recommend-block > h3 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.recommend-card {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.recommend-card h4 {
+  margin: 0 0 9px;
+  font-size: 15px;
+}
+
+.recommend-card p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* =====================================
+   모델링팩 컨설팅 영역
+===================================== */
+
+.modeling {
+  background: #fcf3f5;
+}
+
+.modeling .panel {
+  box-shadow: var(--shadow);
+}
+
+.modeling .button-outline {
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.pack-results {
+  margin-top: 43px;
+}
+
+.safety-note {
+  margin-top: 20px;
+  border: 1px solid #efe1e5;
+  background: #fff;
+}
+
+/* =====================================
+   모델링팩 결과 카드 구분선 추가
+===================================== */
+
+/*
+  첫 번째 카드에는 기존 .ingredient-item에
+  border-top이 적용되어 있습니다.
+
+  두 번째, 세 번째 카드에도 같은 선을 추가합니다.
+*/
+
+#mixGuidance,
+#separateGuidance {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 0;
+}
+
+/* =====================================
+   하단 푸터
+===================================== */
+
+.footer {
+  padding: 35px 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer strong {
+  font-size: 18px;
+}
+
+.footer p,
+.footer span {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 0;
+}
+
+/* =====================================
+   태블릿 반응형
+===================================== */
+
+@media (max-width: 950px) {
+  .panel {
+    padding: 24px;
+  }
+
+  .result-grid,
+  .pack-result-grid,
+  .recommend-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-orbit {
+    width: 290px;
+  }
+}
+
+/* =====================================
+   모바일 반응형
+===================================== */
+
+@media (max-width: 700px) {
+  .header-inner {
+    min-height: 65px;
+  }
+
+  .site-header nav {
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .section-padding {
+    padding: 62px 0;
+  }
+
+  .hero-inner,
+  .form-grid,
+  .step-grid,
+  .result-grid,
+  .pack-result-grid,
+  .recommend-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-inner {
+    padding-top: 50px;
+  }
+
+  .hero-art {
+    min-height: 315px;
+  }
+
+  .hero-orbit {
+    width: 260px;
+  }
+
+  .bottle-cap {
+    width: 60px;
+    height: 40px;
+  }
+
+  .bottle-body {
+    width: 145px;
+    height: 190px;
+  }
+
+  .bottle-body strong {
+    font-size: 21px;
+  }
+
+  .float-tag {
+    font-size: 10px;
+  }
+
+  .panel,
+  .summary-card {
+    padding: 22px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header nav {
+    gap: 8px;
+    font-size: 10px;
+  }
+
+  .choice span {
+    padding: 9px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
