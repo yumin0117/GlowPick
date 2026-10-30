@@ -1,0 +1,332 @@
+[
+  {
+    "case_id": "EX01",
+    "title": "정상",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "actual": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "expectedCount": 13,
+    "actualCount": 13,
+    "matched": 13,
+    "missing": [],
+    "extra": [],
+    "duplicates": [],
+    "orderError": false,
+    "recall": 1,
+    "precision": 1,
+    "pass": true
+  },
+  {
+    "case_id": "EX02",
+    "title": "성분 누락",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "actual": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "expectedCount": 13,
+    "actualCount": 12,
+    "matched": 12,
+    "missing": [
+      "1,2-hexanediol"
+    ],
+    "extra": [],
+    "duplicates": [],
+    "orderError": false,
+    "recall": 0.9230769230769231,
+    "precision": 1,
+    "pass": false
+  },
+  {
+    "case_id": "EX03",
+    "title": "가상 성분 추가",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "actual": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water",
+      "TEST_ONLY_NOT_AN_INGREDIENT"
+    ],
+    "expectedCount": 13,
+    "actualCount": 14,
+    "matched": 13,
+    "missing": [],
+    "extra": [
+      "test_only_not_an_ingredient"
+    ],
+    "duplicates": [],
+    "orderError": false,
+    "recall": 1,
+    "precision": 0.9285714285714286,
+    "pass": false
+  },
+  {
+    "case_id": "EX04",
+    "title": "중복",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "actual": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water",
+      "Snail Secretion Filtrate"
+    ],
+    "expectedCount": 13,
+    "actualCount": 14,
+    "matched": 13,
+    "missing": [],
+    "extra": [
+      "snail secretion filtrate"
+    ],
+    "duplicates": [
+      {
+        "name": "snail secretion filtrate",
+        "excess": 1
+      }
+    ],
+    "orderError": false,
+    "recall": 1,
+    "precision": 0.9285714285714286,
+    "pass": false
+  },
+  {
+    "case_id": "EX05",
+    "title": "순서 교환",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "actual": [
+      "Betaine",
+      "Snail Secretion Filtrate",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "expectedCount": 13,
+    "actualCount": 13,
+    "matched": 13,
+    "missing": [],
+    "extra": [],
+    "duplicates": [],
+    "orderError": true,
+    "recall": 1,
+    "precision": 1,
+    "pass": false
+  },
+  {
+    "case_id": "EX06",
+    "title": "빈 응답",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Snail Secretion Filtrate",
+      "Betaine",
+      "Butylene Glycol",
+      "1,2-Hexanediol",
+      "Sodium Polyacrylate",
+      "Phenoxyethanol",
+      "Sodium Hyaluronate",
+      "Allantoin",
+      "Ethyl Hexanediol",
+      "Carbomer",
+      "Panthenol",
+      "Arginine",
+      "Aqua/Water"
+    ],
+    "actual": [],
+    "expectedCount": 13,
+    "actualCount": 0,
+    "matched": 0,
+    "missing": [
+      "snail secretion filtrate",
+      "betaine",
+      "butylene glycol",
+      "1,2-hexanediol",
+      "sodium polyacrylate",
+      "phenoxyethanol",
+      "sodium hyaluronate",
+      "allantoin",
+      "ethyl hexanediol",
+      "carbomer",
+      "panthenol",
+      "arginine",
+      "aqua/water"
+    ],
+    "extra": [],
+    "duplicates": [],
+    "orderError": false,
+    "recall": 0,
+    "precision": null,
+    "pass": false
+  },
+  {
+    "case_id": "EX07",
+    "title": "비슷한 문자열",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "Squalane"
+    ],
+    "actual": [
+      "Squalene"
+    ],
+    "expectedCount": 1,
+    "actualCount": 1,
+    "matched": 0,
+    "missing": [
+      "squalane"
+    ],
+    "extra": [
+      "squalene"
+    ],
+    "duplicates": [],
+    "orderError": false,
+    "recall": 0,
+    "precision": 0,
+    "pass": false
+  },
+  {
+    "case_id": "EX08",
+    "title": "미등록 이름 보존",
+    "kind": "constructed_output_not_model_response",
+    "expected": [
+      "UNSEEN_A",
+      "UNSEEN_B"
+    ],
+    "actual": [
+      "UNSEEN_A",
+      "UNSEEN_B"
+    ],
+    "expectedCount": 2,
+    "actualCount": 2,
+    "matched": 2,
+    "missing": [],
+    "extra": [],
+    "duplicates": [],
+    "orderError": false,
+    "recall": 1,
+    "precision": 1,
+    "pass": true
+  }
+]

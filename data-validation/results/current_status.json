@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-31",
+  "products": 6,
+  "original_images": 12,
+  "image_gold_pairs": 5,
+  "distinct_paired_products": 4,
+  "image_hash_matches": 12,
+  "python_tests": 8,
+  "javascript_tests": 31,
+  "notebook_code_cells_syntax_checked": 10,
+  "hf_model_inference": "executed_5_pairs",
+  "gemini": "sdk_verified_remote_call_not_run_missing_key",
+  "colab_execution": "not_run",
+  "space_deployment": "not_run",
+  "independent_human_review": "not_done",
+  "physical_label_photos": 0,
+  "package_completion": "actual_ocr_tested_errors_reported_gemini_pending",
+  "exception_images_executed": 12,
+  "exact_sequence_passes": 0,
+  "live_gradio_tests": "passed_11_checks"
+}

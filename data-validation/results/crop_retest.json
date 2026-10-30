@@ -1,0 +1,124 @@
+[
+  {
+    "engine": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "prompt_version": "label-only-v1",
+    "seconds": 15.50117739988491,
+    "generated_text": "```json\n{\n  \"status\": \"complete\",\n  \"rawText\": \"규조토, 글루코오스, 칼슘설페이트, 알진, 테트라소듐파이로포스페이트, 마그네슘옥사이드, 셀룰로오스검, 티트리잎가루(1,500ppm), 페퍼민트오일, 데하이드로아세틱애씨드, 울트라마린, 알란토인, 포타슘알지네이트, 아데노신, 쇠비름가루, 병풀잎/줄기가루\",\n  \"ingredients\": [\n    \"규조토\",\n    \"글루코오스\",\n    \"칼슘설페이트\",\n    \"알진\",\n    \"테트라소듐파이로포스페이트\",\n    \"마그네슘옥사이드\",\n    \"셀룰로오스검\",\n    \"티트리잎가루(1,500ppm)\",\n    \"페퍼민트오일\",\n    \"데하이드로아세틱애씨드\",\n    \"울트라마린\",\n    \"알란토인\",\n    \"포타슘알지네이트\",\n    \"아데노신\",\n    \"쇠비름가루\",\n    \"병풀잎/줄기가루\"\n  ],\n  \"uncertainSpans\": [],\n  \"warnings\": [],\n  \"nextAction\": \"\"\n}\n```",
+    "execution_status": "success",
+    "response": {
+      "status": "complete",
+      "rawText": "규조토, 글루코오스, 칼슘설페이트, 알진, 테트라소듐파이로포스페이트, 마그네슘옥사이드, 셀룰로오스검, 티트리잎가루(1,500ppm), 페퍼민트오일, 데하이드로아세틱애씨드, 울트라마린, 알란토인, 포타슘알지네이트, 아데노신, 쇠비름가루, 병풀잎/줄기가루",
+      "ingredients": [
+        "규조토",
+        "글루코오스",
+        "칼슘설페이트",
+        "알진",
+        "테트라소듐파이로포스페이트",
+        "마그네슘옥사이드",
+        "셀룰로오스검",
+        "티트리잎가루(1,500ppm)",
+        "페퍼민트오일",
+        "데하이드로아세틱애씨드",
+        "울트라마린",
+        "알란토인",
+        "포타슘알지네이트",
+        "아데노신",
+        "쇠비름가루",
+        "병풀잎/줄기가루"
+      ],
+      "uncertainSpans": [],
+      "warnings": [],
+      "nextAction": ""
+    },
+    "error": null,
+    "pair_id": "I001_P003",
+    "variant": "ingredient_region_crop",
+    "crop_box": [
+      195,
+      355,
+      865,
+      435
+    ],
+    "image_path": "images\\I001_P003_focused.png",
+    "parent_sha256": "b0228bdc1f116d7176d142d560f4f046623c558df2249cd1928f78c45ec9dacf",
+    "synthetic_photo": false,
+    "physical_photo": false,
+    "metrics": {
+      "missing": [],
+      "extra": [],
+      "precision": 1.0,
+      "recall": 1.0,
+      "cer": 0.0,
+      "order_error": false,
+      "exact_sequence": true,
+      "status_match": true,
+      "pass_all": true
+    }
+  },
+  {
+    "engine": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "prompt_version": "label-only-v1",
+    "seconds": 14.015776900108904,
+    "generated_text": "```json\n{\n  \"status\": \"complete\",\n  \"rawText\": \"규조토\\n셀룰로오스검\\n알란토인\\n글루코오스\\n티트리잎가루(1,500ppm)\\n포타슘알지네이트\\n칼슘설페이트\\n페파민트오일\\n아데노신\\n알진\\n데하이드로아세틱애씨드\\n쇠비름가루\\n테트라소듐파이로포스페이트\\n올트라마린\\n병풀잎/줄기가루\\n마그네슘옥사이드\",\n  \"ingredients\": [\n    \"규조토\",\n    \"셀룰로오스검\",\n    \"알란토인\",\n    \"글루코오스\",\n    \"티트리잎가루 (1,500ppm)\",\n    \"포타슘알지네이트\",\n    \"칼슘설페이트\",\n    \"페파민트오일\",\n    \"아데노신\",\n    \"알진\",\n    \"데하이드로아세틱애씨드\",\n    \"쇠비름가루\",\n    \"테트라소듐파이로포스페이트\",\n    \"올트라마린\",\n    \"병풀잎/줄기가루\",\n    \"마그네슘옥사이드\"\n  ],\n  \"uncertainSpans\": [],\n  \"warnings\": [],\n  \"nextAction\": \"\"\n}\n```",
+    "execution_status": "success",
+    "response": {
+      "status": "complete",
+      "rawText": "규조토\n셀룰로오스검\n알란토인\n글루코오스\n티트리잎가루(1,500ppm)\n포타슘알지네이트\n칼슘설페이트\n페파민트오일\n아데노신\n알진\n데하이드로아세틱애씨드\n쇠비름가루\n테트라소듐파이로포스페이트\n올트라마린\n병풀잎/줄기가루\n마그네슘옥사이드",
+      "ingredients": [
+        "규조토",
+        "셀룰로오스검",
+        "알란토인",
+        "글루코오스",
+        "티트리잎가루 (1,500ppm)",
+        "포타슘알지네이트",
+        "칼슘설페이트",
+        "페파민트오일",
+        "아데노신",
+        "알진",
+        "데하이드로아세틱애씨드",
+        "쇠비름가루",
+        "테트라소듐파이로포스페이트",
+        "올트라마린",
+        "병풀잎/줄기가루",
+        "마그네슘옥사이드"
+      ],
+      "uncertainSpans": [],
+      "warnings": [],
+      "nextAction": ""
+    },
+    "error": null,
+    "pair_id": "I002_P003",
+    "variant": "ingredient_region_crop",
+    "crop_box": [
+      60,
+      715,
+      865,
+      1010
+    ],
+    "image_path": "images\\I002_P003_focused.png",
+    "parent_sha256": "48804572a7a779270a759d4857aebbdafca2a23cd2431e8bb02448bd9cf67fb7",
+    "synthetic_photo": false,
+    "physical_photo": false,
+    "metrics": {
+      "missing": [
+        "티트리잎가루(1,500ppm)",
+        "페퍼민트오일",
+        "울트라마린"
+      ],
+      "extra": [
+        "티트리잎가루 (1,500ppm)",
+        "페파민트오일",
+        "올트라마린"
+      ],
+      "precision": 0.8125,
+      "recall": 0.8125,
+      "cer": 0.7785714285714286,
+      "order_error": true,
+      "exact_sequence": false,
+      "status_match": true,
+      "pass_all": false
+    }
+  }
+]

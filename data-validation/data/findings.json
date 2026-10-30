@@ -1,0 +1,51 @@
+[
+  {
+    "id": "C001",
+    "scope": "모델링팩 사용법",
+    "finding": "I001 제품정보 표는 토너 뒤 흡수시키라고 안내하나 I003 사용법은 물과 혼합 후 제거하도록 안내한다.",
+    "action": "자료 불일치로 보류. 이미지 속 제품정보 표의 사용법을 자동 추천 근거로 쓰지 않는다.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  },
+  {
+    "id": "C002",
+    "scope": "성분 순서 확인",
+    "finding": "I001의 16개 성분과 I002의 열별 목록은 지정한 읽기 순서로 일치한다.",
+    "action": "I002는 열별 읽기 시험에 사용. EWG 등급은 적합성 정답에 포함하지 않는다.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  },
+  {
+    "id": "C003",
+    "scope": "혼합 허용",
+    "finding": "E007은 제조사의 혼합 안내이나 상대 모델링팩의 구체적 제품명·호환 범위가 제시되지 않는다.",
+    "action": "임의 제품 조합 혼합 여부는 unknown으로 유지한다.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  },
+  {
+    "id": "C004",
+    "scope": "팀 코드",
+    "finding": "ym 브랜치 e2d0e8f의 BeautyAI/script.js는 실제 OCR·Gemini 호출 없이 예시를 출력한다.",
+    "action": "본 패키지의 단위시험 결과를 실제 OCR 성능으로 발표하지 않는다.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  },
+  {
+    "id": "C005",
+    "scope": "자료 범위",
+    "finding": "공식 웹 상세 이미지 12장이다. 스마트폰으로 촬영한 라벨·흐림·반사·실제 곡면 표본은 확보하지 못했다.",
+    "action": "실물 촬영 시험은 미실행으로 별도 기록한다.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  },
+  {
+    "id": "C006",
+    "scope": "교수 일정",
+    "finding": "교수 PPT는 발표 순서 14주차, 제출 기한 14~16주차 수업 전날 23:59. 역할분담 PDF의 15주차·16주차 전날과 차이.",
+    "action": "교수 PPT 우선. Teams에서 주차별 제출 항목 확인.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  },
+  {
+    "id": "C007",
+    "scope": "팀 날짜",
+    "finding": "채팅의 21·25·28·30일은 월이 보이지 않는다.",
+    "action": "실제 마감일을 임의 지정하지 않는다.",
+    "current_audit_note": "inherited_from_previous_package_not_independently_reverified"
+  }
+]

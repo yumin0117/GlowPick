@@ -1,0 +1,98 @@
+{
+  "cases": [
+    {
+      "pair_id": "I001_P003",
+      "fixture": "synthetic_omission_not_model_output",
+      "result": {
+        "missing": [
+          "병풀잎/줄기가루"
+        ],
+        "extra": [],
+        "precision": 1.0,
+        "recall": 0.9375,
+        "cer": 0.0,
+        "order_error": false,
+        "exact_sequence": false,
+        "status_match": true,
+        "pass_all": false
+      },
+      "image_returned": true
+    },
+    {
+      "pair_id": "I002_P003",
+      "fixture": "synthetic_omission_not_model_output",
+      "result": {
+        "missing": [
+          "병풀잎/줄기가루"
+        ],
+        "extra": [],
+        "precision": 1.0,
+        "recall": 0.9375,
+        "cer": 0.0,
+        "order_error": false,
+        "exact_sequence": false,
+        "status_match": true,
+        "pass_all": false
+      },
+      "image_returned": true
+    },
+    {
+      "pair_id": "I004_P004",
+      "fixture": "synthetic_omission_not_model_output",
+      "result": {
+        "missing": [
+          "병풀추출물"
+        ],
+        "extra": [],
+        "precision": 1.0,
+        "recall": 0.9655172413793104,
+        "cer": 0.0,
+        "order_error": false,
+        "exact_sequence": false,
+        "status_match": true,
+        "pass_all": false
+      },
+      "image_returned": true
+    },
+    {
+      "pair_id": "I004_P005",
+      "fixture": "synthetic_omission_not_model_output",
+      "result": {
+        "missing": [
+          "에틸헥실글리세린"
+        ],
+        "extra": [],
+        "precision": 1.0,
+        "recall": 0.9655172413793104,
+        "cer": 0.0,
+        "order_error": false,
+        "exact_sequence": false,
+        "status_match": true,
+        "pass_all": false
+      },
+      "image_returned": true
+    },
+    {
+      "pair_id": "I004_P006",
+      "fixture": "synthetic_omission_not_model_output",
+      "result": {
+        "missing": [
+          "아시아티코사이드"
+        ],
+        "extra": [],
+        "precision": 1.0,
+        "recall": 0.9629629629629629,
+        "cer": 0.0,
+        "order_error": false,
+        "exact_sequence": false,
+        "status_match": true,
+        "pass_all": false
+      },
+      "image_returned": true
+    }
+  ],
+  "invalid_json": {
+    "error": "Expecting value: line 1 column 1 (char 0)",
+    "scored": false
+  }
+}

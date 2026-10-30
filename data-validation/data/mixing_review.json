@@ -1,0 +1,50 @@
+[
+  {
+    "product_id": "P001",
+    "product_name": "100% Plant-Derived Squalane",
+    "decision": "unknown",
+    "reviewed_exact_pair": false,
+    "reason": "특정 모델링팩·앰플·버전·사용 조건의 일치 근거 미확보. 일반 혼합 광고는 임의 조합 허용 근거가 아님.",
+    "source_url": "https://theordinary.com/en-us/100-plant-derived-squalane-face-oil-100398.html"
+  },
+  {
+    "product_id": "P002",
+    "product_name": "Advanced Snail 96 Mucin Power Essence",
+    "decision": "unknown",
+    "reviewed_exact_pair": false,
+    "reason": "특정 모델링팩·앰플·버전·사용 조건의 일치 근거 미확보. 일반 혼합 광고는 임의 조합 허용 근거가 아님.",
+    "source_url": "https://www.cosrx.com/products/advanced-snail-96-mucin-power-essence"
+  },
+  {
+    "product_id": "P003",
+    "product_name": "프리미엄 쿨(티트리) 모델링 마스크",
+    "decision": "unknown",
+    "reviewed_exact_pair": false,
+    "reason": "특정 모델링팩·앰플·버전·사용 조건의 일치 근거 미확보. 일반 혼합 광고는 임의 조합 허용 근거가 아님.",
+    "source_url": "https://www.lindsaymall.com/product/detail.html?cate_no=30&display_group=1&product_no=156"
+  },
+  {
+    "product_id": "P004",
+    "product_name": "엄청 큰 보습 멀티 앰플",
+    "decision": "unknown",
+    "reviewed_exact_pair": false,
+    "reason": "특정 모델링팩·앰플·버전·사용 조건의 일치 근거 미확보. 일반 혼합 광고는 임의 조합 허용 근거가 아님.",
+    "source_url": "https://lindsaymall.com/product/detail.html?product_no=197&cate_no=30&display_group=1"
+  },
+  {
+    "product_id": "P005",
+    "product_name": "엄청 큰 영양 멀티 앰플",
+    "decision": "unknown",
+    "reviewed_exact_pair": false,
+    "reason": "특정 모델링팩·앰플·버전·사용 조건의 일치 근거 미확보. 일반 혼합 광고는 임의 조합 허용 근거가 아님.",
+    "source_url": "https://lindsaymall.com/product/detail.html?product_no=197&cate_no=30&display_group=1"
+  },
+  {
+    "product_id": "P006",
+    "product_name": "엄청 큰 AC컨트롤 멀티 앰플",
+    "decision": "unknown",
+    "reviewed_exact_pair": false,
+    "reason": "특정 모델링팩·앰플·버전·사용 조건의 일치 근거 미확보. 일반 혼합 광고는 임의 조합 허용 근거가 아님.",
+    "source_url": "https://lindsaymall.com/product/detail.html?product_no=197&cate_no=30&display_group=1"
+  }
+]

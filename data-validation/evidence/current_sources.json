@@ -1,0 +1,72 @@
+[
+  {
+    "id": "WEB01",
+    "url": "https://github.com/yumin0117/GlowPick",
+    "checked_at": "2026-10-31",
+    "observed": "main 파일 목록 .gitignore/README.md; README의 UI 및 Gemini 계획",
+    "status": "web_read"
+  },
+  {
+    "id": "WEB02",
+    "url": "https://github.com/yumin0117/GlowPick/pull/1",
+    "checked_at": "2026-10-31",
+    "observed": "Open; ym→main; e2d0e8f",
+    "status": "web_read"
+  },
+  {
+    "id": "WEB03",
+    "url": "https://theordinary.com/en-us/100-plant-derived-squalane-face-oil-100398.html",
+    "checked_at": "2026-10-31",
+    "observed": "Ingredients: Squalane. 지역·시점별 처방 차이 주의 문구",
+    "status": "ingredient_text_rechecked"
+  },
+  {
+    "id": "WEB04",
+    "url": "https://www.cosrx.com/products/advanced-snail-96-mucin-power-essence",
+    "checked_at": "2026-10-31",
+    "observed": "Ingredient List와 P002 13성분 원문 대조 일치",
+    "status": "ingredient_text_rechecked"
+  },
+  {
+    "id": "WEB05",
+    "url": "https://www.lindsaymall.com/product/detail.html?cate_no=30&display_group=1&product_no=156",
+    "checked_at": "2026-10-31",
+    "observed": "프리미엄 쿨 티트리 모델링 마스크 상품 존재. 현재 성분 이미지 다운로드 재검증 못함",
+    "status": "page_only"
+  },
+  {
+    "id": "WEB06",
+    "url": "https://lindsaymall.com/product/detail.html?product_no=197&cate_no=30&display_group=1",
+    "checked_at": "2026-10-31",
+    "observed": "웹 도구 Cache miss; 현재 페이지 내용 미확인; 기존 이미지 전사만 사용",
+    "status": "fetch_failed"
+  },
+  {
+    "id": "DOC01",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct",
+    "checked_at": "2026-10-31",
+    "observed": "공식 모델 카드와 추론 예시 확인",
+    "status": "documentation_read"
+  },
+  {
+    "id": "DOC02",
+    "url": "https://huggingface.co/microsoft/trocr-base-printed",
+    "checked_at": "2026-10-31",
+    "observed": "대안 후보 모델 카드 확인",
+    "status": "documentation_read"
+  },
+  {
+    "id": "DOC03",
+    "url": "https://huggingface.co/docs/hub/spaces-sdks-gradio",
+    "checked_at": "2026-10-31",
+    "observed": "Gradio Space 구성 문서 확인",
+    "status": "documentation_read"
+  },
+  {
+    "id": "DOC04",
+    "url": "https://ai.google.dev/gemini-api/docs/get-started",
+    "checked_at": "2026-10-31",
+    "observed": "Gemini 공식 시작 문서 확인. 수업 SDK 버전·무료 모델 가용성을 실제 계정에서 재확인 필요",
+    "status": "documentation_read"
+  }
+]

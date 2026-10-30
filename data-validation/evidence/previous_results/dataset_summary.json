@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-30",
+  "products": 6,
+  "ingredient_rows": 115,
+  "images": 12,
+  "image_cases": 12,
+  "additional_cases": 12,
+  "constructed_comparisons": 8,
+  "live_gemini_runs": 0,
+  "independent_human_reviews": 0,
+  "physical_label_photos": 0,
+  "notes": "제품·성분 행은 웹 자료 전사. 사진 OCR 성능 측정은 미실행."
+}

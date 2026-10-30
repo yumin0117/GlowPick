@@ -1,0 +1,2154 @@
+[
+  {
+    "file": "0909\\4주차_번역과요약.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 18,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 3주차와 무엇이 다른가"
+        ],
+        "source_sha256": "ce02b8db53f0fd1db3c7140ccce4be455c5e03c9fb5bcdabcd6d268770356b36"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [
+          "# STEP 1. 준비와 확인  (약 15분)"
+        ],
+        "source_sha256": "fdbc556ae5e66a58eae42c80227efd018c43ac9940c30fc32873312e0a31416e"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [실습 1-1] transformers 설치 및 버전 확인",
+          "!pip install -q -U transformers",
+          "import transformers, torch"
+        ],
+        "source_sha256": "e54ed0bb6bb6583e4a090255344de604b388a69bea743d63587fef4e9af8ca76"
+      },
+      {
+        "cell_index": 3,
+        "type": "markdown",
+        "lines": 6,
+        "highlights": [],
+        "source_sha256": "38598d4310fb4ea7ff69c623dcd485d9e677358a728e672075138130f5cca9e0"
+      },
+      {
+        "cell_index": 4,
+        "type": "code",
+        "lines": 19,
+        "highlights": [
+          "# [실습 1-2] 없어진 pipeline 직접 확인하기  ※ 오류가 나는 것이 정상",
+          "from transformers import pipeline"
+        ],
+        "source_sha256": "2cd7de2461f92183f46cac9b660f852106dffdfdaa3732dec53c199e300cc448"
+      },
+      {
+        "cell_index": 5,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [],
+        "source_sha256": "e512b203260c2056ab59f841c22a192f3f980e522bf376c4339213101993a568"
+      },
+      {
+        "cell_index": 6,
+        "type": "markdown",
+        "lines": 10,
+        "highlights": [
+          "# STEP 2. 직접 불러 쓰는 3단계  (약 20분)"
+        ],
+        "source_sha256": "5fd2171efd146d0244b4b79bc735969611cdd5e3a8fd98866cd59bc8abc35880"
+      },
+      {
+        "cell_index": 7,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 2-1] 번역 모델 불러오기 (한국어 -> 영어)",
+          "from transformers import AutoTokenizer, AutoModelForSeq2SeqLM"
+        ],
+        "source_sha256": "2052a9ab5e83f016043d4cc917dcf6fbfffab2d66ffd66a904b6a62547815e25"
+      },
+      {
+        "cell_index": 8,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 2-2] ① 토큰화 — 문장이 숫자로 바뀌는 것 직접 보기"
+        ],
+        "source_sha256": "e77b4d485882e9ef03403a971c9cc2d4ab2776339c3616ec2bf9683986cdeeac"
+      },
+      {
+        "cell_index": 9,
+        "type": "markdown",
+        "lines": 3,
+        "highlights": [],
+        "source_sha256": "b5ffa2f33b06582f7630dda154d66d260aeaa47db32c53fa24b2394e2769ea0c"
+      },
+      {
+        "cell_index": 10,
+        "type": "code",
+        "lines": 11,
+        "highlights": [
+          "# [실습 2-3] ② 생성 — 모델이 새 숫자를 만들어 냄"
+        ],
+        "source_sha256": "688af0ba056da568da6d097de6fef4fe58f76f94f9967533f689181ef9113c32"
+      },
+      {
+        "cell_index": 11,
+        "type": "code",
+        "lines": 10,
+        "highlights": [
+          "# [실습 2-4] ③ 디코딩 — 숫자를 다시 사람 문장으로"
+        ],
+        "source_sha256": "27a1a782a08f416eba230a574982d2a4b9ca6a3a3741c1d258b75c554e573565"
+      },
+      {
+        "cell_index": 12,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [],
+        "source_sha256": "2b57d8e55c2d2619a4452ce8ade8f1c8a0396be43ee46845135834f73af3b0c1"
+      },
+      {
+        "cell_index": 13,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 3. 함수로 묶어 편하게 쓰기  (약 15분)"
+        ],
+        "source_sha256": "72e686a3e5371bd1f0ef035d307333c726c97260a29a26413b5b3edc1828f81c"
+      },
+      {
+        "cell_index": 14,
+        "type": "code",
+        "lines": 16,
+        "highlights": [
+          "# [실습 3-1] 번역 함수 만들기"
+        ],
+        "source_sha256": "f5cde1ebf708c92e1ca1b1d01bf83fc42822272e39b8154cbc965f7b3cdc796e"
+      },
+      {
+        "cell_index": 15,
+        "type": "code",
+        "lines": 21,
+        "highlights": [
+          "# [실습 3-2] 여러 문장 한 번에 번역하기"
+        ],
+        "source_sha256": "0cbf6cfd7cb0e4d88f8926f85f41934d385c7a2c2d99ef22b9fd7d904fcfe5e0"
+      },
+      {
+        "cell_index": 16,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 4. 반대 방향 번역과 되돌림 검사  (약 15분)"
+        ],
+        "source_sha256": "8ba0e285c3e3e954b77d999ccd48ad1b3c5482ae85f89709ff73bf25b8f51f28"
+      },
+      {
+        "cell_index": 17,
+        "type": "code",
+        "lines": 28,
+        "highlights": [
+          "# [실습 4-1] 영어 -> 한국어 모델 불러오기"
+        ],
+        "source_sha256": "2322bddc68cce668055d611801e7effbb40a6f93c549eda173bdf71e7e1dfbe8"
+      },
+      {
+        "cell_index": 18,
+        "type": "code",
+        "lines": 25,
+        "highlights": [
+          "# [실습 4-2] 되돌림 번역(back-translation)으로 품질 확인하기"
+        ],
+        "source_sha256": "2fedc083974f1dca7e2bce46745c5d47344587eaebccb27527ab978a91e0ac2c"
+      },
+      {
+        "cell_index": 19,
+        "type": "markdown",
+        "lines": 8,
+        "highlights": [],
+        "source_sha256": "76edfe29f5ea913558b787227ddb6386a55a4c1451498bd15b8bbe4df1818687"
+      },
+      {
+        "cell_index": 20,
+        "type": "code",
+        "lines": 41,
+        "highlights": [
+          "# [실습 4-3] 더 좋은 영어 -> 한국어 모델로 바꿔 비교하기"
+        ],
+        "source_sha256": "a898151495e664ff4830fff285612f12954c74c79739039105cdaa51689da760"
+      },
+      {
+        "cell_index": 21,
+        "type": "markdown",
+        "lines": 10,
+        "highlights": [],
+        "source_sha256": "ce3bcfa0b0126057d6c4629939b45612b4a4cce091dfb3cf064f77c746f84b8c"
+      },
+      {
+        "cell_index": 22,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 5. 요약하기  (약 20분)"
+        ],
+        "source_sha256": "9a3a30f0067abfb6d55ed83a3d368bb753eb5214e419a51167495fb2070b94bd"
+      },
+      {
+        "cell_index": 23,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [실습 5-1] 영어 요약 모델 불러오기"
+        ],
+        "source_sha256": "300a9e52029b014404fc64e00962b0327d702fa070f3462b36d3eefa7c5a4ef6"
+      },
+      {
+        "cell_index": 24,
+        "type": "code",
+        "lines": 24,
+        "highlights": [
+          "# [실습 5-2] 긴 영어 글 요약하기"
+        ],
+        "source_sha256": "36d59d643ee259af068b6ae02bae48bb0f923b37c6633867fcdffe0f4279f0b9"
+      },
+      {
+        "cell_index": 25,
+        "type": "code",
+        "lines": 80,
+        "highlights": [
+          "# [실습 5-3] 한국어 요약 모델 세 개를 직접 비교하기",
+          "import torch",
+          "from transformers import PreTrainedTokenizerFast"
+        ],
+        "source_sha256": "72b85e9d1fa89fa1aa738c005dba058d4e15f2bc930d457e6c9002ea29ff498c"
+      },
+      {
+        "cell_index": 26,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [],
+        "source_sha256": "a07237ffd1ed42efaf3f39d85b0c3a64ab31b6571d05b16afce98622f9a642d1"
+      },
+      {
+        "cell_index": 27,
+        "type": "code",
+        "lines": 21,
+        "highlights": [
+          "# [실습 5-4] 가장 좋았던 모델을 골라 요약 함수 만들기"
+        ],
+        "source_sha256": "af6a98598685cbad00c0cce85014708253d64e4f2ec44a09988339e9821f5472"
+      },
+      {
+        "cell_index": 28,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 6. 생성 옵션 바꿔보기  (약 15분)"
+        ],
+        "source_sha256": "2a82b3cf6f5282280c7065a26d9932ff152e09d2c5394739a79ef1b915d46435"
+      },
+      {
+        "cell_index": 29,
+        "type": "code",
+        "lines": 10,
+        "highlights": [
+          "# [실습 6-1] 길이 옵션 비교하기"
+        ],
+        "source_sha256": "81baee653ba80193cfe9d04d5526ac30a0989bb1a73d56945f4b16d338164702"
+      },
+      {
+        "cell_index": 30,
+        "type": "code",
+        "lines": 15,
+        "highlights": [
+          "# [실습 6-2] num_beams 비교하기 (품질 vs 속도)",
+          "import time"
+        ],
+        "source_sha256": "a15e7009461dd16f8bc9f9d62e58a05b9d4086ba58675d68aff20533501fcdbd"
+      },
+      {
+        "cell_index": 31,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [
+          "# STEP 7. 결과를 그래프로 보기  (약 10분)"
+        ],
+        "source_sha256": "cc4f5fca193ff83009a766aa46bfdbc7dcafc05dd1e8f7a9289e1d7a6b61e118"
+      },
+      {
+        "cell_index": 32,
+        "type": "code",
+        "lines": 22,
+        "highlights": [
+          "# [실습 7-1] 한글 폰트 설치 + 적용  ※ 1~3주차와 같은 코드 (1~2분)",
+          "import glob",
+          "import matplotlib.pyplot as plt",
+          "import matplotlib.font_manager as fm"
+        ],
+        "source_sha256": "dd5f09bf310019e6a1e325b657c017ef2fab532d9b6cb621ec02343947897e3f"
+      },
+      {
+        "cell_index": 33,
+        "type": "code",
+        "lines": 26,
+        "highlights": [
+          "# [실습 7-2] 원문과 요약문 길이를 막대그래프로 비교",
+          "import matplotlib.pyplot as plt"
+        ],
+        "source_sha256": "431596bed387fceb4d0a6e609069dd0c2378f96fb6c8061545eac0d9d83f3e88"
+      },
+      {
+        "cell_index": 34,
+        "type": "markdown",
+        "lines": 55,
+        "highlights": [],
+        "source_sha256": "50e9d858154dd04d7b1ddecef10ee08e67d25351d01cec3691a8b9fc76a86afa"
+      },
+      {
+        "cell_index": 35,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "c6babbde6d56356c04958a51d77aeb4f54996dfc0ae2f62ccfaf6fda58e7cc66"
+      },
+      {
+        "cell_index": 36,
+        "type": "code",
+        "lines": 24,
+        "highlights": [
+          "# [과제 1] 내 글로 번역과 요약 해 보기"
+        ],
+        "source_sha256": "087cd28b5227d4ea6c465646e7c48526f24a7e0241d11b12718cbac479c27635"
+      }
+    ]
+  },
+  {
+    "file": "0916\\5주차_이미지와음성.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 27,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 4주차와 무엇이 다른가",
+          "## 이번 주부터 달라지는 것 — 변수 이름은 영어로"
+        ],
+        "source_sha256": "f00de7229331042c49ec01a5b86fa61effc12aa2fbaa9f42beac7140006da06a"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 1. 준비하기  (약 10분)"
+        ],
+        "source_sha256": "df251bfe60750331e14b24e48f53bb695f22dc6b3270ec3724cbf4f265f33e78"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 23,
+        "highlights": [
+          "# [실습 1-1] 라이브러리 설치와 버전 확인",
+          "!pip install -q -U transformers",
+          "import transformers",
+          "import PIL",
+          "import torch"
+        ],
+        "source_sha256": "99872225df7d34e3109d00ffc0e170520aa5c62725709cc5a6e34bbc943bb961"
+      },
+      {
+        "cell_index": 3,
+        "type": "markdown",
+        "lines": 12,
+        "highlights": [],
+        "source_sha256": "871525515d119804b39dccfc37c28099e3f675bdcda84d361edef9e980644269"
+      },
+      {
+        "cell_index": 4,
+        "type": "markdown",
+        "lines": 3,
+        "highlights": [],
+        "source_sha256": "f0387632d158a564ac96de6ba94d8d435091ab261bf50357d56b536490191fd4"
+      },
+      {
+        "cell_index": 5,
+        "type": "code",
+        "lines": 21,
+        "highlights": [
+          "# [실습 1-2] 오늘 쓸 태스크가 살아 있는지 직접 확인",
+          "from transformers.pipelines import SUPPORTED_TASKS"
+        ],
+        "source_sha256": "f18ce419a1f81b575aaab264dbabf580b75ee852a92171f8803bd95a4c96fd78"
+      },
+      {
+        "cell_index": 6,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [],
+        "source_sha256": "3be3024460a5110cfb8edd01f9da135453b4d10fd7a08b2d2ad50ceabf063fbe"
+      },
+      {
+        "cell_index": 7,
+        "type": "markdown",
+        "lines": 8,
+        "highlights": [
+          "# STEP 2. 이미지 분류 — 이 사진은 무엇인가  (약 25분)"
+        ],
+        "source_sha256": "9265735cad9eea10e26db4d385753fa4d54708374321120b81e76444b73a2468"
+      },
+      {
+        "cell_index": 8,
+        "type": "code",
+        "lines": 21,
+        "highlights": [
+          "# [실습 2-1] 샘플 사진 준비하기",
+          "from PIL import Image",
+          "import requests"
+        ],
+        "source_sha256": "31148793a9c9a82233907d966ababd094d20258d04e60b401c81a0cd9b94a18f"
+      },
+      {
+        "cell_index": 9,
+        "type": "code",
+        "lines": 16,
+        "highlights": [
+          "# [실습 2-2] 이미지 분류 — 코드 세 줄",
+          "from transformers import pipeline"
+        ],
+        "source_sha256": "4280869e852efcd91abe0d47cbf5c377c9f0c1482366b96f805d4637582b563e"
+      },
+      {
+        "cell_index": 10,
+        "type": "markdown",
+        "lines": 12,
+        "highlights": [],
+        "source_sha256": "98a8ea596e53de8df7ec51957b89063531999ab802fbf105c195971ce2108119"
+      },
+      {
+        "cell_index": 11,
+        "type": "code",
+        "lines": 15,
+        "highlights": [
+          "# [실습 2-3] 몇 개까지 볼지 정하기 — top_k"
+        ],
+        "source_sha256": "377fee32b5f0736137ddcc021bb22625cb947687b1a32dad3cbe46def81054fc"
+      },
+      {
+        "cell_index": 12,
+        "type": "code",
+        "lines": 19,
+        "highlights": [
+          "# [실습 2-4] 내 사진으로 해 보기  ※ Colab 전용",
+          "from google.colab import files"
+        ],
+        "source_sha256": "65dccf490f96d2d80860faac9e722c0dbe24b0255ba784cd2abb6633e5741435"
+      },
+      {
+        "cell_index": 13,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [],
+        "source_sha256": "33ec393671b3be79a6a2c381d7fcb6db42666eae9e936f013b57f40aad5f610e"
+      },
+      {
+        "cell_index": 14,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 2-5] 이 모델이 아는 1000가지는 무엇인가"
+        ],
+        "source_sha256": "3cad8b4c626aeedae4638eb5b3939570f18799cd92b99e31bc3f1c58f0170e16"
+      },
+      {
+        "cell_index": 15,
+        "type": "markdown",
+        "lines": 10,
+        "highlights": [
+          "# STEP 3. 객체 인식 — 무엇이 **어디에** 있는가  (약 25분)"
+        ],
+        "source_sha256": "874118ba6fa91770cdd8d121b48b621e90e63a6de4c91c556e63c0ffad1c9258"
+      },
+      {
+        "cell_index": 16,
+        "type": "code",
+        "lines": 15,
+        "highlights": [
+          "# [실습 3-1] 객체 인식 모델 불러오기"
+        ],
+        "source_sha256": "4dd204eafc75ea22c707257c062c0a298fd1a94cbd911f6ab653f1bc3ebb9a95"
+      },
+      {
+        "cell_index": 17,
+        "type": "markdown",
+        "lines": 11,
+        "highlights": [],
+        "source_sha256": "9f3173f5417b5acc0b696f2617736c8df8e7834e4deb71e7e621edcbe1a425c7"
+      },
+      {
+        "cell_index": 18,
+        "type": "code",
+        "lines": 34,
+        "highlights": [
+          "# [실습 3-2] 찾은 상자를 사진 위에 그리기",
+          "from PIL import ImageDraw"
+        ],
+        "source_sha256": "16e74ff0ec98e520ee37741965a5c7a1630d1efabb134599a027b7a3f7d626bd"
+      },
+      {
+        "cell_index": 19,
+        "type": "code",
+        "lines": 11,
+        "highlights": [
+          "# [실습 3-3] 기준 점수(threshold) 를 바꿔 보기"
+        ],
+        "source_sha256": "a81cc1d17088b18d2e52d61636799517dcaa27da65982775d6cfa76bfac3e2ce"
+      },
+      {
+        "cell_index": 20,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [실습 3-4] 내 사진 속 물체 찾기  ※ Colab 전용"
+        ],
+        "source_sha256": "67263cb862568991d90a1ac315fcab03c214af5a9952dd363215587e729e8e2d"
+      },
+      {
+        "cell_index": 21,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [],
+        "source_sha256": "580a08319243120fc361ca63300df510cee62495eb9a81e5e543695c3815d157"
+      },
+      {
+        "cell_index": 22,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 4. 음성 인식 — 소리를 글자로  (약 30분)"
+        ],
+        "source_sha256": "bc3007c8acb5060aab96df57f409988c65769149a0ce1f58d4f3999aefde673a"
+      },
+      {
+        "cell_index": 23,
+        "type": "code",
+        "lines": 42,
+        "highlights": [
+          "# [실습 4-1] 음성 파일 올리고 점검하기  ※ Colab 전용",
+          "import os",
+          "import subprocess",
+          "from google.colab import files"
+        ],
+        "source_sha256": "4eb096717915c2a9b9082b395931172da864c7d045cccc0c6beeb5cbd318b52e"
+      },
+      {
+        "cell_index": 24,
+        "type": "markdown",
+        "lines": 19,
+        "highlights": [],
+        "source_sha256": "4c466c54011ea896f7a4ddf4f22f27e700b2467e7fa110936339846f00f7332d"
+      },
+      {
+        "cell_index": 25,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [실습 4-2] Whisper 로 받아쓰기 — 코드 세 줄"
+        ],
+        "source_sha256": "74aa978d9578b43c14070d4ca01d8272ad0b5e705e3fffcf0de669ca7cb43280"
+      },
+      {
+        "cell_index": 26,
+        "type": "markdown",
+        "lines": 6,
+        "highlights": [],
+        "source_sha256": "1edaa34f473b850eea50a3c3d44a62e3e4fd9cf3a5feb3d8d5584e8a438ca90b"
+      },
+      {
+        "cell_index": 27,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 4-3] ★ 한국어로 받아쓰라고 지정하기"
+        ],
+        "source_sha256": "c01f7958cf87b480d04647ccb51c6362122f635e5fc28451bc21295c6a698526"
+      },
+      {
+        "cell_index": 28,
+        "type": "markdown",
+        "lines": 16,
+        "highlights": [],
+        "source_sha256": "7fff47c73832f9f27ab1fe3348ef5d330cc9d136c8d3bbbc895025f131d9fa42"
+      },
+      {
+        "cell_index": 29,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 4-4] 긴 음성 처리와 시간 표시"
+        ],
+        "source_sha256": "f7265b0ec9e6b84aa0326452559b77dd6a450541bc538e0205fb001d8c514a54"
+      },
+      {
+        "cell_index": 30,
+        "type": "code",
+        "lines": 37,
+        "highlights": [
+          "# [실습 4-5] 자막 파일(.srt) 만들어 보기"
+        ],
+        "source_sha256": "9771fc027440b38a3ec8e5b7e9d8829be1aebbce6d4a54001c86522fd0b329ba"
+      },
+      {
+        "cell_index": 31,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 5. 세 가지를 한눈에 정리  (약 15분)"
+        ],
+        "source_sha256": "a0b8bd1d65becffd3bebc273dda83f69800196a93d976541e7c6260dd3eaf5dc"
+      },
+      {
+        "cell_index": 32,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 5-1] 세 태스크의 코드 모양 비교"
+        ],
+        "source_sha256": "76e09d04a2ad4573143167fc5e9ec02afd349407e7b8a58d136266f9afb87e1c"
+      },
+      {
+        "cell_index": 33,
+        "type": "code",
+        "lines": 23,
+        "highlights": [
+          "# [실습 5-2] 한글 폰트 설치 + 적용   ※ 1~4주차와 같은 코드 (1~2분)",
+          "import glob",
+          "import matplotlib.pyplot as plt",
+          "import matplotlib.font_manager as fm"
+        ],
+        "source_sha256": "bf56513e1ad8b3ca102da1b1f7bf0d53ad83f79d3bfc7234696d912ca2713b4c"
+      },
+      {
+        "cell_index": 34,
+        "type": "code",
+        "lines": 23,
+        "highlights": [
+          "# [실습 5-3] 이미지 분류 결과를 막대그래프로 그리기"
+        ],
+        "source_sha256": "7d7eea036d91e28387524a4430360a92686aeddc3b278d97da9a1a6b59c57ba1"
+      },
+      {
+        "cell_index": 35,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [],
+        "source_sha256": "80ab6b7d9cbe62505c095680522fe63c5a9229fe073b5320194c5cd84551a2fa"
+      },
+      {
+        "cell_index": 36,
+        "type": "code",
+        "lines": 33,
+        "highlights": [
+          "# [과제 1] 내 사진 3장으로 분류와 객체 인식 해 보기",
+          "from google.colab import files"
+        ],
+        "source_sha256": "f5220e3f110b87a0a4bf55312de21b354452fc0fc7aa8138fb7c0120280dd911"
+      },
+      {
+        "cell_index": 37,
+        "type": "markdown",
+        "lines": 21,
+        "highlights": [],
+        "source_sha256": "8a6a0a4bfc1fcf38edace836452f5c332b4c055a2fa8913e25e3e6fd6ceae7df"
+      },
+      {
+        "cell_index": 38,
+        "type": "code",
+        "lines": 38,
+        "highlights": [
+          "# [과제 2] 내 목소리를 받아쓰고 3개 언어로 번역하기"
+        ],
+        "source_sha256": "a39871bae033b1e4df96b30d9eb3bc8b923ae178f8372c8afdead8419dc318a0"
+      },
+      {
+        "cell_index": 39,
+        "type": "code",
+        "lines": 38,
+        "highlights": [
+          "# [과제 2-2] 받아쓴 한국어를 영어 · 일본어 · 베트남어로 번역",
+          "from transformers import AutoTokenizer, AutoModelForSeq2SeqLM"
+        ],
+        "source_sha256": "277e0898220d812858243d0df71b5da4d893ad90a0a405f9de33444255ffd818"
+      },
+      {
+        "cell_index": 40,
+        "type": "markdown",
+        "lines": 28,
+        "highlights": [
+          "## 제출 안내",
+          "## 더 알아보기",
+          "## 다음 주 예고 — 6주차 : Gradio 로 AI 데모 만들기"
+        ],
+        "source_sha256": "3bce154ed8a962d1c268952981b263a41b943657eb8c6e3d76debe5612c4b20b"
+      }
+    ]
+  },
+  {
+    "file": "0923\\6주차_Gradio_데모만들기.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 19,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 5주차와 무엇이 다른가"
+        ],
+        "source_sha256": "8556ad6bc956884eee2daa9628b4e50d34bc6dae7ba0ce8898713736930c01e7"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [
+          "# STEP 1. 준비와 첫 화면  (약 15분)"
+        ],
+        "source_sha256": "a71556a7799405e433493ca53db7535957e9234ea76204bb52c821269d1d55d1"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 1-1] Gradio 설치",
+          "!pip install -q -U gradio transformers",
+          "import gradio as gr",
+          "import transformers"
+        ],
+        "source_sha256": "e062657e4479f7ce8769614c498473c52ea809bdb77daa77cbfca986d7153aa1"
+      },
+      {
+        "cell_index": 3,
+        "type": "markdown",
+        "lines": 12,
+        "highlights": [],
+        "source_sha256": "fc7f0a60fd44b6ad07d8ac6f171609fdd877b244aa1357137932f20cdd2212fe"
+      },
+      {
+        "cell_index": 4,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 1-2] 첫 화면 — 코드 네 줄"
+        ],
+        "source_sha256": "b4f5a287b1739d5faa57c5ec5dc81071da3c7ab1aaa487eb2b77101a22fda3c1"
+      },
+      {
+        "cell_index": 5,
+        "type": "markdown",
+        "lines": 31,
+        "highlights": [],
+        "source_sha256": "4804d4fd4d20ae02893335822cf0cc487c23a161fad0a8eb38d031740aad0fa5"
+      },
+      {
+        "cell_index": 6,
+        "type": "markdown",
+        "lines": 12,
+        "highlights": [],
+        "source_sha256": "bc62e059f0e09eab27310c970af43f2e2dae4a2e38bab54b9549bf1647de8963"
+      },
+      {
+        "cell_index": 7,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 1-3] 화면 끄기와 오류 보기"
+        ],
+        "source_sha256": "2389284a981f4ee1e6e05937ea0c9c65769237701c765a48cea3fcc27c920147"
+      },
+      {
+        "cell_index": 8,
+        "type": "markdown",
+        "lines": 6,
+        "highlights": [],
+        "source_sha256": "1cba556220cdfbeadaf91ea2edaa337e7ba5ded46024b48d0a6f8b356292c280"
+      },
+      {
+        "cell_index": 9,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 2. Interface 의 세 가지 재료  (약 25분)"
+        ],
+        "source_sha256": "d5820868383fb400b91f70e143cff4c4281a0ebdab0210c916d1907d86256f61"
+      },
+      {
+        "cell_index": 10,
+        "type": "code",
+        "lines": 21,
+        "highlights": [
+          "# [실습 2-1] 입력칸 종류 바꿔 보기"
+        ],
+        "source_sha256": "d516918b92fc216fd8ecda56fd9fb675d76e63ed1e489ce1d3188b86b09780ad"
+      },
+      {
+        "cell_index": 11,
+        "type": "code",
+        "lines": 25,
+        "highlights": [
+          "# [실습 2-2] 입력이 두 개, 출력이 두 개"
+        ],
+        "source_sha256": "26be911266b58a15ac8023f073a61ffaf180fb181d5ea2a29c02fbbe8977ef3f"
+      },
+      {
+        "cell_index": 12,
+        "type": "code",
+        "lines": 28,
+        "highlights": [
+          "# [실습 2-3] 제목 · 설명 · 예시 넣기"
+        ],
+        "source_sha256": "72c9cacd63b3b42ae51a53bd6c7399e189feb82c20e8082bb5f57e381f28fa15"
+      },
+      {
+        "cell_index": 13,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [],
+        "source_sha256": "99e6fb6dca6605abaa073d2f23d91c5eb55b6f62847f0c10a5b2231ddce74373"
+      },
+      {
+        "cell_index": 14,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 3. 사진 분류기 화면  (약 25분)"
+        ],
+        "source_sha256": "bb470b08fae56413a08c52322975d82efec0630033f6aa9bd5077a9f0df91778"
+      },
+      {
+        "cell_index": 15,
+        "type": "code",
+        "lines": 15,
+        "highlights": [
+          "# [실습 3-1] 5주차 모델 불러오기",
+          "from transformers import pipeline"
+        ],
+        "source_sha256": "b0fc3d672d007b26b05e3cc62c14a0c5b9e298b70cade1c54a858da3b6dca6ed"
+      },
+      {
+        "cell_index": 16,
+        "type": "code",
+        "lines": 27,
+        "highlights": [
+          "# [실습 3-2] 화면에 넣을 함수 만들기",
+          "from PIL import Image",
+          "import requests"
+        ],
+        "source_sha256": "40868fcd9caa4a321f8b897fc95df68ce0ad6dba19856ba9b4eaa7fda8686248"
+      },
+      {
+        "cell_index": 17,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 3-3] 사진 분류기 화면 완성"
+        ],
+        "source_sha256": "180565ebce9d290a97c9da3e37faf30368c7898dce6f0fdda7dd34f25ae9cf6a"
+      },
+      {
+        "cell_index": 18,
+        "type": "markdown",
+        "lines": 10,
+        "highlights": [],
+        "source_sha256": "1936aa6c6f0427a7e997526d19669500011b0eec0b38020ebac9f6c806c75dda"
+      },
+      {
+        "cell_index": 19,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 4. 객체 인식 화면 — 상자를 그려 주는 컴포넌트  (약 20분)"
+        ],
+        "source_sha256": "6bda78dfa917c49185fecf149656a7aee7e65140785fce8eb58e768526e4c1ef"
+      },
+      {
+        "cell_index": 20,
+        "type": "code",
+        "lines": 28,
+        "highlights": [
+          "# [실습 4-1] 객체 인식 함수 만들기"
+        ],
+        "source_sha256": "b87faab947ebab3ce0f7ccabe85d6f9d06296395eab390bad8adef7492ccc2b7"
+      },
+      {
+        "cell_index": 21,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 4-2] 기준 점수를 화면에서 조절하기"
+        ],
+        "source_sha256": "a5d807bdda5fe87e3114a194078b479a2e170f2862a610f96828284cd1b3b636"
+      },
+      {
+        "cell_index": 22,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [],
+        "source_sha256": "892e41bf4b3a9d44b497601b62cd209ce561f99c5f33069da30ff2eb2ce00e36"
+      },
+      {
+        "cell_index": 23,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [
+          "## ☕ 쉬는 시간"
+        ],
+        "source_sha256": "1700e4d81cc5823e0339dfb0ac454a91ba8a111969153e2187adbe457106af4a"
+      },
+      {
+        "cell_index": 24,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 5. 음성 받아쓰기 화면 — 마이크 버튼  (약 20분)"
+        ],
+        "source_sha256": "538eb87a260563f336bce185951f25a2b18771feb1ecca464fe734cac60b6784"
+      },
+      {
+        "cell_index": 25,
+        "type": "code",
+        "lines": 11,
+        "highlights": [
+          "# [실습 5-1] Whisper 불러오기"
+        ],
+        "source_sha256": "84b31e9af4f9e7883fc8b49bd7e1da26acd065c366e6277a22204a38dcb72cd2"
+      },
+      {
+        "cell_index": 26,
+        "type": "code",
+        "lines": 29,
+        "highlights": [
+          "# [실습 5-2] 받아쓰기 함수와 화면"
+        ],
+        "source_sha256": "e50096069bac0b8e3eba0987984b34c858f767df35b25d09b9fb0a0b1620b91d"
+      },
+      {
+        "cell_index": 27,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [],
+        "source_sha256": "f15e7659ad787a6fcf16acc7d021c5fb0033edf87a8e3b143849ef5af912a3be"
+      },
+      {
+        "cell_index": 28,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 6. Blocks 로 화면 직접 배치하기  (약 25분)"
+        ],
+        "source_sha256": "0f3da94a32d6a5623b6904bbf3ef7b016bc160652a1f9ccd44b85f569617e34a"
+      },
+      {
+        "cell_index": 29,
+        "type": "code",
+        "lines": 24,
+        "highlights": [
+          "# [실습 6-1] Blocks 기본 — Row 와 Column"
+        ],
+        "source_sha256": "f39a24f2aa89c18919831d2fcf990ebabaf35dca2eb4bf16728c2084a59095df"
+      },
+      {
+        "cell_index": 30,
+        "type": "code",
+        "lines": 35,
+        "highlights": [
+          "# [실습 6-2] 탭으로 세 데모를 하나로 합치기"
+        ],
+        "source_sha256": "fa1ed57776d50a3d87ef67c8aefd0de934a4c684175e3dbd44e4127ecd7d4b01"
+      },
+      {
+        "cell_index": 31,
+        "type": "markdown",
+        "lines": 13,
+        "highlights": [],
+        "source_sha256": "263aa4cd22eb56670e3ac4db421d26944607539a0da221e55268fb32c2b005c1"
+      },
+      {
+        "cell_index": 32,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [
+          "# STEP 7. 정리  (약 15분)"
+        ],
+        "source_sha256": "84b7acf6ecdc0d2db43178078dbc36579908d16f944872d1b3ea2577e051b926"
+      },
+      {
+        "cell_index": 33,
+        "type": "code",
+        "lines": 22,
+        "highlights": [
+          "# [실습 7-1] 오늘 쓴 컴포넌트 정리"
+        ],
+        "source_sha256": "da4923dcf0edac1bebe62dbe5e6caceac85e129907d1ab35d83631949cb9c43e"
+      },
+      {
+        "cell_index": 34,
+        "type": "markdown",
+        "lines": 11,
+        "highlights": [
+          "## 오늘 배운 구조 한 장 정리"
+        ],
+        "source_sha256": "a605c31a0381d21d355bddfc827981cebeed14c1b50e80c9d7c2990713d5a770"
+      },
+      {
+        "cell_index": 35,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [],
+        "source_sha256": "3075b3f3a08dd3113eb004d377f7bf7caa2c039ac49df79bc0b36c0dfb459707"
+      },
+      {
+        "cell_index": 36,
+        "type": "code",
+        "lines": 29,
+        "highlights": [
+          "# [과제 1] 나만의 데모 만들기"
+        ],
+        "source_sha256": "3f4fb8c2d5b3d32c3c8755f9e6197d36d5eecca774c6c25933136f14987a0ccd"
+      },
+      {
+        "cell_index": 37,
+        "type": "code",
+        "lines": 15,
+        "highlights": [
+          "# [과제 2] 데모를 써 본 소감 적기"
+        ],
+        "source_sha256": "ef9e1f2f339bd68849ed8f532bb25c1c9cef54ce106f736caa713c2ff11e2f41"
+      },
+      {
+        "cell_index": 38,
+        "type": "markdown",
+        "lines": 40,
+        "highlights": [
+          "## 제출 안내",
+          "## 더 알아보기",
+          "## 다음 주 예고 — 7주차 : 데모를 인터넷에 올리기"
+        ],
+        "source_sha256": "260d5b90de2f011b73b198ea8ff135b2f5e3b0e79f8e84565f5d8f837f98eacb"
+      }
+    ]
+  },
+  {
+    "file": "0930\\7주차_Static_Space_배포.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 29,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 6주차와 무엇이 다른가",
+          "## 오늘 이 노트북에서 하는 일"
+        ],
+        "source_sha256": "2970b38aca86e8f010c677bc47d43067c7e020a9e5b1f90ce8ff644ccd9c31f3"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [
+          "# [점검] 모델 이름 점검기"
+        ],
+        "source_sha256": "873246a9972f677402f8f5fbe3e6b39e562ddf389d3314dff1fcc428619a8daf"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 30,
+        "highlights": [
+          "# [점검] 모델이 브라우저(Transformers.js)에서 도는지 확인",
+          "import requests"
+        ],
+        "source_sha256": "b7b5aa2c0975dddae31737d67080ac557518c3ee7583b2656a51298531f7e099"
+      },
+      {
+        "cell_index": 3,
+        "type": "markdown",
+        "lines": 8,
+        "highlights": [],
+        "source_sha256": "551fb013a5b114959d72e4ab75eea991014bba621847519d2748cd56acf8e97f"
+      },
+      {
+        "cell_index": 4,
+        "type": "markdown",
+        "lines": 27,
+        "highlights": [
+          "# STEP 1. 로그인 · 이메일 인증 확인  (실습 A · 약 5분)",
+          "# STEP 2. Static Space 만들기  (실습 B · 약 15분)"
+        ],
+        "source_sha256": "4b0f1fea60577c71af0eea11c345becd096c874cbb9d6bdf21408d5cefa08d06"
+      },
+      {
+        "cell_index": 5,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [
+          "# STEP 3. index.html 만들어 Space 에 붙여넣기  (실습 C · 약 20분)"
+        ],
+        "source_sha256": "6da0f4877dbef9be5b43b1e9eeb0b88d455b6fdefdbd026183e7e7367f21eaeb"
+      },
+      {
+        "cell_index": 6,
+        "type": "code",
+        "lines": 106,
+        "highlights": [],
+        "source_sha256": "36289c433e8769cd00931d0e6fd439269df38adf29eeaf38eb7ef961c4b1f76a"
+      },
+      {
+        "cell_index": 7,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "5862d9670a07df796e303320794d4e32c03f1a65dbf126502613f15516e54c52"
+      },
+      {
+        "cell_index": 8,
+        "type": "code",
+        "lines": 11,
+        "highlights": [
+          "# [실습 3-2] index.html 내용을 화면에 찍어 복사하기"
+        ],
+        "source_sha256": "366b119bf4916a4ea885832cb3ac10ad3b820d5b1c3c288ae76b6e05d7e0ebd7"
+      },
+      {
+        "cell_index": 9,
+        "type": "code",
+        "lines": 9,
+        "highlights": [
+          "# [실습 3-3] (선택) 내 컴퓨터로 내려받기",
+          "from google.colab import files"
+        ],
+        "source_sha256": "40813a68d611a5e5a5ad8399fc0226edf9c278184cf4fc42aa85bd5914ee29b2"
+      },
+      {
+        "cell_index": 10,
+        "type": "markdown",
+        "lines": 27,
+        "highlights": [],
+        "source_sha256": "6239b11b8916daedbac636edb8dd935d342d9f9418ce8018c7e0646b2aca138a"
+      },
+      {
+        "cell_index": 11,
+        "type": "markdown",
+        "lines": 25,
+        "highlights": [
+          "# STEP 4. 내 주소에서 확인하고 공유하기  (실습 D · 약 15분)"
+        ],
+        "source_sha256": "061466e5a956b2518438f3aa51f5dc6302212417a018cf67f8190a610fcbf952"
+      },
+      {
+        "cell_index": 12,
+        "type": "markdown",
+        "lines": 15,
+        "highlights": [
+          "# STEP 5. 제목과 모델 바꾸기  (실습 E · 약 25분)"
+        ],
+        "source_sha256": "6c3d409ebb8b6c73dca9821fa20184680140df4a9043f4e28506c80de2ba4058"
+      },
+      {
+        "cell_index": 13,
+        "type": "code",
+        "lines": 7,
+        "highlights": [
+          "# [실습 5-2] 찾은 모델 점검하기"
+        ],
+        "source_sha256": "abc6019271fd21ce9f4f6671e770fdf2c1e7db0b9b6e627c56e6a5d48721e950"
+      },
+      {
+        "cell_index": 14,
+        "type": "markdown",
+        "lines": 19,
+        "highlights": [],
+        "source_sha256": "a59a525cf762da370e14e8522b2603390589e1b98220bd6deb45473c7a50c2c2"
+      },
+      {
+        "cell_index": 15,
+        "type": "markdown",
+        "lines": 21,
+        "highlights": [
+          "## 중간평가 주제 카드"
+        ],
+        "source_sha256": "cfe46c0e80b52e5b7eb955594f54b69ecea1fc61a643b6efd2f4adf72f8c31c3"
+      },
+      {
+        "cell_index": 16,
+        "type": "code",
+        "lines": 76,
+        "highlights": [],
+        "source_sha256": "6c74d8d684c50eb785b9c06d1f58f47fe64e43cd3b2ad37511e16ec9b377eed4"
+      },
+      {
+        "cell_index": 17,
+        "type": "code",
+        "lines": 9,
+        "highlights": [
+          "# [과제] 번역기 틀 내용을 찍어 복사하기 (또는 내려받기)"
+        ],
+        "source_sha256": "b084b8cd1821c3bdd3b269a51db55d1fd049aaa21575967b6911e7fe64cb3919"
+      },
+      {
+        "cell_index": 18,
+        "type": "markdown",
+        "lines": 23,
+        "highlights": [],
+        "source_sha256": "51b36e6d55d5756f649b9c4c3f9aaa705ddbe22753d07bf9c8facc0fa006bf1d"
+      },
+      {
+        "cell_index": 19,
+        "type": "markdown",
+        "lines": 17,
+        "highlights": [],
+        "source_sha256": "0fe60a1ec101703879ba9ec538078ffce5cfdd0a2ce8c59f67cf92d97efe93ef"
+      }
+    ]
+  },
+  {
+    "file": "1014\\9주차_생성형AI_API_첫걸음.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 26,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 3~5주차와 무엇이 다른가",
+          "## 준비물"
+        ],
+        "source_sha256": "dc3c23c3bf1d860ae7d016f9cfa5a29a90f1b1cda6368affb154daa458cc8123"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [
+          "# STEP 0. 설치와 [점검]  (약 5분)"
+        ],
+        "source_sha256": "02cce51e97ca6b3274d55d316533f2ede66e48d4b224d8012af1c8a67c8a9e14"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [실습 0-1] 설치",
+          "!pip install -q google-genai==2.12.1"
+        ],
+        "source_sha256": "b91cb7e0b11b680789d786cd945faed9a505df382f412c121bcef80a6e722ccb"
+      },
+      {
+        "cell_index": 3,
+        "type": "code",
+        "lines": 24,
+        "highlights": [
+          "# [점검] 한 번만 실행해서 결과를 확인합니다",
+          "import google.genai",
+          "from google import genai",
+          "import google.auth",
+          "from google.colab import userdata"
+        ],
+        "source_sha256": "5101dc5d7ecd2f0a9bb6929bdfaa94434b158ad7a56348ae857b6d60a4a43640"
+      },
+      {
+        "cell_index": 4,
+        "type": "markdown",
+        "lines": 20,
+        "highlights": [
+          "# STEP 1. API 란 무엇인가  (약 10분)"
+        ],
+        "source_sha256": "085f2a58b15b6183c1169e5de387f3303bc741a54665847e099e77b784ea2886"
+      },
+      {
+        "cell_index": 5,
+        "type": "markdown",
+        "lines": 25,
+        "highlights": [
+          "# STEP 2. API 키 발급과 저장  (약 15분)"
+        ],
+        "source_sha256": "0f48368fd0e227cb02d519fd8fd45d7b43af20256394645a748e041d965d3748"
+      },
+      {
+        "cell_index": 6,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 2-3] 보안 비밀에서 키 읽기",
+          "from google.colab import userdata"
+        ],
+        "source_sha256": "683565c4fdb081d7e89ef6ab700d8f8b73909444d0f46b6d809bc94ea5ea9260"
+      },
+      {
+        "cell_index": 7,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [
+          "# STEP 3. 첫 API 호출  (약 20분)"
+        ],
+        "source_sha256": "6e6f436a8ec575eaf475d2da22931d988d3351476d26c69b0622ffe6eeac50cf"
+      },
+      {
+        "cell_index": 8,
+        "type": "code",
+        "lines": 28,
+        "highlights": [
+          "# [실습 3-1] 첫 질문 보내기",
+          "from google import genai",
+          "from google.genai import types"
+        ],
+        "source_sha256": "604125bc58b651899d497ddfef2f249ad6a8f082c0b6ccee4dd2b422408ed017"
+      },
+      {
+        "cell_index": 9,
+        "type": "markdown",
+        "lines": 3,
+        "highlights": [],
+        "source_sha256": "7769fc5fb45f92a9874444f4b76ac2c064f6cf8226fc40e2cd891cd6366f84f0"
+      },
+      {
+        "cell_index": 10,
+        "type": "code",
+        "lines": 13,
+        "highlights": [
+          "# [실습 3-2] 응답 뜯어보기 — 답 글 말고도 들어 있는 것"
+        ],
+        "source_sha256": "be579518715faf1d3869ee8bed80b33bdf749fd397458dc69433f7f806a31516"
+      },
+      {
+        "cell_index": 11,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "b62b2a3a768aa53dedf4afd336889b29b84bae59cdfbe4932d907e54f3f8dc18"
+      },
+      {
+        "cell_index": 12,
+        "type": "code",
+        "lines": 20,
+        "highlights": [
+          "# [실습 3-3] 질문을 함수로 만들기 — 여러 번 편하게 묻기"
+        ],
+        "source_sha256": "95f22f0c890d8f686c81073883d72b4b9edfdc529f92a84ef2ab99cb89a7462e"
+      },
+      {
+        "cell_index": 13,
+        "type": "markdown",
+        "lines": 9,
+        "highlights": [
+          "# STEP 4. 옵션 바꿔 보기  (약 15분)"
+        ],
+        "source_sha256": "e9fa385ec3dced1b89a51a544c3909f9aae5e477be78a3597450384d69c9168f"
+      },
+      {
+        "cell_index": 14,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 4-1] 답 길이 제한 — max_output_tokens"
+        ],
+        "source_sha256": "faf4db21a2d25b434497fda7282a621d4565247f705cef0f914d66a589883dc1"
+      },
+      {
+        "cell_index": 15,
+        "type": "code",
+        "lines": 22,
+        "highlights": [
+          "# [실습 4-2] 생각 수준 — thinking_level",
+          "import time"
+        ],
+        "source_sha256": "6bf8d91d16306b98ab4b1147860e93ad0a16314f76eabc81ac1bcad3d0a29877"
+      },
+      {
+        "cell_index": 16,
+        "type": "markdown",
+        "lines": 18,
+        "highlights": [
+          "# STEP 5. 토큰과 요금  (약 15분)"
+        ],
+        "source_sha256": "3b399a8a45b909af28e11b786fe0937912907c164dbe7d9ccef5158f1e78f469"
+      },
+      {
+        "cell_index": 17,
+        "type": "code",
+        "lines": 23,
+        "highlights": [
+          "# [실습 5-1] \"만약 유료였다면\" 계산기"
+        ],
+        "source_sha256": "425b242c41c078554bd7a7cb50f6d8b4f368c115ee883aa8a66d307b901a2638"
+      },
+      {
+        "cell_index": 18,
+        "type": "markdown",
+        "lines": 1,
+        "highlights": [],
+        "source_sha256": "fafd5b87ae25a897e241e1d2254456e750667fc53b12d00302b7099e42aad8be"
+      },
+      {
+        "cell_index": 19,
+        "type": "code",
+        "lines": 19,
+        "highlights": [
+          "# [실습 5-2] 한국어와 영어의 토큰 수 비교"
+        ],
+        "source_sha256": "c94d4c662379cad6cb521c8e9ded557f84b2a92126dffe84c6b574c079374b16"
+      },
+      {
+        "cell_index": 20,
+        "type": "markdown",
+        "lines": 15,
+        "highlights": [
+          "# STEP 6. 오류가 나도 멈추지 않게  (약 15분)"
+        ],
+        "source_sha256": "27d21f3ab9571c8f2aaae717de5cb12f603ec2aa695ffd3e03537713547112c9"
+      },
+      {
+        "cell_index": 21,
+        "type": "code",
+        "lines": 26,
+        "highlights": [
+          "# [실습 6-1] 오류를 잡아 한글로 알려 주는 함수"
+        ],
+        "source_sha256": "79b84afc40bbd3f598eca5e8ddbfa3369c9e224cc57803da35f687c85a694af2"
+      },
+      {
+        "cell_index": 22,
+        "type": "code",
+        "lines": 16,
+        "highlights": [
+          "# [실습 6-2] 일부러 틀려 보기 — 없는 모델 이름"
+        ],
+        "source_sha256": "d2cc1f83e0c06d3cb8ee70257db88cd040a9933b55cc368396ef8ac76c97b11f"
+      },
+      {
+        "cell_index": 23,
+        "type": "markdown",
+        "lines": 1,
+        "highlights": [],
+        "source_sha256": "b5e389c4b7de554bdf6ee661b11985a2f7700ba5365c9dba3dbcd63fcbfb190c"
+      },
+      {
+        "cell_index": 24,
+        "type": "markdown",
+        "lines": 14,
+        "highlights": [
+          "# STEP 7. 무료 등급 보안 · 요금 수칙  (약 10분)"
+        ],
+        "source_sha256": "4242e3bb2cb8715874c0b5ae6df6083c8b8566be64c7f95879b0d9509443ba4a"
+      },
+      {
+        "cell_index": 25,
+        "type": "markdown",
+        "lines": 13,
+        "highlights": [],
+        "source_sha256": "351211e9ccf4c9203f281b51615d2d3fc48d86d056b544d23d22be09f536c462"
+      },
+      {
+        "cell_index": 26,
+        "type": "code",
+        "lines": 30,
+        "highlights": [
+          "# [과제] 나만의 한 줄 도우미"
+        ],
+        "source_sha256": "251f946ce8367399f28f6e123707745a040908d9d13fa053bfabcf3509e1f876"
+      },
+      {
+        "cell_index": 27,
+        "type": "markdown",
+        "lines": 35,
+        "highlights": [],
+        "source_sha256": "9889c1987bdbbafbd029df914e65f0e42e2d4e045a8bc166028220deff5364c7"
+      },
+      {
+        "cell_index": 28,
+        "type": "code",
+        "lines": 153,
+        "highlights": [],
+        "source_sha256": "f645bfb9bd6f0c26485e2320c04fcfa43474fa2fcba244a1dacbafeb27340c2e"
+      },
+      {
+        "cell_index": 29,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [과제 2-2] index.html 내용을 찍어 복사하기 (또는 내려받기)"
+        ],
+        "source_sha256": "504fae2f156a41b30d701efc51b51c494144124f331203eaf956b8aedb623f87"
+      },
+      {
+        "cell_index": 30,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "b6afd6fb0c32c388243552484b4c16f0df3384469bec7de85773da57b3dd163f"
+      },
+      {
+        "cell_index": 31,
+        "type": "markdown",
+        "lines": 9,
+        "highlights": [],
+        "source_sha256": "fe8c5e3fdfd36f898b38ee36d90ddb74984a1f77ebccca4b19d53d7643bbe0db"
+      },
+      {
+        "cell_index": 32,
+        "type": "markdown",
+        "lines": 18,
+        "highlights": [],
+        "source_sha256": "ab57b7a927d33d7ed12b6df0a32b95a9c44763d6c86f9c44da3b306ba329165a"
+      }
+    ]
+  },
+  {
+    "file": "1021\\10주차_프롬프트_엔지니어링.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 20,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 9주차와 무엇이 다른가"
+        ],
+        "source_sha256": "1b675ce2e8ad4b12803e76fb226d92e2221afe29b0e2304f2cd52509d23da33b"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 3,
+        "highlights": [
+          "# STEP 0. 설치 · [점검] · 준비  (약 10분)"
+        ],
+        "source_sha256": "b3e15240936cb7a5d7c1b8ec5a2441d64a42ba4f134efe257a1e58c33b334a3d"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 7,
+        "highlights": [
+          "# [실습 0-1] 설치 — 9주차와 같이 2.12.1 로 고정",
+          "!pip install -q google-genai==2.12.1"
+        ],
+        "source_sha256": "579ba80736de3b9256736ec119210b7c3f6fd9d769d1f8522661655fd395960f"
+      },
+      {
+        "cell_index": 3,
+        "type": "code",
+        "lines": 22,
+        "highlights": [
+          "# [점검] 한 번만 실행해서 결과를 확인합니다",
+          "import google.genai",
+          "import google.auth",
+          "from google import genai",
+          "from google.colab import userdata"
+        ],
+        "source_sha256": "24df274259cec0e2993510612a1178acbd03445b6be0fde110656efe34951a72"
+      },
+      {
+        "cell_index": 4,
+        "type": "code",
+        "lines": 43,
+        "highlights": [
+          "# [실습 0-2] 키 읽기 · client 만들기 · 질문 함수 — 오늘 내내 이 셀을 씁니다",
+          "from google import genai",
+          "from google.genai import types",
+          "from google.colab import userdata"
+        ],
+        "source_sha256": "d72cefe2611cc22a175d27f8d6ed7dbd39e5f6aaa3a59b7f068cd64bd9255b16"
+      },
+      {
+        "cell_index": 5,
+        "type": "markdown",
+        "lines": 16,
+        "highlights": [
+          "# STEP 1. 프롬프트를 이루는 요소  (약 20분)"
+        ],
+        "source_sha256": "4dea78608b083718899e2e3006da7683c8d123ee86b757df6f47f185aa8a27fa"
+      },
+      {
+        "cell_index": 6,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 1-1] 막연한 프롬프트 vs 구체적인 프롬프트"
+        ],
+        "source_sha256": "0826420105c96953e624ca5e3123201c3a283f03876646a9a1b14c6aefda4285"
+      },
+      {
+        "cell_index": 7,
+        "type": "markdown",
+        "lines": 1,
+        "highlights": [],
+        "source_sha256": "1199727601585e8ac85de2d16347330510bd2d3a6c419ae157410ba99905db61"
+      },
+      {
+        "cell_index": 8,
+        "type": "code",
+        "lines": 22,
+        "highlights": [
+          "# [실습 1-2] 요소를 하나씩 더해 보기"
+        ],
+        "source_sha256": "1de51cc267ff6c6760be868a9e9ebe41840108dec0b8c9b01fb9ba4dbca6bd4c"
+      },
+      {
+        "cell_index": 9,
+        "type": "markdown",
+        "lines": 1,
+        "highlights": [],
+        "source_sha256": "93b327106630f395ea8ca3f25ce1439846beb49c49c37cb484592426627f3cc3"
+      },
+      {
+        "cell_index": 10,
+        "type": "markdown",
+        "lines": 14,
+        "highlights": [
+          "# STEP 2. 역할과 규칙 — `system_instruction`  (약 20분)"
+        ],
+        "source_sha256": "8e3cb2142b74f548a8e4d1a775f289f44e3ae1279557e11ead1159422da638c6"
+      },
+      {
+        "cell_index": 11,
+        "type": "code",
+        "lines": 18,
+        "highlights": [
+          "# [실습 2-1] 같은 질문 · 다른 역할"
+        ],
+        "source_sha256": "163fbe0ad8b25c36fe87061fb5ef9dddc7c9d0c7cf951862a29a28292b1d03ff"
+      },
+      {
+        "cell_index": 12,
+        "type": "code",
+        "lines": 14,
+        "highlights": [
+          "# [실습 2-2] 규칙은 질문이 바뀌어도 유지된다"
+        ],
+        "source_sha256": "b5c88d9048cbb1e768128add74b48033c6b515d141879567d9b82b86a35b9034"
+      },
+      {
+        "cell_index": 13,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "f0feeb8a903c3b3e20d8ebc3636806fa42292001b6f8dec92f3ea96b02a1d320"
+      },
+      {
+        "cell_index": 14,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [
+          "# STEP 3. 답의 모양 정하기 — 목록 · 표 · JSON  (약 25분)"
+        ],
+        "source_sha256": "91cfdf57c22f071f4c5c33dd60f81764ae9c29ff7cc021f0b41818ec28c7513a"
+      },
+      {
+        "cell_index": 15,
+        "type": "code",
+        "lines": 13,
+        "highlights": [
+          "# [실습 3-1] 표로 받아서 예쁘게 보기",
+          "from IPython.display import Markdown, display"
+        ],
+        "source_sha256": "53e8eb52b8123b1a7fd70ed1d7057fb706a40b25122b3a1fdda38fe4090c0436"
+      },
+      {
+        "cell_index": 16,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "7553a72ada95be4f8f2bfd729b435c36ecf0910f10e7d5057afe45b5cd844084"
+      },
+      {
+        "cell_index": 17,
+        "type": "code",
+        "lines": 20,
+        "highlights": [
+          "# [실습 3-2] 프롬프트로만 JSON 을 부탁하면?",
+          "import json"
+        ],
+        "source_sha256": "50d93dc4f324af335b6689de381d247f5fb22a450ee4ec5721d03ab2c97cfa82"
+      },
+      {
+        "cell_index": 18,
+        "type": "code",
+        "lines": 38,
+        "highlights": [
+          "# [실습 3-3] response_format 으로 JSON 모양을 정해 받기"
+        ],
+        "source_sha256": "261ec628082b8ed5dc000cc1f7597115e5128256fa6f31239207364547165fde"
+      },
+      {
+        "cell_index": 19,
+        "type": "markdown",
+        "lines": 3,
+        "highlights": [],
+        "source_sha256": "e7074f6c30856800efea85b06bd32ff6589af4cc21bc97353f8d0867ce5b2003"
+      },
+      {
+        "cell_index": 20,
+        "type": "markdown",
+        "lines": 7,
+        "highlights": [
+          "# STEP 4. 예시 보여 주기 — few-shot  (약 20분)"
+        ],
+        "source_sha256": "2cf8b4d15f258b14c4857c28fbcc62ed84f516cf382bdd42a79f7e47a6bfb48e"
+      },
+      {
+        "cell_index": 21,
+        "type": "code",
+        "lines": 27,
+        "highlights": [
+          "# [실습 4-1] 예시 없이 vs 예시 3개 — 리뷰 분류"
+        ],
+        "source_sha256": "d39ce180039e78bde6e0cf01ff7d98efe75e47f8981666279ce82859f767ab41"
+      },
+      {
+        "cell_index": 22,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "758ac2e1c3515ac1c3b67c4a020d7968f3a69a11e2be1cea5212312907286a40"
+      },
+      {
+        "cell_index": 23,
+        "type": "markdown",
+        "lines": 6,
+        "highlights": [
+          "# STEP 5. 구분자 — 지시와 자료를 나누기  (약 15분)"
+        ],
+        "source_sha256": "d3fc1a7f8258a4c1014e8585e9e034f1a36ecf4464c22d2586745bb95745e822"
+      },
+      {
+        "cell_index": 24,
+        "type": "code",
+        "lines": 22,
+        "highlights": [
+          "# [실습 5-1] 숨은 지시가 들어 있는 글 요약하기"
+        ],
+        "source_sha256": "7283f83ce3163854cb96bf64d0dd75c2b24639334d7f00d52856e4a71dcd5717"
+      },
+      {
+        "cell_index": 25,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "9417a715943d42b465ca23b1a3bb3c310dca4e69f5555581147c24bcf8601703"
+      },
+      {
+        "cell_index": 26,
+        "type": "markdown",
+        "lines": 14,
+        "highlights": [
+          "# STEP 6. 프롬프트 수칙 — 오늘 배운 것 정리"
+        ],
+        "source_sha256": "489e2cdd357704186ed26aa7cb1d5bcdc947d319cf18cbf73f7526d93a843bbe"
+      },
+      {
+        "cell_index": 27,
+        "type": "markdown",
+        "lines": 20,
+        "highlights": [],
+        "source_sha256": "f12ee9bac98d516eea99505f4c0744f06e7645f8348305e3ce7f0b5ad0feda99"
+      },
+      {
+        "cell_index": 28,
+        "type": "code",
+        "lines": 57,
+        "highlights": [
+          "# [과제 1단계] 내 실험 재료 — ★ (직접 작성) 부분을 내 주제에 맞게 고칩니다"
+        ],
+        "source_sha256": "97270fd3bc29309cb67145b576d0d3b75b4b6a766090e6feeb4c0da557407f5f"
+      },
+      {
+        "cell_index": 29,
+        "type": "code",
+        "lines": 26,
+        "highlights": [
+          "# [과제 1-1] 6가지 조합을 실행해 결과 표 만들기 (요청 6번 · 1분 안에 끝남)",
+          "import pandas as pd"
+        ],
+        "source_sha256": "78dfb04bb84f57f177786a1a7f5c6b82fdb21fb22a02bb64e9c24b369f530edc"
+      },
+      {
+        "cell_index": 30,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [],
+        "source_sha256": "95aae85f116cf49c9ee7ea76c878f3dc7e03fca95532f938800dedbacc30e3c5"
+      },
+      {
+        "cell_index": 31,
+        "type": "code",
+        "lines": 9,
+        "highlights": [
+          "# [과제 1-2] 같은 조합을 3번 — 답이 매번 같을까? (요청 3번)"
+        ],
+        "source_sha256": "12e0532c60dc806ae6aec9007e25e515ed4a2b5d793d1de4644f216313e96fac"
+      },
+      {
+        "cell_index": 32,
+        "type": "markdown",
+        "lines": 24,
+        "highlights": [],
+        "source_sha256": "f644888a65f9145a9970225a1bd58aee01e11ace30b02640b8287358262595cb"
+      },
+      {
+        "cell_index": 33,
+        "type": "code",
+        "lines": 275,
+        "highlights": [],
+        "source_sha256": "0376c1fad5d3df7300454c2175b9d6f69f60241bda5ff73631b36d85d2ba6e46"
+      },
+      {
+        "cell_index": 34,
+        "type": "code",
+        "lines": 9,
+        "highlights": [
+          "# [과제 2-2] index.html 내용을 찍어 복사하기 (또는 내려받기)"
+        ],
+        "source_sha256": "9bec0d3c66259c96e0d4c880bf468ea0075298addf4621cbf0a6004b84f67830"
+      },
+      {
+        "cell_index": 35,
+        "type": "markdown",
+        "lines": 12,
+        "highlights": [],
+        "source_sha256": "cc89427b175167738ed5f71161def7163cf835383289c8476f6627b07a5330b2"
+      },
+      {
+        "cell_index": 36,
+        "type": "markdown",
+        "lines": 16,
+        "highlights": [],
+        "source_sha256": "62abbfa38a7f60940e2bc335ea4f35907fb959b15925d9a452f7798f53eb9ab1"
+      }
+    ]
+  },
+  {
+    "file": "1028\\11주차_나만의_챗봇.ipynb",
+    "cells": [
+      {
+        "cell_index": 0,
+        "type": "markdown",
+        "lines": 20,
+        "highlights": [
+          "## 이번 주 학습 목표",
+          "## 10주차와 무엇이 다른가"
+        ],
+        "source_sha256": "a07da8163db7766857d9adfe62933ca2125287791a2ef9cd13fc5aaf0e05384f"
+      },
+      {
+        "cell_index": 1,
+        "type": "markdown",
+        "lines": 3,
+        "highlights": [
+          "# STEP 0. 설치 · [점검] · 준비  (약 10분)"
+        ],
+        "source_sha256": "f669c2df8e9786e5479c6de7c72319bd4b4762df1aaa50760f25cbc7f88e6f1c"
+      },
+      {
+        "cell_index": 2,
+        "type": "code",
+        "lines": 5,
+        "highlights": [
+          "# [실습 0-1] 설치 — 2.12.1 로 고정 (-U 를 붙이지 않음)",
+          "!pip install -q google-genai==2.12.1"
+        ],
+        "source_sha256": "7647693c805d89062f8131301d517e3ff3ece387b68929fbddf84f3ce96fd968"
+      },
+      {
+        "cell_index": 3,
+        "type": "code",
+        "lines": 19,
+        "highlights": [
+          "# [점검] 한 번만 실행해서 결과를 확인합니다 (키 값은 찍지 않음)",
+          "import google.genai",
+          "import google.auth",
+          "from google import genai",
+          "from google.colab import userdata"
+        ],
+        "source_sha256": "7b1d3a9ec9e9ad06ad8aff26fd957c608240a49251cbbfd937f3b2ed923e6223"
+      },
+      {
+        "cell_index": 4,
+        "type": "code",
+        "lines": 17,
+        "highlights": [
+          "# [실습 0-2] client 만들기 — 9 · 10주차와 같음",
+          "from google import genai",
+          "from google.genai import types",
+          "from google.colab import userdata"
+        ],
+        "source_sha256": "a1b8114049e9d20f781114d92ebc5792973bf16f2cfc3b0845b45299bf926ba4"
+      },
+      {
+        "cell_index": 5,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [
+          "# STEP 1. API 는 앞의 대화를 기억할까?  (약 10분)"
+        ],
+        "source_sha256": "f2e52f68d54884b41cb5a3c271598d22565fc39db0879e89c317b0a9bd301b82"
+      },
+      {
+        "cell_index": 6,
+        "type": "code",
+        "lines": 13,
+        "highlights": [
+          "# [실습 1-1] 두 번 따로 물어보기 (요청 2번)"
+        ],
+        "source_sha256": "c14911292241989cdefa0b79d46a16ca4beabfbb47e5b6683f7100412755b8f9"
+      },
+      {
+        "cell_index": 7,
+        "type": "markdown",
+        "lines": 10,
+        "highlights": [],
+        "source_sha256": "b10d5e426509c71970abafb93c6600b4936fa05d22399dcf8d4ad03e1e018d46"
+      },
+      {
+        "cell_index": 8,
+        "type": "markdown",
+        "lines": 14,
+        "highlights": [
+          "# STEP 2. 대화 기록(history)으로 기억시키기  (약 20분)"
+        ],
+        "source_sha256": "ad13f0353dfd068f7c00f4f4459863d9d04a58c8b30cc187733fdb69394e680f"
+      },
+      {
+        "cell_index": 9,
+        "type": "code",
+        "lines": 26,
+        "highlights": [
+          "# [실습 2-1] history 리스트로 두 번 묻기 (요청 2번)"
+        ],
+        "source_sha256": "d9728e8c1bd72491744b4cbb3c98989640743ad77e69c1410e4cd3626993c3b2"
+      },
+      {
+        "cell_index": 10,
+        "type": "code",
+        "lines": 14,
+        "highlights": [
+          "# [실습 2-2] 기록 안에 무엇이 들어 있나 들여다보기 (요청 없음)"
+        ],
+        "source_sha256": "10556667b8367d4cbe1ebc325b7dbf46e062b30ddb73ff06405f1c0b87542462"
+      },
+      {
+        "cell_index": 11,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "9647d2f32b3c6159c70044ca3ea8e639a332b67999063e6b1763932f4ee17a01"
+      },
+      {
+        "cell_index": 12,
+        "type": "code",
+        "lines": 16,
+        "highlights": [
+          "# [실습 2-3] 대화가 길어지면 토큰은? (요청 3번)"
+        ],
+        "source_sha256": "d1a45be62bc446dd9038f8cf1bcdc010a13cffd24e804d36d3ac07efb2e1ef73"
+      },
+      {
+        "cell_index": 13,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "a3d34523036d7739fdf62f9cadbab872560c096196c833a6a8281d0296379da1"
+      },
+      {
+        "cell_index": 14,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 3. 챗봇 함수 만들기 — 시스템 프롬프트 + 기록  (약 20분)"
+        ],
+        "source_sha256": "41adf39d56aa16b66364dd82c30e8f6a5ce96800a57c05094862476bf4afab57"
+      },
+      {
+        "cell_index": 15,
+        "type": "code",
+        "lines": 36,
+        "highlights": [
+          "# [실습 3-1] chat() 함수 — 질문을 기록에 붙이고, 보내고, 답도 기록에 붙임"
+        ],
+        "source_sha256": "082430818c972a2252a394ecf31eb534be801b9b58473275ab4eeb6ff0529dcc"
+      },
+      {
+        "cell_index": 16,
+        "type": "code",
+        "lines": 12,
+        "highlights": [
+          "# [실습 3-2] 폴리봇과 세 번 대화하기 (요청 3번)"
+        ],
+        "source_sha256": "b849854a4684967f856e65c886e7f63ab8bb37fc0c0dd09211592a56e15b0a01"
+      },
+      {
+        "cell_index": 17,
+        "type": "markdown",
+        "lines": 1,
+        "highlights": [],
+        "source_sha256": "4d96b347aaf07a68a248762666d900357f8dd380a80ed5676619ce465e692149"
+      },
+      {
+        "cell_index": 18,
+        "type": "code",
+        "lines": 7,
+        "highlights": [
+          "# [실습 3-3] 새 대화를 시작하면? (요청 1번)"
+        ],
+        "source_sha256": "1f6a32ab09d0e12c1d9ffbad093e431ec238584cf3fdbcf4987979564f91193a"
+      },
+      {
+        "cell_index": 19,
+        "type": "markdown",
+        "lines": 1,
+        "highlights": [],
+        "source_sha256": "8063ec24829c9e0d27ad028d830fc2571fd1c9bc7c6dc7ead143aaf8dad69ca3"
+      },
+      {
+        "cell_index": 20,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 4. 서버가 기억하게 하는 방법 — `previous_interaction_id`  (약 15분)"
+        ],
+        "source_sha256": "48cc06c3358fa8f833c44642d69c8f25ec4764880086706bdb2e825cd7b03905"
+      },
+      {
+        "cell_index": 21,
+        "type": "code",
+        "lines": 23,
+        "highlights": [
+          "# [실습 4-1] 앞 응답의 id 로 이어 묻기 (요청 2번)"
+        ],
+        "source_sha256": "58a96ad474c8062efc32ed02e1ebc8b5f65e21d35fe36484d3dd15ad04b7cc02"
+      },
+      {
+        "cell_index": 22,
+        "type": "markdown",
+        "lines": 11,
+        "highlights": [],
+        "source_sha256": "16805b210620211fd06c4f096906c833f854167ef8e7fb6f6802c12d70ab49ac"
+      },
+      {
+        "cell_index": 23,
+        "type": "markdown",
+        "lines": 5,
+        "highlights": [
+          "# STEP 5. 대화가 길어지면 — 최근 몇 턴만 기억하기  (약 10분)"
+        ],
+        "source_sha256": "d8ddbe59ff6522c910737d684df37304f30bc08a9fdc115c70894b3b1672a768"
+      },
+      {
+        "cell_index": 24,
+        "type": "code",
+        "lines": 27,
+        "highlights": [
+          "# [실습 5-1] trim_history() — 최근 MAX_TURNS 턴만 남기기 (요청 없음)"
+        ],
+        "source_sha256": "852cd1b8498a11895efed267067c05b9df7e29ecc0e041396f0fa329319a1d38"
+      },
+      {
+        "cell_index": 25,
+        "type": "markdown",
+        "lines": 2,
+        "highlights": [],
+        "source_sha256": "c6e9f89148d66ef53d77ed8746d6c3357b321a34858a929fd58518e8a127570d"
+      },
+      {
+        "cell_index": 26,
+        "type": "markdown",
+        "lines": 4,
+        "highlights": [
+          "# STEP 6. (선택) Colab 에서 직접 대화해 보기"
+        ],
+        "source_sha256": "bcc9b12bd0cfd1b99ff085f66c9da9b7b7c5a5d44370e91f8209df5dcf2babb9"
+      },
+      {
+        "cell_index": 27,
+        "type": "code",
+        "lines": 16,
+        "highlights": [
+          "# [실습 6-1] 대화창 — '끝' 을 입력하면 멈춤 (보낼 때마다 요청 1번)"
+        ],
+        "source_sha256": "3f39019c7b9da184f82da9e4a35f0737cc7be256c4232f7b98e53a7956ddc802"
+      },
+      {
+        "cell_index": 28,
+        "type": "markdown",
+        "lines": 19,
+        "highlights": [],
+        "source_sha256": "32d78a5eb8cab38d04d7c5bba5c77a6084449ccbf0a1760be84ec9500d69921f"
+      },
+      {
+        "cell_index": 29,
+        "type": "code",
+        "lines": 25,
+        "highlights": [
+          "# [과제 1단계] 내 챗봇 시험하기 — ★ (직접 작성) 부분을 고칩니다 (요청 5번)"
+        ],
+        "source_sha256": "d9a3a9e17b7c61fb4f0aba4b32c5e445a33ccece431b6e1a07887714ebaa3789"
+      },
+      {
+        "cell_index": 30,
+        "type": "markdown",
+        "lines": 9,
+        "highlights": [],
+        "source_sha256": "82f6a995f69a32e045f188fd84c8fa2a561c6d39480772103cf6c9003f17d27e"
+      },
+      {
+        "cell_index": 31,
+        "type": "markdown",
+        "lines": 22,
+        "highlights": [],
+        "source_sha256": "5a7385946c388a9620702b21715b6d4491a608ecff36aa453a2a6dece28389f1"
+      },
+      {
+        "cell_index": 32,
+        "type": "code",
+        "lines": 163,
+        "highlights": [],
+        "source_sha256": "e85b3b047d30e803b6cea6db7d12a26322419b308f9c667be9f9b1ea58a31bcd"
+      },
+      {
+        "cell_index": 33,
+        "type": "code",
+        "lines": 9,
+        "highlights": [
+          "# [과제 2-2] index.html 내용을 찍어 복사하기 (또는 내려받기)"
+        ],
+        "source_sha256": "9bec0d3c66259c96e0d4c880bf468ea0075298addf4621cbf0a6004b84f67830"
+      },
+      {
+        "cell_index": 34,
+        "type": "markdown",
+        "lines": 10,
+        "highlights": [],
+        "source_sha256": "826a7726f7edd1b0d6ab745ab1715e7bbbebb1510ada58df712b5568149091bc"
+      },
+      {
+        "cell_index": 35,
+        "type": "markdown",
+        "lines": 15,
+        "highlights": [],
+        "source_sha256": "17ee86031775ca531cf7e589b2aa48b7ba784fcd38d104de033c3fc27d75bfc1"
+      }
+    ]
+  }
+]

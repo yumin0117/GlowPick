@@ -1,0 +1,6 @@
+﻿pair_id,execution_status,recall,precision,cer,pass_all,response_path
+I001_P003,success,0.75,0.75,0.7214285714285714,False,results/hf_runs.json
+I002_P003,error,,,,,results/hf_runs.json
+I004_P004,success,0.7931034482758621,0.7931034482758621,0.11870503597122302,False,results/hf_runs.json
+I004_P005,success,0.896551724137931,0.896551724137931,0.10431654676258993,False,results/hf_runs.json
+I004_P006,success,0.8518518518518519,0.8518518518518519,0.1297709923664122,False,results/hf_runs.json

@@ -1,0 +1,258 @@
+[
+  {
+    "image_id": "I001",
+    "product_ids": [
+      "P003"
+    ],
+    "path": "images/I001.jpg",
+    "source_url": "https://lindsayshop.com/Product/Premium/premium_08_teatree_04.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "full_list",
+    "expected_status": "complete",
+    "expected_behavior": "한 제품의 전성분 16개와 순서를 읽는다.",
+    "width": 920,
+    "height": 800,
+    "sha256": "b0228bdc1f116d7176d142d560f4f046623c558df2249cd1928f78c45ec9dacf",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I002",
+    "product_ids": [
+      "P003"
+    ],
+    "path": "images/I002.jpg",
+    "source_url": "https://lindsayshop.com/Product/Premium/premium_08_teatree_ewg.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "column_list",
+    "expected_status": "complete",
+    "expected_behavior": "3열을 위에서 아래, 왼쪽에서 오른쪽으로 읽는다. I001의 16개 성분·순서와 일치한다. EWG 문구와 숫자는 성분이 아니다.",
+    "width": 920,
+    "height": 1062,
+    "sha256": "48804572a7a779270a759d4857aebbdafca2a23cd2431e8bb02448bd9cf67fb7",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I003",
+    "product_ids": [
+      "P003"
+    ],
+    "path": "images/I003.jpg",
+    "source_url": "https://lindsayshop.com/Product/Premium/premium_howtouse.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "usage_only",
+    "expected_status": "no_ingredients",
+    "expected_behavior": "사용법만 있으며 전성분을 보충하지 않는다.",
+    "width": 920,
+    "height": 748,
+    "sha256": "afda8787b7f6f2ec35222b96ff71c240dfbbb98a3d07f47b49a89c0610ce0463",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I004",
+    "product_ids": [
+      "P004",
+      "P005",
+      "P006"
+    ],
+    "path": "images/I004.jpg",
+    "source_url": "https://gi.esmplus.com/linjshop/amazingampoule/amazingap_2-07.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "multiple_products",
+    "expected_status": "multiple_products",
+    "expected_behavior": "3개 제품을 분리하거나 대상 선택을 요청한다. 세 목록을 하나로 합치지 않는다.",
+    "width": 920,
+    "height": 1699,
+    "sha256": "0b27d6c67ff8733e2d1e176638ec0c6e263be692552a3e46571311f8fdef1147",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I005",
+    "product_ids": [
+      "P004",
+      "P005",
+      "P006"
+    ],
+    "path": "images/I005.jpg",
+    "source_url": "https://gi.esmplus.com/linjshop/amazingampoule/amazingap__2-03.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "mixing_claim",
+    "expected_status": "no_ingredients",
+    "expected_behavior": "혼합 설명을 전성분으로 처리하지 않는다. 10배 광고 문구를 검증된 효능으로 옮기지 않는다.",
+    "width": 920,
+    "height": 648,
+    "sha256": "bc8652721735ed77b6a70653a5956ad6dc62eaf5a72c978fa20ae5fd22a56b57",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I006",
+    "product_ids": [
+      "P004"
+    ],
+    "path": "images/I006.jpg",
+    "source_url": "https://gi.esmplus.com/linjshop/amazingampoule/amazingap__2-04.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "ingredient_marketing",
+    "expected_status": "partial",
+    "expected_behavior": "기능별 성분 안내. 정제수 등이 빠질 수 있으므로 완전한 전성분이라고 표시하지 않는다.",
+    "width": 920,
+    "height": 6300,
+    "sha256": "10095aeb78befb24d983273760ea3787f55063414930138bc178f210ff222aee",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I007",
+    "product_ids": [
+      "P005"
+    ],
+    "path": "images/I007.jpg",
+    "source_url": "https://gi.esmplus.com/linjshop/amazingampoule/amazingap_2-05.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "ingredient_marketing",
+    "expected_status": "partial",
+    "expected_behavior": "성분 설명과 광고 문구를 분리한다. 웹 기준표로 누락 성분을 사진 판독 결과에 추가하지 않는다.",
+    "width": 920,
+    "height": 6660,
+    "sha256": "0241976b3e3890ee76a8e5cdb222aa7e252d096b1ebf56791aa08e1820fe7b86",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I008",
+    "product_ids": [
+      "P006"
+    ],
+    "path": "images/I008.jpg",
+    "source_url": "https://gi.esmplus.com/linjshop/amazingampoule/amazingap_2-06.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "ingredient_marketing",
+    "expected_status": "partial",
+    "expected_behavior": "기능별 목록과 전성분 목록을 구분한다.",
+    "width": 920,
+    "height": 6486,
+    "sha256": "51826d99244c88ba022cdcfd624d3efd7499bdf0a93e15d10df21c3e67143caa",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I009",
+    "product_ids": [
+      "P003"
+    ],
+    "path": "images/I009.jpg",
+    "source_url": "https://lindsayshop.com/Product/Premium/premium_08_teatree_01.jpg",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "small_package_label",
+    "expected_status": "partial",
+    "expected_behavior": "용기 전면·측면의 작은 글자와 광고 이미지. 읽히는 부분만 추출하고 전성분 확대 촬영 요청.",
+    "width": 920,
+    "height": 1990,
+    "sha256": "84755d50ed0dc6b4edcc2b2af8b475f702d00afe96c5ae577365bc3d67491a48",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I010",
+    "product_ids": [
+      "P002"
+    ],
+    "path": "images/I010.jpg",
+    "source_url": "https://www.cosrx.com/cdn/shop/files/Snail96Essence_8_1024x1024.jpg?v=1763111577",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "key_ingredients",
+    "expected_status": "partial",
+    "expected_behavior": "주요 성분 5개만 보인다. 전체 13개를 기억이나 웹정보로 채우면 실패.",
+    "width": 768,
+    "height": 1024,
+    "sha256": "e1ae8675651d73e6a7668814b9348862ccc61fcb5b55db472bd4bd34c12303e5",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I011",
+    "product_ids": [
+      "P002"
+    ],
+    "path": "images/I011.jpg",
+    "source_url": "https://www.cosrx.com/cdn/shop/files/advanced-snail-96-mucin-power-essence-cosrx-official-4_1024x1024.jpg?v=1763111577",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "product_front",
+    "expected_status": "partial",
+    "expected_behavior": "제품 전면의 달팽이여과물 표기만으로 전체 성분을 확정하지 않는다.",
+    "width": 768,
+    "height": 1024,
+    "sha256": "029c5b2ba6c4ea5ee7fa70db1b483dce5a9f62f66b7629048c8659a1e6822690",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  },
+  {
+    "image_id": "I012",
+    "product_ids": [
+      "P001"
+    ],
+    "path": "images/I012.png",
+    "source_url": "https://theordinary.com/dw/image/v2/BFKJ_PRD/on/demandware.static/-/Sites-deciem-master/default/dwc1227059/Images/products/The%20Ordinary/rdn-100pct-plant-derived-squalane-30ml.png?sw=800&sh=800&sm=fit",
+    "source_kind": "manufacturer_web_original",
+    "image_kind": "product_front",
+    "expected_status": "partial",
+    "expected_behavior": "제품명에 Squalane이 있어도 Ingredients 영역이 없으므로 전성분 확인 완료로 표시하지 않는다.",
+    "width": 800,
+    "height": 800,
+    "sha256": "e2e3f702516ba88d2441af411dcd83620372015ce3dbeaa88b3e5255e5df2804",
+    "checked_at": "2026-10-30",
+    "review_status": "assistant_visual_review_not_independent_human_review",
+    "hash_recheck": true,
+    "current_source_download": "refetched_200_sha256_match",
+    "independent_human_review": false,
+    "rechecked_at": "2026-10-31"
+  }
+]

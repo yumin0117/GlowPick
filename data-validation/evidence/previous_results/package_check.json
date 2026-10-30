@@ -1,0 +1,10 @@
+{
+  "dataset_integrity": "passed",
+  "products": 6,
+  "ingredient_rows": 115,
+  "original_images": 12,
+  "image_hashes": "all_match",
+  "live_model_runs": 0,
+  "unit_tests_passed": 31,
+  "unit_tests_failed": 0
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "image_id": "I001",
+    "http_status": 200,
+    "sha256": "b0228bdc1f116d7176d142d560f4f046623c558df2249cd1928f78c45ec9dacf",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I002",
+    "http_status": 200,
+    "sha256": "48804572a7a779270a759d4857aebbdafca2a23cd2431e8bb02448bd9cf67fb7",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I003",
+    "http_status": 200,
+    "sha256": "afda8787b7f6f2ec35222b96ff71c240dfbbb98a3d07f47b49a89c0610ce0463",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I004",
+    "http_status": 200,
+    "sha256": "0b27d6c67ff8733e2d1e176638ec0c6e263be692552a3e46571311f8fdef1147",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I005",
+    "http_status": 200,
+    "sha256": "bc8652721735ed77b6a70653a5956ad6dc62eaf5a72c978fa20ae5fd22a56b57",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I006",
+    "http_status": 200,
+    "sha256": "10095aeb78befb24d983273760ea3787f55063414930138bc178f210ff222aee",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I007",
+    "http_status": 200,
+    "sha256": "0241976b3e3890ee76a8e5cdb222aa7e252d096b1ebf56791aa08e1820fe7b86",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I008",
+    "http_status": 200,
+    "sha256": "51826d99244c88ba022cdcfd624d3efd7499bdf0a93e15d10df21c3e67143caa",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I009",
+    "http_status": 200,
+    "sha256": "84755d50ed0dc6b4edcc2b2af8b475f702d00afe96c5ae577365bc3d67491a48",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I010",
+    "http_status": 200,
+    "sha256": "e1ae8675651d73e6a7668814b9348862ccc61fcb5b55db472bd4bd34c12303e5",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I011",
+    "http_status": 200,
+    "sha256": "029c5b2ba6c4ea5ee7fa70db1b483dce5a9f62f66b7629048c8659a1e6822690",
+    "matches_archived": true
+  },
+  {
+    "image_id": "I012",
+    "http_status": 200,
+    "sha256": "e2e3f702516ba88d2441af411dcd83620372015ce3dbeaa88b3e5255e5df2804",
+    "matches_archived": true
+  }
+]

@@ -1,0 +1,49 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>GlowPick 검증 결과</title><style>body{max-width:1100px;margin:40px auto;font:16px/1.7 sans-serif;padding:0 20px}pre{white-space:pre-wrap;font:15px/1.8 sans-serif}</style><h1>GlowPick 실제 검증 결과</h1><p>GPU 실제 추론 결과. 임시 정답 기준이며 독립 사람 검토 전 자료입니다.</p><pre># 실제 실행 검증 결과
+
+집컴 RTX 5080 16GB에서 Qwen/Qwen2.5-VL-3B-Instruct를 실제 실행했습니다. 모델 입력에는 이미지와 추출 지시만 전달했고 정답/제품명 목록을 주입하지 않았습니다. 정답은 기존 웹 이미지의 AI 시각 전사이므로 독립 사람 검토 전 임시 기준입니다.
+
+|검증 쌍|응답 형식|성분 재현율|완전 일치|
+|---|---|---:|---|
+|I001_P003|success|75.0%|실패|
+|I002_P003|error|채점 불가|실패|
+|I004_P004|success|79.3%|실패|
+|I004_P005|success|89.7%|실패|
+|I004_P006|success|85.2%|실패|
+
+5쌍 중 형식 정상 4쌍, 완전 일치 0쌍입니다. 형식 정상 응답도 성분 오인식이 있습니다. 숫자 쉼표·순서를 보존해 엄격하게 비교했으며 내부 띄어쓰기 차이도 오류로 세었습니다. 누락과 추가에는 같은 성분의 오탈자가 각각 포함될 수 있습니다.
+
+예: 칼슘설페이트→칼슘셀페이트, 토타롤→토타라/토타를. I002 다단 표는 JSON 파싱 실패 및 반복 출력으로 채점 불가. I001 rawText에는 전성분 외 글자도 섞여 CER이 높게 나왔습니다. rawText의 영역 추출 실패도 결과에 포함됩니다.
+
+## 원본 12장 예외 시험
+
+실행 12장. 기대 상태 일치 1장. 아래의 일치는 성분 철자까지 정확하다는 뜻이 아닙니다.
+
+|이미지|기대 상태|실제 상태|응답 형식|상태 일치|
+|---|---|---|---|---|
+|I001|complete|complete|success|True|
+|I002|complete|없음|error|False|
+|I003|no_ingredients|unreadable|success|False|
+|I004|multiple_products|없음|error|False|
+|I005|no_ingredients|없음|error|False|
+|I006|partial|없음|error|False|
+|I007|partial|complete|success|False|
+|I008|partial|complete|success|False|
+|I009|partial|complete|success|False|
+|I010|partial|complete|success|False|
+|I011|partial|없음|error|False|
+|I012|partial|complete|success|False|
+
+## 다른 실제 점검
+
+- 원출처 이미지 12개: HTTP 200, 저장본과 SHA-256 모두 일치.
+- Gradio 로컬 서버 실행: 이미지 반환 5건, 의도적 누락 탐지 5건, 비정상 JSON 거부 1건 통과. 이는 가상 오류 입력으로 검증한 앱 기능 시험이며 OCR 결과가 아닙니다.
+- Python/JS 단위시험 총 39개 통과.
+- google-genai 2.12.1 실제 설치 및 interactions.create 인터페이스 존재 확인. 실제 Gemini 호출은 키가 연결되지 않아 미실행.
+- 실제 Colab 서버 실행·HF Space 원격 배포·팀 백엔드 통합·실물 라벨 촬영/사람 교차검토는 미실행.
+
+## 팀에 전달할 판단
+
+현재 OCR 후보는 사람 확인 없이 전성분을 확정하거나 Gemini 분석에 자동 전달할 수준을 검증하지 못했습니다. 기존 예외 입력 차단 규칙을 유지하고 원응답·원본 이미지와 함께 검토해야 합니다. 모델 개선 후 새 제품 사진으로 재평가하세요. 이번 시험으로 일반 제품에 대한 정확도를 보장할 수 없습니다.
+
+원자료: results/hf_runs.json, results/hf_exception_runs.json, results/source_rechecks.json, results/live_app_tests.json, results/verified_environment.json.
+</pre>

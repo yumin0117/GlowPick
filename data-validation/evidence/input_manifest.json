@@ -1,0 +1,292 @@
+[
+  {
+    "path": "course\\0909\\4주차.pptx",
+    "bytes": 330715,
+    "sha256": "13ec8a43de07c12e46827aa4f1e4bf25b350fad7a30b8ada9413f10eb2730440"
+  },
+  {
+    "path": "course\\0909\\4주차_번역과요약.ipynb",
+    "bytes": 770719,
+    "sha256": "1ca06c84a8aae38a98d87c02e6482faaa7c1cf80d16a1a5a24d1ee144c2deff5"
+  },
+  {
+    "path": "course\\0916\\5주차.pptx",
+    "bytes": 2599577,
+    "sha256": "ce3a4cac3e1a97a510f7f1a788949a67e89509e05b84fab81aa063557612f95c"
+  },
+  {
+    "path": "course\\0916\\5주차_이미지와음성.ipynb",
+    "bytes": 45175,
+    "sha256": "fc7b3e88dd8d57ff513f4347d7d1288803ca0d7630d39115171803039900e13f"
+  },
+  {
+    "path": "course\\0923\\6주차.pptx",
+    "bytes": 1045467,
+    "sha256": "3195b37a01127482b41cfaa818838eeea13f132ed4f45a455e4d20c3d433c7dc"
+  },
+  {
+    "path": "course\\0923\\6주차_Gradio_데모만들기.ipynb",
+    "bytes": 37404,
+    "sha256": "5ff9f9dcac8d169401558ba59151239b5551955637f64c859bcce0f125047320"
+  },
+  {
+    "path": "course\\0930\\7주차.pptx",
+    "bytes": 1616522,
+    "sha256": "0a24ab119303c582b0ac1d1c73288c5751c6167e8119b43aab0e97adac79763d"
+  },
+  {
+    "path": "course\\0930\\7주차_Static_Space_배포.ipynb",
+    "bytes": 30983,
+    "sha256": "fa961061eb1d08b5532ca68c7e76a78d82e585296906754263bba28d998300ee"
+  },
+  {
+    "path": "course\\1007\\팀프로젝트_안내.pptx",
+    "bytes": 44251,
+    "sha256": "4f4a09168bf15cc433dc5ab6063a4b054514a8e94d40a3d93cbe72e2d130e5e3"
+  },
+  {
+    "path": "course\\1014\\9주차.pptx",
+    "bytes": 543470,
+    "sha256": "e1f7fb45cf058ecf67ad24ded232ef1b3e5bf34d1bb060019c3160575c4bcfd0"
+  },
+  {
+    "path": "course\\1014\\9주차_생성형AI_API_첫걸음.ipynb",
+    "bytes": 72484,
+    "sha256": "b9192047d923f004e682954e3745f3f16c662ab6f1a65ceb8e9d6a361b86f672"
+  },
+  {
+    "path": "course\\1014\\팀프로젝트_안내.pptx",
+    "bytes": 44413,
+    "sha256": "dfdb5f417aa1e541d679c6d846079e322179447904b1ca12b47f246536b2b672"
+  },
+  {
+    "path": "course\\1021\\10주차.pptx",
+    "bytes": 441891,
+    "sha256": "3602ae12e891d3b4abfd63e9072679179f3182f43618b4a1b2227280ca4676ca"
+  },
+  {
+    "path": "course\\1021\\10주차_프롬프트_엔지니어링.ipynb",
+    "bytes": 58025,
+    "sha256": "0cb3911a4decc807ac0b1ba85dada426a842e906fdee1338b15f8cdc58e5b2bf"
+  },
+  {
+    "path": "course\\1028\\11주차.pptx",
+    "bytes": 329317,
+    "sha256": "ffaf419dc3855bc60d699597ea5386cc7953671e29a8b10b018fd620fc096731"
+  },
+  {
+    "path": "course\\1028\\11주차_나만의_챗봇.ipynb",
+    "bytes": 43424,
+    "sha256": "c40c2c5054c4f4d193e270c3f6ddfce79a2c97d240a9d938ea3c89151f8cb49d"
+  },
+  {
+    "path": "course\\1028\\challenger.pptx",
+    "bytes": 58324,
+    "sha256": "43b2fdb784d9a06bd3efd378fc6e2b2c7fd15032bdb2791de4e592052eeabac3"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\GlowPick_담당보고서_2601110293_유성원.pdf",
+    "bytes": 125315,
+    "sha256": "b69f7372d048e13e64bf975d7589fbf08d73cef993ba4fe92f256eacdf86687a"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\GlowPick_전성분검증_2601110293_유성원.xlsx",
+    "bytes": 34823,
+    "sha256": "d7a329a5d188be4123d2a7f0543c812d47891426179d56583e69f7cbaf4cb7c7"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\README.md",
+    "bytes": 2566,
+    "sha256": "485c1e4c0559566f5f8ff51a110b28f5b4707d7094d1570270793aef9ceb06f9"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\additional_cases.csv",
+    "bytes": 1998,
+    "sha256": "a9641c7cf5fad8ffc48d561c568af6f1f0844c2d15c953d473dab0429372464d"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\additional_cases.json",
+    "bytes": 3131,
+    "sha256": "73b42a123110d47cf157c63371284b2b2110af1349c7f307124677da9d002b8e"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\evidence.csv",
+    "bytes": 2731,
+    "sha256": "fe575f41a808e29634e86c8d91cfb4383ab3920a1a01e6e4058ed18fb588c5b6"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\evidence.json",
+    "bytes": 4191,
+    "sha256": "4cf28a85521b3662f2ef0de7d665c73d8b3cc6c0dc135cdbcc3b13bf85f18540"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\example_gold.json",
+    "bytes": 252,
+    "sha256": "7c0960805f42a1c52e277e3aafed38625e158ca023204cca9229160f555dd76f"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\example_output.json",
+    "bytes": 232,
+    "sha256": "3623b61ec386ae7a8cf5ca6174c76b35ca3108903c89dcdca777c0f647e72d12"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\findings.csv",
+    "bytes": 1520,
+    "sha256": "043425e4fee4b2abd2ed588476bdef9f6078b738790b8acfdfb9677544ec36a2"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\findings.json",
+    "bytes": 2034,
+    "sha256": "65281d145f74ce35bfd7ce97613a9f7619997ce8879c4d0484e418555edb507c"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\images.csv",
+    "bytes": 5113,
+    "sha256": "d291d3b3e1d60951329f7bad23e2cc5e9628e19cb93bc4357169eb3a51644031"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\images.json",
+    "bytes": 8533,
+    "sha256": "4a84b6cb20d6351f3d25db766076cb7240fcd205d7ef46df991a87b74acafbc5"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\image_cases.csv",
+    "bytes": 5396,
+    "sha256": "c1507cfaf07bd783945b83c51ffaee214c573f8f98af9d34a2b3175657c77569"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\image_cases.json",
+    "bytes": 9489,
+    "sha256": "e6b932f4d9609cdd6976d722d65237d0165aced5062cad4fd8fbe5a4983f5903"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\ingredients.csv",
+    "bytes": 8649,
+    "sha256": "f7be3fe1aa6817fba8dd1c23cfa04f5aaaacafe4d4f8e3c6405f86de0f57b1d7"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\ingredients.json",
+    "bytes": 24999,
+    "sha256": "a1cb7923a2e6ca09a837f50a6690169d9ceb235eb29d521621b45c57260f6618"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\products.csv",
+    "bytes": 4877,
+    "sha256": "7ef40b47a8cc630787936cd022acfae66d1e8f66920cd9ea611658e5ee1d9340"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\data\\products.json",
+    "bytes": 6386,
+    "sha256": "f4f454afd25b71bd5206d49a2d12832fff33cabe1b7bcbada264c360786280c6"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\docs\\발표대본_2601110293_유성원.txt",
+    "bytes": 1550,
+    "sha256": "82827f8a67273446ca932d2d6d449711f52d86f0774d432af8c22252f4d8563a"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\docs\\연동규격.md",
+    "bytes": 5006,
+    "sha256": "7fca0b1779bbd128d2501cebcda36a70d1487b4a8d63b382b7b0aff88df1acaf"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\docs\\팀전달메시지.txt",
+    "bytes": 1047,
+    "sha256": "98beb3d5da5454b7d35b66d9edd4e59a61cc1fe5f8cb0858703d5c7095aebf7c"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I001.jpg",
+    "bytes": 97088,
+    "sha256": "b0228bdc1f116d7176d142d560f4f046623c558df2249cd1928f78c45ec9dacf"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I002.jpg",
+    "bytes": 155515,
+    "sha256": "48804572a7a779270a759d4857aebbdafca2a23cd2431e8bb02448bd9cf67fb7"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I003.jpg",
+    "bytes": 177502,
+    "sha256": "afda8787b7f6f2ec35222b96ff71c240dfbbb98a3d07f47b49a89c0610ce0463"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I004.jpg",
+    "bytes": 409060,
+    "sha256": "0b27d6c67ff8733e2d1e176638ec0c6e263be692552a3e46571311f8fdef1147"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I005.jpg",
+    "bytes": 90487,
+    "sha256": "bc8652721735ed77b6a70653a5956ad6dc62eaf5a72c978fa20ae5fd22a56b57"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I006.jpg",
+    "bytes": 1098436,
+    "sha256": "10095aeb78befb24d983273760ea3787f55063414930138bc178f210ff222aee"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I007.jpg",
+    "bytes": 2611241,
+    "sha256": "0241976b3e3890ee76a8e5cdb222aa7e252d096b1ebf56791aa08e1820fe7b86"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I008.jpg",
+    "bytes": 2539599,
+    "sha256": "51826d99244c88ba022cdcfd624d3efd7499bdf0a93e15d10df21c3e67143caa"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I009.jpg",
+    "bytes": 259514,
+    "sha256": "84755d50ed0dc6b4edcc2b2af8b475f702d00afe96c5ae577365bc3d67491a48"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I010.jpg",
+    "bytes": 94721,
+    "sha256": "e1ae8675651d73e6a7668814b9348862ccc61fcb5b55db472bd4bd34c12303e5"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I011.jpg",
+    "bytes": 109650,
+    "sha256": "029c5b2ba6c4ea5ee7fa70db1b483dce5a9f62f66b7629048c8659a1e6822690"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\images\\I012.png",
+    "bytes": 135774,
+    "sha256": "e2e3f702516ba88d2441af411dcd83620372015ce3dbeaa88b3e5255e5df2804"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\results\\comparison_examples.json",
+    "bytes": 6983,
+    "sha256": "f7d815e3ae33e3dbf2ec5fdac3f0778122acd25219c149fda6935c986437f8b2"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\results\\dataset_summary.json",
+    "bytes": 354,
+    "sha256": "2a80e13758832b2ecfcda6728d1bb26cbaa954dd9bd1622338be74464d87f9b0"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\results\\package_check.json",
+    "bytes": 220,
+    "sha256": "66e6d64bef62062c0d1c7e08ac2ad7a7b002373d1939b139b9f84b807f5652eb"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\results\\unit_tests.tap",
+    "bytes": 4797,
+    "sha256": "ed935c730504bdcfd4f59d081d75b6429be26f704368a6e95c1b613cc0f19492"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\src\\compare.mjs",
+    "bytes": 648,
+    "sha256": "19fdccaad683ccbe7046dd4f9b5b6763ca86444fe4ef2b76d14677867088653f"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\src\\ingredient-validation.mjs",
+    "bytes": 6201,
+    "sha256": "ce5e8b89be68fb06bd70affefbde110c3faa68ecb1058d289040b04f837af65f"
+  },
+  {
+    "path": "previous\\GlowPick_데이터담당_2601110293_유성원\\tests\\validation.test.mjs",
+    "bytes": 5312,
+    "sha256": "096f669443b5543267158045f96f86d428f649fa67a1330cce034fd645b03ee1"
+  }
+]

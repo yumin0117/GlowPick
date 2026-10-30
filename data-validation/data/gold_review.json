@@ -1,0 +1,62 @@
+[
+  {
+    "pair_id": "I001_P003",
+    "method": "assistant_visual_panel_read",
+    "status": "provisional_not_independent_human_review",
+    "checks": [
+      "원본 이미지에서 전성분 영역 확인",
+      "제품별 목록 분리",
+      "숫자 안 쉼표·괄호·slash 보존",
+      "웹 자료이며 실물 라벨 동일성 미확인"
+    ],
+    "independent_human_review": false
+  },
+  {
+    "pair_id": "I002_P003",
+    "method": "assistant_visual_panel_read",
+    "status": "provisional_not_independent_human_review",
+    "checks": [
+      "원본 이미지에서 전성분 영역 확인",
+      "제품별 목록 분리",
+      "숫자 안 쉼표·괄호·slash 보존",
+      "웹 자료이며 실물 라벨 동일성 미확인"
+    ],
+    "independent_human_review": false
+  },
+  {
+    "pair_id": "I004_P004",
+    "method": "assistant_visual_panel_read",
+    "status": "provisional_not_independent_human_review",
+    "checks": [
+      "원본 이미지에서 전성분 영역 확인",
+      "제품별 목록 분리",
+      "숫자 안 쉼표·괄호·slash 보존",
+      "웹 자료이며 실물 라벨 동일성 미확인"
+    ],
+    "independent_human_review": false
+  },
+  {
+    "pair_id": "I004_P005",
+    "method": "assistant_visual_panel_read",
+    "status": "provisional_not_independent_human_review",
+    "checks": [
+      "원본 이미지에서 전성분 영역 확인",
+      "제품별 목록 분리",
+      "숫자 안 쉼표·괄호·slash 보존",
+      "웹 자료이며 실물 라벨 동일성 미확인"
+    ],
+    "independent_human_review": false
+  },
+  {
+    "pair_id": "I004_P006",
+    "method": "assistant_visual_panel_read",
+    "status": "provisional_not_independent_human_review",
+    "checks": [
+      "원본 이미지에서 전성분 영역 확인",
+      "제품별 목록 분리",
+      "숫자 안 쉼표·괄호·slash 보존",
+      "웹 자료이며 실물 라벨 동일성 미확인"
+    ],
+    "independent_human_review": false
+  }
+]

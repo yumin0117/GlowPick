@@ -1,0 +1,342 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "0cdc6d88b3545a9e056a5ebad39f057948413dc6948ad48d18fafc5b7eb88e0b"
+  },
+  {
+    "path": "README.md",
+    "sha256": "ca87687437d6b2c3de54ec61587a2d7e5d22057a90fb46896c720b6c89aae1cd"
+  },
+  {
+    "path": "requirements-colab.txt",
+    "sha256": "29311ee0d739a857003ca3394344c230f5051f44595eae576a7846bdaee2c731"
+  },
+  {
+    "path": "requirements-tested-windows.txt",
+    "sha256": "654c45b989127ebebc46c95869a4df33ef004fb52b7eadd152e495b7371b31a4"
+  },
+  {
+    "path": "requirements.txt",
+    "sha256": "42ab13b9a40a0e6daab978ce85ccf7013892fb6e15ec35180ac32d043888471f"
+  },
+  {
+    "path": "먼저읽기_최종업무표.md",
+    "sha256": "2001449a931deea052e7e856a31352d39f51350e774071acd0209017b8bbaf6d"
+  },
+  {
+    "path": "실제검증결과.html",
+    "sha256": "b63f60634683163b9c2a01564e81ef24f1cc541922863d3fb43dba6124d49aaf"
+  },
+  {
+    "path": "data\\additional_cases.csv",
+    "sha256": "a9641c7cf5fad8ffc48d561c568af6f1f0844c2d15c953d473dab0429372464d"
+  },
+  {
+    "path": "data\\additional_cases.json",
+    "sha256": "e5e301e78c37264d36f330eb339e32e782f5c6ddef4c6b49fa5d76b5fb5511bf"
+  },
+  {
+    "path": "data\\evidence.csv",
+    "sha256": "fe575f41a808e29634e86c8d91cfb4383ab3920a1a01e6e4058ed18fb588c5b6"
+  },
+  {
+    "path": "data\\evidence.json",
+    "sha256": "e883b24b7f6dd56c44e331350e3ab4fad607a596cd95cbf36d870f8624b9d326"
+  },
+  {
+    "path": "data\\example_gold.json",
+    "sha256": "7c0960805f42a1c52e277e3aafed38625e158ca023204cca9229160f555dd76f"
+  },
+  {
+    "path": "data\\example_output.json",
+    "sha256": "3623b61ec386ae7a8cf5ca6174c76b35ca3108903c89dcdca777c0f647e72d12"
+  },
+  {
+    "path": "data\\findings.csv",
+    "sha256": "043425e4fee4b2abd2ed588476bdef9f6078b738790b8acfdfb9677544ec36a2"
+  },
+  {
+    "path": "data\\findings.json",
+    "sha256": "8cdfc1100f03295320ee8d60dd7d7ea57a1c36b2160e93a60dbbdec833bb27f2"
+  },
+  {
+    "path": "data\\function_evidence.csv",
+    "sha256": "4d6bbd17202d8a2fb74b72f522745e5c1e260dbad5a9069725a5ba67696ac1ad"
+  },
+  {
+    "path": "data\\function_evidence.json",
+    "sha256": "91d145f22c6e171f9526c0cdf6f5653595fe55bd372b280d0fcfc93623839ac2"
+  },
+  {
+    "path": "data\\gold_review.json",
+    "sha256": "904bca8ebeae43791cc5461a701107f73382a43caab252da6c7256e82b2b2b07"
+  },
+  {
+    "path": "data\\images.csv",
+    "sha256": "53c8f6805f17d803162d5f32f510039aaf1252f8698fd5214b84a12cb9303cfc"
+  },
+  {
+    "path": "data\\images.json",
+    "sha256": "d1c5c03ddb8f23dd870b21f6a176a4bacf010eb31833470e2caa473e559b5c41"
+  },
+  {
+    "path": "data\\image_cases.csv",
+    "sha256": "c1507cfaf07bd783945b83c51ffaee214c573f8f98af9d34a2b3175657c77569"
+  },
+  {
+    "path": "data\\image_cases.json",
+    "sha256": "e6b932f4d9609cdd6976d722d65237d0165aced5062cad4fd8fbe5a4983f5903"
+  },
+  {
+    "path": "data\\ingredients.csv",
+    "sha256": "f7be3fe1aa6817fba8dd1c23cfa04f5aaaacafe4d4f8e3c6405f86de0f57b1d7"
+  },
+  {
+    "path": "data\\ingredients.json",
+    "sha256": "0e6b25bdfda731de94147dff0566d83883b71c59876823f2f779bda057160f07"
+  },
+  {
+    "path": "data\\mixing_review.json",
+    "sha256": "3572b371f5767d5e8786f6d63238857994938428e66734b04a532b44f2fb15ce"
+  },
+  {
+    "path": "data\\observed_errors.csv",
+    "sha256": "ab739fa1a45a86930efe02a82e46c434f19d56ebfd281d33c1d91bac891642c9"
+  },
+  {
+    "path": "data\\pairs.csv",
+    "sha256": "4784b73180c26ced27e5217ac9d1716b988af65efcd19e13b4f098d9af88ab30"
+  },
+  {
+    "path": "data\\pairs.json",
+    "sha256": "120cbeec1003ed4e664013734633c9c7ee6f36e0cd87c1f043642f580ca38bf7"
+  },
+  {
+    "path": "data\\products.csv",
+    "sha256": "ef2407b86381576e11f727054bbfc2750b2f543e0493480c5eebd342234c8a20"
+  },
+  {
+    "path": "data\\products.json",
+    "sha256": "413754d72f844a291722c9153d95c45e7a02b51a2a77a722d9976ca7a2535cb1"
+  },
+  {
+    "path": "data\\README.md",
+    "sha256": "16816af52a49b72bca4b440b044ca2bfe1c2fbda6a75c825c78c1f6209a764ba"
+  },
+  {
+    "path": "data\\sources.csv",
+    "sha256": "b33f04808fbe0d23a146ab9aad31e43f5179a100d4232a84fd884e91c9c622b4"
+  },
+  {
+    "path": "data\\validation_runs.csv",
+    "sha256": "d7c57d9e03df73769445610550272018bd8d9cc33814becd5b70ce745bf52b4c"
+  },
+  {
+    "path": "docs\\00_실제검증결과.md",
+    "sha256": "55a702b441ad21eaa31f3c2d1b059f744debcb3596aa22ba0fe3747609648f38"
+  },
+  {
+    "path": "docs\\01_집컴_시작안내.md",
+    "sha256": "cb3c50d603c972f5f63df42a83e14c0a55ca40c6d7397f87278d51db15267ba8"
+  },
+  {
+    "path": "docs\\02_이전작업_검토결과.md",
+    "sha256": "1ae3e6b68f24395a8015abcc55ff357e80403906b6d22f10dd917f3692c8e73e"
+  },
+  {
+    "path": "docs\\03_검증규칙_인계.md",
+    "sha256": "7fd59d3f890171184f5455b49fe6b8f6c6e4c2c87aa4b9349fd4e949ee0f3a33"
+  },
+  {
+    "path": "docs\\04_실행상태_발표안내.md",
+    "sha256": "e84fdc18fbefa78564990dd3706d4454e416e1d338ea1ad9b4449db7ef9bf98c"
+  },
+  {
+    "path": "docs\\05_수업자료_상세대응.md",
+    "sha256": "fcef1391fdfc8208c580b5c3665a9d1e47062a72b4a0c191f460a7ba686b37ea"
+  },
+  {
+    "path": "docs\\06_Gemini_키_쉽게설정.md",
+    "sha256": "53958c8cbedfbdf55d9ad84196297a2664e98eff22b46ebc2ac9dd7909cfb7e8"
+  },
+  {
+    "path": "evidence\\course_cell_audit.json",
+    "sha256": "114fe0f3ec6a0352c56d9f9910d0e41d2b9a9497613ef646225b8eba7e08c199"
+  },
+  {
+    "path": "evidence\\current_sources.json",
+    "sha256": "2f0df55ef72f4e5ccf5b39f0c8ab543cc0df8677309e4c9fe100af72e57f281d"
+  },
+  {
+    "path": "evidence\\input_manifest.json",
+    "sha256": "cb99663ddba9713fdeb7347e7c48c50ad476e76c08af7914f93fa69c86b8f202"
+  },
+  {
+    "path": "handoff\\reviewed_claims.json",
+    "sha256": "b209e4e1e65be3656c9211457572b92518f2a3928cff5236341a9b53a7c5d884"
+  },
+  {
+    "path": "images\\I001.jpg",
+    "sha256": "b0228bdc1f116d7176d142d560f4f046623c558df2249cd1928f78c45ec9dacf"
+  },
+  {
+    "path": "images\\I001_P003_focused.png",
+    "sha256": "3be937f588b05a3d6205d66b93953180167c2ba48bd0c5579fd2d8c03b32d60e"
+  },
+  {
+    "path": "images\\I002.jpg",
+    "sha256": "48804572a7a779270a759d4857aebbdafca2a23cd2431e8bb02448bd9cf67fb7"
+  },
+  {
+    "path": "images\\I002_P003_focused.png",
+    "sha256": "e0694e2fb6bd6e604cd95b19be95a30d26f5e577aadb68871f9e7581dd91af67"
+  },
+  {
+    "path": "images\\I003.jpg",
+    "sha256": "afda8787b7f6f2ec35222b96ff71c240dfbbb98a3d07f47b49a89c0610ce0463"
+  },
+  {
+    "path": "images\\I004.jpg",
+    "sha256": "0b27d6c67ff8733e2d1e176638ec0c6e263be692552a3e46571311f8fdef1147"
+  },
+  {
+    "path": "images\\I004_P004_crop.png",
+    "sha256": "29f308ffbd3265b69b9236121082428dc93a8c0117266807f8ce3008278f255f"
+  },
+  {
+    "path": "images\\I004_P005_crop.png",
+    "sha256": "4dde24f5fd608ac741b3173fd9aaa222bc4393c3215ee3527fcce16062926c89"
+  },
+  {
+    "path": "images\\I004_P006_crop.png",
+    "sha256": "149af937b4841022edbe25b4dba13fc4d52686e3445f5116ca1cc9944788adab"
+  },
+  {
+    "path": "images\\I005.jpg",
+    "sha256": "bc8652721735ed77b6a70653a5956ad6dc62eaf5a72c978fa20ae5fd22a56b57"
+  },
+  {
+    "path": "images\\I006.jpg",
+    "sha256": "10095aeb78befb24d983273760ea3787f55063414930138bc178f210ff222aee"
+  },
+  {
+    "path": "images\\I007.jpg",
+    "sha256": "0241976b3e3890ee76a8e5cdb222aa7e252d096b1ebf56791aa08e1820fe7b86"
+  },
+  {
+    "path": "images\\I008.jpg",
+    "sha256": "51826d99244c88ba022cdcfd624d3efd7499bdf0a93e15d10df21c3e67143caa"
+  },
+  {
+    "path": "images\\I009.jpg",
+    "sha256": "84755d50ed0dc6b4edcc2b2af8b475f702d00afe96c5ae577365bc3d67491a48"
+  },
+  {
+    "path": "images\\I010.jpg",
+    "sha256": "e1ae8675651d73e6a7668814b9348862ccc61fcb5b55db472bd4bd34c12303e5"
+  },
+  {
+    "path": "images\\I011.jpg",
+    "sha256": "029c5b2ba6c4ea5ee7fa70db1b483dce5a9f62f66b7629048c8659a1e6822690"
+  },
+  {
+    "path": "images\\I012.png",
+    "sha256": "e2e3f702516ba88d2441af411dcd83620372015ce3dbeaa88b3e5255e5df2804"
+  },
+  {
+    "path": "notebooks\\GlowPick_Colab_검증.ipynb",
+    "sha256": "c22ef9615a94a93ba8b0356943df237b24a719285de302b55597c4f3e5f4d316"
+  },
+  {
+    "path": "results\\crop_retest.json",
+    "sha256": "eab69983af8c485aa85f788c7d68c8321089ced0d64cf2d0d6b8c0b37147d7f1"
+  },
+  {
+    "path": "results\\current_status.json",
+    "sha256": "e1af7e0557c27792cb859ca0bc63f21dc97bb9e3e5aa18fb7712270ce326c3cc"
+  },
+  {
+    "path": "results\\current_tests.json",
+    "sha256": "5659df1c317ba0ecbd9e906fdcdc4db5c785e40e6148ea239682d19f4112e516"
+  },
+  {
+    "path": "results\\function_claim_schema_check.json",
+    "sha256": "98f690c51855144d021ead11bb2b95c49657d1964d8da65386bab5e00cca13af"
+  },
+  {
+    "path": "results\\hf_exception_runs.json",
+    "sha256": "240b8207c1cfa7aec282eb545df8bbbc84154495bf005aa8d7bb8d5b028c1744"
+  },
+  {
+    "path": "results\\hf_runs.json",
+    "sha256": "7ac7703ef6706d86a82c6b91ffcaf7f15e2ff913a2e8a471a798a4b9abbe552a"
+  },
+  {
+    "path": "results\\live_app_tests.json",
+    "sha256": "215c51d21702bdf120afb5e9c5866073c1a9ab0a921053c85fe72a1e2084b2ad"
+  },
+  {
+    "path": "results\\runtime.json",
+    "sha256": "e3c68fc436f82d5eff3b5a8977c2a46dd218d2e1867d738f7a9fc7b5b838c5db"
+  },
+  {
+    "path": "results\\source_rechecks.json",
+    "sha256": "71a2bb1f0c91a76d588e15d7f8d71890fa76eab97da41bcc3efcac7545e60c9a"
+  },
+  {
+    "path": "results\\verified_environment.json",
+    "sha256": "0891fa158881f0043d42a392a464a20280bbaa69ba9354232df7d7e795d5dac0"
+  },
+  {
+    "path": "space\\app.py",
+    "sha256": "96869ab3a8e00783b6e8f95f78b648f3e6e1e76f2d16d1a685933d1409a7d444"
+  },
+  {
+    "path": "src\\compare.mjs",
+    "sha256": "19fdccaad683ccbe7046dd4f9b5b6763ca86444fe4ef2b76d14677867088653f"
+  },
+  {
+    "path": "src\\evaluate.py",
+    "sha256": "7afbed197e746eef7888d737e6296177470e25b5488c3f97114cb508e5965f67"
+  },
+  {
+    "path": "src\\gemini_handoff.py",
+    "sha256": "8ebdc91d74c0fb6d3db104d3b701b62f202a78fac7ffe53bf39c757502f871bc"
+  },
+  {
+    "path": "src\\hf_ocr.py",
+    "sha256": "01cfc4b29a84ad4929e789349c3673306a21930cbd8238e509dfcf81efbc82d0"
+  },
+  {
+    "path": "src\\ingredient-validation.mjs",
+    "sha256": "ce5e8b89be68fb06bd70affefbde110c3faa68ecb1058d289040b04f837af65f"
+  },
+  {
+    "path": "src\\retest_crops.py",
+    "sha256": "08dc6f5574256cd0b8b68f4c52611ea55c9adba7fed991fd2c3d5bb9bdf656ef"
+  },
+  {
+    "path": "tests\\test_evaluate.py",
+    "sha256": "4d0242ee84de396973a05a2c3915fb3e06056099d9c24099db29efdc255359e4"
+  },
+  {
+    "path": "tests\\validation.test.mjs",
+    "sha256": "096f669443b5543267158045f96f86d428f649fa67a1330cce034fd645b03ee1"
+  },
+  {
+    "path": "evidence\\previous_results\\comparison_examples.json",
+    "sha256": "f7d815e3ae33e3dbf2ec5fdac3f0778122acd25219c149fda6935c986437f8b2"
+  },
+  {
+    "path": "evidence\\previous_results\\dataset_summary.json",
+    "sha256": "2a80e13758832b2ecfcda6728d1bb26cbaa954dd9bd1622338be74464d87f9b0"
+  },
+  {
+    "path": "evidence\\previous_results\\package_check.json",
+    "sha256": "66e6d64bef62062c0d1c7e08ac2ad7a7b002373d1939b139b9f84b807f5652eb"
+  },
+  {
+    "path": "evidence\\previous_results\\unit_tests.tap",
+    "sha256": "ed935c730504bdcfd4f59d081d75b6429be26f704368a6e95c1b613cc0f19492"
+  }
+]

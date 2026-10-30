@@ -1,0 +1,11 @@
+﻿id,url,checked_at,observed,status
+WEB01,https://github.com/yumin0117/GlowPick,2026-10-31,main 파일 목록 .gitignore/README.md; README의 UI 및 Gemini 계획,web_read
+WEB02,https://github.com/yumin0117/GlowPick/pull/1,2026-10-31,Open; ym→main; e2d0e8f,web_read
+WEB03,https://theordinary.com/en-us/100-plant-derived-squalane-face-oil-100398.html,2026-10-31,Ingredients: Squalane. 지역·시점별 처방 차이 주의 문구,ingredient_text_rechecked
+WEB04,https://www.cosrx.com/products/advanced-snail-96-mucin-power-essence,2026-10-31,Ingredient List와 P002 13성분 원문 대조 일치,ingredient_text_rechecked
+WEB05,https://www.lindsaymall.com/product/detail.html?cate_no=30&display_group=1&product_no=156,2026-10-31,프리미엄 쿨 티트리 모델링 마스크 상품 존재. 현재 성분 이미지 다운로드 재검증 못함,page_only
+WEB06,https://lindsaymall.com/product/detail.html?product_no=197&cate_no=30&display_group=1,2026-10-31,웹 도구 Cache miss; 현재 페이지 내용 미확인; 기존 이미지 전사만 사용,fetch_failed
+DOC01,https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct,2026-10-31,공식 모델 카드와 추론 예시 확인,documentation_read
+DOC02,https://huggingface.co/microsoft/trocr-base-printed,2026-10-31,대안 후보 모델 카드 확인,documentation_read
+DOC03,https://huggingface.co/docs/hub/spaces-sdks-gradio,2026-10-31,Gradio Space 구성 문서 확인,documentation_read
+DOC04,https://ai.google.dev/gemini-api/docs/get-started,2026-10-31,Gemini 공식 시작 문서 확인. 수업 SDK 버전·무료 모델 가용성을 실제 계정에서 재확인 필요,documentation_read

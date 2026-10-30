@@ -1,0 +1,36 @@
+﻿pair_id,kind,expected,actual,model
+I001_P003,missing,칼슘설페이트,,Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,missing,"티트리잎가루(1,500ppm)",,Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,missing,울트라마린,,Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,missing,병풀잎/줄기가루,,Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,extra,,칼슘셀페이트,Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,extra,,"티트리임가루 (1,500ppm)",Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,extra,,올트라마린,Qwen/Qwen2.5-VL-3B-Instruct
+I001_P003,extra,,병졸잎/줄기가루,Qwen/Qwen2.5-VL-3B-Instruct
+I002_P003,invalid_response,,Expecting property name enclosed in double quotes: line 2 column 24 (char 25),Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,missing,잔탄검,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,missing,다이소듐이디티에이,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,missing,토타롤,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,missing,밤부사 불가리스수,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,missing,버지니아풍년화잎추출물,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,missing,알로에베라잎추출물,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,extra,,진탄검,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,extra,,다이소듐이디테에이,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,extra,,토탈,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,extra,,밤부사불가리스수,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,extra,,버지니아풍화잎추출물,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P004,extra,,알로에베리잎추출물,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P005,missing,부틸렌글라이콜,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P005,missing,토타롤,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P005,missing,쇠비름추출물,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P005,extra,,부틸렌 글라이콜,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P005,extra,,토타라,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P005,extra,,쇠비름 추출물,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,missing,잔탄검,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,missing,토타롤,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,missing,펜틸렌글라이콜,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,missing,락토바실러스발효용해물,,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,extra,,진단검,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,extra,,토타를,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,extra,,펜탈렌글라이콜,Qwen/Qwen2.5-VL-3B-Instruct
+I004_P006,extra,,락토바실리스발효용해물,Qwen/Qwen2.5-VL-3B-Instruct
