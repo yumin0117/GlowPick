@@ -1,5 +1,5 @@
 {
-  "scope": "실제 Google 호출 총 5건: 초기 서버 3건 + ym 프론트엔드 브라우저 2건. 전체 OCR 정확도 측정 아님.",
+  "scope": "실제 Google 호출 총 6건: 초기 서버 3건 + ym 프론트엔드 브라우저 2건 + 최종 HTTP 재검증 1건. 전체 OCR 정확도 측정 아님.",
   "runs": [
     {
       "imageId": "I001",
@@ -52,6 +52,17 @@
       "isMock": false,
       "model": "gemini-3.5-flash-lite",
       "promptVersion": "draft-2026-10-30-v1"
+    },
+    {
+      "imageId": "I001",
+      "channel": "final_http_verification",
+      "ok": true,
+      "status": "complete",
+      "ingredientCount": 16,
+      "isMock": false,
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "draft-2026-10-30-v1",
+      "timestamp": "2026-10-30T10:40:31.647097+00:00"
     }
   ]
 }

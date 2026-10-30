@@ -21,6 +21,7 @@ class GradioApiTest(unittest.TestCase):
             sock.bind(("127.0.0.1", 0))
             port = sock.getsockname()[1]
         app = create_app(GlowPickService(mode="mock"))
+        client = None
         try:
             options = launch_options()
             options.update(server_name="127.0.0.1", server_port=port, prevent_thread_lock=True, quiet=True)
@@ -63,6 +64,8 @@ class GradioApiTest(unittest.TestCase):
                 missing = client.predict(image=None, request={}, api_name="/analyze_cosmetic")
                 self.assertEqual(missing["error"]["code"], "IMAGE_REQUIRED")
         finally:
+            if client is not None:
+                client.close()
             app.close()
 
 

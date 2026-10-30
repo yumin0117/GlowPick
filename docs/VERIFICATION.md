@@ -56,3 +56,20 @@ Pandas 3 관련 deprecation 경고가 출력되지만 시험은 통과합니다.
 - 원본 ym 디자인을 유지하되 모델링팩 사진 필수 안내와 응답 상태를 반영
 - 이는 로컬 브라우저 통합 시험이며 HF 공개 배포 완료를 뜻하지 않음
 - 실제 화면 증거는 프로젝트 밖 비공개 시험 폴더의 ui-live-I001/I003-20261030.png
+
+## 최종 재검증 — 2026-10-30
+
+- Python 자동 시험 25개, 원본 JS 비교 시험 31개: 모두 통과
+- 실제 HTTP 업로드 → Gemini 판독 추가 1회 성공 (전체 실제 호출 누계 6회)
+- 최종 I001: complete / 성분 16개 / isMock=false / analysis=needs_evidence
+- 요청 오류 응답, 파일 제공 경로와 비공개 파일 접근 거부를 자동 시험에서 재확인
+- Git 추적 파일과 인계 ZIP 전체를 실제 키 값 및 키 패턴으로 검사: 포함 없음
+- ZIP의 소스와 Git 커밋 내용 일치 확인, 기존 HF index.html 백업 SHA 동일
+- 원격 ym 브랜치는 기존 e2d0e8f 유지, 통합 작업은 backend/hf-integration에만 저장
+- HTTP 시험의 finally에서 Gradio Client.close()를 호출하도록 종료 처리를 보완
+- Windows 시험 로그에 ResourceWarning/Pandas 경고 외에도 h11.LocalProtocolError
+  (Response when role=SERVER and state=CLOSED)가 반복 출력됨.
+  자동 시험은 25개 모두 통과했고 별도 실제 HTTP 요청도 성공했지만,
+  프레임워크의 연결 종료 오류 원인은 확정하지 않았음. HF Linux 배포 시 재확인 항목
+- 무료 Gradio 생성 제한으로 HF 공개 배포는 여전히 미완료
+- 최종 프롬프트·일반 기능 근거 검토는 각각 담당자 작업이 남아 있음
