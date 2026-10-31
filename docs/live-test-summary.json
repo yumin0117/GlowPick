@@ -1,5 +1,5 @@
 {
-  "scope": "실제 Google 호출 총 6건: 초기 서버 3건 + ym 프론트엔드 브라우저 2건 + 최종 HTTP 재검증 1건. 전체 OCR 정확도 측정 아님.",
+  "scope": "실제 서비스 시험 기록. 2026-10-30 판독 요청 6건에 더해 2026-10-31 ysw 연동 2단계 성공 사례를 추가했습니다. schema 400 실패·수동 진단은 ysw 검토 기록에 별도 보관하며 전체 OCR 정확도를 뜻하지 않습니다.",
   "runs": [
     {
       "imageId": "I001",
@@ -63,6 +63,27 @@
       "model": "gemini-3.5-flash-lite",
       "promptVersion": "draft-2026-10-30-v1",
       "timestamp": "2026-10-30T10:40:31.647097+00:00"
+    },
+    {
+      "date": "2026-10-31",
+      "sourceBranch": "ysw",
+      "sourceCommit": "26d4fbc9391bc93d0c191ff74150a7007fbe693f",
+      "imageId": "I001",
+      "channel": "mj_ysw_browser_integration",
+      "ok": true,
+      "status": "complete",
+      "ingredientCount": 16,
+      "analysisStatus": "reference_only",
+      "explanationCount": 1,
+      "evidenceIds": [
+        "YSW_A001_KO"
+      ],
+      "upstreamCompletedCalls": 2,
+      "requestId": "e159230f02d3483c96ce1f58c5d3c00c",
+      "model": "gemini-3.5-flash-lite",
+      "promptVersion": "draft-2026-10-30-v1",
+      "timestamp": "2026-10-31T13:19:13.498524+00:00",
+      "scope": "one_photo_integration_check_not_general_accuracy"
     }
   ]
 }

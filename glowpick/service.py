@@ -176,7 +176,7 @@ class GlowPickService:
         selected = [c for c in self.claims if normalize_ingredient(c.ingredient) in names]
         if not selected or self.mode == "mock":
             return {
-                "status": "needs_evidence", "summary": "전성분 판독은 완료했습니다. 기능·개인 적합성 설명에 사용할 검토 완료 근거는 아직 없습니다.",
+                "status": "needs_evidence", "summary": "전성분 판독은 완료했습니다. 이 사진의 성분과 일치하는 검토 완료 기능 근거가 아직 없습니다.",
                 "ingredientNotes": [],
                 "warnings": ["미확인 성분 기능과 특정 제품 추천을 임의로 생성하지 않습니다."],
             }
@@ -197,4 +197,4 @@ class GlowPickService:
                     raise BackendError("EVIDENCE_VALIDATION_FAILED", "성분 설명의 근거ID가 서버 자료와 일치하지 않습니다.")
         return {"status": "reference_only", **analysis.model_dump(),
                 "sources": [c.model_dump() for c in selected],
-                "notice": "근거ID 연결 검사를 통과했으며 설명의 의미적 정확도는 별도 검토가 필요합니다."}
+                "notice": "일반 성분 기능에 대한 참고 설명입니다. 전체 성분·완제품 효능·개인 적합성·혼합 허용을 검증한 결과가 아닙니다. 근거ID 연결 검사와 별도로 문헌 해석·한영 표기의 독립 사람 교차검토가 필요합니다."}

@@ -209,14 +209,16 @@ function renderResult(prefix, response, input) {
   }
   if (!notes.children.length) {
     addIngredient(notes, "성분 기능 설명", analysis.status === "needs_evidence"
-      ? "검토 완료 근거가 준비되면 기능 설명을 제공해요. 현재는 개인 적합성이나 추천을 판단하지 않아요."
+      ? "사진의 성분과 일치하는 기능 근거가 준비되면 설명을 제공해요. 개인 적합성이나 추천을 판단하지 않아요."
+      : analysis.status === "reference_only"
+      ? "이 응답에는 성분별 설명이 제공되지 않았어요. 사진과 표시된 근거를 함께 확인해 주세요."
       : "전성분을 판독한 뒤 근거가 있는 설명을 확인할 수 있어요.");
   }
   const warnings = $(prefix + "Warnings");
   warnings.replaceChildren();
   const messages = [extraction.nextAction, ...(extraction.warnings || []),
     ...(extraction.uncertainSpans || []).map(text => "판독 불확실: " + text),
-    ...(analysis.warnings || [])].filter(Boolean);
+    ...(analysis.warnings || []), analysis.notice].filter(Boolean);
   for (const message of messages.length ? messages : ["사진 원문과 성분 목록을 직접 대조해 주세요."]) {
     const paragraph = document.createElement("p");
     paragraph.className = "result-paragraph";

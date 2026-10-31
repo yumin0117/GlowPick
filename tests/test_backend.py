@@ -13,8 +13,8 @@ from pydantic import ValidationError
 
 from glowpick.config import load_local_env
 from glowpick.gemini import BackendError, GeminiClient
-from glowpick.models import Extraction, ReviewedClaim
-from glowpick.service import GlowPickService, MAX_BYTES, ROOT, RequestLimiter, read_image
+from glowpick.models import Extraction, ReviewedClaim, ModelAnalysis
+from glowpick.service import GlowPickService, MAX_BYTES, ROOT, RequestLimiter, read_image, load_claims
 from glowpick.validation import compare_ingredients, normalize_ingredient, split_ingredients, validate_mixing_decision
 
 
@@ -180,6 +180,63 @@ class ServiceTest(unittest.TestCase):
             self.assertEqual(out["ok"], expected, out)
             self.assertEqual(len(client.calls), 2)
 
+    def test_ysw_claim_data_and_provenance(self):
+        import hashlib
+        claims = load_claims()
+        self.assertEqual({c.ingredient for c in claims},
+                         {"Glycerin", "글리세린", "Panthenol", "판테놀", "Allantoin", "알란토인"})
+        self.assertEqual(len({c.evidenceId for c in claims}), 6)
+        provenance = json.loads((ROOT / "data/reviewed_claims.provenance.json").read_text(encoding="utf-8"))
+        self.assertFalse(provenance["independentHumanReview"])
+        self.assertEqual(provenance["sourceSha256"],
+                         hashlib.sha256((ROOT / "data/reviewed_claims.json").read_bytes()).hexdigest())
+
+    def test_each_ysw_name_selects_only_its_own_evidence(self):
+        claims = load_claims()
+        for claim in claims:
+            with self.subTest(ingredient=claim.ingredient):
+                label = {**extraction(), "rawText": claim.ingredient, "ingredients": [claim.ingredient]}
+                note = {"summary": "일반 성분 기능 참고", "ingredientNotes": [
+                    {"ingredient": claim.ingredient, "explanation": claim.statement, "evidenceIds": [claim.evidenceId]}
+                ], "warnings": []}
+                client = FakeClient(label, note)
+                out = GlowPickService(mode="live", client_factory=lambda: client).analyze_cosmetic(self.image, {})
+                self.assertTrue(out["ok"], out)
+                self.assertEqual(len(client.calls), 2)
+                payload = json.loads(client.calls[1]["text"])
+                self.assertEqual(payload["approvedClaims"], [claim.model_dump()])
+                self.assertNotIn("approvedClaims", client.calls[0]["text"])
+                self.assertEqual(out["analysis"]["status"], "reference_only")
+                self.assertEqual(out["analysis"]["sources"], [claim.model_dump()])
+                self.assertIn("개인 적합성", out["analysis"]["notice"])
+
+    def test_ysw_evidence_does_not_complete_partial_extraction(self):
+        label = {**extraction("partial"), "rawText": "알란토인", "ingredients": ["알란토인"]}
+        client = FakeClient(label)
+        out = GlowPickService(mode="live", client_factory=lambda: client).consult_modeling_pack(self.image, {"mixStatus": "allowed"})
+        self.assertTrue(out["ok"], out)
+        self.assertEqual(len(client.calls), 1)
+        self.assertEqual(out["analysis"]["status"], "not_run")
+        self.assertEqual(out["mixing"]["status"], "unknown")
+
+    def test_ysw_evidence_does_not_cover_unknown_ingredients(self):
+        client = FakeClient(extraction())
+        out = GlowPickService(mode="live", client_factory=lambda: client).analyze_cosmetic(self.image, {})
+        self.assertTrue(out["ok"], out)
+        self.assertEqual(len(client.calls), 1)
+        self.assertEqual(out["analysis"]["status"], "needs_evidence")
+
+    def test_ysw_korean_note_cannot_cite_unselected_english_id(self):
+        label = {**extraction(), "rawText": "알란토인", "ingredients": ["알란토인"]}
+        note = {"summary": "시험", "ingredientNotes": [
+            {"ingredient": "알란토인", "explanation": "시험", "evidenceIds": ["YSW_A001_EN"]}
+        ], "warnings": []}
+        client = FakeClient(label, note)
+        out = GlowPickService(mode="live", client_factory=lambda: client).analyze_cosmetic(self.image, {})
+        self.assertFalse(out["ok"])
+        self.assertEqual(out["error"]["code"], "EVIDENCE_VALIDATION_FAILED")
+        self.assertEqual(out["extraction"]["ingredients"], ["알란토인"])
+
     def test_upload_validation(self):
         self.assertEqual(read_image(self.image)[1], "image/png")
         out = GlowPickService(mode="mock").analyze_cosmetic(None, {})
@@ -244,6 +301,26 @@ class TransportTest(unittest.TestCase):
         self.assertEqual(base64.b64decode(payload["input"][1]["data"]), b"TEST_IMAGE")
         self.assertEqual(payload["response_format"]["mime_type"], "application/json")
         self.assertNotIn("TEST_KEY", json.dumps(payload))
+
+    def test_nested_generation_schema_is_small_and_local_limits_remain_strict(self):
+        original = ModelAnalysis.model_json_schema()
+        invalid = {"summary": "참고", "ingredientNotes": [
+            {"ingredient": "알란토인", "explanation": "x" * 2001, "evidenceIds": ["YSW_A001_KO"]}
+        ], "warnings": []}
+        requests = []
+        def opener(req, timeout):
+            requests.append(json.loads(req.data))
+            return self.response({"status": "completed", "output_text": json.dumps(invalid)})
+        result = GeminiClient("TEST_KEY", "TEST_MODEL", opener=opener).generate("SYSTEM", "USER", original)
+        sent = requests[0]["response_format"]["schema"]
+        self.assertNotIn('"maxLength"', json.dumps(sent))
+        self.assertNotIn('"maxItems"', json.dumps(sent))
+        self.assertEqual(sent["required"], ["summary", "ingredientNotes", "warnings"])
+        self.assertFalse(sent["additionalProperties"])
+        self.assertEqual(sent["$defs"]["IngredientNote"]["required"], ["ingredient", "explanation", "evidenceIds"])
+        self.assertEqual(original, ModelAnalysis.model_json_schema())
+        with self.assertRaises(ValidationError):
+            ModelAnalysis.model_validate(result)
 
     def test_upstream_errors_are_sanitized_without_retry(self):
         for status, code in [(400, "GEMINI_REQUEST_REJECTED"), (401, "GEMINI_AUTH_ERROR"), (402, "BILLING_CONFIGURATION_ERROR"),

@@ -4,6 +4,7 @@ import re
 import sys
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
+from datetime import datetime, timedelta, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -31,4 +32,5 @@ def package(destination):
 
 
 if __name__ == "__main__":
-    package(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parent / "GlowPick_HF_인계_20261030.zip")
+    day = datetime.now(timezone(timedelta(hours=9))).strftime("%Y%m%d")
+    package(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parent / f"GlowPick_HF_인계_{day}.zip")

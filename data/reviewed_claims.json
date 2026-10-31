@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "evidenceId": "YSW_G001_EN",
+    "ingredient": "Glycerin",
+    "statement": "보습제로 사용되는 성분입니다.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/31840548/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "YSW_G001_KO",
+    "ingredient": "글리세린",
+    "statement": "보습제로 사용되는 성분입니다.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/31840548/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "YSW_P001_EN",
+    "ingredient": "Panthenol",
+    "statement": "화장품에서 보습을 위한 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://journals.sagepub.com/doi/10.1177/10915818221124809",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "YSW_P001_KO",
+    "ingredient": "판테놀",
+    "statement": "화장품에서 보습을 위한 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://journals.sagepub.com/doi/10.1177/10915818221124809",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "YSW_A001_EN",
+    "ingredient": "Allantoin",
+    "statement": "피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/20448269/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "YSW_A001_KO",
+    "ingredient": "알란토인",
+    "statement": "피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/20448269/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  }
+]

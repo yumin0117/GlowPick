@@ -26,7 +26,7 @@
 
 ## 데이터 담당
 
-- reviewed_claims.json에 넣을 일반 성분 기능 근거를 독립 검토
+- 일반 기능 3종·한영 6행 연결 완료. reviewed_claims.provenance.json의 문헌 해석·한영 표기를 독립 교차검토하고 범위 확장 시 근거 추가
 - 제조사 제품 한정 문구를 일반 기능이나 개인 적합성으로 확대하지 않음
 - 혼합은 정확한 제품·버전·조건의 근거가 생길 때까지 unknown 유지
 - reference/의 정답은 평가용으로만 사용
@@ -47,3 +47,5 @@ ym 브랜치 프론트엔드와 연결한 서버 소스, API 규격, 임시 프�
 작업본은 D:/yanggang/GlowPick입니다. .env/API_KEY.txt와 .venv도 이 폴더로 이전했습니다.
 기존 kimmin0914/poto_classifier의 index.html은 이전 찬반 토론 과제이므로 수정하지 않았습니다.
 원본 복사본 1개는 D:/yanggang/huggingface-backup/poto_classifier/index.original.html에 있습니다.
+
+2026-10-31 ysw 26d4fbc 자료와의 연동 수정은 mj에만 반영합니다. 일반 기능 근거가 있어도 혼합 판단은 unknown이며 Qwen의 평가 출력은 운영 Gemini 입력에 사용하지 않습니다.

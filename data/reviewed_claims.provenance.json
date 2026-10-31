@@ -1,0 +1,76 @@
+{
+  "sourceRepository": "yumin0117/GlowPick",
+  "sourceBranch": "ysw",
+  "sourceCommit": "26d4fbc9391bc93d0c191ff74150a7007fbe693f",
+  "sourcePath": "data-validation/handoff/reviewed_claims.json",
+  "sourceSha256": "05c2f1eca716a24723bad1ab39eea666d7e257ee34ebb6a1c6ac371e1ed4cb55",
+  "checkedAt": "2026-10-31",
+  "reviewer": "AI_assistant_literature_crosscheck",
+  "independentHumanReview": false,
+  "scope": "general_ingredient_function_only",
+  "limitations": [
+    "완제품 효능·개인 적합성·알레르기 안전성·혼합 허용을 검증한 자료가 아닙니다.",
+    "한영 성분명과 문헌 해석에 대한 독립 사람 교차검토는 아직 완료되지 않았습니다."
+  ],
+  "evidence": [
+    {
+      "evidence_id": "YSW_G001",
+      "ingredient_en": "Glycerin",
+      "ingredient_ko": "글리세린",
+      "statement": "보습제로 사용되는 성분입니다.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31840548/",
+      "source_title": "Safety Assessment of Glycerin as Used in Cosmetics",
+      "doi": "10.1177/1091581819883820",
+      "checked_at": "2026-10-31",
+      "reviewer": "AI_assistant",
+      "review_scope": "published_abstract_function_only",
+      "independent_human_review": false,
+      "limitations": "일반 성분 기능만 검토. 개인 적합성·치료효과·완제품 효능·혼합 허용을 입증하지 않음. 한영 표기는 팀의 독립 교차검토 필요."
+    },
+    {
+      "evidence_id": "YSW_P001",
+      "ingredient_en": "Panthenol",
+      "ingredient_ko": "판테놀",
+      "statement": "화장품에서 보습을 위한 피부 컨디셔닝 성분으로 사용됩니다.",
+      "source_url": "https://journals.sagepub.com/doi/10.1177/10915818221124809",
+      "source_title": "Safety Assessment of Panthenol, Pantothenic Acid, and Derivatives as Used in Cosmetics",
+      "doi": "10.1177/10915818221124809",
+      "checked_at": "2026-10-31",
+      "reviewer": "AI_assistant",
+      "review_scope": "published_abstract_function_only",
+      "independent_human_review": false,
+      "limitations": "일반 성분 기능만 검토. 개인 적합성·치료효과·완제품 효능·혼합 허용을 입증하지 않음. 한영 표기는 팀의 독립 교차검토 필요."
+    },
+    {
+      "evidence_id": "YSW_A001",
+      "ingredient_en": "Allantoin",
+      "ingredient_ko": "알란토인",
+      "statement": "피부 컨디셔닝 성분으로 사용됩니다.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/20448269/",
+      "source_title": "Final report of the safety assessment of allantoin and its related complexes",
+      "doi": "10.1177/1091581810362805",
+      "checked_at": "2026-10-31",
+      "reviewer": "AI_assistant",
+      "review_scope": "published_abstract_function_only",
+      "independent_human_review": false,
+      "limitations": "일반 성분 기능만 검토. 개인 적합성·치료효과·완제품 효능·혼합 허용을 입증하지 않음. 한영 표기는 팀의 독립 교차검토 필요."
+    }
+  ],
+  "sourceChecks": [
+    {
+      "evidenceId": "YSW_G001",
+      "checkedUrl": "https://pubmed.ncbi.nlm.nih.gov/31840548/",
+      "supportedScope": "humectant function"
+    },
+    {
+      "evidenceId": "YSW_P001",
+      "checkedUrl": "https://pubmed.ncbi.nlm.nih.gov/36177798/",
+      "supportedScope": "skin-conditioning agent-humectant; DOI matches publisher link"
+    },
+    {
+      "evidenceId": "YSW_A001",
+      "checkedUrl": "https://pubmed.ncbi.nlm.nih.gov/20448269/",
+      "supportedScope": "skin-conditioning agent"
+    }
+  ]
+}

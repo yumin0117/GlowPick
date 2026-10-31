@@ -150,7 +150,10 @@ ym 브랜치 화면과 서버를 한 Gradio Space 구조로 통합했습니다.
 
 ## 데이터 담당이 추가할 기능 근거
 
-data/reviewed_claims.json은 다음 객체의 배열이며 현재 빈 배열입니다.
+data/reviewed_claims.json은 다음 객체의 배열입니다. 2026-10-31 ysw에서 글리세린·판테놀·알란토인의 한영 6행을 연결했습니다.
+서버가 사진에서 판독한 이름과 정확히 매칭되는 일반 기능 근거만 설명에 전달합니다.
+검토 이력과 독립 사람 교차검토 미완료 상태는 data/reviewed_claims.provenance.json에 보관합니다.
+reference_only의 notice는 화면의 확인할 내용 영역에 항상 표시합니다.
 
     {
       "evidenceId": "검토한_근거_ID",

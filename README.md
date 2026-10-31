@@ -25,7 +25,9 @@ pinned: false
 - 실제 Gemini 연결, 판독 상태·입력·이미지·오류·근거ID 검증 구현
 - 모의 응답은 명시적인 mock 모드에서만 사용, 실제 판독 실패 시 자동 대체하지 않음
 - 프롬프트는 draft-2026-10-30-v1이며 최종본이 아님
-- `data/reviewed_claims.json`은 빈 목록: 기능 설명은 needs_evidence, 혼합은 unknown
+- `data/reviewed_claims.json`: ysw의 일반 기능 근거 6행(성분 3종·한영 표기)을 2026-10-31 출처 대조 후 연결
+- 해당 성분이 완전 판독되면 reference_only 설명, 근거가 없는 성분은 needs_evidence, 혼합은 unknown
+- 문헌 해석·한영 표기의 독립 사람 교차검토는 미완료이며 전체 성분·완제품·개인 적합성을 검증한 자료가 아님
 - 로컬 검증 결과: [검증 기록](docs/VERIFICATION.md)
 - Hugging Face 공개 배포는 미완료: kimmin0914 계정 생성 화면에서 Gradio/Docker가 유료로 비활성화됨
 - 결제 수단 등록·유료 구독 없이 실행할 Gradio 자격/기존 Space를 확보해야 함
@@ -83,7 +85,8 @@ Google 프로젝트도 결제 계정을 연결하지 않은 무료 등급인지 
 
 프론트 담당은 서버 URL·키를 코드에 넣지 않습니다. 같은 주소에서 자동 연결됩니다.
 프롬프트 담당은 Schema를 유지해 prompts/를 교체하고 `glowpick/service.py`의 PROMPT_VERSION을 올립니다.
-데이터 담당은 근거를 검토해 reviewed_claims.json에 추가합니다. 제조사 광고를 일반 기능이나 개인 적합성 근거로 자동 승인하지 않습니다.
+데이터 담당의 일반 기능 근거 6행을 연결했습니다. 이후 근거 추가 시에도 원문·표기·주장 범위를 검토합니다. 제조사 광고를 일반 기능이나 개인 적합성 근거로 자동 승인하지 않습니다.
+원본 출처와 검토 한계는 data/reviewed_claims.provenance.json, 이번 비교는 docs/YSW_REVIEW_20261031.md를 참고합니다.
 제품명이 없어도 사진을 판독하며, 모델링팩도 사진이 필수입니다.
 
 - [API 규격](docs/API.md)

@@ -12,6 +12,32 @@ class BackendError(Exception):
         self.code, self.message, self.retryable = code, message, retryable
 
 
+def generation_schema(schema):
+    """Keep structural constraints small; Pydantic enforces all length limits locally.
+
+    Nested bounded arrays/strings can exceed Gemini's serving constraint budget.
+    Preserve property names, required fields, enums, references and object shape.
+    """
+    limits = {"minLength", "maxLength", "minItems", "maxItems", "title"}
+
+    def visit(value):
+        if isinstance(value, list):
+            return [visit(item) for item in value]
+        if not isinstance(value, dict):
+            return value
+        result = {}
+        for key, item in value.items():
+            if key in limits:
+                continue
+            if key in {"properties", "$defs", "definitions"}:
+                result[key] = {name: visit(child) for name, child in item.items()}
+            else:
+                result[key] = visit(item)
+        return result
+
+    return visit(schema)
+
+
 class GeminiClient:
     URL = "https://generativelanguage.googleapis.com/v1beta/interactions"
 
@@ -29,7 +55,7 @@ class GeminiClient:
             parts.append({"type": "image", "mime_type": mime, "data": base64.b64encode(raw).decode("ascii")})
         payload = {
             "model": self.model, "input": parts, "system_instruction": system_prompt,
-            "response_format": {"type": "text", "mime_type": "application/json", "schema": schema},
+            "response_format": {"type": "text", "mime_type": "application/json", "schema": generation_schema(schema)},
             "store": False,
             "generation_config": {"max_output_tokens": 6000},
         }
