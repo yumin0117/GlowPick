@@ -2,7 +2,7 @@
   "date": "2026-11-02",
   "sdk": "static",
   "space": "kimmin0914/GlowPick",
-  "hfCommit": "8da8afca629195f1591b83e7087163082db3a07d",
+  "hfCommit": "e7846fe3762750d0afbc15c01cdaa8cc0cb24eae",
   "cosmeticCase": {
     "image": "I001.jpg",
     "status": "complete",
@@ -34,5 +34,7 @@
   "independentBillingInspection": false,
   "apiCallsAutomaticallyRetried": false,
   "independentHumanEvidenceReview": false,
-  "finalPromptReady": false
+  "finalPromptReady": false,
+  "liveTestsCommit": "8da8afca629195f1591b83e7087163082db3a07d",
+  "postLiveChange": "ai-core.js trailing blank line only"
 }

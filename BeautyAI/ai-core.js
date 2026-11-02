@@ -86,4 +86,3 @@ export function validateExtraction(value, schema) {
   if (["unreadable", "no_ingredients", "multiple_products"].includes(value.status) && value.ingredients.length) invalid();
   return value;
 }
-

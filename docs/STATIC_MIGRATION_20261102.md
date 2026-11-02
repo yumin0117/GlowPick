@@ -71,6 +71,8 @@ ysw의 일반 기능 근거6행과 검토 한계를 유지하고 평가용 정�
 5. 잘못된 키 형식은 Google 호출 전 KEY_REQUIRED, 입력창 비움·이전 결과 숨김 확인
 6. HF 공개 Static I003 모델링팩: no_ingredients, 설명 not_run, 재촬영 안내, 혼합 허용을 체크해도 mixing unknown 확인
 
+실제 API 시험 후 코드 의미가 바뀌지 않는 파일 끝 빈 줄 정리만 추가했습니다.
+
 최초 키 형식 검사에서 오래된 접두사만 허용하던 문제를 발견해 수정했습니다. 현재 여러 신규 인증 키 형식을 허용합니다.
 최초 거부는 브라우저 내부 검사였고 Google 호출이 아닙니다. 수정 후 실제 사진 판독과 설명이 성공했습니다.
 
@@ -79,7 +81,7 @@ ysw의 일반 기능 근거6행과 검토 한계를 유지하고 평가용 정�
 - Space: https://huggingface.co/spaces/kimmin0914/GlowPick
 - 실제 앱: https://kimmin0914-glowpick.static.hf.space/index.html
 - SDK: static, 공개, Running
-- HF 배포 커밋: 8da8afca629195f1591b83e7087163082db3a07d
+- HF 배포 커밋: e7846fe3762750d0afbc15c01cdaa8cc0cb24eae
 - 공개 파일8개의 원격 내용을 최소 ZIP 원본과 바이트 단위로 대조해 일치 확인
 - 제조사 이미지·사진·키·Python 서버·원응답 파일 업로드 없음
 - 기존 poto_classifier Space/원본 백업은 수정하지 않음
