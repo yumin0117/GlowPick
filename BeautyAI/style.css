@@ -1008,6 +1008,16 @@ textarea {
   }
 }
 
+.api-key-panel {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.api-key-panel .text-input {
+  width: 100%;
+  margin: 8px 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

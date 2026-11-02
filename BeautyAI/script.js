@@ -1,4 +1,4 @@
-import { analyze, health } from "./api-client.js";
+import { analyze, health, MAX_IMAGE_BYTES } from "./api-client.js";
 
 const $ = (id) => document.getElementById(id);
 const files = { cosmetic: null, pack: null };
@@ -68,8 +68,8 @@ function setupUpload(prefix) {
       input.value = "";
       return;
     }
-    if (file.size > 10 * 1024 * 1024) {
-      $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "이미지는 최대 10MB까지 업로드할 수 있어요.";
+    if (file.size > MAX_IMAGE_BYTES) {
+      $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "사진은 10MiB 이하로 올려주세요. 전성분 영역만 잘라 저장해도 좋아요.";
       input.value = "";
       return;
     }
@@ -269,14 +269,22 @@ async function runAnalysis(prefix) {
     message.textContent = "피부 고민을 하나 이상 선택해 주세요.";
     return;
   }
+  let apiKey = $("geminiApiKey").value.trim();
+  if (!apiKey) {
+    message.textContent = "위쪽의 Gemini API 키 입력칸에 이번 분석용 키를 입력해 주세요.";
+    $("geminiApiKey").focus();
+    return;
+  }
+  // Keep no saved key and clear the visible field before any asynchronous work.
+  $("geminiApiKey").value = "";
   const controls = [...document.querySelectorAll("input, textarea, button")];
   const disabledBefore = controls.map(control => control.disabled);
   busy = true;
   controls.forEach(control => control.disabled = true);
-  message.textContent = "사진 분석을 요청했어요. 대기열과 판독에 시간이 걸릴 수 있어요…";
+  message.textContent = "사진 분석을 요청했어요. 판독에 시간이 걸릴 수 있어요…";
   const { image, ...request } = input;
   try {
-    const response = await analyze(prefix === "cosmetic" ? "/analyze_cosmetic" : "/consult_modeling_pack", image, request);
+    const response = await analyze(prefix === "cosmetic" ? "/analyze_cosmetic" : "/consult_modeling_pack", image, request, apiKey);
     if (!response.ok) {
       const detail = response.error || {};
       throw new Error(`${detail.message || "분석을 완료하지 못했어요."} (${detail.code || "UNKNOWN"} · 요청 ${response.requestId || "-"})`);
@@ -291,6 +299,7 @@ async function runAnalysis(prefix) {
     section.classList.add("hidden");
     message.textContent = error.message || "연결을 확인하고 다시 시도해 주세요.";
   } finally {
+    apiKey = "";
     controls.forEach((control, index) => control.disabled = disabledBefore[index]);
     busy = false;
   }
@@ -312,8 +321,12 @@ document.querySelectorAll("input:not([type=file]), textarea").forEach(control =>
 health().then(status => {
   $("serverStatus").textContent = status.mode === "mock"
     ? "모의 연동 모드 · 사진을 AI로 판독하지 않아요."
-    : status.readyForLive ? "Gemini 연결 준비됨 · 제품 라벨 사진을 올려주세요."
-      : "서버 API 키가 아직 설정되지 않았어요. 담당자에게 알려주세요.";
+    : "무료 Static 실행 · 분석할 때마다 API 키를 입력해 주세요.";
 }).catch(() => {
-  $("serverStatus").textContent = "서버 연결을 확인하지 못했어요. 분석 요청 시 다시 연결해요.";
+  $("serverStatus").textContent = "분석 모듈을 불러오지 못했어요. 페이지를 새로고침해 주세요.";
 });
+
+// Also clear restored form values on history navigation / page departure.
+$("geminiApiKey").value = "";
+window.addEventListener("pageshow", () => { $("geminiApiKey").value = ""; });
+window.addEventListener("pagehide", () => { $("geminiApiKey").value = ""; });

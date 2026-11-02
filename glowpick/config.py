@@ -1,4 +1,4 @@
-"""Minimal local .env support. Real Hugging Face deployments use Secrets."""
+"""Previous Python harness only. The current HF Static app never loads .env."""
 import os
 from pathlib import Path
 

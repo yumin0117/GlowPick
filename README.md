@@ -3,108 +3,90 @@ title: GlowPick
 emoji: 🧴
 colorFrom: green
 colorTo: pink
-sdk: gradio
-sdk_version: 6.28.0
-python_version: "3.12"
-app_file: app.py
+sdk: static
+app_file: BeautyAI/index.html
 pinned: false
 ---
 
-# GlowPick — Hugging Face 통합 실행
+# GlowPick — 무료 Hugging Face Static
 
-`yumin0117/GlowPick`의 `ym` 브랜치(e2d0e8f)의 프론트엔드에 서버와 Gemini API를 연결한 개발 버전입니다.
-기존 화면의 디자인·사진 업로드·피부 정보 선택 흐름을 유지하고, 고정 예시 결과를 실제 서버 응답으로 교체했습니다.
+**Hugging Face Static Space 하나에서 실행하는 버전입니다. Gradio·Docker·별도 서버·유료 호스팅이 필요하지 않습니다.**
+사용자가 분석할 때마다 본인의 Gemini API 키를 입력하면 브라우저가 Google에 직접 요청합니다.
+`ym`의 화면 디자인과 `ysw`의 일반 성분 기능 근거 6행을 이어 사용합니다.
 
-한 개의 **Gradio Space**가 `BeautyAI/` 화면과 Python API를 함께 제공합니다.
-별도 외부 백엔드나 브라우저 API 키 입력은 필요하지 않습니다.
+    Hugging Face Static 화면 → Google Gemini API → 브라우저에서 출력·근거 검증 → 결과 화면
 
-    브라우저 → 같은 Space의 Gradio API → Gemini → 검증 → 결과 화면
+실행 주소: [GlowPick Space](https://huggingface.co/spaces/kimmin0914/GlowPick) · [전체 화면](https://kimmin0914-glowpick.static.hf.space/index.html)
 
-## 현재 상태
+2026-11-02 무료 Static 공개 배포와 실제 Gemini 판독·설명 호출을 확인했습니다.
 
-- 실제 Gemini 연결, 판독 상태·입력·이미지·오류·근거ID 검증 구현
-- 모의 응답은 명시적인 mock 모드에서만 사용, 실제 판독 실패 시 자동 대체하지 않음
-- 프롬프트는 draft-2026-10-30-v1이며 최종본이 아님
-- `data/reviewed_claims.json`: ysw의 일반 기능 근거 6행(성분 3종·한영 표기)을 2026-10-31 출처 대조 후 연결
-- 해당 성분이 완전 판독되면 reference_only 설명, 근거가 없는 성분은 needs_evidence, 혼합은 unknown
-- 문헌 해석·한영 표기의 독립 사람 교차검토는 미완료이며 전체 성분·완제품·개인 적합성을 검증한 자료가 아님
-- 로컬 검증 결과: [검증 기록](docs/VERIFICATION.md)
-- Hugging Face 공개 배포는 미완료: kimmin0914 계정 생성 화면에서 Gradio/Docker가 유료로 비활성화됨
-- 결제 수단 등록·유료 구독 없이 실행할 Gradio 자격/기존 Space를 확보해야 함
+## 사용
 
-계정 제한은 프론트엔드 코드를 바꿔서 해소할 수 없습니다. 현재 Static Space에 Python 파일만 올려도 서버는 실행되지 않습니다.
-자세한 확인: [배포 기록](docs/DEPLOYMENT-20261030.md).
+1. 개인정보가 없는 한 제품의 전성분 라벨 사진을 올립니다.
+2. 피부 고민을 선택하고, 화면 위쪽에 **본인의 무료 Gemini API 키**를 입력합니다.
+3. 분석 버튼을 누릅니다. 키 입력창은 즉시 비워지고 이번 요청의 메모리에서만 사용됩니다.
+4. 다른 사진·모델링팩을 분석할 때는 키를 다시 입력합니다.
 
-## 실행
+키를 소스·Git·로그·URL·브라우저 저장소·HF Variables/Secrets에 넣지 않습니다.
+키는 Google의 고정 API 주소에 `x-goog-api-key` 헤더로만 전송합니다.
+본인 브라우저의 개발자 도구·브라우저 확장 프로그램·비밀번호 관리자는 입력값이나 요청을 볼 수 있습니다.
+JavaScript에서 메모리를 확실히 덮어 지운다고 보장할 수는 없습니다. 공용 키를 배포하는 방식이 아닙니다.
 
-Python 3.12에서 저장소 루트를 기준으로 실행합니다.
-
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-`.env.example`을 `.env`로 복사하고 본인의 `GEMINI_API_KEY`를 저장합니다.
-키를 HTML·JS·Git·Static Space Variables/Secrets에 넣지 않습니다.
-Hugging Face Gradio 배포에서는 로컬 `.env` 대신 서버 Secrets를 사용합니다.
-
-```powershell
-.\start_live.ps1
-```
-
-`http://127.0.0.1:7860/`에서 팀 프론트엔드가 열립니다.
-키 없는 연결 시험은 `.\start_mock.ps1`로 실행합니다. 화면에 모의 모드가 표시됩니다.
-`BeautyAI/index.html`만 직접 열거나 Live Server로 실행하면 Python API가 없으므로 분석할 수 없습니다.
+Google AI Pro 앱 구독과 Gemini API 과금은 별개입니다. **결제 계정이 연결되지 않은 Free API 프로젝트**를 사용합니다.
+무료 할당량을 넘으면 오류를 표시하고 중지합니다. 자동 재시도·유료 모델 전환·모의 결과 대체는 없습니다.
+이 앱에서 Google 계정의 결제 상태를 조회하거나 과금을 차단할 수는 없습니다. 유료 API 키를 넣으면 해당 프로젝트 요금이 적용됩니다.
 
 ## Hugging Face 배포
 
-1. 결제 계정 연결 없이 실행할 수 있는 Gradio Space인지 계정 화면에서 먼저 확인합니다.
-2. 저장소 루트 구조를 유지해 `README.md`, `app.py`, `requirements.txt`, `BeautyAI/`, `glowpick/`, `prompts/`, `data/`, `fixtures/`를 업로드합니다.
-3. Gradio SDK, README의 app_file=app.py, sdk_version=6.28.0, Python 3.12를 사용합니다.
-4. Space Settings의 **Secrets**에 `GEMINI_API_KEY`를 등록합니다. 키 파일은 업로드하지 않습니다.
-5. Variables에 `GLOWPICK_MODE=live`, `GEMINI_MODEL=gemini-3.5-flash-lite`를 설정합니다.
-6. Space 루트 주소에서 사진 업로드·판독·오류·혼합 미확인 표시를 검증합니다.
+1. Space 생성에서 **Static**을 선택합니다. PRO·Gradio·Docker·유료 하드웨어를 선택하지 않습니다.
+2. 이 저장소의 `README.md`와 `BeautyAI/` 7개 파일만 동일한 폴더 구조로 올립니다.
+3. README 메타데이터는 `sdk: static`, `app_file: BeautyAI/index.html`입니다.
+4. Space Variables/Secrets에는 API 키를 등록하지 않습니다.
+5. App 화면에서 사용자가 키를 입력하고 분석합니다.
 
-서버는 0.0.0.0:7860에서 실행됩니다. Gemini 연산은 Google에서 처리하며 이 앱은 GPU 함수를 호출하지 않습니다.
-ZeroGPU 자격 안내와 실제 생성 가능 여부는 계정에서 확인해야 합니다. 유료 업그레이드를 해결책으로 진행하지 않습니다.
-Google 프로젝트도 결제 계정을 연결하지 않은 무료 등급인지 사용자가 확인해야 합니다.
+별도 서버 URL 설정·Cloudflare 계정·Python 설치·빌드 과정이 필요하지 않습니다.
+최소 배포 묶음은 `scripts/package_static.py`로 만듭니다. 압축을 풀면 README.md와 HTML·JS·CSS 7개 파일이 같은 폴더에 나옵니다. 최소 묶음의 app_file은 index.html로 자동 설정됩니다.
+기존 `app.py`, `glowpick/`, `requirements.txt`, `start_live.ps1`, `start_mock.ps1`은 이전 Python 구현 비교·회귀 시험용이며 Static에서 실행하지 않습니다.
+이전 Gradio 배포 기록은 당시 이력입니다. 현재 방식은 [Static 전환 기록](docs/STATIC_MIGRATION_20261102.md)을 따릅니다.
 
-## 팀 인계
+## 로컬 화면 확인
 
-| 파일 | 담당 역할 |
-|---|---|
-| BeautyAI/index.html, style.css | 기존 프론트엔드 화면 |
-| BeautyAI/script.js | 입력·비동기 요청·실제 응답 렌더링 |
-| BeautyAI/api-client.js | 같은 Space의 공식 Gradio JS 클라이언트 호출 |
-| app.py | 프론트 정적 파일 5개만 제공, Gradio API·대기열·파일 제한 |
-| glowpick/ | Gemini 요청, 입력·이미지·출력·근거 검증 |
-| prompts/ | 교체 가능한 임시 판독·설명 프롬프트 |
-| data/reviewed_claims.json | 데이터 담당이 검토한 일반 성분 기능 근거 |
-| reference/ | 데이터 담당 원본 비교기·평가용 정답, 운영 판독에 사용하지 않음 |
-| tests/ | 실제 Google 호출 없는 자동 검증 |
+Node 22 이상에서 저장소 루트를 기준으로 실행합니다. 추가 npm 패키지는 필요하지 않습니다.
 
-프론트 담당은 서버 URL·키를 코드에 넣지 않습니다. 같은 주소에서 자동 연결됩니다.
-프롬프트 담당은 Schema를 유지해 prompts/를 교체하고 `glowpick/service.py`의 PROMPT_VERSION을 올립니다.
-데이터 담당의 일반 기능 근거 6행을 연결했습니다. 이후 근거 추가 시에도 원문·표기·주장 범위를 검토합니다. 제조사 광고를 일반 기능이나 개인 적합성 근거로 자동 승인하지 않습니다.
-원본 출처와 검토 한계는 data/reviewed_claims.provenance.json, 이번 비교는 docs/YSW_REVIEW_20261031.md를 참고합니다.
-제품명이 없어도 사진을 판독하며, 모델링팩도 사진이 필수입니다.
+    node scripts/dev-static.mjs
 
-- [API 규격](docs/API.md)
-- [담당자 인계](docs/HANDOFF.md)
-- [검증 기록](docs/VERIFICATION.md)
+`http://127.0.0.1:8080/`에서 열립니다. 로컬 미리보기도 키 파일을 읽지 않으며 사용자가 화면에 입력해야 합니다.
+HTML을 file://로 열면 브라우저 모듈 제한이 있으므로 HTTP 서버나 HF Static으로 엽니다.
 
-## 시험과 제한
+## 연결 파일
 
-```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
-```
+| 파일 | 역할 |
+| --- | --- |
+| BeautyAI/index.html, style.css | 팀 화면·이번 요청용 키 입력 |
+| BeautyAI/script.js | 사진·피부 입력, 키 입력창 초기화, 결과·오류 표시 |
+| BeautyAI/api-client.js | 실모드 클라이언트 연결 |
+| BeautyAI/gemini-client.js | Google 직접 요청·두 단계 처리·사진·근거 검증 |
+| BeautyAI/ai-core.js | 엄격한 스키마·판독 상태 검사 |
+| BeautyAI/ai-assets.js | 공개 프롬프트·스키마·기능 근거의 생성 묶음, 키 없음 |
+| prompts/, data/ | 프롬프트·기능 근거 원본 |
+| reference/ | 데이터 담당 평가 자료, 운영 판독 입력에 사용하지 않음 |
 
-사진은 JPG/JPEG/PNG/WEBP, 최대 10MiB·2,400만 픽셀의 정지 이미지입니다.
-동시 처리 1개, 대기열 8개, 기본 분당 요청 6회로 제한하며 자동 재시도하지 않습니다.
-한 요청에서 판독 1회, 검토된 기능 근거가 있으면 설명 1회를 추가합니다.
-브라우저 3분 대기 제한은 서버 작업 취소나 Google 호출 취소를 보장하지 않습니다.
-키·사진·피부 정보·상위 오류 본문을 기본 로그에 남기지 않습니다.
-상세 원응답 기록은 기본 꺼져 있으며 프로젝트 밖 비공개 경로에만 선택적으로 보관합니다.
+프롬프트·근거·Pydantic 모델을 바꾸면 `.venv/Scripts/python.exe scripts/build_static_assets.py`로 공개 묶음을 갱신합니다.
+현재 프롬프트는 `draft-2026-10-30-v1`이며 최종본이 아닙니다.
 
-수업 조건인 기술 2개 이상(Gradio 웹 + Gemini), 실제 시연, 학생 결제 0원·결제 계정 연결 금지,
-키/개인정보 비노출을 기준으로 구성했습니다. 로컬 시연 성공과 공개 배포 성공은 구분해서 보고합니다.
+## 검증과 한계
+
+    node --test tests/static-client.test.mjs
+    .venv/Scripts/python.exe -m unittest discover -s tests -v
+    node --test reference/tests/validation.test.mjs
+
+JPG/JPEG·PNG·WEBP 정지 사진, 최대 10MiB·2,400만 픽셀입니다.
+한 탭에서 동시 요청 1개·분당 6회이며 새로고침으로 초기화되는 사용자 편의 제한입니다. 서버의 전역 한도가 아닙니다.
+판독 1회, 일치하는 근거가 있으면 설명 1회를 추가합니다. 각 Google 요청 제한은 45초이며 중단이 Google 연산 취소를 보장하지는 않습니다.
+완전 판독만 설명 단계로 넘어갑니다. 근거가 없는 성분은 `needs_evidence`, 일반 기능 설명은 `reference_only`, 혼합은 `unknown`입니다.
+브라우저의 출력 검사는 실수·잘못된 응답을 걸러내는 용도이며 서버의 위변조 방지 기능은 아닙니다.
+문헌 해석·한영 표기의 독립 사람 교차검토, 새 제품 판독 정확도, 최종 프롬프트는 별도로 확인해야 합니다.
+사진과 피부 입력은 Google에 전송되며 무료 API의 데이터 이용 조건을 따릅니다.
+
+수업의 Static Space 배포 실습과 생성형 AI API 연동을 연결합니다. 기존의 ‘Gradio + Gemini’ 구현 설명은 현재 버전에 사용하지 않습니다.
+Git 변경은 **mj 브랜치에만** 반영합니다. main·develop·다른 팀원 브랜치는 수정하지 않습니다.

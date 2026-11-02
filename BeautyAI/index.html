@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>GlowPick | AI 뷰티 컨설턴트</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="script.js"></script>
@@ -62,7 +64,12 @@
           <span class="eyebrow">COSMETIC ANALYSIS</span>
           <h2>나의 화장품 분석하기</h2>
           <p>전성분이 표시된 사진과 피부 정보를 입력해 주세요.</p>
-          <p id="serverStatus" class="tiny-note" role="status">서버 연결 확인 중…</p>
+          <p id="serverStatus" class="tiny-note" role="status">분석 준비 중…</p>
+        </div>
+        <div class="note-box api-key-panel">
+          <label class="field-label" for="geminiApiKey">이번 분석에 사용할 Gemini API 키</label>
+          <input id="geminiApiKey" class="text-input" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="512" placeholder="무료 API 프로젝트의 키를 입력해 주세요" aria-describedby="keyPolicy">
+          <p id="keyPolicy" class="tiny-note">화장품·모델링팩 분석에 공통으로 사용해요. 분석을 시작하면 입력창에서 지우며 저장하지 않아요. 입력한 키와 사진은 브라우저에서 Google로 직접 전송돼요. 본인 브라우저의 개발자 도구에서는 키가 보일 수 있어요. 결제 계정이 연결되지 않은 무료 API 키를 사용해 주세요.</p>
         </div>
         <div class="form-grid">
           <section class="panel">
@@ -72,7 +79,7 @@
             <span class="field-label" id="cosmeticPhotoLabel">화장품 전성분 라벨 사진 <b class="required">*</b></span>
             <div class="upload-wrapper" data-upload="cosmetic">
               <button class="upload-main" type="button" id="cosmeticUploadButton" aria-labelledby="cosmeticPhotoLabel cosmeticUploadButton" aria-expanded="false" aria-controls="cosmeticUploadMenu">
-                <span class="upload-emoji">📷</span><strong>라벨 사진 업로드</strong><span>눌러서 업로드 방법을 선택하세요.</span><small>JPG, PNG, WEBP · 최대 10MB</small>
+                <span class="upload-emoji">📷</span><strong>라벨 사진 업로드</strong><span>눌러서 업로드 방법을 선택하세요.</span><small>JPG, PNG, WEBP · 최대 10MiB</small>
               </button>
               <div class="upload-menu hidden" id="cosmeticUploadMenu">
                 <button type="button" id="cosmeticGalleryButton" class="upload-choice"><span>🖼️</span><span><strong>사진 파일에서 업로드</strong><small>저장된 사진을 선택해요.</small></span></button>
@@ -159,7 +166,7 @@
             <span class="field-label" id="packPhotoLabel">모델링팩 전성분 라벨 사진 <b class="required">*</b></span>
             <div class="upload-wrapper" data-upload="pack">
               <button class="upload-main" type="button" id="packUploadButton" aria-labelledby="packPhotoLabel packUploadButton" aria-expanded="false" aria-controls="packUploadMenu">
-                <span class="upload-emoji">🫧</span><strong>모델링팩 사진 업로드</strong><span>파일 선택 또는 카메라 촬영</span><small>JPG, PNG, WEBP · 최대 10MB</small>
+                <span class="upload-emoji">🫧</span><strong>모델링팩 사진 업로드</strong><span>파일 선택 또는 카메라 촬영</span><small>JPG, PNG, WEBP · 최대 10MiB</small>
               </button>
               <div class="upload-menu hidden" id="packUploadMenu">
                 <button type="button" id="packGalleryButton" class="upload-choice"><span>🖼️</span><span><strong>사진 파일에서 업로드</strong><small>저장된 사진 선택</small></span></button>

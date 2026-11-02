@@ -1,169 +1,77 @@
-# 프론트엔드 연결 규격 v1.0
+# Static 브라우저 연동 규격 v1.1
 
-이 문서는 테스트 가능한 서버 호출 규격입니다. 최종 프롬프트 확정과는 별개입니다.
-현재 Gradio SDK의 이름 있는 API를 사용하며 일반 FastAPI의 단일 POST 주소가 아닙니다.
-Gradio 업로드·대기열·결과 수신을 처리하는 공식 클라이언트를 사용합니다.
+2026-11-02부터 원격 Gradio API 대신 브라우저가 Google에 직접 요청합니다.
+응답의 schemaVersion=1.0과 기존 extraction/analysis/mixing 구조는 유지합니다.
 
 ## 호출
 
-프론트엔드는 BeautyAI/api-client.js에서 현재 페이지 주소(window.location.origin)에 연결합니다.
-BeautyAI/script.js의 getCosmeticInput/getPackInput에서 image를 분리하고 나머지를 request JSON으로 전달합니다.
-HTML과 API가 한 Gradio Space에 있으므로 별도 서버 주소 설정이나 CORS 해제는 필요하지 않습니다.
-API 키는 이 모듈이나 Static Space Variables/Secrets에 넣지 않습니다.
+    import { analyze, health } from "./api-client.js";
+    const status = await health(); // 네트워크 호출 없음
+    const response = await analyze("/analyze_cosmetic", file, request, oneTimeApiKey);
+    // 또는 /consult_modeling_pack
 
-Python 연결 시험:
+위 문자열은 작업 구분 이름이며 실제 원격 서버 URL이 아닙니다.
+실제 요청 목적지는 https://generativelanguage.googleapis.com/v1beta/interactions 하나입니다.
+키는 x-goog-api-key 헤더로 전달하며 쿼리·본문·응답에 포함하지 않습니다.
+입력창은 script.js에서 analyze 호출 전 비우고, finally에서 참조를 해제합니다.
+키를 모듈 전역 상태나 저장소에 보관하지 않습니다. 다음 요청에는 키를 다시 전달해야 합니다.
 
-    from gradio_client import Client, handle_file
-    client = Client("계정/Space이름")
-    result = client.predict(
-        image=handle_file("label.jpg"),
-        request={"productName": None, "skinType": "잘 모르겠음", "concerns": ["보습"], "extraConcern": ""},
-        api_name="/analyze_cosmetic"
-    )
-    print(result)
+## 입력
 
-## API 목록
+- file: JPG/JPEG·PNG·WEBP 정지 File, 10MiB 이하·2400만 픽셀 이하
+- request: productName?, packName?, skinType?, concerns?, extraConcern?, mixStatus?, notes?
+- oneTimeApiKey: 이번 요청에서만 사용하는 본인의 무료 프로젝트 API 키
+- 필드 추가 금지·타입 강제 변환 없음. concerns 최대12개, 자유 입력 최대2000자
+- 제품 이름은 선택, 사진은 두 작업 모두 필수
+- 새 인증 키 형식도 지원하며 특정 접두사를 필수로 하지 않음
 
-| 이름 | 입력 | 출력 |
-| --- | --- | --- |
-| /health | 없음 | 상태·live/mock·키 설정 여부 |
-| /analyze_cosmetic | image 파일, request JSON 객체 | 공통 응답 객체 |
-| /consult_modeling_pack | image 파일, request JSON 객체 | 공통 응답 객체 |
+사진의 실제 파일 시그니처·확장자·MIME와 브라우저 디코딩·크기를 확인합니다.
+PNG/APNG·WEBP 애니메이션은 거부합니다. 사진을 자동으로 압축·잘라서 판독 내용을 바꾸지 않습니다.
 
-두 분석 API는 현재 사진을 필수로 받습니다. 제품명은 선택입니다.
-health의 readyForLive는 live 모드와 키 존재 여부이며, 키 유효성이나 결제 상태를 검증하는 호출은 아닙니다.
-성분표 여러 제품이 보이면 사용자가 한 제품 영역을 잘라 다시 올리는 흐름을 사용합니다.
+## 처리와 출력
 
-request 필드:
-
-| 이름 | 형식·기본값 |
-| --- | --- |
-| productName | 문자열 또는 null, 화장품명·선택 |
-| packName | 문자열 또는 null, 모델링팩명·선택 |
-| skinType | 문자열, 기본 잘 모르겠음 |
-| concerns | 문자열 배열, 기본 빈 배열·최대 12개 |
-| extraConcern | 문자열, 최대 2000자 |
-| mixStatus | 문자열, 사용자 입력 정보이며 혼합 근거로 쓰지 않음 |
-| notes | 문자열, 최대 2000자 |
-
-제안된 입력 이름은 유지했습니다. 입력에 위 목록 밖의 필드를 추가하면 INVALID_INPUT입니다.
-사진은 JPG/JPEG/PNG/WEBP, 10MiB 이하, 2400만 픽셀 이하의 정지 이미지입니다.
-확장자뿐 아니라 실제 파일 형식도 검사합니다.
-
-## 응답
-
-모든 서비스 함수 결과:
+1. 사진 판독에는 사용자 피부 정보·제품 정답표·approvedClaims를 전달하지 않습니다.
+2. complete 판독만 설명 단계로 넘어갑니다.
+3. 판독 이름과 정확히 일치하는 공개 검토 근거만 설명 입력에 전달합니다.
+4. 모델 JSON 구조와 성분·근거ID 연결을 브라우저에서 검사합니다.
+5. 해당 단계가 실패하면 ok=false이며 최종 성공으로 표시하지 않습니다.
 
     {
       "ok": true,
-      "requestId": "서버가_만든_요청번호",
-      "extraction": {
-        "status": "complete",
-        "productName": null,
-        "rawText": "사진에서_읽은_원문",
-        "ingredients": ["성분1"],
-        "uncertainSpans": [],
-        "warnings": [],
-        "nextAction": ""
-      },
-      "analysis": {
-        "status": "needs_evidence",
-        "summary": "검토 완료 근거가 아직 없습니다.",
-        "ingredientNotes": [],
-        "warnings": []
-      },
-      "mixing": {"status": "unknown", "reason": "검토 완료 조합 근거 없음", "evidenceIds": []},
+      "requestId": "무작위요청번호",
+      "extraction": { "status": "complete", "productName": null, "rawText": "알란토인",
+        "ingredients": ["알란토인"], "uncertainSpans": [], "warnings": [], "nextAction": "" },
+      "analysis": { "status": "reference_only", "summary": "일반 기능 참고",
+        "ingredientNotes": [{ "ingredient": "알란토인", "explanation": "피부 컨디셔닝 성분으로 사용됩니다.", "evidenceIds": ["YSW_A001_KO"] }],
+        "warnings": [], "sources": ["실제 검토 근거 객체"], "notice": "적용 범위 안내" },
+      "mixing": { "status": "not_applicable", "reason": "", "evidenceIds": [] },
       "error": null,
-      "meta": {
-        "schemaVersion": "1.0",
-        "mode": "live",
-        "isMock": false,
-        "model": "서버에_설정한_모델",
-        "promptVersion": "draft-2026-10-30-v1",
-        "promptStatus": "draft",
-        "timestamp": "UTC_ISO_시각"
-      }
+      "meta": { "schemaVersion": "1.0", "mode": "live", "isMock": false,
+        "model": "gemini-3.5-flash-lite", "promptVersion": "draft-2026-10-30-v1",
+        "promptStatus": "draft", "timestamp": "UTC ISO", "transport": "browser-direct" }
     }
 
-화장품 API의 mixing.status는 not_applicable입니다.
-모델링팩 API의 mixing.status는 현재 unknown입니다.
-analysis.status는 not_run / needs_evidence / reference_only 중 하나입니다.
-reference_only 응답에는 서버가 선택한 sources와 추가 notice가 있습니다.
-mock에서는 모든 결과가 가상입니다. meta.isMock=true, meta.notice를 화면에 표시하세요.
-ok=true는 요청 처리가 끝났다는 뜻이지 전체 판독·분석 완료를 뜻하지 않습니다.
+extraction.status: complete / partial / unreadable / no_ingredients / multiple_products
+analysis.status: not_run / needs_evidence / reference_only
+모델링팩 mixing.status는 사용자 체크 여부와 관계없이 unknown입니다.
+일반 화장품 mixing.status는 not_applicable입니다.
+reference_only에는 sources와 적용 범위 notice가 있습니다.
 
-extraction.status별 화면:
+## 오류·한도
 
-| 상태 | 화면 행동 |
-| --- | --- |
-| complete | 판독 원문·성분 표시. 설명 근거 상태도 따로 표시 |
-| partial | 부분 판독 표시, nextAction으로 재촬영 안내 |
-| unreadable | 판독 불가와 재촬영 안내 |
-| no_ingredients | 전성분 영역을 촬영하도록 안내 |
-| multiple_products | 한 제품 영역을 선택·잘라 다시 올리도록 안내 |
+error는 {code, message, retryable}입니다. 상위 오류 본문·키를 화면이나 로그에 반환하지 않습니다.
+KEY_REQUIRED, INVALID_INPUT, IMAGE_REQUIRED, INVALID_IMAGE, UNSUPPORTED_IMAGE, IMAGE_TOO_LARGE,
+MODEL_RESPONSE_INVALID, MODEL_INCOMPLETE, EVIDENCE_VALIDATION_FAILED,
+GEMINI_REQUEST_REJECTED, GEMINI_AUTH_ERROR, MODEL_NOT_FOUND, BILLING_CONFIGURATION_ERROR,
+RATE_LIMITED, NETWORK_ERROR, UPSTREAM_TIMEOUT, GEMINI_UNAVAILABLE, SERVER_BUSY, INTERNAL_ERROR를 처리합니다.
+자동 재시도나 실패 시 mock 대체는 없습니다.
+각 Google 호출은45초, 한 사용자 분석은1~2호출입니다.
+한 탭 동시1개·분당6회는 새로고침으로 초기화되는 편의 제한이며 서버 전역 제한이 아닙니다.
+클라이언트에서 Google 프로젝트 결제 상태를 확인할 수 없습니다. 결제 미연결 Free 프로젝트 키를 사용합니다.
 
-앞면에 성분 문구가 조금 있으면 partial, 제품명만 있으면 no_ingredients입니다.
-인계 이미지 I011/I012의 기대 상태와 경계가 달라질 수 있으므로 프롬프트 담당과 최종 합의합니다.
+## 개발·검토
 
-## 오류
-
-    {
-      "ok": false,
-      "requestId": "...",
-      "extraction": null,
-      "analysis": null,
-      "mixing": null,
-      "error": {"code": "RATE_LIMITED", "message": "...", "retryable": true},
-      "meta": {"...": "..."}
-    }
-
-| 코드 | 뜻 |
-| --- | --- |
-| IMAGE_REQUIRED / INVALID_INPUT | 사진 누락·잘못된 입력 |
-| UNSUPPORTED_IMAGE / INVALID_IMAGE / IMAGE_TOO_LARGE | 형식·내용·용량·해상도 문제 |
-| KEY_NOT_CONFIGURED | 서버 키 미설정 |
-| GEMINI_AUTH_ERROR / MODEL_NOT_FOUND | 키 권한·모델 설정 문제 |
-| BILLING_CONFIGURATION_ERROR | 무료 프로젝트 설정 확인 필요 |
-| RATE_LIMITED / SERVER_BUSY | Gemini 또는 자체 한도 |
-| UPSTREAM_TIMEOUT / NETWORK_ERROR / GEMINI_UNAVAILABLE | 지연·연결·상위 서버 실패 |
-| MODEL_RESPONSE_INVALID / MODEL_INCOMPLETE | JSON·완료 상태 문제 |
-| EVIDENCE_VALIDATION_FAILED | 설명의 성분·근거ID 불일치 |
-| INTERNAL_ERROR | 내부 실패. 요청번호로 담당자에게 문의 |
-
-서비스 오류는 JSON 안의 ok/error로 판단합니다.
-업로드 단계에서 Gradio가 먼저 거부하거나 서버 자체에 접속하지 못한 경우에는
-클라이언트 예외가 발생할 수 있으므로 프론트엔드에서도 try/catch가 필요합니다.
-설명 단계 실패 때 extraction은 남아 있을 수 있지만 ok=false이므로 최종 성공으로 표시하지 않습니다.
-실패 시 이전 결과를 새 분석 결과처럼 유지하지 않습니다.
-
-## 통합 검증 범위
-
-사진 전달, 입력 검사, Gemini 요청 생성, 구조 검사, 오류 분기, 두 API의 응답 형식,
-모의 결과 표시, 공식 클라이언트를 통한 HTTP 업로드와 결과 수신입니다.
-ym 브랜치 화면과 서버를 한 Gradio Space 구조로 통합했습니다.
-이제 launch_options()로 실행한 루트 주소가 팀 화면이며, /config와 /gradio_api/*는 Gradio가 처리합니다.
-프론트 파일 제공은 5개 경로만 허용하며 프로젝트 폴더 전체를 웹에 노출하지 않습니다.
-실제 Hugging Face 공개 배포 확인은 무료 실행 자격이 확보된 뒤 별도로 필요합니다.
-로컬 서버에는 Gradio의 localhost CORS 보호가 적용됩니다.
-로컬 HTML을 열어 원격 Space처럼 시험하는 경우와 실제 hf.space 호스트에서의 동작을 구분합니다.
-배포 호스트를 모사한 사전 요청은 시험했지만 실제 배포 주소의 브라우저 시험은 아직 남아 있습니다.
-
-## 데이터 담당이 추가할 기능 근거
-
-data/reviewed_claims.json은 다음 객체의 배열입니다. 2026-10-31 ysw에서 글리세린·판테놀·알란토인의 한영 6행을 연결했습니다.
-서버가 사진에서 판독한 이름과 정확히 매칭되는 일반 기능 근거만 설명에 전달합니다.
-검토 이력과 독립 사람 교차검토 미완료 상태는 data/reviewed_claims.provenance.json에 보관합니다.
-reference_only의 notice는 화면의 확인할 내용 영역에 항상 표시합니다.
-
-    {
-      "evidenceId": "검토한_근거_ID",
-      "ingredient": "사진에서_읽는_성분명",
-      "statement": "검토한_일반_기능_설명",
-      "sourceUrl": "https://실제_근거_주소",
-      "reviewStatus": "reviewed_general_ingredient_function"
-    }
-
-성분명은 NFKC·대소문자·공백·끝 마침표만 정규화합니다.
-한영 동의어나 OCR 오타를 임의로 합치지 않습니다.
-근거ID 연결 검사를 통과해도 설명의 의미적 정확도와 개인 적합성이 검증된 것은 아닙니다.
-일반 성분 기능 근거를 제품 조합의 혼합 허용 근거로 사용하지 않습니다.
+prompts/, data/와 Python Pydantic 모델을 변경한 뒤 scripts/build_static_assets.py를 실행해 공개 assets를 갱신합니다.
+기존 Python 출력 규격과의 동기화는 test_frontend_contract.py로 검사합니다.
+모든 검증이 브라우저에서 실행되므로 사용자가 코드를 변경할 수 있습니다. 신뢰 가능한 서버 검증으로 표현하지 않습니다.
+근거ID 검사가 일반 기능 설명의 의미·개인 적합성·혼합 가능성을 보장하지 않습니다.

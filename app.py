@@ -1,3 +1,4 @@
+"""Previous Python regression harness only; HF Static does not execute this file."""
 import json
 import os
 
@@ -17,7 +18,8 @@ def frontend_routes():
     # Only these public assets are served. Never mount the project directory.
     public_files = {"/": "index.html", "/index.html": "index.html",
                     "/style.css": "style.css", "/script.js": "script.js",
-                    "/api-client.js": "api-client.js"}
+                    "/api-client.js": "api-client.js", "/ai-core.js": "ai-core.js",
+                    "/ai-assets.js": "ai-assets.js", "/gemini-client.js": "gemini-client.js"}
 
     async def serve_public_file(request):
         return FileResponse(ROOT / "BeautyAI" / public_files[request.url.path],

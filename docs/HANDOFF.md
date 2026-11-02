@@ -1,51 +1,41 @@
-# 담당자 인계
+# 담당자 인계 — 현재 HF Static 버전
 
-## 서버 담당
+2026-11-02 사용자 요청으로 **분석마다 본인 API 키 입력 → Google 직접 호출** 방식으로 전환했습니다.
+Hugging Face Static Space 하나에서 실행합니다. Gradio·Docker·외부 서버·Cloudflare 계정은 필요하지 않습니다.
+현재 구현/배포 조건은 README.md와 STATIC_MIGRATION_20261102.md가 기준이며 예전 배포 문서는 이력입니다.
 
-- kimmin0914 계정의 생성 화면에서는 무료 Gradio 선택 불가 확인 (2026-10-30).
-  docs/DEPLOYMENT-20261030.md의 배포 제한을 먼저 해결
-- GEMINI_API_KEY를 서버 Secrets에 등록
-- 무료 프로젝트·모델 한도 확인, live 모드로 실제 사진 시험
-- docs/VERIFICATION.md에 실제 결과·실행일·모델·프롬프트 버전 기록
-- 서버 URL과 docs/API.md, BeautyAI/api-client.js 전달
+## 서버/API 담당자가 구현한 내용
 
-## 프론트엔드 담당
+Python 서버에서 사용하던 판독·설명 분기와 엄격한 출력·근거ID 검사를 브라우저 JavaScript로 옮겼습니다.
+이번 버전에는 실행 중인 별도 백엔드가 없으므로 담당 설명도 ‘Gemini API 연동 및 출력 검증’으로 표현합니다.
+기존 Python 구현은 비교·회귀 시험용 소스만 남겼고 Static 배포 묶음에서는 제외했습니다.
+API 키는 분석할 때마다 입력합니다. 요청 시작 전 입력창을 비우며 성공·실패 후 재입력이 필요합니다.
+키·사진·피부 정보는 Google에 직접 전송됩니다. HF 저장소·Variables/Secrets에는 키를 등록하지 않습니다.
+타인의 API 키가 개발자에게 전송되는 서버는 없습니다. 입력 키가 자신의 개발자 도구에서는 보일 수 있습니다.
 
-- 기존 image/productName/packName/skinType/concerns/extraConcern/mixStatus/notes 연결
-- API 키 입력·저장은 최종 화면에 추가하지 않음
-- meta.isMock과 판독·설명 상태를 각각 화면에 표시
-- 클라이언트 예외 및 응답의 ok=false 모두 처리
-- 실제 Gradio Space 브라우저에서 업로드·결과·오류 화면 확인
+## 프론트 담당
 
-## 프롬프트 담당
+BeautyAI/의 기존 디자인·사진·피부 선택을 유지합니다. api-client.js의 analyze 인자4개째가 이번 요청용 API 키입니다.
+사용자 키를 하드코딩·저장하지 않습니다. 키 입력창은 공통으로 사용하고 분석할 때마다 비웁니다.
+전성분 상태·일반 기능 근거·혼합 미확인을 각각 표시합니다. 오류 시 이전 결과를 숨깁니다.
+운영 UI는 live이며 자동 mock 대체가 없습니다.
 
-- prompts/의 두 파일 교체, Schema 유지, 버전 올리기
-- 제품 기억으로 전성분을 보충하지 않는지 실시간 시험
-- 앞면/광고/부분 판독의 상태 기준을 데이터 담당과 합의
-- JSON 구조 검사는 판독 정확성의 증거가 아니므로 이미지 대조
+## 프롬프트·데이터 담당
 
-## 데이터 담당
+prompts/를 변경하면 버전과 ai-assets.js 묶음을 함께 갱신합니다. 현재 최종 프롬프트는 미확정입니다.
+ysw의 성분3종·한영6행을 이어 쓰며 provenance의 독립 사람 교차검토는 남아 있습니다.
+제조사 광고를 개인 효능이나 혼합 허용 근거로 확대하지 않습니다.
+혼합은 정확한 제품·버전·조건의 검토 근거가 생기기 전까지 unknown입니다.
+reference/ 정답은 평가용이며 운영 사진 판독 입력으로 사용하지 않습니다.
+새 제품·실물·흐림·반사·곡면 시험은 별도 정확도 평가가 필요합니다.
 
-- 일반 기능 3종·한영 6행 연결 완료. reviewed_claims.provenance.json의 문헌 해석·한영 표기를 독립 교차검토하고 범위 확장 시 근거 추가
-- 제조사 제품 한정 문구를 일반 기능이나 개인 적합성으로 확대하지 않음
-- 혼합은 정확한 제품·버전·조건의 근거가 생길 때까지 unknown 유지
-- reference/의 정답은 평가용으로만 사용
-- I004 전체로 P006을 조정하지 않도록 최종 평가 분리
-- 실물 촬영·흐림·반사·곡면·신규 제품 평가 추가
+## 배포·인계
 
-## 이번 인계 범위
+README와 BeautyAI/ 7파일만 HF Static에 올립니다. 최소 배포 ZIP에 Python·키·원응답·제조사 이미지가 들어가지 않습니다.
+전체 소스 인계 ZIP에는 이전 Python 회귀 시험도 포함하므로 최소 배포 ZIP과 구분합니다.
+한 탭의 분당 제한과 브라우저 검사는 사용자 편의/출력 점검용이며 강제적인 서버 보안 기능은 아닙니다.
+무료 Gemini 한도 초과 시 중지합니다. 유료 키를 넣으면 그 프로젝트 요금이 적용되므로 결제 미연결 Free 프로젝트 키를 사용합니다.
 
-ym 브랜치 프론트엔드와 연결한 서버 소스, API 규격, 임시 프롬프트, 기본 검증기,
-자동 시험, 실행 스크립트, Hugging Face 배포 설정입니다.
-키는 인계 묶음에 포함하지 않습니다.
-최종 UI·최종 프롬프트·실시간 정확도·실제 Space 배포 확인은 각각 완료 사실을 따로 기록합니다.
-
-교수 안내 PPT의 기술 2개 이상·실제 시연·결제 0원·키/개인정보 비노출·주차별 제출 조건을 따릅니다.
-한 Gradio Space의 팀 웹 화면 + Gemini 연동 흐름을 실제로 시연해야 합니다.
-
-팀 프론트엔드와 서버를 한 폴더로 통합했으며 공개 서버 URL은 아직 없습니다.
-작업본은 D:/yanggang/GlowPick입니다. .env/API_KEY.txt와 .venv도 이 폴더로 이전했습니다.
-기존 kimmin0914/poto_classifier의 index.html은 이전 찬반 토론 과제이므로 수정하지 않았습니다.
-원본 복사본 1개는 D:/yanggang/huggingface-backup/poto_classifier/index.original.html에 있습니다.
-
-2026-10-31 ysw 26d4fbc 자료와의 연동 수정은 mj에만 반영합니다. 일반 기능 근거가 있어도 혼합 판단은 unknown이며 Qwen의 평가 출력은 운영 Gemini 입력에 사용하지 않습니다.
+수업 실습의 Static Space 배포 + 생성형 AI API 연결을 시연하며 기존 ‘Gradio + Gemini’ 설명은 사용하지 않습니다.
+Git 변경은 mj에만 반영합니다. main/develop/ysw/ym은 수정하지 않습니다.
+기존 poto_classifier 과제의 원본 index.html 백업은 D:/yanggang/huggingface-backup/poto_classifier/index.original.html에 보존합니다.

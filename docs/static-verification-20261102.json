@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-02",
+  "sdk": "static",
+  "space": "kimmin0914/GlowPick",
+  "hfCommit": "8da8afca629195f1591b83e7087163082db3a07d",
+  "cosmeticCase": {
+    "image": "I001.jpg",
+    "status": "complete",
+    "ingredientCount": 16,
+    "evidenceId": "YSW_A001_KO",
+    "twoStageSucceeded": true
+  },
+  "modelingPackCase": {
+    "image": "I003.jpg",
+    "displayedStatus": "실제 Gemini 응답 · 전성분 영역 없음 · 임시 프롬프트",
+    "mixing": "혼합 가능 여부 미확인. 특정 모델링팩·앰플·제품 버전·사용 조건의 검토 완료 근거가 아직 없습니다.",
+    "nextAction": "제품의 전성분이 적힌 뒷면이나 단상자 영역을 촬영하여 다시 업로드해주세요.\n\n이미지에서 전성분 영역을 찾을 수 없습니다."
+  },
+  "keyFieldEmptyAfterRequest": true,
+  "missingKeyRequiresReentry": true,
+  "wrongKeyFormatCleared": true,
+  "sourceContainsSavedKey": false,
+  "tests": {
+    "staticJs": 21,
+    "python": 32,
+    "referenceJs": 31
+  },
+  "totalAutomatedTests": 84,
+  "remotePublicFilesMatched": 8,
+  "googleCorsPreflightStatus": 200,
+  "hfWrapperLoaded": true,
+  "realUploadTestSurface": "direct_static_app",
+  "apiBillingStatus": "user_confirmed_free_no_billing",
+  "independentBillingInspection": false,
+  "apiCallsAutomaticallyRetried": false,
+  "independentHumanEvidenceReview": false,
+  "finalPromptReady": false
+}

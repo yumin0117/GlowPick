@@ -16,14 +16,14 @@ def package(destination):
     secret = os.getenv("GEMINI_API_KEY", "").encode()
     files = [ROOT / name for name in (
         ".env.example", ".gitignore", "README.md", "app.py", "requirements.txt",
-        "start_live.ps1", "start_mock.ps1",
+        "start_live.ps1", "start_mock.ps1", "start_static.ps1", "package.json",
     )]
     for directory in ("BeautyAI", "glowpick", "prompts", "data", "fixtures", "docs", "tests", "scripts", "reference"):
         files.extend(p for p in (ROOT / directory).rglob("*") if p.is_file()
                      and "__pycache__" not in p.parts and p.suffix != ".pyc")
     for path in files:
         raw = path.read_bytes()
-        if (secret and secret in raw) or re.search(rb"AIza[\w-]{20,}|hf_[A-Za-z0-9]{20,}", raw):
+        if (secret and secret in raw) or re.search(rb"AIza[\w-]{20,}|AQ\.[\w.-]{20,}|hf_[A-Za-z0-9]{20,}", raw):
             raise SystemExit("Secret scan failed; archive was not created.")
     with ZipFile(destination, "w", ZIP_DEFLATED) as archive:
         for path in sorted(files):
