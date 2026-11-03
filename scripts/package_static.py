@@ -1,4 +1,4 @@
-"""Minimal HF Static ZIP: README + seven public assets; no Python/server/keys."""
+"""Minimal HF Static ZIP: README + eight public assets; no Python/server/keys."""
 import os
 import re
 import sys
@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT))
 from glowpick.config import load_local_env
 
 PUBLIC = ["README.md"] + ["BeautyAI/" + name for name in (
-    "index.html", "style.css", "script.js", "api-client.js", "gemini-client.js", "ai-core.js", "ai-assets.js")]
+    "index.html", "style.css", "script.js", "api-client.js", "gemini-client.js", "ai-core.js", "ai-assets.js", "report-model.js")]
 
 SPACE_CARD = """---
 title: GlowPick

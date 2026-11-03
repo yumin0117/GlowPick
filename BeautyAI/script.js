@@ -1,332 +1,211 @@
-import { analyze, health, MAX_IMAGE_BYTES } from "./api-client.js";
+import { analyze, MAX_IMAGE_BYTES } from "./api-client.js";
+import { prepareReport } from "./report-model.js";
 
-const $ = (id) => document.getElementById(id);
-const files = { cosmetic: null, pack: null };
-const previewUrls = { cosmetic: null, pack: null };
-
-// 1. 피부 타입별 한 줄 설명
-const skinDescriptions = {
-  "건성": "피지 분비가 적어 쉽게 당기고 건조해지는 피부 타입이에요.",
-  "지성": "피지 분비가 많아 얼굴이 쉽게 번들거리는 피부 타입이에요.",
-  "복합성": "이마와 코는 번들거리지만 볼은 건조한 등 부위별 특성이 달라요.",
-  "민감성": "화장품이나 외부 자극에 따가움·붉어짐 등이 쉽게 나타나는 피부 특성이에요.",
-  "중성": "건조함이나 번들거림이 비교적 심하지 않은 피부 타입이에요.",
-  "잘 모르겠음": "피부 타입을 몰라도 괜찮아요. 선택한 고민을 중심으로 분석해요."
+const $ = id => document.getElementById(id);
+const uploaded = { cosmetic: null, pack: null };
+const objectUrls = { cosmetic: null, pack: null };
+let isBusy = false, lastReportText = "", copyTimer;
+const skinHints = {
+  "건성": "건조함과 당김을 자주 느끼는 피부 타입이에요.",
+  "지성": "피지 분비가 비교적 많고 쉽게 번들거릴 수 있어요.",
+  "복합성": "부위별로 건조함과 번들거림이 다르게 나타날 수 있어요.",
+  "민감성": "외부 자극이나 제품에 민감하게 반응할 수 있어요.",
+  "중성": "건조함이나 번들거림이 상대적으로 두드러지지 않는 편이에요.",
+  "잘 모르겠음": "피부 타입을 몰라도 괜찮아요. 선택한 고민을 함께 살펴봐요."
 };
 
-function updateSkinDescription() {
-  const selected = document.querySelector('input[name="skinType"]:checked')?.value || "잘 모르겠음";
-  $("skinTitle").textContent = "💡 " + selected;
-  $("skinDescription").textContent = skinDescriptions[selected];
+function textNode(tag, content, className) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  element.textContent = content;
+  return element;
 }
-
-document.querySelectorAll('input[name="skinType"]').forEach((radio) => {
-  radio.addEventListener("change", updateSkinDescription);
-});
-updateSkinDescription();
-
-// 2. 사진 업로드: 화장품과 모델링팩에서 동일한 UI 사용
+function clearReport() {
+  $("results").classList.add("hidden");
+  lastReportText = "";
+  clearTimeout(copyTimer);
+  $("copyReport").textContent = "결과 복사 ↗";
+}
+function clearMessages() {
+  $("cosmeticMessage").textContent = "";
+  $("packMessage").textContent = "";
+}
+function clearApiKey() {
+  $("geminiApiKey").value = "";
+  $("geminiApiKey").type = "password";
+  $("toggleKey").textContent = "보기";
+  $("toggleKey").setAttribute("aria-pressed", "false");
+  $("toggleKey").setAttribute("aria-label", "API 키 표시");
+}
 function setupUpload(prefix) {
-  const toggle = $(prefix + "UploadButton");
-  const menu = $(prefix + "UploadMenu");
-  const gallery = $(prefix + "Gallery");
-  const camera = $(prefix + "Camera");
-  const preview = $(prefix + "Preview");
-  const image = $(prefix + "PreviewImg");
-  const fileName = $(prefix + "FileName");
-  const remove = $(prefix + "Remove");
-  const defaultText = toggle.querySelector("strong").textContent;
-
-  function closeMenu() {
-    menu.classList.add("hidden");
-    toggle.setAttribute("aria-expanded", "false");
-  }
-
-  toggle.addEventListener("click", () => {
-    const willOpen = menu.classList.contains("hidden");
-    document.querySelectorAll(".upload-menu").forEach(el => el.classList.add("hidden"));
-    document.querySelectorAll(".upload-main").forEach(el => el.setAttribute("aria-expanded", "false"));
-    menu.classList.toggle("hidden", !willOpen);
-    toggle.setAttribute("aria-expanded", String(willOpen));
-  });
-
-  $(prefix + "GalleryButton").addEventListener("click", () => {
-    closeMenu();
-    gallery.click();
-  });
-
-  $(prefix + "CameraButton").addEventListener("click", () => {
-    closeMenu();
-    camera.click();
-  });
-
-  function setImage(file, input) {
-    if (!file) return;
-    clearUpload();
-    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-      $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "JPG, PNG, WEBP 파일만 지원합니다.";
-      input.value = "";
-      return;
-    }
-    if (file.size > MAX_IMAGE_BYTES) {
-      $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "사진은 10MiB 이하로 올려주세요. 전성분 영역만 잘라 저장해도 좋아요.";
-      input.value = "";
-      return;
-    }
-    if (previewUrls[prefix]) URL.revokeObjectURL(previewUrls[prefix]);
-    files[prefix] = file;
-    previewUrls[prefix] = URL.createObjectURL(file);
-    image.src = previewUrls[prefix];
-    fileName.textContent = file.name;
-    preview.classList.remove("hidden");
-    toggle.querySelector("strong").textContent = "사진이 선택되었어요";
-    $(prefix === "cosmetic" ? "results" : "packResults").classList.add("hidden");
-    $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "";
-  }
-
-  gallery.addEventListener("change", () => setImage(gallery.files[0], gallery));
-  camera.addEventListener("change", () => setImage(camera.files[0], camera));
-  function clearUpload() {
-    files[prefix] = null;
-    gallery.value = "";
-    camera.value = "";
+  const file = $(prefix + "File"), camera = $(prefix + "Camera");
+  const preview = $(prefix + "Preview"), image = $(prefix + "PreviewImage");
+  $(prefix + "Choose").addEventListener("click", () => file.click());
+  $(prefix + "Shoot").addEventListener("click", () => camera.click());
+  function clear() {
+    uploaded[prefix] = null;
+    file.value = ""; camera.value = "";
+    if (objectUrls[prefix]) URL.revokeObjectURL(objectUrls[prefix]);
+    objectUrls[prefix] = null;
     image.removeAttribute("src");
-    fileName.textContent = "";
+    $(prefix + "FileName").textContent = "";
     preview.classList.add("hidden");
-    toggle.querySelector("strong").textContent = defaultText;
-    $(prefix === "cosmetic" ? "results" : "packResults").classList.add("hidden");
-    if (previewUrls[prefix]) URL.revokeObjectURL(previewUrls[prefix]);
-    previewUrls[prefix] = null;
-    $(prefix === "cosmetic" ? "cosmeticMessage" : "packMessage").textContent = "";
+    clearMessages(); clearReport();
   }
-  remove.addEventListener("click", clearUpload);
+  function selected(input) {
+    const candidate = input.files?.[0];
+    if (!candidate) return;
+    clear();
+    if (!["image/jpeg", "image/png", "image/webp"].includes(candidate.type) || !/\.(jpe?g|png|webp)$/iu.test(candidate.name)) {
+      $(prefix + "Message").textContent = "JPG, PNG, WEBP 이미지 파일만 지원해요.";
+      return;
+    }
+    if (!candidate.size || candidate.size > MAX_IMAGE_BYTES) {
+      $(prefix + "Message").textContent = "10MiB 이하의 사진을 선택해 주세요.";
+      return;
+    }
+    uploaded[prefix] = candidate;
+    objectUrls[prefix] = URL.createObjectURL(candidate);
+    image.src = objectUrls[prefix];
+    $(prefix + "FileName").textContent = candidate.name;
+    preview.classList.remove("hidden");
+  }
+  file.addEventListener("change", () => selected(file));
+  camera.addEventListener("change", () => selected(camera));
+  $(prefix + "Remove").addEventListener("click", clear);
+}
+setupUpload("cosmetic"); setupUpload("pack");
 
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest('[data-upload="' + prefix + '"]')) closeMenu();
+function switchTab(next) {
+  if (isBusy) return;
+  for (const name of ["cosmetic", "pack"]) {
+    const active = next === name, tab = $("tab-" + name);
+    $("panel-" + name).classList.toggle("hidden", !active);
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+  }
+  clearMessages(); clearReport();
+}
+document.querySelectorAll(".tab-button").forEach(tab => {
+  tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+  tab.addEventListener("keydown", event => {
+    if (isBusy || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === "Home" ? "cosmetic" : event.key === "End" ? "pack"
+      : tab.dataset.tab === "cosmetic" ? "pack" : "cosmetic";
+    switchTab(next); $("tab-" + next).focus();
   });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMenu();
-  });
-}
-setupUpload("cosmetic");
-setupUpload("pack");
-
-// 3. 팀원에게 전달할 입력 데이터 구조
-function getCosmeticInput() {
-  return {
-    image: files.cosmetic,
-    productName: $("cosmeticName").value.trim(),
-    skinType: document.querySelector('input[name="skinType"]:checked')?.value || "잘 모르겠음",
-    concerns: [...document.querySelectorAll('input[name="concern"]:checked')].map(el => el.value),
-    extraConcern: $("extraConcern").value.trim()
-  };
-}
-
-function getPackInput() {
-  return {
-    image: files.pack,
-    packName: $("packName").value.trim(),
-    skinType: document.querySelector('input[name="skinType"]:checked')?.value || "잘 모르겠음",
-    concerns: [...document.querySelectorAll('input[name="packConcern"]:checked')].map(el => el.value),
-    mixStatus: document.querySelector('input[name="mixStatus"]:checked')?.value || "unknown",
-    notes: $("packNotes").value.trim()
-  };
-}
-
-// 4. 결과 영역을 안전하게 출력하기 위한 공통 도우미
-function renderTags(element, values) {
-  element.replaceChildren();
-  values.forEach(value => {
-    const tag = document.createElement("span");
-    tag.textContent = "# " + value;
-    element.appendChild(tag);
-  });
-}
-
-function addIngredient(container, title, description) {
-  const item = document.createElement("div");
-  item.className = "ingredient-item";
-  const heading = document.createElement("strong");
-  heading.textContent = title;
-  const text = document.createElement("p");
-  text.textContent = description;
-  item.append(heading, text);
-  container.appendChild(item);
-}
-
-// 6. 기존 화장품 고민을 모델링팩으로 복사
-$("copyConcerns").addEventListener("click", () => {
-  const cosmeticConcerns = [...document.querySelectorAll('input[name="concern"]:checked')].map(el => el.value);
-  document.querySelectorAll('input[name="packConcern"]').forEach(el => {
-    el.checked = cosmeticConcerns.includes(el.value);
-  });
-  $("packMessage").textContent = cosmeticConcerns.length
-    ? "위에서 선택한 고민을 가져왔어요. 필요한 항목은 수정할 수 있어요."
-    : "위에서 선택한 피부 고민이 없어요. 아래에서 직접 선택해 주세요.";
-  $("packResults").classList.add("hidden");
 });
-
-const extractionLabels = {
-  complete: "전성분 판독 완료", partial: "일부만 판독됨", unreadable: "판독 불가",
-  no_ingredients: "전성분 영역 없음", multiple_products: "여러 제품이 함께 보임"
-};
-let busy = false;
-
-function renderResult(prefix, response, input) {
-  const extraction = response.extraction;
-  if (!extraction || !Array.isArray(extraction.ingredients)) {
-    throw new Error("사진 판독 응답을 확인하지 못했어요.");
-  }
-  const analysis = response.analysis || {};
-  const isMock = response.meta?.isMock === true;
-  const state = extractionLabels[extraction.status] || "상태 확인 필요";
-  const banner = $(prefix + "ResultStatus");
-  banner.textContent = isMock
-    ? "모의 연동 시험 · 업로드한 사진을 AI로 판독한 결과가 아니에요."
-    : `실제 Gemini 응답 · ${state}`;
-  if (response.meta?.promptStatus === "draft") banner.textContent += " · 임시 프롬프트";
-  banner.dataset.mode = isMock ? "mock" : "live";
-  banner.dataset.extractionStatus = extraction.status;
-  $(prefix + "Summary").textContent = analysis.summary || "";
-  $(prefix + "Summary").dataset.analysisStatus = analysis.status || "unknown";
-  $(prefix + "RawText").textContent = extraction.rawText || "읽은 원문이 없어요.";
-  const ingredients = $(prefix + "Ingredients");
-  ingredients.replaceChildren();
-  for (const ingredient of extraction.ingredients) {
-    const item = document.createElement("li");
-    item.textContent = ingredient;
-    ingredients.append(item);
-  }
-  if (!ingredients.children.length) {
-    const item = document.createElement("li");
-    item.textContent = "확정해서 표시할 성분이 없어요.";
-    ingredients.append(item);
-  }
-  const notes = $(prefix + "IngredientNotes");
-  notes.replaceChildren();
-  for (const note of analysis.ingredientNotes || []) {
-    addIngredient(notes, note.ingredient, note.explanation);
-  }
-  if (!notes.children.length) {
-    addIngredient(notes, "성분 기능 설명", analysis.status === "needs_evidence"
-      ? "사진의 성분과 일치하는 기능 근거가 준비되면 설명을 제공해요. 개인 적합성이나 추천을 판단하지 않아요."
-      : analysis.status === "reference_only"
-      ? "이 응답에는 성분별 설명이 제공되지 않았어요. 사진과 표시된 근거를 함께 확인해 주세요."
-      : "전성분을 판독한 뒤 근거가 있는 설명을 확인할 수 있어요.");
-  }
-  const warnings = $(prefix + "Warnings");
-  warnings.replaceChildren();
-  const messages = [extraction.nextAction, ...(extraction.warnings || []),
-    ...(extraction.uncertainSpans || []).map(text => "판독 불확실: " + text),
-    ...(analysis.warnings || []), analysis.notice].filter(Boolean);
-  for (const message of messages.length ? messages : ["사진 원문과 성분 목록을 직접 대조해 주세요."]) {
-    const paragraph = document.createElement("p");
-    paragraph.className = "result-paragraph";
-    paragraph.textContent = message;
-    warnings.append(paragraph);
-  }
-  const sources = $(prefix + "Sources");
-  sources.replaceChildren();
-  for (const source of analysis.sources || []) {
+$("toggleKey").addEventListener("click", () => {
+  const show = $("geminiApiKey").type === "password";
+  $("geminiApiKey").type = show ? "text" : "password";
+  $("toggleKey").textContent = show ? "숨기기" : "보기";
+  $("toggleKey").setAttribute("aria-pressed", String(show));
+  $("toggleKey").setAttribute("aria-label", show ? "API 키 숨기기" : "API 키 표시");
+});
+$("copyConcerns").addEventListener("click", () => {
+  const selected = new Set([...document.querySelectorAll('input[name="concern"]:checked')].map(el => el.value));
+  document.querySelectorAll('input[name="packConcern"]').forEach(el => { el.checked = selected.has(el.value); });
+  clearReport();
+  $("packMessage").textContent = selected.size ? "화장품 분석에서 선택한 고민을 가져왔어요." : "가져올 고민이 없어요. 직접 선택해 주세요.";
+});
+document.querySelectorAll('input:not([type="file"]), textarea').forEach(input => {
+  if (input.id === "geminiApiKey") return;
+  for (const event of ["input", "change"]) input.addEventListener(event, () => { clearReport(); clearMessages(); });
+});
+document.querySelectorAll('input[name="skinType"]').forEach(radio => radio.addEventListener("change", () => {
+  $("skinHint").textContent = skinHints[radio.value];
+}));
+function getInput(kind) {
+  const skinType = document.querySelector('input[name="skinType"]:checked')?.value || "잘 모르겠음";
+  return kind === "cosmetic" ? {
+    productName: $("cosmeticName").value.trim() || null, skinType,
+    concerns: [...document.querySelectorAll('input[name="concern"]:checked')].map(el => el.value), extraConcern: $("extraConcern").value.trim()
+  } : {
+    packName: $("packName").value.trim() || null, skinType,
+    concerns: [...document.querySelectorAll('input[name="packConcern"]:checked')].map(el => el.value),
+    mixStatus: document.querySelector('input[name="mixStatus"]:checked')?.value || "unknown", notes: $("packNotes").value.trim()
+  };
+}
+function appendItem(host, title, description, className = "info-item") {
+  const item = textNode("div", "", className);
+  if (title) item.append(textNode("strong", title));
+  item.append(textNode("p", description));
+  host.append(item);
+}
+function renderReport(kind, input, response) {
+  const report = prepareReport(kind, input, response);
+  $("reportTitle").textContent = kind === "pack" ? "나의 모델링팩 성분 리포트" : "내 피부 성분 리포트";
+  $("reportSubtitle").textContent = report.complete ? "확인된 정보와 아직 확인이 필요한 내용을 구분해 표시했어요." : "판독이 충분하지 않아 재촬영 안내를 먼저 확인해 주세요.";
+  $("reportStatus").textContent = report.banner;
+  $("reportStatus").dataset.mode = report.isMock ? "mock" : "live";
+  $("reportStatus").dataset.extractionStatus = report.extractionStatus;
+  $("resultProduct").textContent = report.productName;
+  $("resultSummary").textContent = report.summary;
+  $("resultSummary").dataset.analysisStatus = report.analysisStatus;
+  $("resultTags").replaceChildren(...[input.skinType, ...input.concerns].map(tag => textNode("span", tag)));
+  for (const id of ["helpfulList", "cautionList", "unknownList", "generalList", "warningsList", "allIngredients", "reportSources"]) $(id).replaceChildren();
+  if (report.helpful.length) report.helpful.forEach(note => appendItem($("helpfulList"), note.ingredient, note.reason, "result-item"));
+  else $("helpfulList").append(textNode("p", report.complete ? "선택한 고민과 연결할 일반 기능 근거가 아직 없어요. 개인 적합성을 판단한 뜻은 아니에요." : "전성분 판독이 완료되면 확인할 수 있어요.", "empty-result"));
+  $("cautionList").append(textNode("p", report.complete ? "현재 자료로는 개인별 주의 성분을 판단할 수 없어요. 모든 성분이 안전하다는 뜻은 아니에요." : "현재 사진만으로 주의 성분을 판단하지 않아요.", "empty-result"));
+  if (report.unknown.length) {
+    const pills = textNode("div", "", "unknown-pills");
+    report.unknown.slice(0, 7).forEach(name => pills.append(textNode("span", name)));
+    $("unknownList").append(pills);
+    if (report.unknown.length > 7) $("unknownList").append(textNode("p", `외 ${report.unknown.length - 7}개는 전체 전성분에서 확인할 수 있어요.`, "more-note"));
+  } else $("unknownList").append(textNode("p", report.complete ? "별도로 표시할 성분이 없어요." : "확정해서 표시할 전성분이 없어요.", "empty-result"));
+  if (report.notes.length) report.notes.forEach(note => appendItem($("generalList"), note.ingredient, note.explanation));
+  else $("generalList").append(textNode("p", report.complete ? "설명할 일반 기능 근거가 부족하거나 이 응답에 성분별 설명이 없어요." : "전성분 판독 후 설명할 수 있어요.", "empty-result"));
+  report.warnings.forEach(message => appendItem($("warningsList"), "", message));
+  $("allIngredients").append(...report.ingredients.map(name => textNode("li", name)));
+  $("ingredientCount").textContent = `${report.ingredients.length}개`;
+  $("rawText").textContent = report.rawText;
+  $("mixingBox").classList.toggle("hidden", kind !== "pack");
+  $("mixingText").textContent = report.mixingText;
+  for (const source of report.sources) {
     let url;
     try { url = new URL(source.sourceUrl); } catch { continue; }
     if (!["https:", "http:"].includes(url.protocol)) continue;
-    const link = document.createElement("a");
-    link.className = "recommend-card";
-    link.textContent = `${source.ingredient} · ${source.evidenceId}`;
-    link.href = url.href;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    sources.append(link);
+    const link = textNode("a", `${source.ingredient} · ${source.evidenceId}`, "source-link");
+    link.href = url.href; link.target = "_blank"; link.rel = "noopener noreferrer";
+    $("reportSources").append(link);
   }
-  $(prefix + "SourcesBlock").classList.toggle("hidden", !sources.children.length);
-  const name = extraction.productName || input.productName || input.packName || "업로드한 제품";
-  if (prefix === "cosmetic") {
-    $("resultProduct").textContent = name;
-    $("resultSkin").textContent = input.skinType;
-    renderTags($("resultTags"), input.concerns);
-  } else {
-    $("packResultName").textContent = name;
-    renderTags($("packResultTags"), input.concerns);
-    $("mixGuidance").textContent = response.mixing?.status === "unknown"
-      ? "혼합 가능 여부 미확인. " + response.mixing.reason
-      : "현재는 직접 혼합 가능 여부를 판단하지 않아요. 제품 설명서를 확인해 주세요.";
-  }
+  $("sourcesBox").classList.toggle("hidden", !$("reportSources").children.length);
+  lastReportText = report.copyText;
+  $("results").classList.remove("hidden");
+  $("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
-async function runAnalysis(prefix) {
-  if (busy) return;
-  const input = prefix === "cosmetic" ? getCosmeticInput() : getPackInput();
-  const message = $(prefix + "Message");
-  const section = $(prefix === "cosmetic" ? "results" : "packResults");
-  section.classList.add("hidden");
-  message.textContent = "";
-  if (!input.image) {
-    message.textContent = "전성분이 보이는 라벨 사진을 먼저 업로드해 주세요.";
-    return;
-  }
-  if (!input.concerns.length) {
-    message.textContent = "피부 고민을 하나 이상 선택해 주세요.";
-    return;
-  }
-  let apiKey = $("geminiApiKey").value.trim();
-  if (!apiKey) {
-    message.textContent = "위쪽의 Gemini API 키 입력칸에 이번 분석용 키를 입력해 주세요.";
-    $("geminiApiKey").focus();
-    return;
-  }
-  // Keep no saved key and clear the visible field before any asynchronous work.
-  $("geminiApiKey").value = "";
-  const controls = [...document.querySelectorAll("input, textarea, button")];
-  const disabledBefore = controls.map(control => control.disabled);
-  busy = true;
-  controls.forEach(control => control.disabled = true);
-  message.textContent = "사진 분석을 요청했어요. 판독에 시간이 걸릴 수 있어요…";
-  const { image, ...request } = input;
+async function run(kind) {
+  if (isBusy) return;
+  clearMessages(); clearReport();
+  const input = getInput(kind), message = $(kind + "Message"), file = uploaded[kind];
+  if (!file) { message.textContent = "전성분 라벨 사진을 먼저 올려 주세요."; return; }
+  if (!input.concerns.length) { message.textContent = "피부 고민을 하나 이상 선택해 주세요."; return; }
+  let key = $("geminiApiKey").value.trim();
+  if (!key) { message.textContent = "상단에 이번 분석용 Gemini API 키를 입력해 주세요."; $("geminiApiKey").focus(); return; }
+  clearApiKey();
+  const controls = [...document.querySelectorAll("button, input, textarea")], previous = controls.map(el => el.disabled);
+  isBusy = true;
+  controls.forEach(el => { el.disabled = true; });
+  message.textContent = "Gemini가 사진을 확인하고 있어요. 전성분 판독에 시간이 걸릴 수 있어요…";
   try {
-    const response = await analyze(prefix === "cosmetic" ? "/analyze_cosmetic" : "/consult_modeling_pack", image, request, apiKey);
-    if (!response.ok) {
-      const detail = response.error || {};
-      throw new Error(`${detail.message || "분석을 완료하지 못했어요."} (${detail.code || "UNKNOWN"} · 요청 ${response.requestId || "-"})`);
-    }
-    renderResult(prefix, response, request);
-    section.classList.remove("hidden");
-    message.textContent = response.meta?.isMock
-      ? "모의 연동 시험 결과예요. 실제 판독 결과로 사용하지 마세요."
-      : extractionLabels[response.extraction.status] || "결과를 확인해 주세요.";
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  } catch (error) {
-    section.classList.add("hidden");
-    message.textContent = error.message || "연결을 확인하고 다시 시도해 주세요.";
-  } finally {
-    apiKey = "";
-    controls.forEach((control, index) => control.disabled = disabledBefore[index]);
-    busy = false;
-  }
+    const response = await analyze(kind === "cosmetic" ? "/analyze_cosmetic" : "/consult_modeling_pack", file, input, key);
+    if (!response.ok) throw new Error(`${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · 요청 ${response.requestId || "-"})`);
+    renderReport(kind, input, response);
+    message.textContent = response.meta?.isMock ? "모의 연동 시험 결과예요. 실제 판독 결과로 사용하지 마세요."
+      : response.extraction.status === "complete" ? "성분 판독이 완료됐어요. 아래 결과를 확인해 주세요." : "사진 판독 안내를 확인해 주세요.";
+  } catch (error) { clearReport(); message.textContent = error.message || "분석을 완료하지 못했어요."; }
+  finally { key = ""; controls.forEach((el, index) => { el.disabled = previous[index]; }); isBusy = false; }
 }
-
-$("cosmeticAnalyze").addEventListener("click", () => runAnalysis("cosmetic"));
-$("packAnalyze").addEventListener("click", () => runAnalysis("pack"));
-document.querySelectorAll("input:not([type=file]), textarea").forEach(control => {
-  const hideResults = () => {
-    $("results").classList.add("hidden");
-    $("packResults").classList.add("hidden");
-    $("cosmeticMessage").textContent = "";
-    $("packMessage").textContent = "";
-  };
-  control.addEventListener("input", hideResults);
-  control.addEventListener("change", hideResults);
+$("cosmeticAnalyze").addEventListener("click", () => run("cosmetic"));
+$("packAnalyze").addEventListener("click", () => run("pack"));
+$("copyReport").addEventListener("click", async () => {
+  if (!lastReportText) return;
+  try { await navigator.clipboard.writeText(lastReportText); $("copyReport").textContent = "복사 완료 ✓"; }
+  catch { $("copyReport").textContent = "복사가 제한됐어요"; }
+  copyTimer = setTimeout(() => { $("copyReport").textContent = "결과 복사 ↗"; }, 1700);
 });
-
-health().then(status => {
-  $("serverStatus").textContent = status.mode === "mock"
-    ? "모의 연동 모드 · 사진을 AI로 판독하지 않아요."
-    : "무료 Static 실행 · 분석할 때마다 API 키를 입력해 주세요.";
-}).catch(() => {
-  $("serverStatus").textContent = "분석 모듈을 불러오지 못했어요. 페이지를 새로고침해 주세요.";
-});
-
-// Also clear restored form values on history navigation / page departure.
-$("geminiApiKey").value = "";
-window.addEventListener("pageshow", () => { $("geminiApiKey").value = ""; });
-window.addEventListener("pagehide", () => { $("geminiApiKey").value = ""; });
+switchTab("cosmetic"); clearApiKey();
+window.addEventListener("pageshow", clearApiKey);
+window.addEventListener("pagehide", clearApiKey);

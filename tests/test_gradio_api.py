@@ -32,7 +32,7 @@ class GradioApiTest(unittest.TestCase):
             self.assertEqual(front.status_code, 200)
             self.assertIn('id="cosmeticAnalyze"', front.text)
             self.assertNotIn("글리세린 (예시)", front.text)
-            for asset in ["index.html", "style.css", "script.js", "api-client.js"]:
+            for asset in ["index.html", "style.css", "script.js", "api-client.js", "gemini-client.js", "ai-assets.js", "ai-core.js", "report-model.js"]:
                 self.assertEqual(httpx.get(base + "/" + asset).status_code, 200)
             for private_path in [".env", "API_KEY.txt", "README.md", "prompts/extract.txt", "docs/API.md"]:
                 self.assertIn(httpx.get(base + "/" + private_path).status_code, {403, 404})

@@ -19,7 +19,8 @@ def frontend_routes():
     public_files = {"/": "index.html", "/index.html": "index.html",
                     "/style.css": "style.css", "/script.js": "script.js",
                     "/api-client.js": "api-client.js", "/ai-core.js": "ai-core.js",
-                    "/ai-assets.js": "ai-assets.js", "/gemini-client.js": "gemini-client.js"}
+                    "/ai-assets.js": "ai-assets.js", "/gemini-client.js": "gemini-client.js",
+                    "/report-model.js": "report-model.js"}
 
     async def serve_public_file(request):
         return FileResponse(ROOT / "BeautyAI" / public_files[request.url.path],

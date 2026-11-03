@@ -31,7 +31,7 @@ reference/ 정답은 평가용이며 운영 사진 판독 입력으로 사용하
 
 ## 배포·인계
 
-README와 BeautyAI/ 7파일만 HF Static에 올립니다. 최소 배포 ZIP에 Python·키·원응답·제조사 이미지가 들어가지 않습니다.
+README와 BeautyAI/ 8파일만 HF Static에 올립니다. 최소 배포 ZIP에 Python·키·원응답·제조사 이미지가 들어가지 않습니다.
 전체 소스 인계 ZIP에는 이전 Python 회귀 시험도 포함하므로 최소 배포 ZIP과 구분합니다.
 한 탭의 분당 제한과 브라우저 검사는 사용자 편의/출력 점검용이며 강제적인 서버 보안 기능은 아닙니다.
 무료 Gemini 한도 초과 시 중지합니다. 유료 키를 넣으면 그 프로젝트 요금이 적용되므로 결제 미연결 Free 프로젝트 키를 사용합니다.
@@ -39,3 +39,14 @@ README와 BeautyAI/ 7파일만 HF Static에 올립니다. 최소 배포 ZIP에 P
 수업 실습의 Static Space 배포 + 생성형 AI API 연결을 시연하며 기존 ‘Gradio + Gemini’ 설명은 사용하지 않습니다.
 Git 변경은 mj에만 반영합니다. main/develop/ysw/ym은 수정하지 않습니다.
 기존 poto_classifier 과제의 원본 index.html 백업은 D:/yanggang/huggingface-backup/poto_classifier/index.original.html에 보존합니다.
+
+
+## 2026-11-03 GUI 인계
+
+ym fc9c36b의 탭형 입력·리포트·키 보기·결과 복사 디자인을 mj에 반영했습니다.
+GUI의 script.js는 기존 api-client.js를 호출하며 원격 응답 구조는 그대로입니다.
+프롬프트·근거·검증을 새 GUI 안에 다시 복사하지 않고 기존 ai-assets/ai-core/gemini-client 모듈을 이어 사용합니다.
+설명 단계 실패는 ok=false로 처리하며 성공 리포트로 낮춰 표시하지 않습니다.
+리포트와 복사 결과에 근거ID·출처·재촬영 안내·검토 한계·혼합 미확인을 유지합니다.
+report-model.js가 추가되어 최소 배포 묶음은 README 포함9파일입니다.
+새 GUI는 mj와 배포용 ZIP에 반영하며, 공개 HF 앱은 별도 배포 전까지 11월2일 버전입니다.

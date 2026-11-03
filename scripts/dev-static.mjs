@@ -2,7 +2,7 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 const root = new URL("../BeautyAI/", import.meta.url);
-const files = ["index.html", "style.css", "script.js", "api-client.js", "ai-core.js", "ai-assets.js", "gemini-client.js"];
+const files = ["index.html", "style.css", "script.js", "api-client.js", "ai-core.js", "ai-assets.js", "gemini-client.js", "report-model.js"];
 const types = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "text/javascript; charset=utf-8" };
 const port = Number(process.env.PORT || 8080);
 createServer(async (request, response) => {

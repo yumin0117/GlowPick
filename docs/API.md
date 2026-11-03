@@ -75,3 +75,12 @@ prompts/, data/와 Python Pydantic 모델을 변경한 뒤 scripts/build_static_
 기존 Python 출력 규격과의 동기화는 test_frontend_contract.py로 검사합니다.
 모든 검증이 브라우저에서 실행되므로 사용자가 코드를 변경할 수 있습니다. 신뢰 가능한 서버 검증으로 표현하지 않습니다.
 근거ID 검사가 일반 기능 설명의 의미·개인 적합성·혼합 가능성을 보장하지 않습니다.
+
+
+## 2026-11-03 새 GUI 연결
+
+ym fc9c36b의 두 탭에서 getInput(kind) → analyze(endpoint,file,input,key)를 호출합니다.
+두 작업은 공통 리포트를 사용하고 prepareReport(kind,input,response)가 표시·복사 데이터를 구성합니다.
+ok=false는 리포트를 만들지 않습니다. 설명 API 오류나 근거ID 오류를 needs_evidence 성공으로 숨기지 않습니다.
+새 DOM은 reportStatus/resultSummary/allIngredients/generalList/reportSources/warningsList/mixingText/rawText입니다.
+API의 입력·응답 필드, 검증 규격, 최종 프롬프트 상태는 변경하지 않았습니다.

@@ -12,13 +12,13 @@ pinned: false
 
 **Hugging Face Static Space 하나에서 실행하는 버전입니다. Gradio·Docker·별도 서버·유료 호스팅이 필요하지 않습니다.**
 사용자가 분석할 때마다 본인의 Gemini API 키를 입력하면 브라우저가 Google에 직접 요청합니다.
-`ym`의 화면 디자인과 `ysw`의 일반 성분 기능 근거 6행을 이어 사용합니다.
+`ym` fc9c36b(2026-11-03)의 탭형 GUI와 `ysw`의 일반 성분 기능 근거 6행을 사용합니다.
 
     Hugging Face Static 화면 → Google Gemini API → 브라우저에서 출력·근거 검증 → 결과 화면
 
 실행 주소: [GlowPick Space](https://huggingface.co/spaces/kimmin0914/GlowPick) · [전체 화면](https://kimmin0914-glowpick.static.hf.space/index.html)
 
-2026-11-02 무료 Static 공개 배포와 실제 Gemini 판독·설명 호출을 확인했습니다.
+2026-11-02 무료 Static 공개 배포를 확인했습니다. 2026-11-03 새 GUI는 mj에서 통합·로컬 실호출 검증했고, 공개 앱은 11월 2일 배포본입니다. 새 GUI 최소 배포 ZIP은 별도로 갱신합니다.
 
 ## 사용
 
@@ -39,13 +39,13 @@ Google AI Pro 앱 구독과 Gemini API 과금은 별개입니다. **결제 계�
 ## Hugging Face 배포
 
 1. Space 생성에서 **Static**을 선택합니다. PRO·Gradio·Docker·유료 하드웨어를 선택하지 않습니다.
-2. 이 저장소의 `README.md`와 `BeautyAI/` 7개 파일만 동일한 폴더 구조로 올립니다.
+2. 이 저장소의 `README.md`와 `BeautyAI/` 8개 파일만 동일한 폴더 구조로 올립니다.
 3. README 메타데이터는 `sdk: static`, `app_file: BeautyAI/index.html`입니다.
 4. Space Variables/Secrets에는 API 키를 등록하지 않습니다.
 5. App 화면에서 사용자가 키를 입력하고 분석합니다.
 
 별도 서버 URL 설정·Cloudflare 계정·Python 설치·빌드 과정이 필요하지 않습니다.
-최소 배포 묶음은 `scripts/package_static.py`로 만듭니다. 압축을 풀면 README.md와 HTML·JS·CSS 7개 파일이 같은 폴더에 나옵니다. 최소 묶음의 app_file은 index.html로 자동 설정됩니다.
+최소 배포 묶음은 `scripts/package_static.py`로 만듭니다. 압축을 풀면 README.md와 HTML·JS·CSS 8개 파일이 같은 폴더에 나옵니다. 최소 묶음의 app_file은 index.html로 자동 설정됩니다.
 기존 `app.py`, `glowpick/`, `requirements.txt`, `start_live.ps1`, `start_mock.ps1`은 이전 Python 구현 비교·회귀 시험용이며 Static에서 실행하지 않습니다.
 이전 Gradio 배포 기록은 당시 이력입니다. 현재 방식은 [Static 전환 기록](docs/STATIC_MIGRATION_20261102.md)을 따릅니다.
 
@@ -65,6 +65,7 @@ HTML을 file://로 열면 브라우저 모듈 제한이 있으므로 HTTP 서버
 | BeautyAI/index.html, style.css | 팀 화면·이번 요청용 키 입력 |
 | BeautyAI/script.js | 사진·피부 입력, 키 입력창 초기화, 결과·오류 표시 |
 | BeautyAI/api-client.js | 실모드 클라이언트 연결 |
+| BeautyAI/report-model.js | 새 통합 리포트·근거·복사 텍스트 구성 |
 | BeautyAI/gemini-client.js | Google 직접 요청·두 단계 처리·사진·근거 검증 |
 | BeautyAI/ai-core.js | 엄격한 스키마·판독 상태 검사 |
 | BeautyAI/ai-assets.js | 공개 프롬프트·스키마·기능 근거의 생성 묶음, 키 없음 |
@@ -76,7 +77,7 @@ HTML을 file://로 열면 브라우저 모듈 제한이 있으므로 HTTP 서버
 
 ## 검증과 한계
 
-    node --test tests/static-client.test.mjs
+    node --test tests/static-client.test.mjs tests/report-model.test.mjs
     .venv/Scripts/python.exe -m unittest discover -s tests -v
     node --test reference/tests/validation.test.mjs
 
@@ -90,3 +91,5 @@ JPG/JPEG·PNG·WEBP 정지 사진, 최대 10MiB·2,400만 픽셀입니다.
 
 수업의 Static Space 배포 실습과 생성형 AI API 연동을 연결합니다. 기존의 ‘Gradio + Gemini’ 구현 설명은 현재 버전에 사용하지 않습니다.
 Git 변경은 **mj 브랜치에만** 반영합니다. main·develop·다른 팀원 브랜치는 수정하지 않습니다.
+
+최신 GUI 비교·수정 이유: [2026-11-03 ym 통합 기록](docs/YM_GUI_REVIEW_20261103.md).

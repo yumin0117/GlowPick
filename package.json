@@ -6,6 +6,6 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "dev": "node scripts/dev-static.mjs",
-    "test": "node --test tests/static-client.test.mjs"
+    "test": "node --test tests/static-client.test.mjs tests/report-model.test.mjs"
   }
 }

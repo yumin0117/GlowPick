@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-03",
+  "sourceBranch": "ym",
+  "sourceCommit": "fc9c36b4485174db3e9fe18d84de76d82f0ab438",
+  "surface": "local Static preview",
+  "cosmetic": {
+    "image": "I001.jpg",
+    "status": "complete",
+    "ingredients": 16,
+    "evidenceId": "YSW_A001_KO"
+  },
+  "pack": {
+    "image": "I003.jpg",
+    "status": "no_ingredients",
+    "analysis": "not_run",
+    "mixing": "혼합 가능 여부 미확인. 특정 모델링팩·앰플·제품 버전·사용 조건의 검토 완료 근거가 아직 없습니다."
+  },
+  "keyEmpty": true,
+  "layout": {
+    "content": 1265,
+    "viewport": 1265
+  },
+  "packCopyHasNextAction": true,
+  "packCopyHasMixingUnknown": true,
+  "reentryRequired": "상단에 이번 분석용 Gemini API 키를 입력해 주세요.",
+  "staleReportHidden": true,
+  "reloadClearsKey": true,
+  "tests": {
+    "staticClientJs": 21,
+    "reportModelJs": 11,
+    "referenceJs": 31,
+    "python": 34,
+    "total": 97
+  },
+  "baseMjCommit": "65795093a225fcbf92500724198bebf39d7c57bc",
+  "apiContractChanged": false,
+  "backendPromptsAndReviewedClaimsChanged": false,
+  "publicDeploymentUpdated": false,
+  "staticPublicFiles": 9,
+  "fixed": [
+    "new GUI DOM/API adapter connection",
+    "keep explanation/evidence failure as error",
+    "restore evidence links, review notice and draft/mock labels",
+    "copy evidence, next action and mixing unknown",
+    "reset one-time key field and visibility toggle"
+  ],
+  "notYetVerified": [
+    "new GUI on public HF deployment",
+    "mobile browsers and camera hardware"
+  ],
+  "finalPromptReady": false
+}
