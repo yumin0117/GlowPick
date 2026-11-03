@@ -233,7 +233,7 @@ function renderReport(data){
   $('resultProduct').textContent=extraction.productName||input.productName||input.packName||'업로드한 제품';
   $('resultSummary').textContent=analysis.summary||'성분 분석 정보를 확인해 주세요.';
   const tags=$('resultTags');tags.replaceChildren();[input.skinType||'잘 모르겠음',...input.concerns].forEach(tag=>tags.appendChild(textNode('span',tag)));
-  for(const id of ['helpfulList','cautionList','unknownList','generalList','warningsList','allIngredients','sourcesList'])clearHost(id);
+  for(const id of ['helpfulList','cautionList','unknownList','generalList','warningsList','allIngredients'])clearHost(id);
   const helpful=complete?skinRelatedGeneralNotes(analysis,input.concerns):[];
   const helpfulHost=$('helpfulList');
   if(helpful.length)helpful.forEach(item=>appendItem(helpfulHost,item.ingredient,item.reason));
@@ -260,11 +260,6 @@ function renderReport(data){
   if(kind==='pack')$('mixingText').textContent=input.mixStatus==='prohibited'
     ?'사용자가 제조사 혼합 금지 안내를 확인했다고 선택했어요. 직접 혼합하지 말고 제품 안내를 따라 주세요.'
     :'현재 등록된 자료만으로는 특정 모델링팩과 앰플의 직접 혼합 적합성을 확인할 수 없어요. 제조사의 제품별 안내를 먼저 확인해 주세요.';
-  const sources=$('sourcesList');
-  for(const source of analysis.sources||[]){
-    try{const url=new URL(source.sourceUrl);if(!['https:','http:'].includes(url.protocol))continue;const a=textNode('a',`${source.ingredient} · 출처 확인 ↗`);a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';sources.appendChild(a)}catch{}
-  }
-  $('sourcesBox').classList.toggle('hidden',sources.childElementCount===0);
   const textLines=[kind==='pack'?'GlowPick 모델링팩 리포트':'GlowPick 화장품 리포트',`제품: ${$('resultProduct').textContent}`,`피부 타입: ${input.skinType}`,`피부 고민: ${input.concerns.join(', ')}`,`판독 상태: ${statusLabels[extraction.status]}`,'','[도움과 관련된 일반 기능]',...helpful.map(x=>`${x.ingredient}: ${x.reason}`),'','[주의 안내]','개인별 주의 판단 근거 부족','',`[전성분 ${extraction.ingredients.length}개]`,...extraction.ingredients,'','※ 개인 피부 적합성 및 혼합 적합성을 보증하지 않습니다.'];
   lastReportText=textLines.join('\n');
   $('results').classList.remove('hidden');$('results').scrollIntoView({behavior:'smooth',block:'start'});
