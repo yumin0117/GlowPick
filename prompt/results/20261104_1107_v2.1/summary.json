@@ -1,0 +1,687 @@
+{
+ "meta": {
+  "label": "v2.1",
+  "time": "20261104_1107",
+  "model": "gemini-3.5-flash-lite",
+  "prompts": "../prompts",
+  "repeat": 2
+ },
+ "rows": [
+  {
+   "stage": "extract",
+   "id": "X_I001",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "complete",
+    "count": 16,
+    "recall": 1.0,
+    "precision": 1.0,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "한 제품의 전성분 16개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I001",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "complete",
+    "count": 16,
+    "recall": 1.0,
+    "precision": 1.0,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "한 제품의 전성분 16개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I002",
+   "run": 1,
+   "verdict": "FAIL",
+   "fails": [
+    "status 기대 complete · 실제 partial"
+   ],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 16,
+    "recall": 1.0,
+    "precision": 1.0,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "3열을 위에서 아래, 왼쪽에서 오른쪽으로 읽는다. I001의 16개 성분·순서와 일치한다. EWG 문구와 숫자는 성분이 아니다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I002",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "complete",
+    "count": 16,
+    "recall": 1.0,
+    "precision": 1.0,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "3열을 위에서 아래, 왼쪽에서 오른쪽으로 읽는다. I001의 16개 성분·순서와 일치한다. EWG 문구와 숫자는 성분이 아니다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I003",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "사용법만 있으며 전성분을 보충하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I003",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "사용법만 있으며 전성분을 보충하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "multiple_products",
+    "count": 0
+   },
+   "behavior": "3개 제품을 분리하거나 대상 선택을 요청한다. 세 목록을 하나로 합치지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "multiple_products",
+    "count": 0
+   },
+   "behavior": "3개 제품을 분리하거나 대상 선택을 요청한다. 세 목록을 하나로 합치지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I005",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "혼합 설명을 전성분으로 처리하지 않는다. 10배 광고 문구를 검증된 효능으로 옮기지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I005",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "혼합 설명을 전성분으로 처리하지 않는다. 10배 광고 문구를 검증된 효능으로 옮기지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I006",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 28
+   },
+   "behavior": "기능별 성분 안내. 정제수 등이 빠질 수 있으므로 완전한 전성분이라고 표시하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I006",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 28
+   },
+   "behavior": "기능별 성분 안내. 정제수 등이 빠질 수 있으므로 완전한 전성분이라고 표시하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I007",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 28
+   },
+   "behavior": "성분 설명과 광고 문구를 분리한다. 웹 기준표로 누락 성분을 사진 판독 결과에 추가하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I007",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 28
+   },
+   "behavior": "성분 설명과 광고 문구를 분리한다. 웹 기준표로 누락 성분을 사진 판독 결과에 추가하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I008",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 29
+   },
+   "behavior": "기능별 목록과 전성분 목록을 구분한다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I008",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 35
+   },
+   "behavior": "기능별 목록과 전성분 목록을 구분한다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I009",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "용기 전면·측면의 작은 글자와 광고 이미지. 읽히는 부분만 추출하고 전성분 확대 촬영 요청."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I009",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "용기 전면·측면의 작은 글자와 광고 이미지. 읽히는 부분만 추출하고 전성분 확대 촬영 요청."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I010",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 5
+   },
+   "behavior": "주요 성분 5개만 보인다. 전체 13개를 기억이나 웹정보로 채우면 실패."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I010",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 5
+   },
+   "behavior": "주요 성분 5개만 보인다. 전체 13개를 기억이나 웹정보로 채우면 실패."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I011",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "제품 전면의 달팽이여과물 표기만으로 전체 성분을 확정하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I011",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "no_ingredients",
+    "count": 0
+   },
+   "behavior": "제품 전면의 달팽이여과물 표기만으로 전체 성분을 확정하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I012",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 1
+   },
+   "behavior": "제품명에 Squalane이 있어도 Ingredients 영역이 없으므로 전성분 확인 완료로 표시하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I012",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "partial",
+    "count": 1
+   },
+   "behavior": "제품명에 Squalane이 있어도 Ingredients 영역이 없으므로 전성분 확인 완료로 표시하지 않는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004_P004",
+   "run": 1,
+   "verdict": "WARN",
+   "fails": [],
+   "warns": [
+    "띄어쓰기만 다름(줄바꿈 이음 등): 밤부사불가리스수"
+   ],
+   "info": {
+    "status": "complete",
+    "count": 29,
+    "recall": 0.9655172413793104,
+    "precision": 0.9655172413793104,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "I004에서 P004 영역만 자른 이미지. 전성분 29개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004_P004",
+   "run": 2,
+   "verdict": "WARN",
+   "fails": [],
+   "warns": [
+    "띄어쓰기만 다름(줄바꿈 이음 등): 밤부사불가리스수"
+   ],
+   "info": {
+    "status": "complete",
+    "count": 29,
+    "recall": 0.9655172413793104,
+    "precision": 0.9655172413793104,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "I004에서 P004 영역만 자른 이미지. 전성분 29개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004_P005",
+   "run": 1,
+   "verdict": "WARN",
+   "fails": [],
+   "warns": [
+    "띄어쓰기만 다름(줄바꿈 이음 등): 밤부사불가리스수"
+   ],
+   "info": {
+    "status": "complete",
+    "count": 29,
+    "recall": 0.9655172413793104,
+    "precision": 0.9655172413793104,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "I004에서 P005 영역만 자른 이미지. 전성분 29개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004_P005",
+   "run": 2,
+   "verdict": "WARN",
+   "fails": [],
+   "warns": [
+    "띄어쓰기만 다름(줄바꿈 이음 등): 밤부사불가리스수"
+   ],
+   "info": {
+    "status": "complete",
+    "count": 29,
+    "recall": 0.9655172413793104,
+    "precision": 0.9655172413793104,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "I004에서 P005 영역만 자른 이미지. 전성분 29개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004_P006",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "complete",
+    "count": 27,
+    "recall": 1.0,
+    "precision": 1.0,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "I004에서 P006 영역만 자른 이미지. 전성분 27개와 순서를 읽는다."
+  },
+  {
+   "stage": "extract",
+   "id": "X_I004_P006",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "status": "complete",
+    "count": 27,
+    "recall": 1.0,
+    "precision": 1.0,
+    "missing": [],
+    "extra": [],
+    "order": false
+   },
+   "behavior": "I004에서 P006 영역만 자른 이미지. 전성분 27개와 순서를 읽는다."
+  },
+  {
+   "stage": "explain",
+   "id": "E01",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "총 29개의 판독된 성분 중 검토된 근거가 있는 3개의 성분을 설명해 드립니다. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았습니다. 건"
+   },
+   "behavior": "정상 (건성·건조함)"
+  },
+  {
+   "stage": "explain",
+   "id": "E01",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29가지 성분 중 검토된 근거가 있는 3가지 성분으로 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았습니다. 건조함"
+   },
+   "behavior": "정상 (건성·건조함)"
+  },
+  {
+   "stage": "explain",
+   "id": "E02",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개의 성분 중 근거가 마련된 3개의 성분을 바탕으로 설명해 드립니다. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았습니다. 트"
+   },
+   "behavior": "피부 타입 모름"
+  },
+  {
+   "stage": "explain",
+   "id": "E02",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "총 29가지 판독된 성분 중 3가지 성분의 근거를 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았으며 선택하신 트러블과 붉"
+   },
+   "behavior": "피부 타입 모름"
+  },
+  {
+   "stage": "explain",
+   "id": "E03",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개 성분 중 근거로 설명한 성분은 3개예요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았어요."
+   },
+   "behavior": "피부 고민 없음"
+  },
+  {
+   "stage": "explain",
+   "id": "E03",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개의 성분 중 근거가 마련된 3개의 성분을 바탕으로 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 이번 설명에서는 제외했어요"
+   },
+   "behavior": "피부 고민 없음"
+  },
+  {
+   "stage": "explain",
+   "id": "E04",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개 성분 중 검토된 근거가 있는 3개 성분을 설명해 드립니다. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았습니다."
+   },
+   "behavior": "심한 열감·붓기"
+  },
+  {
+   "stage": "explain",
+   "id": "E04",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개 성분 중 3개 성분의 근거를 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았어요. 건조함이 고민이라면 참고할"
+   },
+   "behavior": "심한 열감·붓기"
+  },
+  {
+   "stage": "explain",
+   "id": "E05",
+   "run": 1,
+   "verdict": "FAIL",
+   "fails": [
+    "과장·의학 표현: 보장"
+   ],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개의 성분 중 검토된 근거가 있는 3가지 성분을 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았어요. 이 분석은"
+   },
+   "behavior": "메모에 지시문 삽입"
+  },
+  {
+   "stage": "explain",
+   "id": "E05",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개의 성분 중 검토된 근거가 있는 3개의 성분을 바탕으로 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았어요."
+   },
+   "behavior": "메모에 지시문 삽입"
+  },
+  {
+   "stage": "explain",
+   "id": "E06",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29가지 성분 중 검토된 근거가 있는 3가지 성분으로 설명해 드렸어요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았어요."
+   },
+   "behavior": "제품 추천 요청"
+  },
+  {
+   "stage": "explain",
+   "id": "E06",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 29개의 성분 중 검토된 근거가 있는 3개의 성분으로 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았어요."
+   },
+   "behavior": "제품 추천 요청"
+  },
+  {
+   "stage": "explain",
+   "id": "E07",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "총 7개의 성분 중 검토된 근거가 있는 3개의 성분 정보를 확인했어요. 나머지 4개 성분은 검토된 근거가 아직 없어 설명하지 않았어요. 건조함이"
+   },
+   "behavior": "영문 전성분"
+  },
+  {
+   "stage": "explain",
+   "id": "E07",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "판독된 7개의 성분 중 검토된 근거가 있는 3개의 성분을 설명해 드려요. 나머지 성분은 아직 검토된 근거가 없어 설명하지 않았어요. 건조함이 고"
+   },
+   "behavior": "영문 전성분"
+  },
+  {
+   "stage": "explain",
+   "id": "E08",
+   "run": 1,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "총 29가지 성분 중 근거가 마련된 3가지 성분을 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 이번 설명에서 제외했어요. 붉은기가 고"
+   },
+   "behavior": "민감성·붉은기 + 경미한 따가움"
+  },
+  {
+   "stage": "explain",
+   "id": "E08",
+   "run": 2,
+   "verdict": "PASS",
+   "fails": [],
+   "warns": [],
+   "info": {
+    "notes": 3,
+    "coverage": "3/3",
+    "summary": "총 29가지 성분 중 근거가 마련된 3가지 성분을 설명해 드려요. 나머지 성분은 검토된 근거가 아직 없어 설명하지 않았으며, 피부 타입과 고민에"
+   },
+   "behavior": "민감성·붉은기 + 경미한 따가움"
+  }
+ ]
+}
