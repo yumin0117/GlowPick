@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "description": "GlowPick 모델링팩 맞춤 컨설팅 응답 (초안 v0.1)",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["ok", "partial", "not_label", "unreadable", "safety_warning", "out_of_scope"],
+      "description": "라벨 분석과 같은 값. not_label=모델링팩 사진이 아님"
+    },
+    "notice": {
+      "type": "string",
+      "description": "사용자에게 먼저 보여줄 안내 문구. 없으면 빈 문자열"
+    },
+    "pack": {
+      "type": "object",
+      "properties": {
+        "product_name": { "type": "string", "description": "입력 또는 사진에서 확인한 제품명" },
+        "identified": { "type": "boolean", "description": "제품을 확인했는지" },
+        "key_ingredients": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "사진이나 참고 자료에서 확인된 주요 성분만. 추측 금지"
+        },
+        "source": { "type": "string", "description": "'사진', 참고 자료 출처, 또는 빈 문자열" }
+      },
+      "required": ["product_name", "identified", "key_ingredients", "source"]
+    },
+    "ampoule_candidates": {
+      "type": "array",
+      "maxItems": 5,
+      "description": "피부 고민에 맞는 앰플·세럼 성분 후보 (제품명 아님)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ingredient": { "type": "string" },
+          "reason": { "type": "string" },
+          "related_concern": { "type": "string" },
+          "source": { "type": "string" }
+        },
+        "required": ["ingredient", "reason", "related_concern", "source"]
+      }
+    },
+    "mix_decision": {
+      "type": "string",
+      "enum": ["allowed", "not_allowed", "unknown"],
+      "description": "[제조사 안내]만 근거로 판단"
+    },
+    "mix_reason": {
+      "type": "string",
+      "description": "판단 이유. 제조사 안내 내용을 근거로 적음"
+    },
+    "mix_guide": {
+      "type": "string",
+      "description": "allowed일 때만, 제조사 안내에 적힌 방법·비율. 그 외에는 빈 문자열"
+    },
+    "separate_use": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "섞지 않고 함께 쓰는 순서. not_allowed/unknown일 때 채움"
+    },
+    "cautions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "사용 시 주의 사항 (패치 테스트 등)"
+    }
+  },
+  "required": [
+    "status", "notice", "pack", "ampoule_candidates", "mix_decision",
+    "mix_reason", "mix_guide", "separate_use", "cautions"
+  ]
+}
