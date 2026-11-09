@@ -20,6 +20,20 @@ FILES = {"README.md", "index.html", "style.css", "script.js", "api-client.js",
          "gemini-client.js", "ai-core.js", "ai-assets.js", "report-model.js"}
 
 
+def matches_public_asset(name, expected, actual):
+    if name == "index.html":
+        # HF adds public owner metadata and social preview tags when serving HTML.
+        actual = re.sub(rb'<script>window\.huggingface=\{variables:\{"SPACE_CREATOR_USER_ID":"[0-9a-f]+"\}\};</script>',
+                        b"", actual, count=1)
+        thumbnail = f"https://cdn-thumbnails.huggingface.co/social-thumbnails/spaces/{SPACE}.png"
+        for tag in (f'<meta property="og:title" content="GlowPick">',
+                    f'<meta property="og:image" content="{thumbnail}">',
+                    '<meta name="twitter:card" content="summary_large_image">',
+                    f'<meta name="twitter:image" content="{thumbnail}">'):
+            actual = actual.replace(tag.encode(), b"", 1)
+    return actual == expected
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("archive", type=Path)
@@ -86,7 +100,7 @@ def main():
                 request = urllib.request.Request(f"{HOST}/{name}?revision={result.oid}",
                     headers={"Cache-Control": "no-cache"})
                 with urllib.request.urlopen(request, timeout=15) as response:
-                    matches.append(response.read() == raw)
+                    matches.append(matches_public_asset(name, raw, response.read()))
             if all(matches):
                 record["publicAssetVerification"] = True
                 break
