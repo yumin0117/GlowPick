@@ -11,7 +11,7 @@ pinned: false
 # GlowPick — 무료 Hugging Face Static
 
 **Hugging Face Static Space 하나에서 실행하는 버전입니다. Gradio·Docker·별도 서버·유료 호스팅이 필요하지 않습니다.**
-사용자가 분석할 때마다 본인의 Gemini API 키를 입력하면 브라우저가 Google에 직접 요청합니다.
+사용자가 본인의 Gemini API 키를 한 번 입력하면 현재 탭에서 반복 분석할 때 재사용하며 브라우저가 Google에 직접 요청합니다.
 `ym` fc9c36b(2026-11-03)의 탭형 GUI와 `ysw`의 일반 성분 기능 근거 6행을 사용합니다.
 
     Hugging Face Static 화면 → Google Gemini API → 브라우저에서 출력·근거 검증 → 결과 화면
@@ -24,8 +24,8 @@ pinned: false
 
 1. 개인정보가 없는 한 제품의 전성분 라벨 사진을 올립니다.
 2. 피부 고민을 선택하고, 화면 위쪽에 **본인의 무료 Gemini API 키**를 입력합니다.
-3. 분석 버튼을 누릅니다. 키 입력창은 즉시 비워지고 이번 요청의 메모리에서만 사용됩니다.
-4. 다른 사진·모델링팩을 분석할 때는 키를 다시 입력합니다.
+3. 분석 버튼을 누릅니다. 입력한 키는 비밀번호 형태로 가려 두고 현재 탭에서만 유지합니다.
+4. 같은 화면에서 다른 사진·모델링팩을 분석할 때 키를 다시 입력할 필요가 없습니다. 새로고침·다른 페이지 이동·탭 닫기 시 초기화합니다. 키를 지우거나 바꾸려면 입력란을 비우거나 수정합니다.
 
 키를 소스·Git·로그·URL·브라우저 저장소·HF Variables/Secrets에 넣지 않습니다.
 키는 Google의 고정 API 주소에 `x-goog-api-key` 헤더로만 전송합니다.
@@ -62,8 +62,8 @@ HTML을 file://로 열면 브라우저 모듈 제한이 있으므로 HTTP 서버
 
 | 파일 | 역할 |
 | --- | --- |
-| BeautyAI/index.html, style.css | 팀 화면·이번 요청용 키 입력 |
-| BeautyAI/script.js | 사진·피부 입력, 키 입력창 초기화, 결과·오류 표시 |
+| BeautyAI/index.html, style.css | 팀 화면·현재 탭에서만 유지되는 키 입력 |
+| BeautyAI/script.js | 사진·피부 입력, 탭 내 키 재사용·페이지 이동 시 초기화, 결과·오류 표시 |
 | BeautyAI/api-client.js | 실모드 클라이언트 연결 |
 | BeautyAI/report-model.js | 새 통합 리포트·근거·복사 텍스트 구성 |
 | BeautyAI/gemini-client.js | Google 직접 요청·두 단계 처리·사진·근거 검증 |
@@ -77,7 +77,7 @@ HTML을 file://로 열면 브라우저 모듈 제한이 있으므로 HTTP 서버
 
 ## 검증과 한계
 
-    node --test tests/static-client.test.mjs tests/report-model.test.mjs
+    node --test tests/static-client.test.mjs tests/report-model.test.mjs tests/key-session.test.mjs
     .venv/Scripts/python.exe -m unittest discover -s tests -v
     node --test reference/tests/validation.test.mjs
 
@@ -93,3 +93,5 @@ JPG/JPEG·PNG·WEBP 정지 사진, 최대 10MiB·2,400만 픽셀입니다.
 최종 통합 코드는 **integration/hf-static-final**에서 검증하고, 사용자의 추가 요청에 따라 **main**에도 반영합니다. 팀원 개인 브랜치는 수정하지 않습니다.
 
 최신 GUI 비교·수정 이유: [2026-11-03 ym 통합 기록](docs/YM_GUI_REVIEW_20261103.md).
+
+현재 탭에서 키 재사용 변경과 검증: [TAB_KEY_REUSE.md](docs/TAB_KEY_REUSE.md).

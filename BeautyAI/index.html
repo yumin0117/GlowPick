@@ -72,10 +72,10 @@
         <div class="app-shell">
           <div class="key-panel">
             <div class="key-icon" aria-hidden="true">✳</div>
-            <div class="key-copy"><h3>Gemini API 연결</h3><p>무료 API 프로젝트의 키를 입력해 주세요. 분석할 때마다 입력하며 웹사이트에 저장하지 않아요.</p></div>
-            <div class="key-field"><label for="geminiApiKey">이번 분석에 사용할 API 키</label><div class="password-wrap"><input id="geminiApiKey" type="password" placeholder="Gemini API 키 입력" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="512" aria-describedby="keyPolicy"><button id="toggleKey" type="button" class="show-key" aria-label="API 키 표시" aria-pressed="false">보기</button></div></div>
+            <div class="key-copy"><h3>Gemini API 연결</h3><p>무료 API 프로젝트의 키를 한 번 입력하면 현재 탭에서 계속 사용할 수 있어요.</p></div>
+            <div class="key-field"><label for="geminiApiKey">현재 탭에서 사용할 API 키</label><div class="password-wrap"><input id="geminiApiKey" type="password" placeholder="Gemini API 키 입력" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="512" aria-describedby="keyPolicy"><button id="toggleKey" type="button" class="show-key" aria-label="API 키 표시" aria-pressed="false">보기</button></div></div>
             <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" class="key-help">키 발급 안내 ↗</a>
-            <p class="key-policy" id="keyPolicy">키는 이번 분석에만 사용하고 요청 시작 시 입력창에서 지워요. 키와 사진은 Google로 직접 전송되며, 본인 브라우저의 개발자 도구에서는 키가 보일 수 있어요. 결제 계정이 연결되지 않은 무료 API 프로젝트의 키를 사용해 주세요.</p>
+            <p class="key-policy" id="keyPolicy">키는 현재 탭에서만 유지하며, 새로고침·페이지 이동·탭을 닫으면 지워져요. 브라우저 저장소에는 저장하지 않아요. 키와 사진은 Google로 직접 전송되며, 본인 브라우저의 개발자 도구에서는 키가 보일 수 있어요. 결제 계정이 연결되지 않은 무료 API 프로젝트의 키를 사용해 주세요.</p>
           </div>
           <div class="tab-bar" role="tablist" aria-label="분석 서비스 선택">
             <button type="button" class="tab-button active" role="tab" id="tab-cosmetic" aria-selected="true" aria-controls="panel-cosmetic" data-tab="cosmetic"><span aria-hidden="true">✦</span> 화장품 성분 분석</button>
@@ -127,7 +127,7 @@
                 <textarea class="field-textarea" id="extraConcern" rows="3" maxlength="2000" placeholder="예: 오후에 볼이 당기고 건조해요."></textarea>
               </div>
             </div>
-            <div class="submit-row"><p class="privacy-text">🔒 API 키는 저장하지 않으며, 사진은 분석을 위해 Google Gemini API로 전송돼요.</p><button type="button" class="button button-primary submit-button" id="cosmeticAnalyze">화장품 성분 분석하기 <span aria-hidden="true">→</span></button></div>
+            <div class="submit-row"><p class="privacy-text">🔒 API 키는 현재 탭에서만 유지되며, 사진은 분석을 위해 Google Gemini API로 전송돼요.</p><button type="button" class="button button-primary submit-button" id="cosmeticAnalyze">화장품 성분 분석하기 <span aria-hidden="true">→</span></button></div>
             <p class="form-message" id="cosmeticMessage" role="status" aria-live="polite"></p>
           </section>
 

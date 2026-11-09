@@ -30,12 +30,15 @@ function clearMessages() {
   $("cosmeticMessage").textContent = "";
   $("packMessage").textContent = "";
 }
-function clearApiKey() {
-  $("geminiApiKey").value = "";
+function maskApiKey() {
   $("geminiApiKey").type = "password";
   $("toggleKey").textContent = "보기";
   $("toggleKey").setAttribute("aria-pressed", "false");
   $("toggleKey").setAttribute("aria-label", "API 키 표시");
+}
+function clearApiKey() {
+  $("geminiApiKey").value = "";
+  maskApiKey();
 }
 function setupUpload(prefix) {
   const file = $(prefix + "File"), camera = $(prefix + "Camera");
@@ -174,8 +177,8 @@ async function run(kind) {
   if (!file) { message.textContent = "전성분 라벨 사진을 먼저 올려 주세요."; return; }
   if (!input.concerns.length) { message.textContent = "피부 고민을 하나 이상 선택해 주세요."; return; }
   let key = $("geminiApiKey").value.trim();
-  if (!key) { message.textContent = "상단에 이번 분석용 Gemini API 키를 입력해 주세요."; $("geminiApiKey").focus(); return; }
-  clearApiKey();
+  if (!key) { message.textContent = "상단에 Gemini API 키를 입력해 주세요."; $("geminiApiKey").focus(); return; }
+  maskApiKey();
   const controls = [...document.querySelectorAll("button, input, textarea")], previous = controls.map(el => el.disabled);
   isBusy = true;
   controls.forEach(el => { el.disabled = true; });
