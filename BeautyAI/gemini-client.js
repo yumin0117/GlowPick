@@ -4,7 +4,7 @@ import { BackendError, validate, generationSchema, normalizeIngredient, validate
 export const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const MAX_PIXELS = 24_000_000;
 const MODEL = "gemini-3.5-flash-lite";
-const PROMPT_VERSION = "draft-2026-10-30-v1";
+const PROMPT_VERSION = "v2-2026-11-04";
 export const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/interactions";
 const NOTICE = "일반 성분 기능에 대한 참고 설명입니다. 전체 성분·완제품 효능·개인 적합성·혼합 허용을 검증한 결과가 아닙니다. 근거ID 연결 검사와 별도로 문헌 해석·한영 표기의 독립 사람 교차검토가 필요합니다.";
 
@@ -155,12 +155,12 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
     async health() {
       // No network request and no key access on page load.
       return { status: "ok", mode, requiresUserKey: true, transport: "browser-direct", readyForLive: mode === "live",
-        schemaVersion: "1.0", promptVersion: PROMPT_VERSION, promptStatus: "draft" };
+        schemaVersion: "1.0", promptVersion: PROMPT_VERSION, promptStatus: "final" };
     },
     async analyze(endpoint, file, request, apiKey) {
       const result = { ok: false, requestId: crypto.randomUUID().replaceAll("-", ""), extraction: null,
         analysis: null, mixing: null, error: null, meta: { schemaVersion: "1.0", mode, isMock: mode === "mock",
-          model: mode === "live" ? MODEL : null, promptVersion: PROMPT_VERSION, promptStatus: "draft",
+          model: mode === "live" ? MODEL : null, promptVersion: PROMPT_VERSION, promptStatus: "final",
           timestamp: new Date(now()).toISOString(), transport: "browser-direct" } };
       let acquired = false;
       try {

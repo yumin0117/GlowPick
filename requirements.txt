@@ -1,3 +1,5 @@
 gradio==6.28.0
 Pillow==12.3.0
 pydantic==2.14.1
+# Python 3.12.0b4: packaging 26.3 rejects valid versions such as 0.dev0.
+packaging==25.0

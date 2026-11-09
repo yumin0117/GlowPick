@@ -100,13 +100,14 @@ test("mock output retains its warning and cannot populate personalized cards", (
   assert.ok(report.copyText.includes(result.meta.notice));
 });
 
-test("copy includes evidence, scope and exact ingredient names, but no API-key field", () => {
+test("copy preserves scope and exact ingredients without source links or API-key fields", () => {
   const result = response(), secret = "never-copy-a-private-key";
   result.meta.apiKey = secret;
   result.extraction.ingredients.push("1,2-Hexanediol", "티트리(1,500ppm)");
   const report = prepareReport("pack", { ...input, apiKey: secret }, result);
-  for (const text of ["YSW_G001_KO", "https://pubmed.ncbi.nlm.nih.gov/31840548/", "독립 사람", "1,2-Hexanediol", "티트리(1,500ppm)"])
+  for (const text of ["YSW_G001_KO", "독립 사람", "1,2-Hexanediol", "티트리(1,500ppm)"])
     assert.ok(report.copyText.includes(text));
+  assert.doesNotMatch(report.copyText, /https?:\/\/|\[제공된 일반 기능 근거\]/u);
   assert.ok(!report.copyText.includes(secret));
 });
 

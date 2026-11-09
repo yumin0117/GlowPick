@@ -1,0 +1,4 @@
+# Keep the reviewed source bytes stable for provenance SHA-256 verification.
+data/reviewed_claims.json text eol=lf
+prompts/*.txt text eol=lf
+BeautyAI/ai-assets.js text eol=lf

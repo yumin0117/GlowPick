@@ -16,11 +16,10 @@ PUBLIC = ["README.md"] + ["BeautyAI/" + name for name in (
 SPACE_CARD = """---
 title: GlowPick
 emoji: 🧴
-colorFrom: green
-colorTo: pink
+colorFrom: pink
+colorTo: gray
 sdk: static
 app_file: index.html
-pinned: false
 ---
 
 # GlowPick — 무료 Static
@@ -31,9 +30,10 @@ pinned: false
 Gradio·Docker·별도 서버·HF Secrets 설정이 필요하지 않습니다.
 결제 계정이 연결되지 않은 Free API 프로젝트를 사용합니다. 무료 한도 초과 시 오류로 중지합니다.
 일반 성분 기능의 참고 설명이며 제품 효능·개인 적합성·혼합 허용을 검증하지 않습니다.
-현재 프롬프트는 개발용 초안이며 최종본이 아닙니다.
+최종 프롬프트 v2-2026-11-04를 적용했습니다.
+배포 대상: https://huggingface.co/spaces/yumin0601/GlowPick
 
-소스·인계·검증: https://github.com/yumin0117/GlowPick/tree/mj
+소스·인계·검증: https://github.com/yumin0117/GlowPick/tree/integration/hf-static-final
 """
 
 

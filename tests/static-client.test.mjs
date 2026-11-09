@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createStaticClient, GEMINI_URL, MAX_IMAGE_BYTES, validateImage } from "../BeautyAI/gemini-client.js";
 import { generationSchema, validate, validateExtraction } from "../BeautyAI/ai-core.js";
-import { SCHEMAS, CLAIMS } from "../BeautyAI/ai-assets.js";
+import { SCHEMAS, CLAIMS, EXTRACT_PROMPT, EXPLAIN_PROMPT } from "../BeautyAI/ai-assets.js";
 
 const key = "AIza" + "X".repeat(35); // Synthetic, never usable as a credential.
 const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a3ioAAAAASUVORK5CYII=", "base64");
@@ -35,6 +35,8 @@ test("page initialization never calls Google or accesses a saved key", async () 
   const status = await client.health();
   assert.equal(status.transport, "browser-direct");
   assert.equal(status.requiresUserKey, true);
+  assert.equal(status.promptVersion, "v2-2026-11-04");
+  assert.equal(status.promptStatus, "final");
   assert.equal(calls.length, 0);
 });
 
@@ -49,6 +51,8 @@ test("both tasks connect the two stages; key goes only to a fixed Google header"
     assert.equal(out.mixing.status, endpoint === "/analyze_cosmetic" ? "not_applicable" : "unknown");
     assert.match(out.analysis.notice, /독립 사람/);
     assert.equal(calls.length, 2);
+    assert.equal(calls[0].payload.system_instruction, EXTRACT_PROMPT);
+    assert.equal(calls[1].payload.system_instruction, EXPLAIN_PROMPT);
     for (const call of calls) {
       assert.equal(call.url, GEMINI_URL);
       assert.equal(call.init.headers["x-goog-api-key"], key);
@@ -261,6 +265,7 @@ test("Static frontend has no persistence, external SDK or backend endpoint", asy
   const html = await readFile(new URL("../BeautyAI/index.html", import.meta.url), "utf8");
   assert.match(html, /id="geminiApiKey"[^>]+type="password"/u);
   assert.match(html, /connect-src https:\/\/generativelanguage\.googleapis\.com;/u);
+  assert.doesNotMatch(html, /id="(?:sourcesBox|reportSources)"/u);
   assert.match(sources.at(-1), /geminiApiKey"\)\.value = ""/u);
   assert.match(sources.at(-1), /pagehide/u);
   const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");

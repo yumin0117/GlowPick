@@ -49,8 +49,7 @@ export function prepareReport(kind, input, response) {
     "", "[개인별 주의 판단]", "현재 자료로는 판단할 수 없습니다. 모든 성분이 안전하다는 뜻은 아닙니다.",
     "", `[전성분 ${extraction.ingredients.length}개]`, ...extraction.ingredients, "", "[사진 원문]", model.rawText,
     "", "[다음 단계·검토 한계]", ...warnings,
-    ...(mixingText ? ["", "[혼합 안내]", mixingText] : []),
-    "", "[제공된 일반 기능 근거]", ...sources.map(source => `${source.ingredient} · ${source.evidenceId}: ${source.sourceUrl}`)
+    ...(mixingText ? ["", "[혼합 안내]", mixingText] : [])
   ].join("\n");
   return model;
 }

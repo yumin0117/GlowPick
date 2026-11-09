@@ -145,7 +145,7 @@ function renderReport(kind, input, response) {
   $("resultSummary").textContent = report.summary;
   $("resultSummary").dataset.analysisStatus = report.analysisStatus;
   $("resultTags").replaceChildren(...[input.skinType, ...input.concerns].map(tag => textNode("span", tag)));
-  for (const id of ["helpfulList", "cautionList", "unknownList", "generalList", "warningsList", "allIngredients", "reportSources"]) $(id).replaceChildren();
+  for (const id of ["helpfulList", "cautionList", "unknownList", "generalList", "warningsList", "allIngredients"]) $(id).replaceChildren();
   if (report.helpful.length) report.helpful.forEach(note => appendItem($("helpfulList"), note.ingredient, note.reason, "result-item"));
   else $("helpfulList").append(textNode("p", report.complete ? "선택한 고민과 연결할 일반 기능 근거가 아직 없어요. 개인 적합성을 판단한 뜻은 아니에요." : "전성분 판독이 완료되면 확인할 수 있어요.", "empty-result"));
   $("cautionList").append(textNode("p", report.complete ? "현재 자료로는 개인별 주의 성분을 판단할 수 없어요. 모든 성분이 안전하다는 뜻은 아니에요." : "현재 사진만으로 주의 성분을 판단하지 않아요.", "empty-result"));
@@ -163,15 +163,6 @@ function renderReport(kind, input, response) {
   $("rawText").textContent = report.rawText;
   $("mixingBox").classList.toggle("hidden", kind !== "pack");
   $("mixingText").textContent = report.mixingText;
-  for (const source of report.sources) {
-    let url;
-    try { url = new URL(source.sourceUrl); } catch { continue; }
-    if (!["https:", "http:"].includes(url.protocol)) continue;
-    const link = textNode("a", `${source.ingredient} · ${source.evidenceId}`, "source-link");
-    link.href = url.href; link.target = "_blank"; link.rel = "noopener noreferrer";
-    $("reportSources").append(link);
-  }
-  $("sourcesBox").classList.toggle("hidden", !$("reportSources").children.length);
   lastReportText = report.copyText;
   $("results").classList.remove("hidden");
   $("results").scrollIntoView({ behavior: "smooth", block: "start" });

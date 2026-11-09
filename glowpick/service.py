@@ -18,7 +18,7 @@ from .models import Extraction, ModelAnalysis, ReviewedClaim, UserInput
 from .validation import normalize_ingredient
 
 ROOT = Path(__file__).resolve().parents[1]
-PROMPT_VERSION = "draft-2026-10-30-v1"
+PROMPT_VERSION = "v2-2026-11-04"
 MAX_BYTES = 10 * 1024 * 1024
 MAX_PIXELS = 24_000_000
 logger = logging.getLogger("glowpick")
@@ -96,7 +96,7 @@ class GlowPickService:
     def health(self):
         return {
             "status": "ok", "mode": self.mode, "schemaVersion": "1.0",
-            "promptVersion": PROMPT_VERSION, "promptStatus": "draft",
+            "promptVersion": PROMPT_VERSION, "promptStatus": "final",
             "configured": bool(os.getenv("GEMINI_API_KEY")) if self.mode == "live" else True,
             "readyForLive": self.mode == "live" and bool(os.getenv("GEMINI_API_KEY")),
         }
@@ -115,7 +115,7 @@ class GlowPickService:
             "analysis": None, "mixing": None, "error": None,
             "meta": {"schemaVersion": "1.0", "mode": self.mode,
                      "isMock": self.mode == "mock", "model": self.model if self.mode == "live" else None,
-                     "promptVersion": PROMPT_VERSION, "promptStatus": "draft",
+                     "promptVersion": PROMPT_VERSION, "promptStatus": "final",
                      "timestamp": datetime.now(timezone.utc).isoformat()},
         }
         try:
