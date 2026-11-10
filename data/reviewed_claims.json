@@ -40,5 +40,215 @@
     "statement": "피부 컨디셔닝 성분으로 사용됩니다.",
     "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/20448269/",
     "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_HA_0",
+    "ingredient": "Hyaluronic Acid",
+    "statement": "수분을 붙잡는 보습 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/6550/hyaluronic-acid/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_HA_1",
+    "ingredient": "하이알루로닉애씨드",
+    "statement": "수분을 붙잡는 보습 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/6550/hyaluronic-acid/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_HA_2",
+    "ingredient": "히알루론산",
+    "statement": "수분을 붙잡는 보습 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/6550/hyaluronic-acid/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_SH_0",
+    "ingredient": "Sodium Hyaluronate",
+    "statement": "보습 및 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/pl/inci/szczegoly/14809/sodium-hyaluronate/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_SH_1",
+    "ingredient": "소듐하이알루로네이트",
+    "statement": "보습 및 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/pl/inci/szczegoly/14809/sodium-hyaluronate/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_BG_0",
+    "ingredient": "Butylene Glycol",
+    "statement": "수분 유지와 다른 성분을 녹이는 용도로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_BG_1",
+    "ingredient": "부틸렌글라이콜",
+    "statement": "수분 유지와 다른 성분을 녹이는 용도로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_BG_2",
+    "ingredient": "부틸렌글리콜",
+    "statement": "수분 유지와 다른 성분을 녹이는 용도로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_BT_0",
+    "ingredient": "Betaine",
+    "statement": "보습 및 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/fr/inci/ingredient/1648/betaine/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_BT_1",
+    "ingredient": "베타인",
+    "statement": "보습 및 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/fr/inci/ingredient/1648/betaine/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_SQ_0",
+    "ingredient": "Squalane",
+    "statement": "피부를 부드럽게 하는 유연제로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/15418/squalane/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_SQ_1",
+    "ingredient": "스쿠알란",
+    "statement": "피부를 부드럽게 하는 유연제로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/15418/squalane/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_DM_0",
+    "ingredient": "Dimethicone",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_DM_1",
+    "ingredient": "다이메티콘",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_DM_2",
+    "ingredient": "디메티콘",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_PT_0",
+    "ingredient": "Petrolatum",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_PT_1",
+    "ingredient": "페트롤라툼",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_MO_0",
+    "ingredient": "Mineral Oil",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_MO_1",
+    "ingredient": "미네랄오일",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_JO_0",
+    "ingredient": "Simmondsia Chinensis (Jojoba) Seed Oil",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 오일입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_JO_1",
+    "ingredient": "호호바씨오일",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 오일입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_SB_0",
+    "ingredient": "Butyrospermum Parkii (Shea) Butter",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_SB_1",
+    "ingredient": "시어버터",
+    "statement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+    "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_CN_0",
+    "ingredient": "Ceramide NP",
+    "statement": "피부 컨디셔닝에 사용되는 지질 성분으로, 수분 손실을 줄이는 관리에 쓰입니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/25522/ceramide-np/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_CN_1",
+    "ingredient": "세라마이드엔피",
+    "statement": "피부 컨디셔닝에 사용되는 지질 성분으로, 수분 손실을 줄이는 관리에 쓰입니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/25522/ceramide-np/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_CN_2",
+    "ingredient": "세라마이드 엔피",
+    "statement": "피부 컨디셔닝에 사용되는 지질 성분으로, 수분 손실을 줄이는 관리에 쓰입니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/25522/ceramide-np/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_NI_0",
+    "ingredient": "Niacinamide",
+    "statement": "피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/16596767/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_NI_1",
+    "ingredient": "나이아신아마이드",
+    "statement": "피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/16596767/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_TO_0",
+    "ingredient": "Tocopherol",
+    "statement": "산화 방지 및 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/16234/tocopherol/",
+    "reviewStatus": "reviewed_general_ingredient_function"
+  },
+  {
+    "evidenceId": "GP_TO_1",
+    "ingredient": "토코페롤",
+    "statement": "산화 방지 및 피부 컨디셔닝 성분으로 사용됩니다.",
+    "sourceUrl": "https://cosmileeurope.eu/inci/detail/16234/tocopherol/",
+    "reviewStatus": "reviewed_general_ingredient_function"
   }
 ]

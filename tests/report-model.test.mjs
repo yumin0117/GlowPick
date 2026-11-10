@@ -31,13 +31,13 @@ test("dryness card uses a reviewed moisturizing ID and gives no personal efficac
   const report = prepareReport("cosmetic", input, response());
   assert.deepEqual(report.helpful.map(note => note.ingredient), ["글리세린"]);
   assert.match(report.helpful[0].reason, /개인별 효과와 제품 적합성을 판단한 결과는 아니/u);
-  assert.deepEqual(report.unknown, ["알란토인", "NEW"]);
+  assert.deepEqual(report.unknown, ["NEW"]);
 });
 
 test("general conditioning is not automatically a dryness or risk classification", () => {
   const report = prepareReport("cosmetic", { ...input, concerns: ["홍조"] }, response());
   assert.equal(report.helpful.length, 0);
-  assert.deepEqual(report.unknown, response().extraction.ingredients);
+  assert.deepEqual(report.unknown, ["NEW"]);
   assert.match(report.copyText, /모든 성분이 안전하다는 뜻은 아닙니다/u);
 });
 

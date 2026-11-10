@@ -151,7 +151,8 @@ function renderReport(kind, input, response) {
   for (const id of ["helpfulList", "cautionList", "unknownList", "generalList", "warningsList", "allIngredients"]) $(id).replaceChildren();
   if (report.helpful.length) report.helpful.forEach(note => appendItem($("helpfulList"), note.ingredient, note.reason, "result-item"));
   else $("helpfulList").append(textNode("p", report.complete ? "선택한 고민과 연결할 일반 기능 근거가 아직 없어요. 개인 적합성을 판단한 뜻은 아니에요." : "전성분 판독이 완료되면 확인할 수 있어요.", "empty-result"));
-  $("cautionList").append(textNode("p", report.complete ? "현재 자료로는 개인별 주의 성분을 판단할 수 없어요. 모든 성분이 안전하다는 뜻은 아니에요." : "현재 사진만으로 주의 성분을 판단하지 않아요.", "empty-result"));
+  if (report.cautions.length) report.cautions.forEach(note => appendItem($("cautionList"), note.ingredient, note.reason, "result-item"));
+  else $("cautionList").append(textNode("p", report.complete ? "현재 판독 목록과 검토된 안내에서 표시할 항목이 없어요. 개인별 안전성을 확인한 결과는 아니에요." : "현재 사진만으로 주의 성분을 판단하지 않아요.", "empty-result"));
   if (report.unknown.length) {
     const pills = textNode("div", "", "unknown-pills");
     report.unknown.slice(0, 7).forEach(name => pills.append(textNode("span", name)));

@@ -183,13 +183,17 @@ class ServiceTest(unittest.TestCase):
     def test_ysw_claim_data_and_provenance(self):
         import hashlib
         claims = load_claims()
-        self.assertEqual({c.ingredient for c in claims},
+        original = [c for c in claims if c.evidenceId.startswith("YSW_")]
+        self.assertEqual({c.ingredient for c in original},
                          {"Glycerin", "글리세린", "Panthenol", "판테놀", "Allantoin", "알란토인"})
-        self.assertEqual(len({c.evidenceId for c in claims}), 6)
+        self.assertEqual(len({c.evidenceId for c in claims}), len(claims))
+        self.assertGreaterEqual(len(claims), 36)
         provenance = json.loads((ROOT / "data/reviewed_claims.provenance.json").read_text(encoding="utf-8"))
         self.assertFalse(provenance["independentHumanReview"])
-        self.assertEqual(provenance["sourceSha256"],
+        self.assertEqual(provenance["currentSha256"],
                          hashlib.sha256((ROOT / "data/reviewed_claims.json").read_bytes()).hexdigest())
+        self.assertEqual(provenance["sourceSha256"], "05c2f1eca716a24723bad1ab39eea666d7e257ee34ebb6a1c6ac371e1ed4cb55")
+        self.assertFalse(provenance["guidanceProvenance"]["independentHumanReview"])
 
     def test_each_ysw_name_selects_only_its_own_evidence(self):
         claims = load_claims()

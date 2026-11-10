@@ -72,5 +72,218 @@
       "checkedUrl": "https://pubmed.ncbi.nlm.nih.gov/20448269/",
       "supportedScope": "skin-conditioning agent"
     }
-  ]
+  ],
+  "expansion20261110": [
+    {
+      "ingredient_en": "Hyaluronic Acid",
+      "aliases": [
+        "하이알루로닉애씨드",
+        "히알루론산"
+      ],
+      "evidenceIds": [
+        "GP_HA_0",
+        "GP_HA_1",
+        "GP_HA_2"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/inci/detail/6550/hyaluronic-acid/",
+      "supportedStatement": "수분을 붙잡는 보습 성분으로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Sodium Hyaluronate",
+      "aliases": [
+        "소듐하이알루로네이트"
+      ],
+      "evidenceIds": [
+        "GP_SH_0",
+        "GP_SH_1"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/pl/inci/szczegoly/14809/sodium-hyaluronate/",
+      "supportedStatement": "보습 및 피부 컨디셔닝 성분으로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Butylene Glycol",
+      "aliases": [
+        "부틸렌글라이콜",
+        "부틸렌글리콜"
+      ],
+      "evidenceIds": [
+        "GP_BG_0",
+        "GP_BG_1",
+        "GP_BG_2"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/inci/detail/2015/butylene-glycol/",
+      "supportedStatement": "수분 유지와 다른 성분을 녹이는 용도로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Betaine",
+      "aliases": [
+        "베타인"
+      ],
+      "evidenceIds": [
+        "GP_BT_0",
+        "GP_BT_1"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/fr/inci/ingredient/1648/betaine/",
+      "supportedStatement": "보습 및 피부 컨디셔닝 성분으로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Squalane",
+      "aliases": [
+        "스쿠알란"
+      ],
+      "evidenceIds": [
+        "GP_SQ_0",
+        "GP_SQ_1"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/inci/detail/15418/squalane/",
+      "supportedStatement": "피부를 부드럽게 하는 유연제로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Dimethicone",
+      "aliases": [
+        "다이메티콘",
+        "디메티콘"
+      ],
+      "evidenceIds": [
+        "GP_DM_0",
+        "GP_DM_1",
+        "GP_DM_2"
+      ],
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+      "supportedStatement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Petrolatum",
+      "aliases": [
+        "페트롤라툼"
+      ],
+      "evidenceIds": [
+        "GP_PT_0",
+        "GP_PT_1"
+      ],
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+      "supportedStatement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Mineral Oil",
+      "aliases": [
+        "미네랄오일"
+      ],
+      "evidenceIds": [
+        "GP_MO_0",
+        "GP_MO_1"
+      ],
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+      "supportedStatement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Simmondsia Chinensis (Jojoba) Seed Oil",
+      "aliases": [
+        "호호바씨오일"
+      ],
+      "evidenceIds": [
+        "GP_JO_0",
+        "GP_JO_1"
+      ],
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+      "supportedStatement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 오일입니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Butyrospermum Parkii (Shea) Butter",
+      "aliases": [
+        "시어버터"
+      ],
+      "evidenceIds": [
+        "GP_SB_0",
+        "GP_SB_1"
+      ],
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/",
+      "supportedStatement": "건조한 피부용 보습 제품에서 살펴볼 수 있는 성분입니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Ceramide NP",
+      "aliases": [
+        "세라마이드엔피",
+        "세라마이드 엔피"
+      ],
+      "evidenceIds": [
+        "GP_CN_0",
+        "GP_CN_1",
+        "GP_CN_2"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/inci/detail/25522/ceramide-np/",
+      "supportedStatement": "피부 컨디셔닝에 사용되는 지질 성분으로, 수분 손실을 줄이는 관리에 쓰입니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Niacinamide",
+      "aliases": [
+        "나이아신아마이드"
+      ],
+      "evidenceIds": [
+        "GP_NI_0",
+        "GP_NI_1"
+      ],
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/16596767/",
+      "supportedStatement": "피부 컨디셔닝 성분으로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    },
+    {
+      "ingredient_en": "Tocopherol",
+      "aliases": [
+        "토코페롤"
+      ],
+      "evidenceIds": [
+        "GP_TO_0",
+        "GP_TO_1"
+      ],
+      "sourceUrl": "https://cosmileeurope.eu/inci/detail/16234/tocopherol/",
+      "supportedStatement": "산화 방지 및 피부 컨디셔닝 성분으로 사용됩니다.",
+      "checkedAt": "2026-11-10",
+      "reviewer": "AI_assistant_source_crosscheck",
+      "independentHumanReview": false
+    }
+  ],
+  "guidanceProvenance": {
+    "file": "reviewed_guidance.json",
+    "checkedAt": "2026-11-10",
+    "independentHumanReview": false,
+    "reviewer": "AI_assistant_source_crosscheck",
+    "notes": "CIR/COSMILE function summaries; AAD/FDA conditional use guidance. No product safety score; exact aliases only; no generic alcohol substring matching. Niacinamide tone link has separate clinical source."
+  },
+  "currentSha256": "635df9b85a60dbc99232192ff10160e71c01680f4ee3b82662d7debd3833f68e"
 }

@@ -1,0 +1,331 @@
+{
+  "version": "2026-11-10",
+  "reviewer": "AI_assistant_source_crosscheck",
+  "independentHumanReview": false,
+  "scope": "general_function_and_conditional_label_guidance; no personal safety or mixture decision",
+  "helpful": [
+    {
+      "evidenceIds": [
+        "YSW_G001_EN",
+        "YSW_G001_KO",
+        "YSW_P001_EN",
+        "YSW_P001_KO"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_HA_0",
+        "GP_HA_1",
+        "GP_HA_2"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_SH_0",
+        "GP_SH_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_BG_0",
+        "GP_BG_1",
+        "GP_BG_2"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_BT_0",
+        "GP_BT_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_SQ_0",
+        "GP_SQ_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_DM_0",
+        "GP_DM_1",
+        "GP_DM_2"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_PT_0",
+        "GP_PT_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_MO_0",
+        "GP_MO_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_JO_0",
+        "GP_JO_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_SB_0",
+        "GP_SB_1"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_CN_0",
+        "GP_CN_1",
+        "GP_CN_2"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조"
+      ],
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+    },
+    {
+      "evidenceIds": [
+        "GP_NI_0",
+        "GP_NI_1"
+      ],
+      "concerns": [
+        "칙칙한 피부톤"
+      ],
+      "reason": "나이아신아마이드 함유 제형의 피부톤 관련 임상 연구가 있어 참고할 수 있어요. 연구의 농도·제형을 이 제품에서 확인한 것은 아니며 개인별 효과를 보장하지 않아요.",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/12100180/"
+    }
+  ],
+  "cautions": [
+    {
+      "evidenceId": "GP_CA_FRAGRANCE",
+      "aliases": [
+        "향료",
+        "Fragrance",
+        "Parfum",
+        "Perfume",
+        "Fragrance (Parfum)",
+        "Parfum (Fragrance)"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료에 민감하거나 향료 알레르기가 있다면 확인할 성분이에요. 포함됐다는 사실만으로 이 제품이 유해하거나 본인에게 알레르기를 일으킨다고 판단하지 않아요.",
+      "sourceUrl": "https://www.aad.org/public/diseases/eczema/types/contact-dermatitis/causes"
+    },
+    {
+      "evidenceId": "GP_CA_ETHANOL",
+      "aliases": [
+        "에탄올",
+        "변성알코올",
+        "Alcohol",
+        "Alcohol Denat.",
+        "Ethanol",
+        "SD Alcohol 40-B"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조",
+        "민감함",
+        "홍조"
+      ],
+      "skinTypes": [
+        "건성",
+        "민감성"
+      ],
+      "statement": "건조하거나 민감한 피부에서는 에탄올 계열 성분의 사용감을 확인해 주세요. 함량·제형에 따라 다르며 세테아릴알코올 같은 지방알코올과는 구분해요.",
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/"
+    },
+    {
+      "evidenceId": "GP_CA_RETINOL",
+      "aliases": [
+        "레티놀",
+        "Retinol",
+        "레티날",
+        "Retinal"
+      ],
+      "concerns": [
+        "건조함",
+        "속건조",
+        "민감함",
+        "홍조"
+      ],
+      "skinTypes": [
+        "건성",
+        "민감성"
+      ],
+      "statement": "레티노이드 계열은 건조하거나 민감한 피부에서 자극·건조감을 확인할 필요가 있어요. 제품 사용법을 따르고 불편감이 지속되면 사용을 멈추세요.",
+      "sourceUrl": "https://www.aad.org/public/everyday-care/skin-care-basics/dry/dermatologists-tips-relieve-dry-skin/"
+    },
+    {
+      "evidenceId": "GP_CA_AHA",
+      "aliases": [
+        "글라이콜릭애씨드",
+        "글리콜릭애씨드",
+        "Glycolic Acid",
+        "락틱애씨드",
+        "Lactic Acid"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "AHA 계열은 사용 농도·pH·제형에 따라 작용이 달라요. 제품의 각질 관리 사용법과 햇빛 차단 안내를 확인해 주세요. 전성분만으로 자극 여부를 확정할 수 없어요.",
+      "sourceUrl": "https://www.fda.gov/cosmetics/cosmetic-ingredients/alpha-hydroxy-acids"
+    },
+    {
+      "evidenceId": "GP_CA_BHA",
+      "aliases": [
+        "살리실릭애씨드",
+        "Salicylic Acid"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "살리실릭애씨드는 사용법과 국소 사용 시 반응을 확인해 주세요. 따가움·자극이 지속되면 사용을 멈추세요. 성분의 존재만으로 이 제품의 자극 정도를 정할 수 없어요.",
+      "sourceUrl": "https://www.fda.gov/cosmetics/cosmetic-ingredients/beta-hydroxy-acids"
+    },
+    {
+      "evidenceId": "GP_CA_LIMONENE",
+      "aliases": [
+        "Limonene",
+        "리모넨"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_LINALOOL",
+      "aliases": [
+        "Linalool",
+        "리날룰"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_CITRAL",
+      "aliases": [
+        "Citral",
+        "시트랄"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_GERANIOL",
+      "aliases": [
+        "Geraniol",
+        "제라니올"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_CITRONELLOL",
+      "aliases": [
+        "Citronellol",
+        "시트로넬올"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_COUMARIN",
+      "aliases": [
+        "Coumarin",
+        "쿠마린"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_EUGENOL",
+      "aliases": [
+        "Eugenol",
+        "유제놀"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    },
+    {
+      "evidenceId": "GP_CA_HEXYL_CINNAMAL",
+      "aliases": [
+        "Hexyl Cinnamal",
+        "헥실신남알"
+      ],
+      "concerns": [],
+      "skinTypes": [],
+      "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
+      "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    }
+  ]
+}

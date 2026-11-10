@@ -17,6 +17,7 @@ def build():
     values = {
         "SCHEMAS": schemas,
         "CLAIMS": json.loads((ROOT / "data/reviewed_claims.json").read_text(encoding="utf-8")),
+        "GUIDANCE": json.loads((ROOT / "data/reviewed_guidance.json").read_text(encoding="utf-8")),
         "EXTRACT_PROMPT": (ROOT / "prompts/extract.txt").read_text(encoding="utf-8"),
         "EXPLAIN_PROMPT": (ROOT / "prompts/explain.txt").read_text(encoding="utf-8"),
         "MOCK_EXTRACTION": json.loads((ROOT / "fixtures/mock_extraction.json").read_text(encoding="utf-8")),
