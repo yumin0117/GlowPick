@@ -39,6 +39,7 @@ jobs:
           npm ci --ignore-scripts
           npm run sync
       - name: Build installable demo APK and lint native wrapper
+        id: build
         working-directory: mobile/android
         run: |
           chmod +x gradlew
@@ -59,13 +60,13 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           script: |
             ./gradlew :app:connectedDebugAndroidTest --no-daemon
-            adb pull /sdcard/Android/data/io.github.yumin0117.glowpick/files/GlowPick-Android.png ../../GlowPick-Android.png
+            adb pull /sdcard/Download/GlowPick-Android.png ../../GlowPick-Android.png
       - name: Prepare APK and checksum
-        if: success()
+        if: always() && steps.build.outcome == 'success'
         run: |
           cp mobile/android/app/build/outputs/apk/debug/app-debug.apk GlowPick-Android-demo.apk
           sha256sum GlowPick-Android-demo.apk > GlowPick-Android-demo.apk.sha256
-      - name: Save verified classroom demo and test evidence
+      - name: Save classroom APK and test evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:

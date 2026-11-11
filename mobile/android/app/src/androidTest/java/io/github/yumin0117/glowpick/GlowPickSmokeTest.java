@@ -12,11 +12,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.webkit.WebView;
 import androidx.core.content.FileProvider;
 import androidx.test.core.app.ActivityScenario;
@@ -29,6 +31,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -102,7 +105,14 @@ public class GlowPickSmokeTest {
             await(scenario, "document.getElementById('tab-cosmetic').getAttribute('aria-selected') === 'true'");
             Bitmap screenshot = InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();
             assertNotNull(screenshot);
-            try (FileOutputStream stream = new FileOutputStream(new File(context.getExternalFilesDir(null), "GlowPick-Android.png"))) {
+            // Gradle uninstalls the app after testing, deleting its private/external-files dirs.
+            // A MediaStore Download survives that cleanup so CI can retrieve the proof image.
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Downloads.DISPLAY_NAME, "GlowPick-Android.png");
+            values.put(MediaStore.Downloads.MIME_TYPE, "image/png");
+            Uri proof = context.getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+            assertNotNull(proof);
+            try (OutputStream stream = context.getContentResolver().openOutputStream(proof)) {
                 assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG, 100, stream));
             }
             screenshot.recycle();
