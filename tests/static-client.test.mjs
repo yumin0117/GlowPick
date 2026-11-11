@@ -234,6 +234,35 @@ test("unknown, malformed and oversized error bodies retain HTTP classification a
   }
 });
 
+test("Google content blocks are not misreported as bad request configuration and are never retried", async () => {
+  for (const code of ["recitation", "safety", "spii", "content_blocked"]) {
+    const { run, calls } = setup([Response.json({ error: { code, message: `private content ${key}` } }, { status: 400 })]);
+    const out = await run();
+    assert.equal(out.ok, false);
+    assert.equal(out.error.code, "GEMINI_CONTENT_BLOCKED");
+    assert.equal(out.error.retryable, false);
+    assert.equal(out.meta.failure.httpStatus, 400);
+    assert.equal(out.meta.failure.providerCode, code);
+    assert.equal(calls.length, 1);
+    assert.doesNotMatch(JSON.stringify(out), /private content/u);
+    assert.ok(!JSON.stringify(out).includes(key));
+    if (code === "recitation") assert.match(out.error.message, /원문 재현 제한/u);
+  }
+});
+
+test("local explanation schema failures preserve successful HTTP status and identify validation", async () => {
+  const answer = explanation();
+  answer.ingredientNotes[0].explanation = "X".repeat(2001);
+  const { run, calls } = setup([extraction(), answer]);
+  const out = await run();
+  assert.equal(out.error.code, "MODEL_RESPONSE_INVALID");
+  assert.equal(out.meta.failure.stage, "explanation_validation");
+  assert.equal(out.meta.failure.httpStatus, 200);
+  assert.equal(out.meta.failure.providerCode, null);
+  assert.equal(out.meta.failure.extractionCompleted, true);
+  assert.equal(calls.length, 2);
+});
+
 test("malformed, incomplete, oversized and invalid JSON model responses fail", async () => {
   const answers = [
     new Response("not JSON"),

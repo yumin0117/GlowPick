@@ -192,7 +192,8 @@ async function run(kind) {
     if (!response.ok) {
       const failure = response.meta?.failure;
       const stages = { validation: "입력 확인", image_validation: "사진 확인", extraction: "전성분 판독",
-        explanation: "성분 설명", evidence_validation: "근거 확인" };
+        extraction_validation: "판독 응답 확인", explanation: "성분 설명",
+        explanation_validation: "설명 응답 확인", evidence_validation: "근거 확인" };
       const reasons = { schema_complexity: "출력 규격 복잡도", unsupported_parameter: "지원하지 않는 요청 설정",
         invalid_schema: "출력 규격 오류", token_limit: "토큰 한도", billing_precondition: "프로젝트 사용 조건",
         overloaded: "Google 처리 용량 부족" };
@@ -212,7 +213,7 @@ async function run(kind) {
       }
       // The client has already restricted this value to Google's documented codes.
       if (failure?.providerCode) message.dataset.providerCode = failure.providerCode;
-      const prefix = failure?.extractionCompleted === true && failure.stage === "explanation"
+      const prefix = failure?.extractionCompleted === true && ["explanation", "explanation_validation"].includes(failure.stage)
         ? "전성분 판독은 끝났지만 설명 생성에 실패했어요. " : "";
       throw new Error(`${prefix}${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · ${[...details, `요청 ${response.requestId || "-"}`].join(" · ")})`);
     }

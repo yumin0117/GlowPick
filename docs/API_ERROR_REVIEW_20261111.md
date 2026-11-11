@@ -22,7 +22,7 @@ API 오류 39개였다. 최초 검사 기록은 별도로 보존하며 재검사
 
 | 필드 | 값 |
 |---|---|
-| stage | validation / image_validation / extraction / explanation / evidence_validation |
+| stage | validation / image_validation / extraction / extraction_validation / explanation / explanation_validation / evidence_validation |
 | httpStatus | 실제 HTTP 상태 또는 null. 로컬 검증에는 생략 가능 |
 | providerCode | 공식 문서에 있는 Google 오류 코드만 허용, 나머지는 null |
 | reason | schema_complexity / unsupported_parameter / invalid_schema / token_limit / billing_precondition / overloaded 또는 null |
@@ -33,17 +33,30 @@ Google 오류 본문은 최대 64KB까지만 일시적으로 해석하고 원문
 출력하지 않는다. 메시지에서 분류한 reason은 진단 단서이며 독립적인 원인 확정이 아니다.
 HTTP 상태를 확인한 뒤 오류 본문 해석이 실패해도 기존 HTTP 오류 분류를 보존한다.
 
+Google의 문서화된 콘텐츠 차단 코드는 HTTP 400 요청 설정 오류와 구분해
+`GEMINI_CONTENT_BLOCKED`로 반환한다. `recitation`에는 원문 재현 제한 안내를 표시한다.
+정상 HTTP 응답 후 로컬 출력 검증에서 실패한 경우에도 실제 HTTP 상태와 검증 단계를 보존한다.
+
 화면에는 실패 단계·HTTP 상태·해당되는 원인 분류를 표시한다. 설명 요청 실패 시
 ‘전성분 판독은 끝났지만 설명 생성에 실패’했다고 알리며, 성공 리포트로 표시하지 않는다.
 자동 재시도·모델 전환·모의 결과 대체는 추가하지 않았다.
 
 ## 검증과 다음 확인
 
-- 프런트엔드 44개, 원문 비교 규칙 31개, Python 회귀 34개: 총 109개 통과.
+- 프런트엔드 46개, 원문 비교 규칙 31개, Python 회귀 34개: 총 111개 통과.
 - HTTP 400 규격 오류, HTTP 503 판독/설명 단계 구분, 악성·알 수 없는·비정상·과대
   오류 본문 비노출, 기존 오류 코드 유지, 설명 실패 시 성공 화면 비표시를 검사했다.
-- 실제 원인 확정은 수정본에서 실패 사진을 다시 제출해 확인해야 한다.
-  테스트 성공만으로 39건의 원인이 해결됐다고 주장하지 않는다.
+- 진단 빌드 `3ef2859` / HF `35c7a7f9db3e57543de5005abd416deaa5c9b920`에서
+  최초 실패 사진 39개를 같은 조건으로 1회씩 별도 재검사했다.
+- 이번 결과는 정상 완료 18개, HTTP 503·service_unavailable·overloaded 17개,
+  HTTP 400·recitation 3개(48·54·59번), 설명 출력 규격 오류 1개(76번)다.
+- 503 오류는 판독 요청 12개, 설명 요청 5개에서 발생했다. 76번은 판독 완료 뒤 설명
+  응답이 로컬 규격 검사에서 거절됐다. 해당 진단 빌드에는 검증 실패 시 HTTP 상태가
+  남지 않아 null로 저장됐고, 추가 수정본은 이를 보완했다.
+- 첫 HTTP 400 그룹은 3회 연속 거절 후 중단했다. recitation이라는 원인을 확인하고
+  이 3개 사진을 다시 보내지 않았다. 이후 최초 미분류 오류 35개는 별도 그룹으로 검사했다.
+- 테스트 성공이나 재검사 정상 응답을 근거로 과거 39건이 해결됐다고 주장하지 않는다.
+  이번 원인 분포는 이번 응답에 대한 분류이며 버린 과거 오류 본문을 복원한 것이 아니다.
 
 ## 공식 참고
 

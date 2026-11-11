@@ -104,6 +104,10 @@ async function readJson(response, maxBytes = 2_000_000) {
 
 // Keep categorical diagnostics only. Upstream messages may echo credentials,
 // user text or request data and must never enter our response, UI or logs.
+const CONTENT_BLOCKED_CODES = new Set([
+  "safety", "recitation", "language", "prohibited_content", "spii", "blocklist",
+  "image_safety", "image_prohibited_content", "image_recitation", "image_other", "content_blocked"
+]);
 const PROVIDER_CODES = new Set([
   "invalid_request", "failed_precondition", "out_of_range", "parameter_unknown", "authentication",
   "payment_required", "permission_denied", "not_found", "model_not_found", "already_exists", "aborted",
@@ -151,6 +155,11 @@ async function generate(apiKey, fetcher, timeoutMs, system, text, schema, image)
     diagnostics.httpStatus = response.status;
     if (!response.ok) {
       diagnostics = await upstreamDiagnostics(response);
+      if (CONTENT_BLOCKED_CODES.has(diagnostics.providerCode)) {
+        throw new BackendError("GEMINI_CONTENT_BLOCKED", diagnostics.providerCode === "recitation"
+          ? "Google의 원문 재현 제한으로 분석이 중단됐어요."
+          : "Google의 콘텐츠 제한으로 분석이 중단됐어요.");
+      }
       const errors = {
         400: ["GEMINI_REQUEST_REJECTED", "Gemini 요청 형식 또는 모델 설정을 확인해주세요."],
         401: ["GEMINI_AUTH_ERROR", "입력한 API 키를 확인해주세요."],
@@ -167,7 +176,7 @@ async function generate(apiKey, fetcher, timeoutMs, system, text, schema, image)
     const output = typeof body.output_text === "string" ? body.output_text
       : (body.steps || []).filter(step => step.type === "model_output").flatMap(step => step.content || [])
         .filter(part => part.type === "text").map(part => part.text || "").join("");
-    return JSON.parse(output);
+    return { value: JSON.parse(output), diagnostics };
   } catch (error) {
     let safe = error;
     if (!(error instanceof BackendError)) {
@@ -200,7 +209,7 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
         analysis: null, mixing: null, error: null, meta: { schemaVersion: "1.0", mode, isMock: mode === "mock",
           model: mode === "live" ? MODEL : null, promptVersion: PROMPT_VERSION, promptStatus: "final",
           timestamp: new Date(now()).toISOString(), transport: "browser-direct" } };
-      let acquired = false, stage = "validation";
+      let acquired = false, stage = "validation", lastDiagnostics;
       try {
         if (!["/analyze_cosmetic", "/consult_modeling_pack"].includes(endpoint)) throw new BackendError("INVALID_INPUT", "API 작업 이름을 확인해주세요.");
         validate(request, SCHEMAS.UserInput, SCHEMAS.UserInput, "INVALID_INPUT");
@@ -221,8 +230,11 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
         } else {
           const image = { mime, base64: await encodeImage(file) };
           stage = "extraction";
-          result.extraction = validateExtraction(await generate(apiKey, fetcher, timeoutMs, EXTRACT_PROMPT,
-            "첨부 이미지의 전성분을 판독하세요. 제품 정답표·사용자 피부정보는 판독에 제공하지 않습니다.", SCHEMAS.Extraction, image), SCHEMAS.Extraction);
+          const generated = await generate(apiKey, fetcher, timeoutMs, EXTRACT_PROMPT,
+            "첨부 이미지의 전성분을 판독하세요. 제품 정답표·사용자 피부정보는 판독에 제공하지 않습니다.", SCHEMAS.Extraction, image);
+          stage = "extraction_validation";
+          lastDiagnostics = generated.diagnostics;
+          result.extraction = validateExtraction(generated.value, SCHEMAS.Extraction);
         }
         const extraction = result.extraction;
         const names = new Set(extraction.ingredients.map(normalizeIngredient));
@@ -236,7 +248,11 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
           const payload = { ingredients: extraction.ingredients, skinType: context.skinType, concerns: context.concerns,
             extraConcern: context.extraConcern, notes: context.notes, approvedClaims: selected };
           stage = "explanation";
-          const analysis = validate(await generate(apiKey, fetcher, timeoutMs, EXPLAIN_PROMPT, JSON.stringify(payload), SCHEMAS.ModelAnalysis), SCHEMAS.ModelAnalysis);
+          lastDiagnostics = undefined;
+          const generated = await generate(apiKey, fetcher, timeoutMs, EXPLAIN_PROMPT, JSON.stringify(payload), SCHEMAS.ModelAnalysis);
+          stage = "explanation_validation";
+          lastDiagnostics = generated.diagnostics;
+          const analysis = validate(generated.value, SCHEMAS.ModelAnalysis);
           stage = "evidence_validation";
           const evidence = new Map(selected.map(claim => [claim.evidenceId, claim]));
           for (const note of analysis.ingredientNotes) {
@@ -255,7 +271,7 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
       } catch (error) {
         const safe = error instanceof BackendError ? error : new BackendError("INTERNAL_ERROR", "처리에 실패했습니다. 요청 번호와 오류 코드를 담당자에게 알려주세요.");
         result.error = { code: safe.code, message: safe.message, retryable: safe.retryable };
-        result.meta.failure = { stage, ...safe.diagnostics, extractionCompleted: result.extraction?.status === "complete" };
+        result.meta.failure = { stage, ...(safe.diagnostics || lastDiagnostics), extractionCompleted: result.extraction?.status === "complete" };
       } finally {
         // Best-effort reference release; JavaScript cannot promise a secure memory wipe.
         apiKey = "";
