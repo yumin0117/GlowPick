@@ -18,6 +18,8 @@ pinned: false
 
 실행 주소: [GlowPick Space](https://huggingface.co/spaces/yumin0601/GlowPick) · [전체 화면](https://yumin0601-glowpick.static.hf.space/index.html)
 
+수업 시연용 Android APK 프로젝트와 설치·빌드 방법은 [mobile/README.md](mobile/README.md)에 있습니다.
+
 최종 통합 기준은 mj `10ad5e7`, UI 원본은 ym `fc9c36b`, 데이터 원본은 ysw `26d4fbc`, 최종 프롬프트는 kyoungmin_oh `188d69d`입니다. 이번 통합의 배포·실호출 상태는 `docs/FINAL_INTEGRATION.md`에서 별도로 기록합니다.
 
 ## 사용
