@@ -6,6 +6,8 @@ import static androidx.test.espresso.web.webdriver.DriverAtoms.findElement;
 import static androidx.test.espresso.web.webdriver.DriverAtoms.webClick;
 import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -15,9 +17,13 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.SystemClock;
+import android.webkit.WebView;
 import androidx.core.content.FileProvider;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
+import androidx.test.espresso.action.GeneralClickAction;
+import androidx.test.espresso.action.Press;
+import androidx.test.espresso.action.Tap;
 import androidx.test.espresso.web.webdriver.Locator;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -27,6 +33,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONTokener;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -52,6 +59,18 @@ public class GlowPickSmokeTest {
         fail("Web screen condition not met: " + expression);
     }
 
+    // File inputs require genuine user activation; WebDriver's JS click cannot grant it.
+    private void tapFileChooser(ActivityScenario<MainActivity> scenario) throws Exception {
+        read(scenario, "(()=>{document.getElementById('cosmeticChoose').scrollIntoView({block:'center',behavior:'instant'});return true})()");
+        JSONObject rect = (JSONObject) read(scenario, "(()=>{const r=document.getElementById('cosmeticChoose').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2,scale:devicePixelRatio}})()");
+        float cssX = (float) rect.getDouble("x"), cssY = (float) rect.getDouble("y");
+        float scale = (float) rect.getDouble("scale");
+        onView(isAssignableFrom(WebView.class)).perform(new GeneralClickAction(Tap.SINGLE, view -> {
+            int[] position = new int[2]; view.getLocationOnScreen(position);
+            return new float[]{position[0] + cssX * scale, position[1] + cssY * scale};
+        }, Press.FINGER));
+    }
+
     @Test public void bundledScreenPhotoPickerTabsAndKeyGuardWork() throws Exception {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         File photo = new File(context.getCacheDir(), "upload-check.png");
@@ -71,7 +90,7 @@ public class GlowPickSmokeTest {
             assertTrue(Boolean.TRUE.equals(read(scenario, "document.getElementById('geminiApiKey').value.length === 0")));
             intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(new Instrumentation.ActivityResult(
                 Activity.RESULT_OK, new Intent().setData(uri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)));
-            onWebView().withElement(findElement(Locator.ID, "cosmeticChoose")).perform(webClick());
+            tapFileChooser(scenario);
             await(scenario, "document.getElementById('cosmeticFileName').textContent === 'upload-check.png'");
             await(scenario, "document.getElementById('cosmeticPreviewImage').naturalWidth === 64");
             onWebView().withElement(findElement(Locator.CSS_SELECTOR, "#cosmeticConcerns label:nth-child(3)")).perform(webClick());
