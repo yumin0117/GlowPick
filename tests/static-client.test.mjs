@@ -185,6 +185,55 @@ test("network exception never exposes its sensitive text", async () => {
   assert.ok(!JSON.stringify(out).includes(key));
 });
 
+test("HTTP diagnostics distinguish extraction and explanation without exposing upstream text", async () => {
+  for (const stage of ["extraction", "explanation"]) {
+    const upstream = Response.json({ error: { code: "service_unavailable", message: `Overloaded: ${key} private user text` } },
+      { status: 503, headers: { "retry-after": "30" } });
+    const { run, calls } = setup(stage === "extraction" ? [upstream] : [extraction(), upstream]);
+    const out = await run();
+    assert.equal(out.ok, false);
+    assert.equal(out.error.code, "GEMINI_UNAVAILABLE");
+    assert.deepEqual(out.meta.failure, { stage, httpStatus: 503, providerCode: "service_unavailable",
+      reason: "overloaded", retryAfterSeconds: 30, extractionCompleted: stage === "explanation" });
+    assert.equal(calls.length, stage === "extraction" ? 1 : 2);
+    if (stage === "explanation") assert.equal(out.extraction.status, "complete");
+    assert.doesNotMatch(JSON.stringify(out), /private user text|Overloaded:/u);
+    assert.ok(!JSON.stringify(out).includes(key));
+  }
+});
+
+test("400 diagnostics identify categorical request problems without storing echoed fields", async () => {
+  for (const [message, reason, providerCode] of [
+    [`Too many states for schema. ${key}`, "schema_complexity", "invalid_request"],
+    [`Unknown parameter ${key}`, "unsupported_parameter", "parameter_unknown"],
+    [`Invalid response schema ${key}`, "invalid_schema", "invalid_request"]
+  ]) {
+    const { run, calls } = setup([Response.json({ error: { code: providerCode, message } }, { status: 400 })]);
+    const out = await run();
+    assert.equal(out.error.code, "GEMINI_REQUEST_REJECTED");
+    assert.equal(out.meta.failure.reason, reason);
+    assert.equal(out.meta.failure.providerCode, providerCode);
+    assert.equal(calls.length, 1);
+    assert.ok(!JSON.stringify(out).includes(key));
+  }
+});
+
+test("unknown, malformed and oversized error bodies retain HTTP classification and remain private", async () => {
+  for (const response of [
+    Response.json({ error: { code: key, message: key } }, { status: 500, headers: { "retry-after": key } }),
+    new Response(`<html>${key}</html>`, { status: 502 }),
+    new Response("X".repeat(64_001), { status: 503 })
+  ]) {
+    const { run } = setup([response]);
+    const out = await run();
+    assert.equal(out.error.code, "GEMINI_UNAVAILABLE");
+    assert.equal(out.meta.failure.httpStatus, response.status);
+    assert.equal(out.meta.failure.providerCode, null);
+    assert.equal(out.meta.failure.retryAfterSeconds, null);
+    assert.ok(!JSON.stringify(out).includes(key));
+  }
+});
+
 test("malformed, incomplete, oversized and invalid JSON model responses fail", async () => {
   const answers = [
     new Response("not JSON"),

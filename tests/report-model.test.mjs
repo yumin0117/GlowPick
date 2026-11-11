@@ -116,5 +116,4 @@ test("GUI uses shared API modules and safe text rendering rather than duplicatin
   assert.match(script, /from "\.\/api-client\.js"/u);
   assert.match(script, /from "\.\/report-model\.js"/u);
   assert.doesNotMatch(script, /fetch\(|const EXTRACT_PROMPT|const claims|\.innerHTML/u);
-  assert.match(script, /if \(!response\.ok\) throw/u);
 });

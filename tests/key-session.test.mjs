@@ -12,6 +12,7 @@ class Element {
     const classes = new Set();
     this.classList = {
       add: name => classes.add(name), remove: name => classes.delete(name),
+      contains: name => classes.has(name),
       toggle: (name, enabled) => enabled ? classes.add(name) : classes.delete(name)
     };
   }
@@ -116,4 +117,23 @@ test("navigation and page restoration clear the key; users can change or remove 
   windows.get("pageshow")();
   assert.equal(get("geminiApiKey").value, "");
   assert.equal(get("geminiApiKey").type, "password");
+});
+
+test("explanation failure shows its stage and HTTP status without presenting a completed report", async () => {
+  const { get } = await setup({ ok: false, requestId: "synthetic-request", error: {
+    code: "GEMINI_UNAVAILABLE", message: "Gemini 요청에 실패했습니다." }, meta: { failure: {
+    stage: "explanation", httpStatus: 503, providerCode: "service_unavailable",
+    reason: "overloaded", extractionCompleted: true } } });
+  get("geminiApiKey").value = "synthetic-current-tab-key";
+  await get("cosmeticAnalyze").fire("click");
+  const message = get("cosmeticMessage");
+  assert.match(message.textContent, /전성분 판독은 끝났지만 설명 생성에 실패/u);
+  assert.match(message.textContent, /성분 설명 · HTTP 503 · Google 처리 용량 부족/u);
+  assert.equal(message.dataset.failureStage, "explanation");
+  assert.equal(message.dataset.httpStatus, "503");
+  assert.equal(message.dataset.providerCode, "service_unavailable");
+  assert.equal(get("results").classList.contains("hidden"), true);
+  await get("cosmeticFile").fire("change");
+  assert.equal(message.dataset.failureStage, undefined);
+  assert.equal(message.dataset.httpStatus, undefined);
 });

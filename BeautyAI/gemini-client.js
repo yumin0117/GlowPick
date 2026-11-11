@@ -81,7 +81,7 @@ export async function validateImage(file, decodeImage = browserDecode) {
   return mime;
 }
 
-async function readJson(response) {
+async function readJson(response, maxBytes = 2_000_000) {
   const reader = response.body?.getReader();
   if (!reader) throw new BackendError("MODEL_RESPONSE_INVALID", "Gemini 응답이 비어 있습니다.");
   let size = 0;
@@ -91,7 +91,7 @@ async function readJson(response) {
       const { done, value } = await reader.read();
       if (done) break;
       size += value.byteLength;
-      if (size > 2_000_000) {
+      if (size > maxBytes) {
         await reader.cancel();
         throw new BackendError("MODEL_RESPONSE_INVALID", "모델 응답이 허용 크기를 넘었습니다.");
       }
@@ -102,11 +102,44 @@ async function readJson(response) {
   } finally { reader.releaseLock(); }
 }
 
+// Keep categorical diagnostics only. Upstream messages may echo credentials,
+// user text or request data and must never enter our response, UI or logs.
+const PROVIDER_CODES = new Set([
+  "invalid_request", "failed_precondition", "out_of_range", "parameter_unknown", "authentication",
+  "payment_required", "permission_denied", "not_found", "model_not_found", "already_exists", "aborted",
+  "rate_limit_exceeded", "quota_exceeded", "too_many_requests", "cancelled", "api_error", "unimplemented",
+  "service_unavailable", "deadline_exceeded", "safety", "recitation", "language", "prohibited_content",
+  "spii", "blocklist", "image_safety", "image_prohibited_content", "image_recitation", "image_other",
+  "content_blocked", "malformed_function_call", "malformed_tool_call", "unexpected_tool_call",
+  "no_image", "too_many_tool_calls", "missing_thought_signature"
+]);
+
+async function upstreamDiagnostics(response) {
+  let body;
+  try { body = await readJson(response, 64_000); } catch { /* HTTP status remains authoritative. */ }
+  const error = body?.error;
+  const providerCode = PROVIDER_CODES.has(error?.code) ? error.code : null;
+  const message = typeof error?.message === "string" ? error.message.toLowerCase() : "";
+  const categories = [
+    ["schema_complexity", /too many states|schema.{0,80}(?:too complex|complexity)|(?:too complex|complexity).{0,80}schema/u],
+    ["unsupported_parameter", /unknown (?:name|field|parameter)|unrecognized (?:field|parameter)|unsupported parameter/u],
+    ["invalid_schema", /invalid.{0,40}schema|schema.{0,40}invalid/u],
+    ["token_limit", /token.{0,40}(?:limit|exceed)|(?:limit|exceed).{0,40}token/u],
+    ["billing_precondition", /billing/u],
+    ["overloaded", /overloaded|high demand|capacity/u]
+  ];
+  const reason = categories.find(([, pattern]) => pattern.test(message))?.[0] || null;
+  const retryAfter = response.headers.get("retry-after");
+  const retryAfterSeconds = /^\d{1,5}$/u.test(retryAfter || "") ? Number(retryAfter) : null;
+  return { httpStatus: response.status, providerCode, reason, retryAfterSeconds };
+}
+
 async function generate(apiKey, fetcher, timeoutMs, system, text, schema, image) {
   const input = [{ type: "text", text }];
   if (image) input.push({ type: "image", mime_type: image.mime, data: image.base64 });
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
+  let diagnostics = { httpStatus: null, providerCode: null, reason: null, retryAfterSeconds: null };
   try {
     const response = await fetcher(GEMINI_URL, {
       method: "POST", signal: controller.signal, credentials: "omit", referrerPolicy: "no-referrer", cache: "no-store",
@@ -115,8 +148,9 @@ async function generate(apiKey, fetcher, timeoutMs, system, text, schema, image)
         response_format: { type: "text", mime_type: "application/json", schema: generationSchema(schema) },
         generation_config: { max_output_tokens: 6000 } })
     });
+    diagnostics.httpStatus = response.status;
     if (!response.ok) {
-      await response.body?.cancel();
+      diagnostics = await upstreamDiagnostics(response);
       const errors = {
         400: ["GEMINI_REQUEST_REJECTED", "Gemini 요청 형식 또는 모델 설정을 확인해주세요."],
         401: ["GEMINI_AUTH_ERROR", "입력한 API 키를 확인해주세요."],
@@ -135,10 +169,14 @@ async function generate(apiKey, fetcher, timeoutMs, system, text, schema, image)
         .filter(part => part.type === "text").map(part => part.text || "").join("");
     return JSON.parse(output);
   } catch (error) {
-    if (error instanceof BackendError) throw error;
-    if (error instanceof SyntaxError) throw new BackendError("MODEL_RESPONSE_INVALID", "모델이 약속한 JSON 객체를 반환하지 않았습니다.");
-    if (controller.signal.aborted) throw new BackendError("UPSTREAM_TIMEOUT", "Gemini 응답 시간이 초과되었습니다.", true);
-    throw new BackendError("NETWORK_ERROR", "Gemini에 연결하지 못했습니다. 네트워크와 브라우저 연결 허용을 확인해주세요.", true);
+    let safe = error;
+    if (!(error instanceof BackendError)) {
+      if (error instanceof SyntaxError) safe = new BackendError("MODEL_RESPONSE_INVALID", "모델이 약속한 JSON 객체를 반환하지 않았습니다.");
+      else if (controller.signal.aborted) safe = new BackendError("UPSTREAM_TIMEOUT", "Gemini 응답 시간이 초과되었습니다.", true);
+      else safe = new BackendError("NETWORK_ERROR", "Gemini에 연결하지 못했습니다. 네트워크와 브라우저 연결 허용을 확인해주세요.", true);
+    }
+    safe.diagnostics = diagnostics;
+    throw safe;
   } finally { clearTimeout(timer); }
 }
 
@@ -162,7 +200,7 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
         analysis: null, mixing: null, error: null, meta: { schemaVersion: "1.0", mode, isMock: mode === "mock",
           model: mode === "live" ? MODEL : null, promptVersion: PROMPT_VERSION, promptStatus: "final",
           timestamp: new Date(now()).toISOString(), transport: "browser-direct" } };
-      let acquired = false;
+      let acquired = false, stage = "validation";
       try {
         if (!["/analyze_cosmetic", "/consult_modeling_pack"].includes(endpoint)) throw new BackendError("INVALID_INPUT", "API 작업 이름을 확인해주세요.");
         validate(request, SCHEMAS.UserInput, SCHEMAS.UserInput, "INVALID_INPUT");
@@ -174,6 +212,7 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
         events = events.filter(event => now() - event < 60000);
         if (events.length >= 6) throw new BackendError("SERVER_BUSY", "이 탭의 분당 요청 한도입니다. 잠시 후 다시 시도해주세요.", true);
         active = true; acquired = true;
+        stage = "image_validation";
         const mime = await validateImage(file, decodeImage);
         events.push(now());
         if (mode === "mock") {
@@ -181,6 +220,7 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
           result.meta.notice = "모의 연동 시험입니다. 업로드한 사진을 AI로 판독하지 않았습니다.";
         } else {
           const image = { mime, base64: await encodeImage(file) };
+          stage = "extraction";
           result.extraction = validateExtraction(await generate(apiKey, fetcher, timeoutMs, EXTRACT_PROMPT,
             "첨부 이미지의 전성분을 판독하세요. 제품 정답표·사용자 피부정보는 판독에 제공하지 않습니다.", SCHEMAS.Extraction, image), SCHEMAS.Extraction);
         }
@@ -195,7 +235,9 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
         } else {
           const payload = { ingredients: extraction.ingredients, skinType: context.skinType, concerns: context.concerns,
             extraConcern: context.extraConcern, notes: context.notes, approvedClaims: selected };
+          stage = "explanation";
           const analysis = validate(await generate(apiKey, fetcher, timeoutMs, EXPLAIN_PROMPT, JSON.stringify(payload), SCHEMAS.ModelAnalysis), SCHEMAS.ModelAnalysis);
+          stage = "evidence_validation";
           const evidence = new Map(selected.map(claim => [claim.evidenceId, claim]));
           for (const note of analysis.ingredientNotes) {
             if (!names.has(normalizeIngredient(note.ingredient))) throw new BackendError("EVIDENCE_VALIDATION_FAILED", "설명에 판독되지 않은 성분이 포함되어 있습니다.");
@@ -213,6 +255,7 @@ export function createStaticClient({ fetcher = fetch, decodeImage = browserDecod
       } catch (error) {
         const safe = error instanceof BackendError ? error : new BackendError("INTERNAL_ERROR", "처리에 실패했습니다. 요청 번호와 오류 코드를 담당자에게 알려주세요.");
         result.error = { code: safe.code, message: safe.message, retryable: safe.retryable };
+        result.meta.failure = { stage, ...safe.diagnostics, extractionCompleted: result.extraction?.status === "complete" };
       } finally {
         // Best-effort reference release; JavaScript cannot promise a secure memory wipe.
         apiKey = "";

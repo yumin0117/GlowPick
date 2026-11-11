@@ -27,8 +27,11 @@ function clearReport() {
   $("copyReport").textContent = "결과 복사 ↗";
 }
 function clearMessages() {
-  $("cosmeticMessage").textContent = "";
-  $("packMessage").textContent = "";
+  for (const id of ["cosmeticMessage", "packMessage"]) {
+    $(id).textContent = "";
+    for (const name of ["failureStage", "httpStatus", "providerCode", "failureReason", "extractionCompleted"])
+      delete $(id).dataset[name];
+  }
 }
 function maskApiKey() {
   $("geminiApiKey").type = "password";
@@ -186,7 +189,33 @@ async function run(kind) {
   message.textContent = "Gemini가 사진을 확인하고 있어요. 전성분 판독에 시간이 걸릴 수 있어요…";
   try {
     const response = await analyze(kind === "cosmetic" ? "/analyze_cosmetic" : "/consult_modeling_pack", file, input, key);
-    if (!response.ok) throw new Error(`${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · 요청 ${response.requestId || "-"})`);
+    if (!response.ok) {
+      const failure = response.meta?.failure;
+      const stages = { validation: "입력 확인", image_validation: "사진 확인", extraction: "전성분 판독",
+        explanation: "성분 설명", evidence_validation: "근거 확인" };
+      const reasons = { schema_complexity: "출력 규격 복잡도", unsupported_parameter: "지원하지 않는 요청 설정",
+        invalid_schema: "출력 규격 오류", token_limit: "토큰 한도", billing_precondition: "프로젝트 사용 조건",
+        overloaded: "Google 처리 용량 부족" };
+      const details = [];
+      if (stages[failure?.stage]) {
+        details.push(stages[failure.stage]);
+        message.dataset.failureStage = failure.stage;
+        message.dataset.extractionCompleted = String(failure.extractionCompleted === true);
+      }
+      if (Number.isInteger(failure?.httpStatus) && failure.httpStatus >= 100 && failure.httpStatus <= 599) {
+        details.push(`HTTP ${failure.httpStatus}`);
+        message.dataset.httpStatus = String(failure.httpStatus);
+      }
+      if (reasons[failure?.reason]) {
+        details.push(reasons[failure.reason]);
+        message.dataset.failureReason = failure.reason;
+      }
+      // The client has already restricted this value to Google's documented codes.
+      if (failure?.providerCode) message.dataset.providerCode = failure.providerCode;
+      const prefix = failure?.extractionCompleted === true && failure.stage === "explanation"
+        ? "전성분 판독은 끝났지만 설명 생성에 실패했어요. " : "";
+      throw new Error(`${prefix}${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · ${[...details, `요청 ${response.requestId || "-"}`].join(" · ")})`);
+    }
     renderReport(kind, input, response);
     message.textContent = response.meta?.isMock ? "모의 연동 시험 결과예요. 실제 판독 결과로 사용하지 마세요."
       : response.extraction.status === "complete" ? "성분 판독이 완료됐어요. 아래 결과를 확인해 주세요." : "사진 판독 안내를 확인해 주세요.";

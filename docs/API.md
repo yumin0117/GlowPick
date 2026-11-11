@@ -13,8 +13,8 @@
 위 문자열은 작업 구분 이름이며 실제 원격 서버 URL이 아닙니다.
 실제 요청 목적지는 https://generativelanguage.googleapis.com/v1beta/interactions 하나입니다.
 키는 x-goog-api-key 헤더로 전달하며 쿼리·본문·응답에 포함하지 않습니다.
-입력창은 script.js에서 analyze 호출 전 비우고, finally에서 참조를 해제합니다.
-키를 모듈 전역 상태나 저장소에 보관하지 않습니다. 다음 요청에는 키를 다시 전달해야 합니다.
+입력창은 현재 탭에서 유지하며 요청마다 analyze에 키를 전달합니다. 요청의 로컬 참조는 finally에서 해제합니다.
+새로고침·페이지 이동·탭 닫기 시 입력 키를 지우며 브라우저 저장소에는 보관하지 않습니다.
 
 ## 입력
 
@@ -60,6 +60,9 @@ reference_only에는 sources와 적용 범위 notice가 있습니다.
 ## 오류·한도
 
 error는 {code, message, retryable}입니다. 상위 오류 본문·키를 화면이나 로그에 반환하지 않습니다.
+오류 시 meta.failure에 실패 단계·실제 HTTP 상태·허용 목록의 Google 오류 코드·분류된 원인·
+숫자 Retry-After·판독 완료 여부를 추가합니다. 상위 메시지는 복사하지 않습니다.
+상세 규격과 과거 39건의 추적 한계: [API_ERROR_REVIEW_20261111.md](API_ERROR_REVIEW_20261111.md).
 KEY_REQUIRED, INVALID_INPUT, IMAGE_REQUIRED, INVALID_IMAGE, UNSUPPORTED_IMAGE, IMAGE_TOO_LARGE,
 MODEL_RESPONSE_INVALID, MODEL_INCOMPLETE, EVIDENCE_VALIDATION_FAILED,
 GEMINI_REQUEST_REJECTED, GEMINI_AUTH_ERROR, MODEL_NOT_FOUND, BILLING_CONFIGURATION_ERROR,
