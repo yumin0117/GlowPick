@@ -26,6 +26,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: gradle
       - name: Verify shared web behavior
         run: node --test tests/static-client.test.mjs tests/report-model.test.mjs tests/key-session.test.mjs tests/ingredient-guidance.test.mjs
       - name: Install pinned app tooling and bundle public assets
@@ -49,10 +50,10 @@ jobs:
           api-level: 35
           arch: x86_64
           profile: pixel_6
+          working-directory: mobile/android
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           script: |
-            cd mobile/android
             ./gradlew connectedDebugAndroidTest --no-daemon
             adb pull /sdcard/Android/data/io.github.yumin0117.glowpick/files/GlowPick-Android.png ../../GlowPick-Android.png
       - name: Prepare APK and checksum
