@@ -26,7 +26,9 @@ const elements=new Map([...html.matchAll(/\bid="([^"]+)"/gu)].map(([,id])=>[id,n
 const context=vm.createContext({URL,console,setTimeout,clearTimeout,document:{getElementById:id=>elements.get(id),
   createElement:()=>new Element(),querySelectorAll:()=>[],querySelector:()=>null},window:{addEventListener(){}}});
 vm.runInContext(script,context);
-for(const kind of ['cosmetic','pack'])for(const concerns of [['건조함'],['여드름'],['건조함','여드름'],['모공']]){
+const singleConcerns=['건조함','속건조','여드름','트러블','민감함','홍조','피부 열감','모공','피지','칙칙한 피부톤','탄력','주름'];
+const scenarios=[...singleConcerns.map(c=>[c]),['건조함','여드름'],['건조함','주름'],['피지','민감함'],singleConcerns];
+for(const kind of ['cosmetic','pack'])for(const concerns of scenarios){
   const input={skinType:'잘 모르겠음',concerns,mixStatus:'unknown'};
   context.fixture={kind,input,extraction:{status:'complete',ingredients:['글리세린'],warnings:[],uncertainSpans:[],nextAction:'',rawText:'글리세린'},
     analysis:{status:'needs_evidence',summary:'UI fixture',ingredientNotes:[],warnings:[]}};
@@ -40,4 +42,4 @@ for(const kind of ['cosmetic','pack'])for(const concerns of [['건조함'],['여
   assert.ok(elements.get('recommendationBox').classList.contains('hidden'));
   assert.equal(elements.get('recommendationList').children.length,0);
 }
-console.log('ym: standalone syntax, unchanged original API code, 8 recommendation scenarios and partial-state clearing passed.');
+console.log(`ym: standalone syntax, unchanged original API code, ${2*scenarios.length} recommendation scenarios and partial-state clearing passed.`);

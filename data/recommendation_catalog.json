@@ -1,11 +1,15 @@
 {
-  "version": "2026-11-12",
+  "version": "2026-11-12-all-concerns-oliveyoung",
+  "retailerPreference": "oliveyoung_kr",
   "reviewStatus": "manufacturer_information_checked",
   "independentHumanReview": false,
   "scope": "concern-matched product candidates; no acne treatment, personal suitability, or mixing approval",
   "goals": [
     {"id": "hydration", "label": "보습", "concerns": ["건조함", "속건조"]},
-    {"id": "soothing", "label": "진정 관리", "concerns": ["여드름", "트러블", "민감함", "홍조"]}
+    {"id": "soothing", "label": "진정 관리", "concerns": ["여드름", "트러블", "민감함", "홍조", "피부 열감"]},
+    {"id": "pore_balance", "label": "모공·번들거림 관리", "concerns": ["모공", "피지"]},
+    {"id": "brightening", "label": "피부톤 관리", "concerns": ["칙칙한 피부톤"]},
+    {"id": "firming", "label": "탄력·잔주름 관리", "concerns": ["탄력", "주름"]}
   ],
   "products": [
     {
@@ -14,6 +18,8 @@
       "name": "원더 히알루론산 촉촉 앰플",
       "type": "앰플",
       "goals": ["hydration"],
+      "attentionConcerns": ["민감함", "홍조", "피부 열감"],
+      "attentionReason": "식물 오일이 표기되어 있어요. 민감함·홍조·열감이 고민이면 개인별 반응을 먼저 확인해 주세요.",
       "reasons": {"hydration": "공식 제품 정보에서 수분 관리용으로 안내하고, 글리세린·베타인·소듐하이알루로네이트가 표기되어 있어 보습 후보로 골랐어요."},
       "keyIngredients": ["글리세린", "베타인", "소듐하이알루로네이트 (330ppm)"],
       "ingredients": ["정제수", "글리세린", "다이프로필렌글라이콜", "메틸프로판다이올", "글리세레스-26", "부틸렌글라이콜", "하이드록시아세토페논", "1,2-헥산다이올", "알지닌", "프로판다이올", "폴리글리세릴-10라우레이트", "베타인", "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머", "알란토인", "카보머", "글리세릴아크릴레이트/아크릴릭애씨드코폴리머", "해수", "병풀추출물", "에틸헥실글리세린", "피브이엠/엠에이코폴리머", "쇠비름추출물", "소듐하이알루로네이트 (330ppm)", "다이소듐이디티에이", "마트리카리아꽃추출물", "체이스트트리추출물", "로즈마리잎오일", "말라카이트추출물", "서양배추출물", "다마스크장미꽃수", "오리스뿌리추출물", "멜론추출물", "하이드롤라이즈드소듐하이알루로네이트 (20ppm)", "서양송악잎/줄기추출물", "하이알루로닉애씨드 (10ppm)", "판테놀", "하이드롤라이즈드하이알루로닉애씨드 (1ppm)", "하이드록시프로필트라이모늄하이알루로네이트 (1ppm)", "소듐아세틸레이티드하이알루로네이트 (200ppb)", "소듐하이알루로네이트크로스폴리머 (10ppb)", "포타슘하이알루로네이트 (2ppb)"],
@@ -25,6 +31,7 @@
     },
     {
       "id": "skin1004-centella-ampoule",
+      "oliveYoung": {"status": "listing_confirmed", "goodsNo": "A000000161581", "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000161581", "title": "스킨1004 마다가스카르 센텔라 앰플 55ml", "checkedAt": "2026-11-12", "matchScope": "product_name_only"},
       "brand": "스킨1004",
       "name": "마다가스카르 센텔라 앰플",
       "type": "앰플",
@@ -43,16 +50,94 @@
     },
     {
       "id": "aestura-acica365-serum-ph45",
+      "oliveYoung": {"status": "listing_confirmed", "goodsNo": "A000000222839", "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000222839", "title": "에스트라 에이시카365 흔적진정세럼 pH4.5 40ml 기획", "checkedAt": "2026-11-12", "matchScope": "product_name_only"},
       "brand": "에스트라",
       "name": "에이시카365 흔적진정세럼 pH4.5",
       "type": "세럼",
       "goals": ["soothing"],
+      "attentionConcerns": ["건조함", "속건조", "민감함", "홍조", "피부 열감"],
+      "attentionReason": "글루코노락톤(PHA) 함유 제품이에요. 건조함·민감함이 함께 고민이면 제조사 사용법과 개인별 반응을 먼저 확인해 주세요.",
       "reasons": {"soothing": "제조사가 외부 자극으로 민감해진 피부의 진정 관리를 안내하는 세럼이에요. 여드름 치료 제품으로 추천하는 것은 아니에요."},
       "keyIngredients": ["글리세린", "아시아티코사이드", "마데카소사이드"],
       "ingredients": ["정제수", "글리세린", "부틸렌글라이콜", "다이프로필렌글라이콜", "베타인", "나이아신아마이드", "글루코노락톤", "1,2-헥산다이올", "다이에톡시에틸석시네이트", "트로메타민", "수크로오스스테아레이트", "스쿠알란", "하이드로제네이티드레시틴", "폴리글리세릴-10스테아레이트", "폴리글리세릴-10라우레이트", "카보머", "카프릴릴메티콘", "폴리아크릴레이트크로스폴리머-6", "에틸헥실글리세린", "콜레스테롤", "잔탄검", "아시아티코사이드", "마데카식애씨드", "아시아틱애씨드", "소듐하이알루로네이트", "셀룰로오스검", "3-O-에틸아스코빅애씨드", "징크피씨에이", "소듐글루코네이트", "글리세릴카프릴레이트", "마데카소사이드", "소듐트라이메타포스페이트"],
       "note": "글루코노락톤(PHA)이 포함되어 있어요. 각질 관리 제품을 함께 쓸 때 제조사 사용 안내를 확인해 주세요.",
       "sourceUrl": "https://www.aestura.com/web/product/view.do?prdSeq=1137",
       "sourceTitle": "에스트라 공식 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "skin1004-poremizing-fresh-ampoule",
+      "brand": "스킨1004",
+      "name": "마다가스카르 센텔라 포어마이징 프레쉬 앰플",
+      "type": "앰플",
+      "goals": ["pore_balance", "soothing"],
+      "reasons": {
+        "pore_balance": "제조사가 모공 외관 관리와 유분감이 적은 마무리를 안내해 모공·번들거림 관리 후보로 연결했어요. 피지 분비 억제나 모공 축소를 보장하지는 않아요.",
+        "soothing": "공식 제품 정보에 진정 관리 용도가 안내되어 있어요. 여드름 치료나 피부 온도를 낮추는 효과를 뜻하지는 않아요."
+      },
+      "keyIngredients": ["Centella Asiatica Extract", "Mineral Salts", "Panthenol"],
+      "ingredients": ["Water", "Butylene Glycol", "Propanediol", "1,2-Hexanediol", "Aloe Barbadensis Leaf Extract", "Centella Asiatica Extract", "Glycereth-26", "Hydroxyacetophenone", "Glycerin", "Carbomer", "Tromethamine", "Panthenol", "Ethylhexylglycerin", "Disodium EDTA", "Dipotassium Glycyrrhizate", "Ammonium Polyacryloyldimethyl Taurate", "Biosaccharide Gum-1", "Hyaluronic Acid", "Hydrolyzed Hyaluronic Acid", "Sodium Hyaluronate", "Hydroxyethylcellulose", "Chamomilla Recutita (Matricaria) Flower Extract", "Mineral Salts", "Tripeptide-3", "Acetyl Hexapeptide-8", "Acetyl Octapeptide-3", "Copper Tripeptide-1", "Palmitoyl Pentapeptide-4", "Palmitoyl Tetrapeptide-7", "Palmitoyl Tripeptide-1", "Tripeptide-1", "Tripeptide-2"],
+      "note": "모공의 외관·사용감에 관한 제조사 정보예요. 실제 구매 제품의 전성분과 사용법을 확인해 주세요.",
+      "sourceUrl": "https://www.skin1004.com/products/poremizing-fresh-ampoule",
+      "sourceTitle": "SKIN1004 공식 Poremizing Fresh Ampoule 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "boj-glow-deep-serum",
+      "brand": "조선미녀",
+      "name": "글로우 딥 세럼 라이스 + 알파알부틴",
+      "type": "세럼",
+      "goals": ["hydration", "brightening"],
+      "reasons": {
+        "hydration": "제조사가 수분 공급용으로 안내하고 글리세린이 표기된 세럼으로, 건조함이 피부톤 고민과 함께 있을 때 살펴볼 후보예요.",
+        "brightening": "공식 제품 정보에서 알파알부틴·쌀겨수를 중심으로 칙칙해 보이는 피부톤 관리를 안내해 연결했어요. 개인별 미백 효과를 확정한 결과는 아니에요."
+      },
+      "keyIngredients": ["Oryza Sativa (Rice) Bran Water", "Alpha-Arbutin", "Glycerin"],
+      "ingredients": ["Oryza Sativa (Rice) Bran Water", "Water", "Glycerin", "Butylene Glycol", "1,2-Hexanediol", "Dipropylene Glycol", "Alpha-Arbutin", "Niacinamide", "Methyl Gluceth-20", "Panthenol", "Polyglycerin-3", "Trehalose", "Glyceryl Glucoside", "Hydrolyzed Jojoba Esters", "Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer", "Ethylhexylglycerin", "Hydroxyethylcellulose", "Xanthan Gum", "Acrylates/C10-30 Alkyl Acrylate Crosspolymer", "Arginine", "Disodium EDTA", "Sorbitan Isostearate", "Glucose", "Coix Lacryma-Jobi Ma-Yuen Seed Extract", "Coptis Japonica Root Extract", "Glycine Soja (Soybean) Seed Extract", "Hordeum Distichon (Barley) Extract", "Oryza Sativa (Rice) Extract", "Sesamum Indicum (Sesame) Seed Extract", "Triticum Vulgare (Wheat) Seed Extract", "Vigna Radiata Seed Extract", "Zea Mays (Corn) Kernel Extract"],
+      "note": "식물 유래 성분을 포함하므로 개인별 반응을 확인해 주세요. 낮 사용 시 제조사의 자외선 차단 안내를 함께 확인해 주세요.",
+      "sourceUrl": "https://beautyofjoseon.com/products/glow-deep-serum-rice-alpha-arbutin",
+      "sourceTitle": "조선미녀 공식 Glow Deep Serum 제품 정보·Full Ingredient List",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "cosrx-six-peptide-booster",
+      "oliveYoung": {"status": "listing_confirmed", "goodsNo": "A000000204071", "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000204071", "title": "코스알엑스 더 6 펩타이드 스킨 부스터 세럼 150ml 기획", "checkedAt": "2026-11-12", "matchScope": "product_name_only"},
+      "brand": "코스알엑스",
+      "name": "더 6 펩타이드 스킨 부스터 세럼 (오리지널)",
+      "type": "세럼",
+      "goals": ["hydration", "pore_balance", "firming"],
+      "reasons": {
+        "hydration": "공식 제품 정보에서 수분 공급을 안내하고 글리세린·소듐하이알루로네이트가 표기되어 있어 보습 후보로 연결했어요.",
+        "firming": "제조사가 펩타이드·아데노신을 중심으로 탄력과 잔주름 외관 관리를 안내해 후보로 골랐어요. 개인별 주름 개선 효과를 보장하지는 않아요.",
+        "pore_balance": "공식 제품 정보에서 모공·피지 관리용 부스터로 안내해 연결했어요. 모공 축소나 피지 분비 억제를 보장하는 추천은 아니에요."
+      },
+      "keyIngredients": ["Glycerin", "Acetyl Hexapeptide-8", "Adenosine"],
+      "ingredients": ["Water", "Dipropylene Glycol", "Glycerin", "Pentylene Glycol", "1,2-Hexanediol", "Niacinamide", "Acetyl Hexapeptide-8", "Copper Tripeptide-1", "sh-Polypeptide-121", "Dipeptide Diaminobutyroyl Benzylamide Diacetate", "Oligopeptide-68", "Palmitoyl Tripeptide-8", "Allantoin", "Sodium Hyaluronate", "Acetyl Glucosamine", "Serine", "Alanine", "Glycine", "Threonine", "Arginine", "Proline", "Betaine", "Sodium PCA", "Sodium Lactate", "PCA", "Glutamic Acid", "Lysine HCl", "Tocopherol", "Dextran", "Glycine Soja (Soybean) Oil", "Hydrogenated Lecithin", "Ammonium Acryloyldimethyltaurate/VP Copolymer", "Polyacrylate Crosspolymer-6", "Butylene Glycol", "Xanthan Gum", "Ethylhexylglycerin", "Adenosine", "Polyquaternium-51", "Disodium EDTA", "Citric Acid", "Caprylyl Glycol", "t-Butyl Alcohol", "Potassium Sorbate", "Sodium Oleate"],
+      "note": "첫 단계 부스터로 안내된 제품이에요. 리뉴얼·판매 지역에 따라 구성이 달라질 수 있어 실제 라벨과 제조사 사용 순서를 확인해 주세요.",
+      "sourceUrl": "https://www.cosrx.com/products/the-6-peptide-skin-booster-serum",
+      "sourceTitle": "COSRX 공식 The 6 Peptide Skin Booster Serum Original 제품 정보·Ingredient List",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "skin1004-tone-brightening-capsule-ampoule",
+      "oliveYoung": {"status": "listing_confirmed", "goodsNo": "A000000218121", "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000218121", "title": "스킨1004 마다가스카르 센텔라 톤 브라이트닝 캡슐 앰플 100ml", "checkedAt": "2026-11-12", "matchScope": "product_name_only"},
+      "brand": "스킨1004",
+      "name": "마다가스카르 센텔라 톤 브라이트닝 캡슐 앰플",
+      "type": "앰플",
+      "goals": ["hydration", "brightening"],
+      "reasons": {
+        "hydration": "공식 제품 정보에서 수분 유지를 안내하고 글리세린·베타인이 표기되어 있어 피부톤과 건조함을 함께 살펴볼 후보예요.",
+        "brightening": "제조사가 나이아신아마이드·트라넥사믹애씨드를 중심으로 칙칙해 보이는 피부톤 관리를 안내해 연결했어요. 개인별 미백 효과를 보장하지는 않아요."
+      },
+      "keyIngredients": ["Niacinamide", "Tranexamic Acid", "Glycerin"],
+      "ingredients": ["Water", "Butylene Glycol", "Niacinamide", "Glycerin", "Tranexamic Acid", "1,2-Hexanediol", "Betaine", "Centella Asiatica Extract", "Zea Mays (Corn) Starch", "Xanthan Gum", "Microcrystalline Cellulose", "Mannitol", "Panthenol", "Pentylene Glycol", "Ethylhexylglycerin", "Hydroxyethylcellulose", "Madecassoside", "Acrylates/C10-30 Alkyl Acrylate Crosspolymer", "Arginine", "Hydrogenated Lecithin", "Xylitylglucoside", "Anhydroxylitol", "Xylitol", "Glucose", "3-O-Ethyl Ascorbic Acid", "Lactobacillus Ferment"],
+      "note": "성분은 제조사 공개 버전 기준이에요. 올리브영 구매 제품의 용량·버전·현재 라벨과 사용법을 확인해 주세요.",
+      "sourceUrl": "https://www.skin1004.com/products/skin1004-madagascar-centella-tone-brightening-capsule-ampoule",
+      "sourceTitle": "SKIN1004 공식 Tone Brightening Capsule Ampoule 제품 정보·전성분",
       "checkedAt": "2026-11-12",
       "mixingStatus": "unknown"
     }

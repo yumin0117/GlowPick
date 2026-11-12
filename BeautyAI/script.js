@@ -145,6 +145,11 @@ function renderRecommendations(recommendations) {
   $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
   $("recommendationLead").textContent = recommendations.lead;
   $("recommendationNotice").textContent = recommendations.notice;
+  $("recommendationShop").textContent = recommendations.shopNotice;
+  $("recommendationCoverage").textContent = recommendations.coverage;
+  $("recommendationStrategy").textContent = recommendations.strategy;
+  $("recommendationContext").textContent = [recommendations.contextNotice, recommendations.missingNotice].filter(Boolean).join(" ");
+  $("recommendationContext").classList.toggle("hidden", !$("recommendationContext").textContent);
   $("recommendationMixing").textContent = recommendations.mixingNotice;
   $("recommendationMixing").classList.toggle("hidden", !recommendations.mixingNotice);
   $("recommendationList").replaceChildren();
@@ -154,11 +159,24 @@ function renderRecommendations(recommendations) {
     top.append(textNode("span", product.brand, "pick-brand"), textNode("span", product.type, "pick-type"));
     const tags = textNode("div", "", "pick-tags");
     product.labels.forEach(label => tags.append(textNode("span", label)));
-    card.append(top, textNode("h4", product.name), tags);
+    card.append(textNode("span", product.role, "pick-role"), top, textNode("h4", product.name), tags);
+    card.append(textNode("p", "연결한 고민: " + product.matchedConcerns.join(" · "), "pick-matched"));
+    card.append(textNode("p", product.selectionReason, "pick-selection"));
     product.reasons.forEach(reason => card.append(textNode("p", reason, "pick-reason")));
     card.append(textNode("p", "제품 성분 포인트: " + product.keyIngredients.join(" · "), "pick-ingredients"));
     card.append(textNode("p", product.note, "pick-note"));
+    if (product.attention) card.append(textNode("p", product.attention, "pick-attention"));
     if (product.mixingStatus === "unknown") card.append(textNode("span", "이 팩과의 혼합 조합 미확인", "pick-mix-badge"));
+    card.append(textNode("p", product.oliveYoung ? `올리브영 상품 등록 확인 · ${product.oliveYoung.checkedAt}`
+      : "올리브영 상품 등록 미확인", "pick-shop-status"));
+    if (product.oliveYoung) {
+      const shopLink = textNode("a", "올리브영 상품 보기 ↗", "pick-shop-link");
+      shopLink.href = product.oliveYoung.url;
+      shopLink.target = "_blank";
+      shopLink.rel = "noopener noreferrer";
+      shopLink.setAttribute("aria-label", `${product.brand} ${product.name} 올리브영 상품 정보 (새 창)`);
+      card.append(shopLink);
+    }
     const link = textNode("a", "공식 제품 정보 ↗", "pick-link");
     link.href = product.sourceUrl;
     link.target = "_blank";

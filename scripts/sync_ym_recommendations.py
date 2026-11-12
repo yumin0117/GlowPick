@@ -22,9 +22,11 @@ def sync(target):
     css = (ui/'style.css').read_text(encoding='utf-8')
     script = (ui/'script.js').read_text(encoding='utf-8')
     original_script = script
-    if 'id="recommendationBox"' not in html:
-        section = re.search(r'          <section class="glowpick-recommendations.*?</section>',
-                            (ROOT/'BeautyAI/index.html').read_text(encoding='utf-8'),re.S).group()
+    section = re.search(r'          <section class="glowpick-recommendations.*?</section>',
+                        (ROOT/'BeautyAI/index.html').read_text(encoding='utf-8'),re.S).group()
+    if 'id="recommendationBox"' in html:
+        html = re.sub(r'          <section class="glowpick-recommendations.*?</section>',lambda _:section,html,flags=re.S)
+    else:
         anchor = '          <div class="report-heading">'
         if html.count(anchor) != 1: raise SystemExit('Unexpected ym HTML; inspect before applying.')
         html = html.replace(anchor,section+'\n'+anchor,1)
