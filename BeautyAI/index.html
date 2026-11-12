@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#fffafa">
   <meta name="description" content="GlowPick - 내 피부 고민을 중심으로 화장품 전성분을 이해하는 AI 뷰티 컨설팅">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data: https://image.oliveyoung.co.kr; connect-src https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>GlowPick | 나에게 필요한 성분을 더 쉽게</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#service">본문으로 이동</a>
@@ -71,9 +72,10 @@
         <div class="app-shell">
           <div class="key-panel">
             <div class="key-icon" aria-hidden="true">✳</div>
-            <div class="key-copy"><h3>Gemini API 연결</h3><p>무료 API 프로젝트의 키를 입력해 주세요. 분석할 때마다 입력하며 웹사이트에 저장하지 않아요.</p></div>
-            <div class="key-field"><label for="geminiApiKey">이번 분석에 사용할 API 키</label><div class="password-wrap"><input id="geminiApiKey" type="password" placeholder="Gemini API 키 입력" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="512"><button id="toggleKey" type="button" class="show-key" aria-label="API 키 표시" aria-pressed="false">보기</button></div></div>
+            <div class="key-copy"><h3>Gemini API 연결</h3><p>무료 API 프로젝트의 키를 한 번 입력하면 현재 탭에서 계속 사용할 수 있어요.</p></div>
+            <div class="key-field"><label for="geminiApiKey">현재 탭에서 사용할 API 키</label><div class="password-wrap"><input id="geminiApiKey" type="password" placeholder="Gemini API 키 입력" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="512" aria-describedby="keyPolicy"><button id="toggleKey" type="button" class="show-key" aria-label="API 키 표시" aria-pressed="false">보기</button></div></div>
             <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" class="key-help">키 발급 안내 ↗</a>
+            <p class="key-policy" id="keyPolicy">키는 현재 탭에서만 유지하며, 새로고침·페이지 이동·탭을 닫으면 지워져요. 브라우저 저장소에는 저장하지 않아요. 키와 사진은 Google로 직접 전송되며, 본인 브라우저의 개발자 도구에서는 키가 보일 수 있어요. 결제 계정이 연결되지 않은 무료 API 프로젝트의 키를 사용해 주세요.</p>
           </div>
           <div class="tab-bar" role="tablist" aria-label="분석 서비스 선택">
             <button type="button" class="tab-button active" role="tab" id="tab-cosmetic" aria-selected="true" aria-controls="panel-cosmetic" data-tab="cosmetic"><span aria-hidden="true">✦</span> 화장품 성분 분석</button>
@@ -88,7 +90,7 @@
                 <label class="field-label" for="cosmeticName">화장품 이름 <span class="optional">선택</span></label>
                 <input class="field-input" type="text" id="cosmeticName" maxlength="200" placeholder="예: 데일리 수분 크림">
                 <span class="field-label">화장품 전성분 사진 <span class="required">필수</span></span>
-                <div class="upload-zone" id="cosmeticUploadZone"><div class="upload-symbol" aria-hidden="true">⌁</div><b>전성분 라벨 사진 올리기</b><p>글자가 잘리지 않도록 촬영해 주세요.</p><div class="upload-actions"><button type="button" class="button-upload" id="cosmeticChoose">파일 선택</button><button type="button" class="button-upload alt" id="cosmeticShoot">카메라 촬영</button></div><small>JPG · PNG · WEBP / 최대 10MB</small></div>
+                <div class="upload-zone" id="cosmeticUploadZone"><div class="upload-symbol" aria-hidden="true">⌁</div><b>전성분 라벨 사진 올리기</b><p>글자가 잘리지 않도록 촬영해 주세요.</p><div class="upload-actions"><button type="button" class="button-upload" id="cosmeticChoose">파일 선택</button><button type="button" class="button-upload alt" id="cosmeticShoot">카메라 촬영</button></div><small>JPG · PNG · WEBP / 최대 10MiB</small></div>
                 <input hidden type="file" id="cosmeticFile" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
                 <input hidden type="file" id="cosmeticCamera" accept="image/*" capture="environment">
                 <div class="file-preview hidden" id="cosmeticPreview"><img id="cosmeticPreviewImage" alt="선택한 화장품 라벨 미리보기"><div><b id="cosmeticFileName"></b><small>사진 준비 완료</small></div><button type="button" id="cosmeticRemove" aria-label="선택한 사진 삭제">×</button></div>
@@ -125,7 +127,21 @@
                 <textarea class="field-textarea" id="extraConcern" rows="3" maxlength="2000" placeholder="예: 오후에 볼이 당기고 건조해요."></textarea>
               </div>
             </div>
-            <div class="submit-row"><p class="privacy-text">🔒 API 키는 저장하지 않으며, 사진은 분석을 위해 Google Gemini API로 전송돼요.</p><button type="button" class="button button-primary submit-button" id="cosmeticAnalyze">화장품 성분 분석하기 <span aria-hidden="true">→</span></button></div>
+            <fieldset class="pick-type-field" id="cosmeticPickTypes">
+              <legend>추천받을 제품 종류 <span class="optional">선택 사항 · 최대 3종</span></legend>
+              <p>원하는 종류마다 1개씩 추천해요. 선택하지 않으면 아래 종류 중 최대 3개를 추천해요.</p>
+              <div class="choice-grid">
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="스킨" id="cosmeticTypeSkin"><span>스킨</span></label>
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="토너" id="cosmeticTypeToner"><span>토너</span></label>
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="에센스" id="cosmeticTypeEssence"><span>에센스</span></label>
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="세럼" id="cosmeticTypeSerum"><span>세럼</span></label>
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="앰플" id="cosmeticTypeAmpoule"><span>앰플</span></label>
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="크림" id="cosmeticTypeCream"><span>크림</span></label>
+                <label class="choice-pill"><input type="checkbox" name="cosmeticRecommendationType" value="로션" id="cosmeticTypeLotion"><span>로션</span></label>
+              </div>
+              <p id="cosmeticPickHint" class="pick-type-hint" role="status">선택 없음 · 자동 추천 최대 3개</p>
+            </fieldset>
+            <div class="submit-row"><p class="privacy-text">🔒 API 키는 현재 탭에서만 유지되며, 사진은 분석을 위해 Google Gemini API로 전송돼요.</p><button type="button" class="button button-primary submit-button" id="cosmeticAnalyze">화장품 성분 분석하기 <span aria-hidden="true">→</span></button></div>
             <p class="form-message" id="cosmeticMessage" role="status" aria-live="polite"></p>
           </section>
 
@@ -135,7 +151,7 @@
               <div class="input-section"><div class="input-heading"><span class="number-dot">1</span><div><h4>모델링팩 정보</h4><p>보유 중인 제품의 전성분 라벨이 필요해요.</p></div></div>
                 <label class="field-label" for="packName">모델링팩 이름 <span class="optional">선택</span></label><input class="field-input" id="packName" maxlength="200" placeholder="예: 수분 모델링팩">
                 <span class="field-label">모델링팩 전성분 사진 <span class="required">필수</span></span>
-                <div class="upload-zone" id="packUploadZone"><div class="upload-symbol" aria-hidden="true">◌</div><b>전성분 라벨 사진 올리기</b><p>모델링팩의 성분표를 촬영해 주세요.</p><div class="upload-actions"><button type="button" class="button-upload" id="packChoose">파일 선택</button><button type="button" class="button-upload alt" id="packShoot">카메라 촬영</button></div><small>JPG · PNG · WEBP / 최대 10MB</small></div>
+                <div class="upload-zone" id="packUploadZone"><div class="upload-symbol" aria-hidden="true">◌</div><b>전성분 라벨 사진 올리기</b><p>모델링팩의 성분표를 촬영해 주세요.</p><div class="upload-actions"><button type="button" class="button-upload" id="packChoose">파일 선택</button><button type="button" class="button-upload alt" id="packShoot">카메라 촬영</button></div><small>JPG · PNG · WEBP / 최대 10MiB</small></div>
                 <input hidden type="file" id="packFile" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
                 <input hidden type="file" id="packCamera" accept="image/*" capture="environment">
                 <div class="file-preview hidden" id="packPreview"><img id="packPreviewImage" alt="선택한 모델링팩 라벨 미리보기"><div><b id="packFileName"></b><small>사진 준비 완료</small></div><button type="button" id="packRemove" aria-label="선택한 사진 삭제">×</button></div>
@@ -152,6 +168,16 @@
                 <div class="soft-note"><b>혼합 안내에 관하여</b><p>제품별로 제조사 지침이 다를 수 있어요. 이 서비스는 근거가 없는 혼합 가능 여부를 확정하지 않아요.</p></div>
               </div>
             </div>
+            <fieldset class="pick-type-field" id="packPickTypes">
+              <legend>추천받을 제품 종류 <span class="optional">선택 사항 · 최대 1종</span></legend>
+              <p>한 종류를 선택하면 그 종류의 제품 1개를 추천해요. 선택하지 않으면 에센스·세럼·앰플 중 최대 3개를 추천해요. 팩과의 직접 혼합 허용을 뜻하지는 않아요.</p>
+              <div class="choice-grid">
+                <label class="choice-pill"><input type="checkbox" name="packRecommendationType" value="에센스" id="packTypeEssence"><span>에센스</span></label>
+                <label class="choice-pill"><input type="checkbox" name="packRecommendationType" value="세럼" id="packTypeSerum"><span>세럼</span></label>
+                <label class="choice-pill"><input type="checkbox" name="packRecommendationType" value="앰플" id="packTypeAmpoule"><span>앰플</span></label>
+              </div>
+              <p id="packPickHint" class="pick-type-hint" role="status">선택 없음 · 자동 추천 최대 3개</p>
+            </fieldset>
             <div class="submit-row"><p class="privacy-text">✧ 제품별 혼합 가능 여부는 확인된 제조사 안내가 있을 때만 판단할 수 있어요.</p><button type="button" class="button button-primary submit-button" id="packAnalyze">모델링팩 성분 확인하기 <span aria-hidden="true">→</span></button></div>
             <p class="form-message" id="packMessage" role="status" aria-live="polite"></p>
           </section>
@@ -161,7 +187,7 @@
           <div class="report-top"><div><span class="section-kicker">YOUR INGREDIENT REPORT</span><h2 id="reportTitle">내 피부 성분 리포트</h2><p id="reportSubtitle">업로드한 사진을 분석한 결과예요.</p></div><button class="button-copy" id="copyReport" type="button">결과 복사 <span aria-hidden="true">↗</span></button></div>
           <div class="report-hero"><div><span class="report-label" id="reportStatus">성분 판독 결과</span><h3 id="resultProduct">분석한 제품</h3><p id="resultSummary">분석한 성분 정보를 확인하세요.</p><div class="report-tags" id="resultTags"></div></div><div class="report-seal" aria-hidden="true"><span>GLOW</span><strong>✦</strong><span>PICK</span></div></div>
           <section class="glowpick-recommendations hidden" id="recommendationBox" aria-labelledby="recommendationTitle">
-            <div class="pick-heading"><span class="pick-spark" aria-hidden="true">✦</span><div><span class="section-kicker">FOR YOUR SKIN</span><h3 id="recommendationTitle">GlowPick 추천!</h3></div><span class="pick-badge">올리브영 우선</span></div>
+            <div class="pick-heading"><span class="pick-spark" aria-hidden="true">✦</span><div><span class="section-kicker">FOR YOUR SKIN</span><h3 id="recommendationTitle">GlowPick 추천!</h3></div><span class="pick-badge">올리브영 현재 조회</span></div>
             <p class="pick-lead" id="recommendationLead"></p>
             <p class="pick-coverage" id="recommendationCoverage"></p>
             <details class="pick-strategy"><summary>추천 순서는 어떻게 정했나요?</summary><p id="recommendationStrategy"></p></details>
