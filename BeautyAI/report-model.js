@@ -1,5 +1,35 @@
 import { normalizeIngredient } from "./ai-core.js";
-import { CLAIMS, GUIDANCE } from "./ai-assets.js";
+import { CLAIMS, GUIDANCE, RECOMMENDATIONS } from "./ai-assets.js";
+
+// BEGIN SHARED PRODUCT RECOMMENDATIONS (also embedded in ym's standalone script)
+export function prepareRecommendations(kind, input, complete, isMock = false) {
+  const notice = "선택한 고민과 제조사 공개 정보를 연결한 제품 후보예요. 개인 적합성·제품 간 우열·여드름 치료 효과를 평가한 결과는 아니에요. 구입 전 현재 라벨과 사용법을 확인해 주세요.";
+  const goals = RECOMMENDATIONS.goals.filter(goal => goal.concerns.some(c => (input.concerns || []).includes(c)));
+  const ready = complete && !isMock;
+  const products = ready ? RECOMMENDATIONS.products.flatMap(product => {
+    const matched = goals.filter(goal => product.goals.includes(goal.id));
+    if (!matched.length) return [];
+    const source = new URL(product.sourceUrl);
+    if (source.protocol !== "https:" || source.username || source.password
+      || !["tonymoly.com", "www.skin1004.com", "www.aestura.com"].includes(source.hostname)) return [];
+    return [{ id: product.id, brand: product.brand, name: product.name, type: product.type,
+      labels: matched.map(goal => goal.label), reasons: matched.map(goal => product.reasons[goal.id]),
+      keyIngredients: product.keyIngredients, note: product.note, sourceUrl: product.sourceUrl,
+      checkedAt: product.checkedAt, mixingStatus: kind === "pack" ? "unknown" : "not_applicable" }];
+  }) : [];
+  const mixingNotice = kind !== "pack" ? "" : input.mixStatus === "prohibited"
+    ? "제조사의 혼합 금지 안내를 확인하셨으므로 이 팩에는 앰플·세럼을 섞지 마세요. 아래는 혼합용 추천이 아닌 별도 제품 후보예요."
+    : "혼합 가능 여부 미확인. 아래 후보를 이 모델링팩에 섞어 써도 된다는 뜻은 아니에요. 제조사가 지정한 혼합액·사용법을 따라 주세요.";
+  const matchedConcerns = [...new Set(goals.flatMap(goal => goal.concerns.filter(c => (input.concerns || []).includes(c))))];
+  const lead = !ready ? "전성분 판독을 완료한 뒤 제품 후보를 확인할 수 있어요."
+    : !products.length ? "현재 선택한 고민에 맞춰 확인한 앰플·세럼 후보가 아직 없어요."
+    : `${matchedConcerns.join(" · ")} 고민에 맞춰 ${goals.map(goal => goal.label).join("·")}용 앰플·세럼을 골랐어요. 업로드한 제품과의 병용 적합성을 판정한 추천은 아니에요.`;
+  const copyLines = ready ? ["", "[GlowPick 추천!]", lead, ...(mixingNotice ? [mixingNotice] : []),
+    ...products.flatMap(product => [`${product.brand} ${product.name} · ${product.labels.join(" / ")}`,
+      ...product.reasons, `확인한 성분: ${product.keyIngredients.join(", ")}`, product.note]), notice] : [];
+  return { ready, products, lead, notice, mixingNotice, copyLines };
+}
+// END SHARED PRODUCT RECOMMENDATIONS
 
 const STATUS_LABELS = { complete: "전성분 판독 완료", partial: "일부 성분만 판독",
   unreadable: "이미지 판독 어려움", no_ingredients: "전성분 영역을 찾지 못함", multiple_products: "여러 제품이 함께 확인됨" };
@@ -59,6 +89,7 @@ export function prepareReport(kind, input, response) {
     ingredients: extraction.ingredients, rawText: extraction.rawText || "읽은 원문이 없습니다.",
     helpful, cautions, unknown: extraction.ingredients.filter(name => !classified.has(normalizeIngredient(name))),
     notes, sources, warnings, mixingText };
+  model.recommendations = prepareRecommendations(kind, input, complete, isMock);
   model.copyText = [kind === "pack" ? "GlowPick 모델링팩 리포트" : "GlowPick 화장품 리포트",
     `제품: ${model.productName}`, `피부 타입: ${input.skinType}`, `피부 고민: ${input.concerns.join(", ")}`,
     banner, `설명 상태: ${analysis.status}`, "", "[도움과 관련된 일반 기능]",
@@ -69,7 +100,7 @@ export function prepareReport(kind, input, response) {
     "개인별 주의 판단은 확정할 수 없습니다. 모든 성분이 안전하다는 뜻은 아닙니다.",
     "", `[전성분 ${extraction.ingredients.length}개]`, ...extraction.ingredients, "", "[사진 원문]", model.rawText,
     "", "[다음 단계·검토 한계]", ...warnings,
-    ...(mixingText ? ["", "[혼합 안내]", mixingText] : [])
+    ...(mixingText ? ["", "[혼합 안내]", mixingText] : []), ...model.recommendations.copyLines
   ].join("\n");
   return model;
 }

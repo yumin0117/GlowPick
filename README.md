@@ -20,6 +20,8 @@ pinned: false
 
 수업 시연용 Android APK 프로젝트와 설치·빌드 방법은 [mobile/README.md](mobile/README.md)에 있습니다.
 
+화장품·모델링팩 결과의 **GlowPick 추천!**은 건조함에는 보습용, 여드름·트러블에는 진정 관리용 앰플·세럼 후보를 보여줍니다. 현재 공식 제품 정보를 확인한 한국 브랜드 3종을 사용하며, 제품별 추천 이유·성분 포인트·공식 링크를 제공합니다. 개인 적합성이나 팩과의 혼합 허용을 판단하지 않습니다. [변경 범위·검증 기록](docs/RECOMMENDATIONS_20261112.md)을 참고하세요. 이번 기능은 작업 브랜치에만 반영하며 HF·APK 재배포는 하지 않았습니다.
+
 최종 통합 기준은 mj `10ad5e7`, UI 원본은 ym `fc9c36b`, 데이터 원본은 ysw `26d4fbc`, 최종 프롬프트는 kyoungmin_oh `188d69d`입니다. 이번 통합의 배포·실호출 상태는 `docs/FINAL_INTEGRATION.md`에서 별도로 기록합니다.
 
 ## 사용
@@ -79,7 +81,7 @@ HTML을 file://로 열면 브라우저 모듈 제한이 있으므로 HTTP 서버
 
 ## 검증과 한계
 
-    node --test tests/static-client.test.mjs tests/report-model.test.mjs tests/key-session.test.mjs
+    npm test
     .venv/Scripts/python.exe -m unittest discover -s tests -v
     node --test reference/tests/validation.test.mjs
 

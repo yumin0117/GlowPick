@@ -59,6 +59,7 @@ class FrontendContractTest(unittest.TestCase):
         self.assertEqual(values["SCHEMAS"], {model.__name__: model.model_json_schema()
                          for model in (UserInput, Extraction, ModelAnalysis, ReviewedClaim)})
         self.assertEqual(values["CLAIMS"], json.loads((root / "data/reviewed_claims.json").read_text(encoding="utf-8")))
+        self.assertEqual(values["RECOMMENDATIONS"], json.loads((root / "data/recommendation_catalog.json").read_text(encoding="utf-8")))
         for name, path in [("EXTRACT_PROMPT", "extract.txt"), ("EXPLAIN_PROMPT", "explain.txt")]:
             self.assertEqual(values[name], (root / "prompts" / path).read_text(encoding="utf-8"))
 

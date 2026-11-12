@@ -140,8 +140,38 @@ function appendItem(host, title, description, className = "info-item") {
   item.append(textNode("p", description));
   host.append(item);
 }
+// BEGIN SHARED RECOMMENDATION VIEW (also embedded in ym's standalone script)
+function renderRecommendations(recommendations) {
+  $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
+  $("recommendationLead").textContent = recommendations.lead;
+  $("recommendationNotice").textContent = recommendations.notice;
+  $("recommendationMixing").textContent = recommendations.mixingNotice;
+  $("recommendationMixing").classList.toggle("hidden", !recommendations.mixingNotice);
+  $("recommendationList").replaceChildren();
+  for (const product of recommendations.products) {
+    const card = textNode("article", "", "pick-card");
+    const top = textNode("div", "", "pick-card-top");
+    top.append(textNode("span", product.brand, "pick-brand"), textNode("span", product.type, "pick-type"));
+    const tags = textNode("div", "", "pick-tags");
+    product.labels.forEach(label => tags.append(textNode("span", label)));
+    card.append(top, textNode("h4", product.name), tags);
+    product.reasons.forEach(reason => card.append(textNode("p", reason, "pick-reason")));
+    card.append(textNode("p", "제품 성분 포인트: " + product.keyIngredients.join(" · "), "pick-ingredients"));
+    card.append(textNode("p", product.note, "pick-note"));
+    if (product.mixingStatus === "unknown") card.append(textNode("span", "이 팩과의 혼합 조합 미확인", "pick-mix-badge"));
+    const link = textNode("a", "공식 제품 정보 ↗", "pick-link");
+    link.href = product.sourceUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", `${product.brand} ${product.name} 공식 제품 정보 (새 창)`);
+    card.append(link);
+    $("recommendationList").append(card);
+  }
+}
+// END SHARED RECOMMENDATION VIEW
 function renderReport(kind, input, response) {
   const report = prepareReport(kind, input, response);
+  renderRecommendations(report.recommendations);
   $("reportTitle").textContent = kind === "pack" ? "나의 모델링팩 성분 리포트" : "내 피부 성분 리포트";
   $("reportSubtitle").textContent = report.complete ? "확인된 정보와 아직 확인이 필요한 내용을 구분해 표시했어요." : "판독이 충분하지 않아 재촬영 안내를 먼저 확인해 주세요.";
   $("reportStatus").textContent = report.banner;

@@ -32,7 +32,7 @@ jobs:
           java-version: '21'
           cache: gradle
       - name: Verify shared web behavior
-        run: node --test tests/static-client.test.mjs tests/report-model.test.mjs tests/key-session.test.mjs tests/ingredient-guidance.test.mjs
+        run: npm test
       - name: Install pinned app tooling and bundle public assets
         working-directory: mobile
         run: |

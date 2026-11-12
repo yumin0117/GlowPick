@@ -29,7 +29,7 @@ class Element {
   scrollIntoView() {}
 }
 
-async function setup(answer) {
+async function setup(answer, concerns = ['건조함']) {
   const html = await readFile(new URL("../BeautyAI/index.html", import.meta.url), "utf8");
   const elements = new Map([...html.matchAll(/\bid="([^"]+)"/gu)].map(([, id]) => [id, new Element(id)]));
   const get = id => elements.get(id);
@@ -37,7 +37,7 @@ async function setup(answer) {
     const element = get("tab-" + kind); element.dataset.tab = kind; return element;
   });
   const skin = new Element(); skin.value = "잘 모르겠음";
-  const concern = new Element(); concern.value = "건조함";
+  const selectedConcerns = concerns.map(value => Object.assign(new Element(), {value}));
   const windows = new Map(), calls = [];
   get("geminiApiKey").value = "synthetic-autofilled-key";
   const document = {
@@ -45,7 +45,7 @@ async function setup(answer) {
     querySelector: selector => selector.includes("skinType") ? skin : null,
     querySelectorAll: selector => selector === ".tab-button" ? tabs
       : selector === 'input[name="skinType"]' ? [skin]
-      : selector.includes(":checked") ? [concern]
+      : selector.includes(":checked") ? selectedConcerns
       : selector === "button, input, textarea" ? [...elements.values()] : []
   };
   const context = vm.createContext({ document, URL, setTimeout, clearTimeout,
@@ -53,7 +53,7 @@ async function setup(answer) {
     prepareReport, MAX_IMAGE_BYTES: 10 * 1024 * 1024,
     analyze: async (...args) => {
       calls.push(args);
-      return answer || { ok: true,
+      return (typeof answer === 'function' ? answer() : answer) || { ok: true,
         extraction: { status: "partial", productName: null, ingredients: ["성분"],
           rawText: "성분", nextAction: "전체 라벨을 다시 촬영해 주세요.", warnings: [], uncertainSpans: [] },
         analysis: { status: "not_run", summary: "전체 판독 후 설명", ingredientNotes: [], warnings: [] },
@@ -86,6 +86,32 @@ test("one key is reused across successful cosmetic requests and the modeling-pac
   assert.equal(calls.length, 3);
   assert.deepEqual(calls.map(call => call[0]), ["/analyze_cosmetic", "/analyze_cosmetic", "/consult_modeling_pack"]);
   assert.ok(calls.every(call => call[3] === key));
+});
+
+test('real UI renders the right cards, replaces stale cards and hides them on partial results', async () => {
+  let status='complete';
+  const answer=()=>({ok:true,extraction:{status,ingredients:['글리세린'],rawText:'글리세린',warnings:[],uncertainSpans:[],nextAction:''},
+    analysis:{status:'needs_evidence',summary:'일반 기능 근거 부족',warnings:[]},meta:{isMock:false}});
+  const {get}=await setup(answer,['여드름']);
+  get('geminiApiKey').value='synthetic-current-tab-key';
+  await get('cosmeticAnalyze').fire('click');
+  assert.equal(get('recommendationBox').classList.contains('hidden'),false);
+  assert.equal(get('recommendationList').children.length,2);
+  const cards=get('recommendationList').children;
+  assert.deepEqual(cards.map(card=>card.children[0].children[0].textContent),['스킨1004','에스트라']);
+  const link=cards[0].children.at(-1);
+  assert.equal(link.target,'_blank');
+  assert.equal(link.rel,'noopener noreferrer');
+  assert.match(link.href,/^https:\/\/www.skin1004.com\//u);
+  await get('tab-pack').fire('click');
+  await get('packAnalyze').fire('click');
+  assert.equal(get('recommendationList').children.length,2);
+  assert.match(get('recommendationMixing').textContent,/혼합 가능 여부 미확인/u);
+  assert.ok(get('recommendationList').children.every(card=>card.children.some(el=>el.textContent==='이 팩과의 혼합 조합 미확인')));
+  status='partial';
+  await get('packAnalyze').fire('click');
+  assert.equal(get('recommendationBox').classList.contains('hidden'),true);
+  assert.equal(get('recommendationList').children.length,0);
 });
 
 test("an API failure retains the masked key for the user's next attempt", async () => {

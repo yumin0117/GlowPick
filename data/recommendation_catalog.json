@@ -1,0 +1,60 @@
+{
+  "version": "2026-11-12",
+  "reviewStatus": "manufacturer_information_checked",
+  "independentHumanReview": false,
+  "scope": "concern-matched product candidates; no acne treatment, personal suitability, or mixing approval",
+  "goals": [
+    {"id": "hydration", "label": "보습", "concerns": ["건조함", "속건조"]},
+    {"id": "soothing", "label": "진정 관리", "concerns": ["여드름", "트러블", "민감함", "홍조"]}
+  ],
+  "products": [
+    {
+      "id": "tonymoly-wonder-hyaluronic-ampoule",
+      "brand": "토니모리",
+      "name": "원더 히알루론산 촉촉 앰플",
+      "type": "앰플",
+      "goals": ["hydration"],
+      "reasons": {"hydration": "공식 제품 정보에서 수분 관리용으로 안내하고, 글리세린·베타인·소듐하이알루로네이트가 표기되어 있어 보습 후보로 골랐어요."},
+      "keyIngredients": ["글리세린", "베타인", "소듐하이알루로네이트 (330ppm)"],
+      "ingredients": ["정제수", "글리세린", "다이프로필렌글라이콜", "메틸프로판다이올", "글리세레스-26", "부틸렌글라이콜", "하이드록시아세토페논", "1,2-헥산다이올", "알지닌", "프로판다이올", "폴리글리세릴-10라우레이트", "베타인", "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머", "알란토인", "카보머", "글리세릴아크릴레이트/아크릴릭애씨드코폴리머", "해수", "병풀추출물", "에틸헥실글리세린", "피브이엠/엠에이코폴리머", "쇠비름추출물", "소듐하이알루로네이트 (330ppm)", "다이소듐이디티에이", "마트리카리아꽃추출물", "체이스트트리추출물", "로즈마리잎오일", "말라카이트추출물", "서양배추출물", "다마스크장미꽃수", "오리스뿌리추출물", "멜론추출물", "하이드롤라이즈드소듐하이알루로네이트 (20ppm)", "서양송악잎/줄기추출물", "하이알루로닉애씨드 (10ppm)", "판테놀", "하이드롤라이즈드하이알루로닉애씨드 (1ppm)", "하이드록시프로필트라이모늄하이알루로네이트 (1ppm)", "소듐아세틸레이티드하이알루로네이트 (200ppb)", "소듐하이알루로네이트크로스폴리머 (10ppb)", "포타슘하이알루로네이트 (2ppb)"],
+      "note": "식물 추출물·오일에 민감하다면 전체 전성분을 먼저 확인해 주세요.",
+      "sourceUrl": "https://tonymoly.com/products/wonder-hyaluronic-acid-chok-chok-ampoule.do?i_sProductcd=TM20260601000153193",
+      "sourceTitle": "토니모리 공식 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "skin1004-centella-ampoule",
+      "brand": "스킨1004",
+      "name": "마다가스카르 센텔라 앰플",
+      "type": "앰플",
+      "goals": ["hydration", "soothing"],
+      "reasons": {
+        "hydration": "제조사가 수분 공급을 안내하는 앰플로, 글리세린·부틸렌글라이콜이 표기되어 있어요.",
+        "soothing": "제조사가 병풀추출물을 중심으로 진정 관리를 안내하는 앰플이에요. 여드름 치료 효과를 뜻하지는 않아요."
+      },
+      "keyIngredients": ["Glycerin", "Butylene Glycol", "Centella Asiatica Extract"],
+      "ingredients": ["Water", "Glycerin", "Butylene Glycol", "Centella Asiatica Extract", "1,2-Hexanediol", "Cellulose Gum", "Ethylhexylglycerin"],
+      "note": "국가·리뉴얼 버전에 따라 표기가 다를 수 있으니 실제 구입 제품의 라벨을 확인해 주세요.",
+      "sourceUrl": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule",
+      "sourceTitle": "SKIN1004 공식 제품 정보·FULL INGREDIENTS",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "aestura-acica365-serum-ph45",
+      "brand": "에스트라",
+      "name": "에이시카365 흔적진정세럼 pH4.5",
+      "type": "세럼",
+      "goals": ["soothing"],
+      "reasons": {"soothing": "제조사가 외부 자극으로 민감해진 피부의 진정 관리를 안내하는 세럼이에요. 여드름 치료 제품으로 추천하는 것은 아니에요."},
+      "keyIngredients": ["글리세린", "아시아티코사이드", "마데카소사이드"],
+      "ingredients": ["정제수", "글리세린", "부틸렌글라이콜", "다이프로필렌글라이콜", "베타인", "나이아신아마이드", "글루코노락톤", "1,2-헥산다이올", "다이에톡시에틸석시네이트", "트로메타민", "수크로오스스테아레이트", "스쿠알란", "하이드로제네이티드레시틴", "폴리글리세릴-10스테아레이트", "폴리글리세릴-10라우레이트", "카보머", "카프릴릴메티콘", "폴리아크릴레이트크로스폴리머-6", "에틸헥실글리세린", "콜레스테롤", "잔탄검", "아시아티코사이드", "마데카식애씨드", "아시아틱애씨드", "소듐하이알루로네이트", "셀룰로오스검", "3-O-에틸아스코빅애씨드", "징크피씨에이", "소듐글루코네이트", "글리세릴카프릴레이트", "마데카소사이드", "소듐트라이메타포스페이트"],
+      "note": "글루코노락톤(PHA)이 포함되어 있어요. 각질 관리 제품을 함께 쓸 때 제조사 사용 안내를 확인해 주세요.",
+      "sourceUrl": "https://www.aestura.com/web/product/view.do?prdSeq=1137",
+      "sourceTitle": "에스트라 공식 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    }
+  ]
+}
