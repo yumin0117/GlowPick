@@ -1,200 +1,230 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { RECOMMENDATIONS } from '../BeautyAI/ai-assets.js';
-import { prepareRecommendations, prepareReport } from '../BeautyAI/report-model.js';
-import { readFile } from 'node:fs/promises';
+import {readFile} from 'node:fs/promises';
+import {createRecommendationClient,RECOMMENDATION_TYPES,validateRecommendationTypes,
+  recommendationCategoryUrls,normalizeOliveYoungProductUrl,oliveYoungSearchUrl,normalizeOliveYoungImageUrl,matchesRecommendationType,selectRecommendedProducts} from '../BeautyAI/recommendation-client.js';
+import {prepareRecommendations} from '../BeautyAI/report-model.js';
 
-const input = { skinType: '잘 모르겠음', concerns: ['건조함'] };
-const picks = (concerns, kind='cosmetic', extra={}) => prepareRecommendations(kind, {...input, concerns, ...extra}, true);
+const key='synthetic-free-project-key-for-offline-tests';
+const input={skinType:'잘 모르겠음',concerns:['건조함','여드름']};
+function item(type,index=0){return {brand:'검사브랜드',name:`신규검사 ${index} ${type}`,type,
+  productUrl:`https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A${900000000000+index}`,
+  sourceListUrl:recommendationCategoryUrls('cosmetic',[type])[0],matchedConcerns:['건조함'],
+  categoryPath:`스킨케어 > ${['스킨','토너'].includes(type)?'스킨/토너':['에센스','세럼','앰플'].includes(type)?'에센스/세럼/앰플':type}`,
+  typeEvidence:`신규검사 ${index} ${type}`,productEvidence:'수분 관리용 제품',reason:'확인한 수분 관리 정보와 건조함을 연결한 참고 후보입니다.',
+  cautions:['실제 라벨과 사용법을 확인해 주세요.'],pageStatus:'available'};}
+function body(products,urls,options={}){
+  return {status:'completed',output_text:JSON.stringify({products}),steps:[
+    {type:'url_context_result',result:urls.map(url=>({url,status:options.fetchStatus||'success'}))},
+    {type:'model_output',content:[{type:'text',text:JSON.stringify({products}),annotations:options.noCitations?[]:urls.map(url=>({type:'url_citation',url}))}]}]};
+}
+function setup(products=[item('토너',0),item('세럼',1),item('앰플',2)],overrides={}){
+  const calls=[];
+  const client=createRecommendationClient({now:()=>Date.parse('2026-11-12T04:00:00Z'),fetcher:async(url,init)=>{
+    const payload=JSON.parse(init.body);calls.push({url,init,payload});
+    if(overrides.fetcher)return overrides.fetcher(calls.length,url,init,payload);
+    const stage=calls.length===1?'list':'product';
+    const listed=stage==='list'?products:overrides.verified||products;
+    const urls=stage==='list'?[...new Set(products.map(p=>p.sourceListUrl))]:products.map(p=>p.productUrl||p.sourceListUrl);
+    return Response.json(body(listed,urls,stage==='list'?overrides.listProof:overrides.productProof));
+  },...overrides.client});
+  return {client,calls,run:(types=[],kind='cosmetic',request={})=>client.recommend({kind,types,input,ingredients:['글리세린'],...request},key)};
+}
 
-test('all 12 actual UI concerns have a manufacturer-checked candidate in both tabs', async () => {
-  const html = await readFile(new URL('../BeautyAI/index.html',import.meta.url),'utf8');
-  const concerns = [...html.matchAll(/name="concern" value="([^"]+)"/gu)].map(([,value])=>value);
-  assert.equal(concerns.length,12);
-  for (const kind of ['cosmetic', 'pack']) {
-    for (const concern of concerns) {
-      const result = picks([concern], kind);
-      assert.ok(result.products.length>0,concern);
-      assert.equal(result.uncoveredConcerns.length,0,concern);
-      assert.ok(result.products.every(p=>p.matchedConcerns.includes(concern)));
-      assert.match(result.notice, /여드름 치료 효과를 평가한 결과는 아니/u);
-    }
+test('optional type selection accepts all 64 cosmetic combinations and four pack choices',()=>{
+  let valid=0;
+  const all=RECOMMENDATION_TYPES.cosmetic;
+  for(let mask=0;mask<2**all.length;mask++){
+    const types=all.filter((_,i)=>mask&(1<<i));
+    if(types.length<=3){assert.deepEqual(validateRecommendationTypes('cosmetic',types),types);valid++;}
+    else assert.throws(()=>validateRecommendationTypes('cosmetic',types));
+  }
+  assert.equal(valid,64);
+  for(const types of [[],['에센스'],['세럼'],['앰플']])assert.deepEqual(validateRecommendationTypes('pack',types),types);
+  for(const [kind,types] of [['pack',['토너']],['pack',['세럼','앰플']],['cosmetic',['토너','토너']],['cosmetic',['샴푸']],['__proto__',[]]])
+    assert.throws(()=>validateRecommendationTypes(kind,types));
+});
+
+test('new products come from current list and product retrievals; selected types receive exactly one each',async()=>{
+  const products=[item('스킨',0),item('토너',1),item('앰플',2),item('토너',3)];
+  const {run,calls}=setup(products);
+  const result=await run(['스킨','토너','앰플']);
+  assert.equal(result.status,'complete');
+  assert.deepEqual(result.products.map(p=>p.type),['스킨','토너','앰플']);
+  assert.equal(new Set(result.products.map(p=>p.productUrl)).size,3);
+  assert.equal(calls.length,2);
+  assert.ok(calls[0].payload.input.includes('스킨')&&calls[0].payload.input.includes('여드름'));
+  for(const call of calls){
+    assert.equal(call.url,'https://generativelanguage.googleapis.com/v1beta/interactions');
+    assert.deepEqual(call.payload.tools,[{type:'url_context'}]);
+    assert.equal(call.payload.model,'gemini-3.5-flash-lite');
+    assert.equal(call.payload.store,false);
+    assert.equal(call.init.headers['x-goog-api-key'],key);
+    assert.deepEqual(Object.keys(call.init.headers).sort(),['Content-Type','x-goog-api-key']);
+    assert.ok(!call.init.body.includes(key));
+    assert.equal(call.init.credentials,'omit');
+    assert.equal(call.payload.response_format,undefined);
+  }
+  assert.ok(calls[1].payload.input.includes(products[3].productUrl));
+});
+
+test('all valid cosmetic choices and pack choices preserve exact type counts through the live client',async()=>{
+  const all=RECOMMENDATION_TYPES.cosmetic;
+  for(let mask=0;mask<2**all.length;mask++){
+    const types=all.filter((_,i)=>mask&(1<<i));if(types.length>3)continue;
+    const candidates=(types.length?types:all).map((type,i)=>item(type,i));
+    const result=await setup(candidates).run(types);
+    assert.equal(result.status,'complete');
+    assert.equal(result.products.length,types.length||3);
+    if(types.length)assert.deepEqual(result.products.map(p=>p.type),types);
+  }
+  for(const types of [[],['에센스'],['세럼'],['앰플']]){
+    const result=await setup(['에센스','세럼','앰플'].map((t,i)=>item(t,i))).run(types,'pack');
+    assert.equal(result.products.length,types.length||3);
+    assert.ok(result.products.every(p=>RECOMMENDATION_TYPES.pack.includes(p.type)&&p.mixingStatus==='unknown'));
   }
 });
 
-test('complementary goals promote a multi-purpose product ahead of single-goal alternatives', () => {
-  const result = picks(['건조함','여드름','트러블']);
-  assert.equal(result.products.length, 3);
-  assert.equal(new Set(result.products.map(p=>p.id)).size, 3);
-  assert.deepEqual(result.coreIds,['skin1004-centella-ampoule']);
-  assert.deepEqual(result.products[0].labels, ['보습','진정 관리']);
-  assert.equal(result.products[0].reasons.length, 2);
-  assert.equal(result.products[0].role,'우선 후보');
-  assert.equal(picks(['건조함','주름']).products[0].id,'cosrx-six-peptide-booster');
-  assert.deepEqual(picks(['피지','여드름']).coreIds,['skin1004-centella-ampoule','cosrx-six-peptide-booster']);
-  assert.equal(picks(['건조함','칙칙한 피부톤']).products[0].id,'skin1004-tone-brightening-capsule-ampoule');
-  assert.match(result.products[1].selectionReason,/모든 목적을 연결하는 대안은 아니/u);
-});
-
-test('all 4095 nonempty checkbox combinations are covered by at most three unique cards in both tabs', () => {
-  const concerns=RECOMMENDATIONS.goals.flatMap(g=>g.concerns);
-  assert.equal(concerns.length,12);
-  for(let mask=1;mask<2**concerns.length;mask++) {
-    const selected=concerns.filter((_,i)=>mask&(1<<i));
-    for(const kind of ['cosmetic','pack']) {
-      const result=picks(selected,kind);
-      assert.ok(result.products.length>0&&result.products.length<=3,JSON.stringify(selected));
-      assert.equal(new Set(result.products.map(p=>p.id)).size,result.products.length);
-      assert.deepEqual(result.uncoveredConcerns,[],JSON.stringify(selected));
-      assert.ok(selected.every(c=>result.products.some(p=>p.matchedConcerns.includes(c))));
-      assert.ok(result.products.every(p=>p.matchedConcerns.every(c=>selected.includes(c))));
-      assert.ok(result.products.filter(p=>result.coreIds.includes(p.id)).every(p=>p.oliveYoung),JSON.stringify(selected));
-    }
+test('failed category and product retrievals never become recommendations',async()=>{
+  for(const override of [{listProof:{fetchStatus:'error'}},
+    {productProof:{fetchStatus:'paywall'}},{productProof:{fetchStatus:'unsafe'}}]){
+    const {run,calls}=setup(undefined,override);const result=await run();
+    assert.equal(result.status,'unavailable');assert.deepEqual(result.products,[]);
+    if(override.listProof)assert.equal(calls.length,1);
   }
 });
 
-test('five care goals use a complementary minimal shortlist rather than greedily taking the first three', () => {
-  const concerns=['건조함','여드름','모공','칙칙한 피부톤','주름'];
-  const result=picks(concerns);
-  assert.deepEqual(new Set(result.coreIds),new Set(['skin1004-centella-ampoule','skin1004-tone-brightening-capsule-ampoule','cosrx-six-peptide-booster']));
-  assert.equal(result.coreIds.length,3);
-  assert.equal(result.coveredGoalIds.length,5);
-  assert.deepEqual(result.products.map(p=>p.role),['우선 후보','보완 후보','보완 후보']);
-  assert.ok(result.coreIds.every(id=>result.copyLines.join('\n').includes(result.products.find(p=>p.id===id).name)));
-  assert.match(result.copyLines.join('\n'),/5개 관리 목적 중 5개 연결/u);
+test('JSON output can omit citation annotations but still needs provider retrieval proof and exact item source binding',async()=>{
+  const result=await setup(undefined,{listProof:{noCitations:true},productProof:{noCitations:true}}).run();
+  assert.equal(result.products.length,3);
+  const {run}=setup([],{fetcher:()=>Response.json({status:'completed',output_text:JSON.stringify({products:[item('토너',0)]}),steps:[]})});
+  assert.equal((await run()).products.length,0);
 });
 
-test('the shortlist meets the declared optimum for all 31 goal combinations and sensitive-skin input', () => {
-  for(let goalMask=1;goalMask<2**RECOMMENDATIONS.goals.length;goalMask++) {
-    const goals=RECOMMENDATIONS.goals.filter((_,i)=>goalMask&(1<<i));
-    const concerns=goals.map(g=>g.concerns[0]);
-    const ids=new Set(goals.map(g=>g.id));
-    for(const skinType of ['잘 모르겠음','민감성']) {
-      const candidates=RECOMMENDATIONS.products.filter(p=>p.goals.some(id=>ids.has(id)));
-      const hasCheck=p=>(p.attentionConcerns||[]).some(c=>concerns.includes(c)||(skinType==='민감성'&&c==='민감함'));
-      // Independent bit-mask enumeration of the public objective, including one/two-product sets.
-      const objective=items=>[-new Set(items.flatMap(p=>p.goals.filter(id=>ids.has(id)))).size,
-        items.filter(hasCheck).length,items.filter(p=>!p.oliveYoung).length,items.length];
-      const scores=[];
-      for(let mask=1;mask<2**candidates.length;mask++) {
-        const items=candidates.filter((_,i)=>mask&(1<<i));
-        if(items.length<=3)scores.push(objective(items));
-      }
-      scores.sort((a,b)=>a[0]-b[0]||a[1]-b[1]||a[2]-b[2]||a[3]-b[3]);
-      const report=picks(concerns,'cosmetic',{skinType});
-      const selected=RECOMMENDATIONS.products.filter(p=>report.coreIds.includes(p.id));
-      assert.deepEqual(objective(selected),scores[0],JSON.stringify({concerns,skinType}));
-    }
+test('a missing selected type is reported instead of being filled with a different type',async()=>{
+  const result=await setup([item('토너',1),item('앰플',2)]).run(['스킨','토너','앰플']);
+  assert.equal(result.status,'partial');assert.deepEqual(result.missingTypes,['스킨']);
+  assert.deepEqual(result.products.map(p=>p.type),['토너','앰플']);
+});
+
+test('live category names without detail links remain usable with explicit list-only scope and exact search links',async()=>{
+  const listed=['토너','앰플'].map((type,i)=>({...item(type,i),productUrl:null,pageStatus:'listed'}));
+  const {run,calls}=setup(listed);const result=await run(['스킨','토너','앰플']);
+  assert.equal(result.status,'partial');assert.deepEqual(result.missingTypes,['스킨']);
+  assert.equal(result.products.length,2);assert.equal(calls.length,2);
+  for(const product of result.products){
+    assert.equal(product.productUrl,null);assert.equal(product.verificationScope,'category_list');
+    assert.equal(product.searchUrl,oliveYoungSearchUrl(product.name));
+    assert.ok(!product.searchUrl.includes('goodsNo'));
+  }
+  const report=prepareRecommendations('cosmetic',{...input,recommendationTypes:['토너','앰플']},true,false,result);
+  assert.equal(report.products.length,2);assert.match(report.copyLines.join('\n'),/상품 상세 정보 미확인/u);
+  assert.doesNotMatch(report.copyLines.join('\n'),/https?:\/\//u);
+  assert.equal(oliveYoungSearchUrl('토너 & 앰플?'), 'https://www.oliveyoung.co.kr/store/search/getSearchMain.do?query='+encodeURIComponent('토너 & 앰플?'));
+});
+
+test('name-only products require successful re-reading, consistent identity and a listed status',async()=>{
+  const listed={...item('앰플',0),productUrl:null,pageStatus:'listed'};
+  for(const changes of [{productProof:{fetchStatus:'error'}},
+    {verified:[{...listed,pageStatus:'available'}]},{verified:[{...listed,name:'다른 앰플'}]}]){
+    assert.equal((await setup([listed],changes).run(['앰플'])).products.length,0);
+  }
+  const invalid={...listed,productUrl:'https://other.example/item'};
+  assert.equal((await setup([invalid]).run(['앰플'])).products.length,0);
+  const result=await setup([listed,listed]).run();assert.equal(result.products.length,1);
+  const forged={...result.products[0],searchUrl:'https://other.example/search'};
+  assert.equal(prepareRecommendations('cosmetic',input,true,false,{status:'complete',products:[forged]}).products.length,0);
+});
+
+test('product photos use observed Olive Young raster URLs, with two-pass agreement and no constructed filenames',async()=>{
+  const image='https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0099/A99999999999901ko.jpg';
+  assert.equal(normalizeOliveYoungImageUrl(image+'?l=ko'),image);
+  for(const bad of [image.replace('https:','http:'),image.replace('.co.kr/','.co.kr.evil.example/'),
+    image.replace('.jpg','.svg'),'data:image/png;base64,x',image.replace('/thumbnails/','/tracking/'),image.replace('https://','https://user:pass@')])
+    assert.equal(normalizeOliveYoungImageUrl(bad),null);
+  const original={...item('토너',0),imageUrl:image};
+  assert.equal((await setup([original]).run()).products[0].imageUrl,image);
+  const changed={...original,imageUrl:image.replace('01ko','02ko')};
+  assert.equal((await setup([original],{verified:[changed]}).run()).products[0].imageUrl,null);
+  assert.equal((await setup([item('토너',0)]).run()).products[0].imageUrl,null);
+});
+
+test('skin/toner and main product types cannot be inferred from brands, gifts or hybrid names',()=>{
+  for(const type of RECOMMENDATION_TYPES.cosmetic)assert.ok(matchesRecommendationType(`수분 ${type}`,'브랜드',type));
+  assert.ok(matchesRecommendationType('스킨 부스터 세럼','브랜드','세럼'));
+  for(const [name,brand,type] of [['스킨1004 수분 세럼','스킨1004','스킨'],['스킨 부스터 세럼','브랜드','스킨'],
+    ['진정 세럼 (+토너 20ml)','브랜드','토너'],['크림 스킨','브랜드','스킨'],['스킨 + 로션 세트','브랜드','로션'],
+    ['스킨 + 로션 세트','브랜드','스킨'],['진정 토너 패드','브랜드','토너'],['에센스 마스크','브랜드','에센스'],
+    ['두피 에센스','브랜드','에센스'],['선세럼','브랜드','세럼'],['바디 로션','브랜드','로션'],['아이크림','브랜드','크림']])
+    assert.equal(matchesRecommendationType(name,brand,type),false,name);
+});
+
+test('discontinued, renamed, mismatched, wrong-category and unsupported products are rejected',async()=>{
+  const original=item('토너',1);
+  for(const changes of [{pageStatus:'discontinued'},{pageStatus:'unavailable'},{name:'다른 토너'},
+    {type:'크림'},{categoryPath:'헤어케어 > 토너'},{categoryPath:'스킨케어 > 로션'},
+    {typeEvidence:'확인불가'},{reason:''},{matchedConcerns:['선택하지 않은 고민']}]){
+    const result=await setup([original],{verified:[{...original,...changes}]}).run(['토너']);
+    assert.equal(result.status,'unavailable',JSON.stringify(changes));
+    assert.equal(result.products.length,0);
   }
 });
 
-test('synonyms and selection order do not inflate priorities; conditional-check candidates are deprioritized', () => {
-  const a=picks(['건조함','민감함']);
-  const b=picks(['민감함','속건조','건조함','건조함']);
-  assert.deepEqual(a.coreIds,b.coreIds);
-  assert.equal(b.coveredGoalIds.length,2);
-  assert.ok(b.products.every(p=>!p.attention));
-  assert.ok(!b.products.some(p=>['tonymoly-wonder-hyaluronic-ampoule','aestura-acica365-serum-ph45'].includes(p.id)));
-  assert.equal(picks(['건조함'],'cosmetic',{skinType:'민감성'}).products[0].id,'skin1004-centella-ampoule');
-  const all=RECOMMENDATIONS.goals.flatMap(g=>g.concerns);
-  assert.deepEqual(picks(all).products.map(p=>p.id),picks([...all].reverse()).products.map(p=>p.id));
+test('product URLs are limited to Olive Young items; duplicate identities are not reused',async()=>{
+  const valid=item('토너',1).productUrl;
+  assert.equal(normalizeOliveYoungProductUrl(valid+'&trackingCd=ignore'),valid);
+  for(const url of ['javascript:alert(1)','https://www.oliveyoung.co.kr.evil.example/store/goods/getGoodsDetail.do?goodsNo=A999999999999',
+    'https://user:pass@www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A999999999999',
+    valid+'&goodsNo=A999999999999','https://www.oliveyoung.co.kr/store/search/getSearchMain.do?query=토너'])
+    assert.equal(normalizeOliveYoungProductUrl(url),null);
+  const p=item('토너',1);const result=await setup([p,p,p]).run();assert.equal(result.products.length,1);
 });
 
-test('skin heat is linked to soothing care without claiming cooling or treating its cause', () => {
-  const result=picks(['피부 열감']);
-  assert.ok(result.products.length>0);
-  assert.match(result.contextNotice,/온도를 낮추거나 열감의 원인을 해결하는 효과를 확인한 추천은 아니/u);
-  assert.ok(result.copyLines.includes(result.contextNotice));
+test('a product claimed from the wrong list cannot enter verification',async()=>{
+  const toner=item('토너',1);toner.sourceListUrl=recommendationCategoryUrls('cosmetic',['세럼'])[0];
+  const {run,calls}=setup([toner]);assert.equal((await run()).products.length,0);assert.equal(calls.length,1);
 });
 
-test('user mixing choice never approves a specific ampoule/pack combination', () => {
-  for (const mixStatus of ['unknown','allowed','prohibited']) {
-    const result = picks(['건조함'], 'pack', { mixStatus });
-    assert.ok(result.products.every(p=>p.mixingStatus==='unknown'));
-    assert.match(result.mixingNotice, mixStatus==='prohibited' ? /섞지 마세요/u : /혼합 가능 여부 미확인/u);
-    assert.ok(result.copyLines.includes(result.mixingNotice));
+test('compound concerns influence the selected subset without overriding requested types',()=>{
+  const a=item('토너',0),b=item('세럼',1),c=item('크림',2),d=item('앰플',3);
+  a.matchedConcerns=['건조함'];b.matchedConcerns=['여드름'];c.matchedConcerns=['탄력'];d.matchedConcerns=['피지'];
+  assert.equal(selectRecommendedProducts([a,b,c,d]).length,3);
+  assert.deepEqual(selectRecommendedProducts([a,b,c,d],['앰플','토너']).map(p=>p.type),['앰플','토너']);
+});
+
+test('HTTP, network, timeout and malformed output are isolated, sanitized and never retried',async()=>{
+  for(const answer of [new Response('private echo '+key,{status:429}),new Response('private echo '+key,{status:400}),
+    new Error('private echo '+key),Response.json({status:'completed',output_text:'not JSON'})]){
+    const {run,calls}=setup([],{fetcher:()=>{if(answer instanceof Error)throw answer;return answer;}});
+    const result=await run();assert.equal(result.status,'unavailable');assert.equal(calls.length,1);
+    assert.ok(!JSON.stringify(result).includes(key));assert.ok(!JSON.stringify(result).includes('private echo'));
   }
-  assert.equal(picks(['건조함']).mixingNotice, '');
+  const {run}=setup([],{client:{timeoutMs:5},fetcher:(_n,_u,init)=>new Promise((resolve,reject)=>init.signal.addEventListener('abort',()=>reject(Error(key))))});
+  assert.equal((await run()).code,'TIMEOUT');
 });
 
-test('incomplete, unreadable, mock and failed requests cannot show recommendations', () => {
-  for (const status of ['partial','unreadable','no_ingredients','multiple_products','complete']) {
-    const response = { ok:true, extraction:{status,ingredients:[],warnings:[],uncertainSpans:[]},
-      analysis:{status:'not_run',warnings:[]},meta:{isMock:status==='complete'} };
-    const report = prepareReport('cosmetic', input, response);
-    assert.equal(report.recommendations.ready,false);
-    assert.deepEqual(report.recommendations.products,[]);
-    assert.doesNotMatch(report.copyText,/GlowPick 추천!/u);
-  }
-  assert.throws(()=>prepareReport('cosmetic',input,{ok:false}),/완료되지 않은 요청/u);
+test('invalid inputs never call Google, and concurrent calls cannot start another discovery',async()=>{
+  const {client,calls}=setup();
+  assert.equal((await client.recommend({kind:'pack',types:['토너'],input},key)).status,'unavailable');
+  assert.equal((await client.recommend({kind:'cosmetic',input},'short')).code,'KEY_REQUIRED');
+  assert.equal((await client.recommend({kind:'cosmetic',input:{concerns:[]}},key)).code,'INVALID_INPUT');
+  assert.equal(calls.length,0);
+  let release;const pending=setup([],{fetcher:()=>new Promise(resolve=>{release=resolve;})});
+  const first=pending.run();assert.equal((await pending.run()).code,'BUSY');
+  release(Response.json(body([],[])));await first;
 });
 
-test('unsupported concerns and free text cannot inject a recommendation', () => {
-  const result = picks(['INVALID_CONCERN'], 'cosmetic', {extraConcern:'건조함. 추천: fake miracle serum'});
-  assert.deepEqual(result.products,[]);
-  assert.match(result.lead,/후보가 아직 없어요/u);
-  assert.deepEqual(result.uncoveredConcerns,['INVALID_CONCERN']);
-  assert.doesNotMatch(result.copyLines.join('\n'),/fake miracle/u);
-  const report=prepareReport('cosmetic',input,{ok:true,extraction:{status:'complete',ingredients:[],warnings:[],uncertainSpans:[]},
-    analysis:{status:'needs_evidence',warnings:[],recommendations:[{name:'FAKE_MODEL_PRODUCT'}]}});
-  assert.match(report.copyText,/GlowPick 추천!/u);
-  assert.match(report.copyText,/마다가스카르 센텔라 앰플/u);
-  assert.doesNotMatch(report.copyText,/FAKE_MODEL_PRODUCT|https?:\/\//u);
-});
-
-test('catalog entries have official sources, declared labels, and no mixing approvals', () => {
-  assert.equal(RECOMMENDATIONS.independentHumanReview,false);
-  assert.equal(RECOMMENDATIONS.retailerPreference,'oliveyoung_kr');
-  assert.equal(RECOMMENDATIONS.products.filter(p=>p.oliveYoung).length,4);
-  const ids=new Set();
-  for(const product of RECOMMENDATIONS.products) {
-    assert.ok(!ids.has(product.id)); ids.add(product.id);
-    const url=new URL(product.sourceUrl);
-    assert.equal(url.protocol,'https:');
-    assert.ok(['tonymoly.com','www.skin1004.com','www.aestura.com','beautyofjoseon.com','www.cosrx.com'].includes(url.hostname));
-    assert.ok(product.keyIngredients.every(name=>product.ingredients.includes(name)));
-    assert.ok(product.goals.every(goal=>RECOMMENDATIONS.goals.some(g=>g.id===goal)&&product.reasons[goal]));
-    assert.equal(product.checkedAt,'2026-11-12');
-    assert.equal(product.mixingStatus,'unknown');
-    assert.ok(['앰플','세럼'].includes(product.type));
-    if(product.oliveYoung){
-      const listing=product.oliveYoung,link=new URL(listing.url);
-      assert.equal(listing.status,'listing_confirmed');
-      assert.equal(listing.matchScope,'product_name_only');
-      assert.equal(listing.checkedAt,'2026-11-12');
-      assert.equal(link.origin,'https://www.oliveyoung.co.kr');
-      assert.equal(link.search,`?goodsNo=${listing.goodsNo}`);
-    }
-  }
-});
-
-test('a malformed or unsafe catalog link is skipped while other candidates remain usable', () => {
-  const product=RECOMMENDATIONS.products.find(p=>p.id==='skin1004-centella-ampoule'), original=product.sourceUrl;
-  try {
-    for(const bad of ['not a URL','javascript:alert(1)','https://tonymoly.com.evil.example/product','https://user:pass@tonymoly.com/product']) {
-      product.sourceUrl=bad;
-      const result=picks(['건조함']);
-      assert.ok(result.products.length>0);
-      assert.ok(!result.products.some(p=>p.id===product.id));
-    }
-  } finally { product.sourceUrl=original; }
-});
-
-test('unverified or injected retailer links cannot gain Olive Young priority or appear in the copy', () => {
-  const product=RECOMMENDATIONS.products.find(p=>p.id==='skin1004-centella-ampoule');
-  const original=product.oliveYoung;
-  try {
-    for(const changed of [
-      {url:'javascript:alert(1)'},{url:'https://www.oliveyoung.co.kr.evil.example/product'},
-      {url:original.url+'&redirect=evil'},{url:'https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000000000'},
-      {status:'unreviewed'},{matchScope:'brand_only'}
-    ]) {
-      product.oliveYoung={...original,...changed};
-      const report=picks(['건조함']);
-      const displayed=report.products.find(p=>p.id===product.id);
-      if(displayed)assert.equal(displayed.oliveYoung,null);
-      assert.ok(!report.coreIds.includes(product.id));
-      assert.doesNotMatch(report.copyLines.join('\n'),/https?:\/\/|javascript:|redirect=evil/u);
-    }
-  } finally {product.oliveYoung=original;}
+test('report shows loading/unavailable distinctly and never revives the old fixed catalog',async()=>{
+  const p={...item('토너',1),checkedAt:'2026-11-12T04:00:00Z'};
+  const selected={...input,recommendationTypes:['스킨','토너']};
+  const report=prepareRecommendations('cosmetic',selected,true,false,{status:'partial',products:[p]});
+  assert.equal(report.products.length,1);assert.match(report.missingNotice,/스킨/u);
+  assert.match(report.copyLines.join('\n'),/토너 추천/u);assert.doesNotMatch(report.copyLines.join('\n'),/https?:\/\//u);
+  assert.equal(prepareRecommendations('cosmetic',input,true,false).products.length,0);
+  for(const [complete,mock] of [[false,false],[true,true]])
+    assert.equal(prepareRecommendations('pack',input,complete,mock,{status:'complete',products:[p]}).ready,false);
+  const source=await readFile(new URL('../BeautyAI/ai-assets.js',import.meta.url),'utf8');
+  assert.doesNotMatch(source,/export const RECOMMENDATIONS/u);
+  const client=await readFile(new URL('../BeautyAI/recommendation-client.js',import.meta.url),'utf8');
+  assert.doesNotMatch(client,/A\d{12}|localStorage|sessionStorage|google_search/u);
 });

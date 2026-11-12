@@ -1,6 +1,6 @@
 # GlowPick 수업 시연용 Android 앱
 
-기존 `BeautyAI/`의 공개 화면 8개 파일을 Capacitor 8.6.0으로 묶는 Android APK입니다.
+기존 `BeautyAI/`의 공개 화면 9개 파일을 Capacitor 8.6.0으로 묶는 Android APK입니다.
 Google Play 등록 없이 팀원 휴대폰에 직접 설치하는 데모입니다.
 앱 이름은 GlowPick, 패키지는 `io.github.yumin0117.glowpick`, 버전은 `0.1.0-demo`입니다.
 

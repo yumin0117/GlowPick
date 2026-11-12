@@ -2,7 +2,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 const source = new URL("../../BeautyAI/", import.meta.url);
 const target = new URL("../www/", import.meta.url);
-const names = ["index.html", "style.css", "script.js", "api-client.js", "ai-core.js", "ai-assets.js", "gemini-client.js", "report-model.js"];
+const names = ["index.html", "style.css", "script.js", "api-client.js", "ai-core.js", "ai-assets.js", "gemini-client.js", "report-model.js", "recommendation-client.js"];
 await mkdir(target, { recursive: true });
 for (const name of names) {
   let content = await readFile(new URL(name, source), "utf8");

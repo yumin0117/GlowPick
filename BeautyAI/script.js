@@ -1,4 +1,4 @@
-import { analyze, MAX_IMAGE_BYTES } from "./api-client.js";
+import { analyze, recommendProducts, MAX_IMAGE_BYTES } from "./api-client.js";
 import { prepareReport } from "./report-model.js";
 
 const $ = id => document.getElementById(id);
@@ -140,51 +140,64 @@ function appendItem(host, title, description, className = "info-item") {
   item.append(textNode("p", description));
   host.append(item);
 }
-// BEGIN SHARED RECOMMENDATION VIEW (also embedded in ym's standalone script)
+// BEGIN SHARED RECOMMENDATION VIEW
+function getRecommendationTypes(kind) {
+  return [...document.querySelectorAll(`input[name="${kind}RecommendationType"]:checked`)].map(el=>el.value);
+}
+function setupRecommendationTypes() {
+  for (const kind of ["cosmetic","pack"]) {
+    const choices=[...document.querySelectorAll(`input[name="${kind}RecommendationType"]`)];
+    choices.forEach(choice=>choice.addEventListener("change",()=>{
+      const limit=kind==="pack"?1:3;
+      let reached=false;
+      if (choice.checked && kind==="pack") choices.filter(el=>el!==choice).forEach(el=>{el.checked=false;});
+      if (getRecommendationTypes(kind).length>limit) {choice.checked=false;reached=true;}
+      const selected=getRecommendationTypes(kind);
+      $(kind+"PickHint").textContent=(reached?"최대 3종까지 선택할 수 있어요. ":"")+(selected.length
+        ? `${selected.join(" · ")} · 종류마다 1개 추천` : "선택 없음 · 자동 추천 최대 3개");
+      clearReport();
+    }));
+  }
+}
 function renderRecommendations(recommendations) {
   $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
-  $("recommendationLead").textContent = recommendations.lead;
-  $("recommendationNotice").textContent = recommendations.notice;
-  $("recommendationShop").textContent = recommendations.shopNotice;
-  $("recommendationCoverage").textContent = recommendations.coverage;
-  $("recommendationStrategy").textContent = recommendations.strategy;
-  $("recommendationContext").textContent = [recommendations.contextNotice, recommendations.missingNotice].filter(Boolean).join(" ");
-  $("recommendationContext").classList.toggle("hidden", !$("recommendationContext").textContent);
-  $("recommendationMixing").textContent = recommendations.mixingNotice;
-  $("recommendationMixing").classList.toggle("hidden", !recommendations.mixingNotice);
+  $("recommendationBox").setAttribute("aria-busy",String(recommendations.status==="loading"));
+  for(const [id,value] of [["recommendationLead",recommendations.lead],["recommendationNotice",recommendations.notice],
+    ["recommendationShop",recommendations.shopNotice],["recommendationCoverage",recommendations.coverage],
+    ["recommendationStrategy",recommendations.strategy],["recommendationMixing",recommendations.mixingNotice]]) $(id).textContent=value;
+  $("recommendationContext").textContent=[recommendations.contextNotice,recommendations.missingNotice].filter(Boolean).join(" ");
+  $("recommendationContext").classList.toggle("hidden",!$("recommendationContext").textContent);
+  $("recommendationMixing").classList.toggle("hidden",!recommendations.mixingNotice);
   $("recommendationList").replaceChildren();
-  for (const product of recommendations.products) {
-    const card = textNode("article", "", "pick-card");
-    const top = textNode("div", "", "pick-card-top");
-    top.append(textNode("span", product.brand, "pick-brand"), textNode("span", product.type, "pick-type"));
-    const tags = textNode("div", "", "pick-tags");
-    product.labels.forEach(label => tags.append(textNode("span", label)));
-    card.append(textNode("span", product.role, "pick-role"), top, textNode("h4", product.name), tags);
-    card.append(textNode("p", "연결한 고민: " + product.matchedConcerns.join(" · "), "pick-matched"));
-    card.append(textNode("p", product.selectionReason, "pick-selection"));
-    product.reasons.forEach(reason => card.append(textNode("p", reason, "pick-reason")));
-    card.append(textNode("p", "제품 성분 포인트: " + product.keyIngredients.join(" · "), "pick-ingredients"));
-    card.append(textNode("p", product.note, "pick-note"));
-    if (product.attention) card.append(textNode("p", product.attention, "pick-attention"));
-    if (product.mixingStatus === "unknown") card.append(textNode("span", "이 팩과의 혼합 조합 미확인", "pick-mix-badge"));
-    card.append(textNode("p", product.oliveYoung ? `올리브영 상품 등록 확인 · ${product.oliveYoung.checkedAt}`
-      : "올리브영 상품 등록 미확인", "pick-shop-status"));
-    if (product.oliveYoung) {
-      const shopLink = textNode("a", "올리브영 상품 보기 ↗", "pick-shop-link");
-      shopLink.href = product.oliveYoung.url;
-      shopLink.target = "_blank";
-      shopLink.rel = "noopener noreferrer";
-      shopLink.setAttribute("aria-label", `${product.brand} ${product.name} 올리브영 상품 정보 (새 창)`);
-      card.append(shopLink);
+  recommendations.products.forEach((product,index)=>{
+    const card=textNode("article","","pick-card");
+    card.append(textNode("span",`${product.type} 추천`,"pick-role"));
+    const photo=textNode("div","","pick-photo");
+    const photoNote=textNode("p","제품 사진을 확인하지 못했어요.","pick-photo-note");
+    if(product.imageUrl){
+      const image=document.createElement("img");image.alt=`${product.brand} ${product.name} 제품 사진`;
+      image.loading="lazy";image.referrerPolicy="no-referrer";image.width=240;image.height=240;
+      image.addEventListener("error",()=>{image.classList.add("hidden");photoNote.classList.remove("hidden");},{once:true});
+      image.src=product.imageUrl;photoNote.classList.add("hidden");photo.append(image);
     }
-    const link = textNode("a", "공식 제품 정보 ↗", "pick-link");
-    link.href = product.sourceUrl;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.setAttribute("aria-label", `${product.brand} ${product.name} 공식 제품 정보 (새 창)`);
-    card.append(link);
-    $("recommendationList").append(card);
-  }
+    photo.append(photoNote);card.append(photo);
+    const top=textNode("div","","pick-card-top");
+    top.append(textNode("span",product.brand,"pick-brand"),textNode("span",`${index+1} / ${recommendations.products.length}`,"pick-type"));
+    card.append(top,textNode("h4",product.name));
+    card.append(textNode("p","연결한 고민: "+product.matchedConcerns.join(" · "),"pick-matched"));
+    card.append(textNode("p",product.reason,"pick-reason"));
+    const listOnly=product.verificationScope==="category_list";
+    card.append(textNode("p",(listOnly?"현재 목록 표시 문구: ":"상품 페이지에서 확인: ")+product.productEvidence,"pick-ingredients"));
+    card.append(textNode("p",listOnly?"현재 목록 확인 · 상품 상세 정보 미확인":"상품 상세 페이지 확인","pick-shop-status"));
+    card.append(textNode("p","종류 확인: "+product.typeEvidence,"pick-note"));
+    product.cautions.forEach(note=>card.append(textNode("p",note,"pick-note")));
+    if(product.mixingStatus==="unknown")card.append(textNode("span","이 팩과의 혼합 조합 미확인","pick-mix-badge"));
+    card.append(textNode("p","올리브영 페이지 조회: "+new Date(product.checkedAt).toLocaleString("ko-KR",{timeZone:"Asia/Seoul"}),"pick-shop-status"));
+    const link=textNode("a",listOnly?"올리브영에서 이 제품 검색 ↗":"올리브영 상품 보기 ↗","pick-shop-link");
+    link.href=listOnly?product.searchUrl:product.productUrl;link.target="_blank";link.rel="noopener noreferrer";
+    link.setAttribute("aria-label",`${product.brand} ${product.name} 올리브영 상품 정보 (새 창)`);
+    card.append(link);$("recommendationList").append(card);
+  });
 }
 // END SHARED RECOMMENDATION VIEW
 function renderReport(kind, input, response) {
@@ -226,6 +239,7 @@ async function run(kind) {
   if (isBusy) return;
   clearMessages(); clearReport();
   const input = getInput(kind), message = $(kind + "Message"), file = uploaded[kind];
+  const types = getRecommendationTypes(kind), reportInput = { ...input, recommendationTypes: types };
   if (!file) { message.textContent = "전성분 라벨 사진을 먼저 올려 주세요."; return; }
   if (!input.concerns.length) { message.textContent = "피부 고민을 하나 이상 선택해 주세요."; return; }
   let key = $("geminiApiKey").value.trim();
@@ -265,7 +279,13 @@ async function run(kind) {
         ? "전성분 판독은 끝났지만 설명 생성에 실패했어요. " : "";
       throw new Error(`${prefix}${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · ${[...details, `요청 ${response.requestId || "-"}`].join(" · ")})`);
     }
-    renderReport(kind, input, response);
+    if (response.extraction.status === "complete" && !response.meta?.isMock) {
+      renderReport(kind,reportInput,{...response,recommendations:{status:"loading",products:[]}});
+      message.textContent="성분 분석 완료 · 현재 올리브영 목록과 상품 종류를 확인하고 있어요…";
+      try { response.recommendations=await recommendProducts({kind,types,input,ingredients:response.extraction.ingredients},key); }
+      catch { response.recommendations={status:"unavailable",products:[],message:"추천을 완료하지 못했어요. 성분 분석 결과는 유지했어요."}; }
+    }
+    renderReport(kind, reportInput, response);
     message.textContent = response.meta?.isMock ? "모의 연동 시험 결과예요. 실제 판독 결과로 사용하지 마세요."
       : response.extraction.status === "complete" ? "성분 판독이 완료됐어요. 아래 결과를 확인해 주세요." : "사진 판독 안내를 확인해 주세요.";
   } catch (error) { clearReport(); message.textContent = error.message || "분석을 완료하지 못했어요."; }
@@ -282,3 +302,5 @@ $("copyReport").addEventListener("click", async () => {
 switchTab("cosmetic"); clearApiKey();
 window.addEventListener("pageshow", clearApiKey);
 window.addEventListener("pagehide", clearApiKey);
+
+setupRecommendationTypes();

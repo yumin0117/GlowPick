@@ -20,7 +20,7 @@ def frontend_routes():
                     "/style.css": "style.css", "/script.js": "script.js",
                     "/api-client.js": "api-client.js", "/ai-core.js": "ai-core.js",
                     "/ai-assets.js": "ai-assets.js", "/gemini-client.js": "gemini-client.js",
-                    "/report-model.js": "report-model.js"}
+                    "/report-model.js": "report-model.js", "/recommendation-client.js": "recommendation-client.js"}
 
     async def serve_public_file(request):
         return FileResponse(ROOT / "BeautyAI" / public_files[request.url.path],

@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "node scripts/dev-static.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "build:ym": "node scripts/build-ym.mjs ../GlowPick-ym"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
   }
 }

@@ -17,7 +17,7 @@ SPACE = "yumin0601/GlowPick"
 PREVIOUS = "fc90bf5cebc7fd0f44bdcc83910e9f9fe4625a28"
 HOST = "https://yumin0601-glowpick.static.hf.space"
 FILES = {"README.md", "index.html", "style.css", "script.js", "api-client.js",
-         "gemini-client.js", "ai-core.js", "ai-assets.js", "report-model.js"}
+         "gemini-client.js", "ai-core.js", "ai-assets.js", "report-model.js", "recommendation-client.js"}
 
 
 def matches_public_asset(name, expected, actual):
@@ -41,8 +41,8 @@ def main():
     parser.add_argument("--prompt-token", action="store_true", help="Hidden HF token entry; never saved")
     args = parser.parse_args()
     with ZipFile(args.archive) as archive:
-        if set(archive.namelist()) != FILES or len(archive.namelist()) != 9:
-            raise ValueError("Archive must contain exactly the nine approved root files")
+        if set(archive.namelist()) != FILES or len(archive.namelist()) != len(FILES):
+            raise ValueError("Archive must contain exactly the approved public root files")
         payload = {name: archive.read(name) for name in FILES}
     metadata = payload["README.md"].decode("utf-8").split("---")[1]
     for line in ("title: GlowPick", "emoji: 🧴", "colorFrom: pink", "colorTo: gray",
@@ -63,7 +63,7 @@ def main():
     unexpected = remote - FILES - {".gitattributes"}
     if unexpected:
         raise ValueError("Unexpected remote files; review references before deployment")
-    print(f"Target: {SPACE}; current commit: {info.sha}; upload: 9 files")
+    print(f"Target: {SPACE}; current commit: {info.sha}; upload: {len(FILES)} files")
     if args.check:
         print("Read-only check passed. No remote changes made.")
         return

@@ -334,7 +334,7 @@ test("request timeout aborts once without a retry", async () => {
 });
 
 test("Static frontend has no persistence, external SDK or backend endpoint", async () => {
-  const names = ["api-client.js", "gemini-client.js", "ai-core.js", "ai-assets.js", "report-model.js", "script.js"];
+  const names = ["api-client.js", "gemini-client.js", "ai-core.js", "ai-assets.js", "report-model.js", "recommendation-client.js", "script.js"];
   const sources = await Promise.all(names.map(name => readFile(new URL("../BeautyAI/" + name, import.meta.url), "utf8")));
   for (const source of sources) {
     assert.doesNotMatch(source, /localStorage|sessionStorage|indexedDB|document\.cookie|@gradio\/client|workers\.dev/u);

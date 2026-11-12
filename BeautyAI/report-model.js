@@ -1,92 +1,48 @@
 import { normalizeIngredient } from "./ai-core.js";
-import { CLAIMS, GUIDANCE, RECOMMENDATIONS } from "./ai-assets.js";
+import { CLAIMS, GUIDANCE } from "./ai-assets.js";
+import { RECOMMENDATION_TYPES, validateRecommendationTypes, normalizeOliveYoungProductUrl, oliveYoungSearchUrl, normalizeOliveYoungImageUrl, matchesRecommendationType } from "./recommendation-client.js";
 
-// BEGIN SHARED PRODUCT RECOMMENDATIONS (also embedded in ym's standalone script)
-export function prepareRecommendations(kind, input, complete, isMock = false) {
-  const notice = "선택한 고민과 제조사 공개 정보를 연결한 제품 후보예요. 개인 적합성·제품 간 우열·여드름 치료 효과를 평가한 결과는 아니에요. 표시된 제품은 비교·선택할 후보이며 모두 함께 쓰라는 뜻은 아니에요. 구입 전 현재 라벨과 사용법을 확인해 주세요.";
-  // Canonical goal order makes selection independent of checkbox order or synonyms.
-  const concerns = new Set(input.concerns || []);
-  const goals = RECOMMENDATIONS.goals.filter(goal => goal.concerns.some(c => concerns.has(c)));
+// BEGIN SHARED PRODUCT RECOMMENDATIONS
+export function prepareRecommendations(kind, input, complete, isMock = false, live = null) {
   const ready = complete && !isMock;
-  const candidates = ready ? RECOMMENDATIONS.products.flatMap((product, index) => {
-    const matched = goals.filter(goal => product.goals.includes(goal.id));
-    if (!matched.length) return [];
-    let source;
-    try { source = new URL(product.sourceUrl); } catch { return []; }
-    if (source.protocol !== "https:" || source.username || source.password
-      || !["tonymoly.com", "www.skin1004.com", "www.aestura.com", "beautyofjoseon.com", "www.cosrx.com"].includes(source.hostname)) return [];
-    const needsCheck = (product.attentionConcerns || []).some(c => concerns.has(c)
-      || (c === "민감함" && input.skinType === "민감성"));
-    let oliveYoung = null;
-    try {
-      const listing = product.oliveYoung, url = new URL(listing?.url);
-      if (listing.status === "listing_confirmed" && listing.checkedAt && listing.matchScope === "product_name_only"
-        && url.origin === "https://www.oliveyoung.co.kr" && !url.username && !url.password
-        && url.pathname === "/store/goods/getGoodsDetail.do" && /^A\d{12}$/u.test(listing.goodsNo)
-        && url.search === `?goodsNo=${listing.goodsNo}`)
-        oliveYoung = { url: url.href, goodsNo: listing.goodsNo, checkedAt: listing.checkedAt, title: listing.title };
-    } catch { /* An unverified or malformed retailer link never receives preferred status. */ }
-    return [{ id: product.id, brand: product.brand, name: product.name, type: product.type, index,
-      goalIds: matched.map(goal => goal.id),
-      matchedConcerns: matched.flatMap(goal => goal.concerns.filter(c => concerns.has(c))),
-      labels: matched.map(goal => goal.label), reasons: matched.map(goal => product.reasons[goal.id]),
-      attention: needsCheck ? product.attentionReason : "",
-      oliveYoung,
-      keyIngredients: product.keyIngredients, note: product.note, sourceUrl: product.sourceUrl,
-      checkedAt: product.checkedAt, mixingStatus: kind === "pack" ? "unknown" : "not_applicable" }];
-  }) : [];
-  const compare = (a, b) => b.goalIds.length - a.goalIds.length
-    || Number(Boolean(a.attention)) - Number(Boolean(b.attention))
-    || Number(Boolean(b.oliveYoung)) - Number(Boolean(a.oliveYoung)) || a.index - b.index;
-  candidates.sort(compare);
-  // Exhaustive bounded set cover, rather than a greedy list: maximize covered goals,
-  // then minimize conditional checks, unconfirmed Olive Young listings and core size.
-  let best = { items: [], covered: 0, checks: 0, unlisted: 0 };
-  function choose(items, start) {
-    const covered = new Set(items.flatMap(p => p.goalIds)).size;
-    const checks = items.filter(p => p.attention).length;
-    const unlisted = items.filter(p => !p.oliveYoung).length;
-    if (covered > best.covered || (covered === best.covered && (checks < best.checks
-      || (checks === best.checks && (unlisted < best.unlisted
-        || (unlisted === best.unlisted && items.length < best.items.length))))))
-      best = { items: [...items], covered, checks, unlisted };
-    if (items.length === 3) return;
-    for (let i = start; i < candidates.length; i++) choose([...items, candidates[i]], i + 1);
-  }
-  choose([], 0);
-  const core = [...best.items].sort(compare);
-  const alternatives = candidates.filter(p => !core.includes(p) && !p.attention)
-    .sort((a,b) => Number(Boolean(b.oliveYoung)) - Number(Boolean(a.oliveYoung)) || compare(a,b))
-    .slice(0, 3 - core.length);
-  const products = [...core, ...alternatives].map((p, i) => ({ ...p,
-    role: i === 0 ? "우선 후보" : i < core.length ? "보완 후보" : "대안 후보",
-    selectionReason: i < core.length
-      ? `선택한 ${goals.length}개 관리 목적 중 ${p.goalIds.length}개와 연결돼요.${core.length > 1 ? " 다른 보완 후보와 함께 살펴보면 선택한 목적을 더 넓게 비교할 수 있어요." : ""}`
-      : `선택한 ${goals.length}개 관리 목적 중 ${p.goalIds.length}개에 대한 다른 후보예요. 우선 후보와 함께 사용할 필요는 없어요.${p.goalIds.length < goals.length ? " 선택한 모든 목적을 연결하는 대안은 아니에요." : ""}`
-  }));
-  const coveredGoalIds = goals.filter(g => core.some(p => p.goalIds.includes(g.id))).map(g => g.id);
-  const uncoveredConcerns = [...concerns].filter(c => !goals.some(g => coveredGoalIds.includes(g.id) && g.concerns.includes(c)));
-  const strategy = "등록된 후보의 최대 3개 조합을 비교해, 관리 목적을 가장 넓게 연결하는 우선·보완 후보를 골랐어요. 그다음 추가 확인이 필요한 제품 수가 적고, 올리브영 등록을 확인한 제품이 우선인 쪽을 택해요. 이 조건이 같으면 우선·보완 후보 수가 적은 쪽을 택해요. 대안은 별도 비교용이에요. 같은 관리 목적은 한 번만 계산하며 동률은 등록 순서로 표시해요. 효과 순위는 아니에요.";
-  const shopNotice = "올리브영 상품명 기준으로 등록을 확인했어요. 성분은 제조사 공개 버전 기준이며, 가격·재고·기획 구성은 달라질 수 있어요. 구매 페이지의 현재 라벨·사용법을 확인해 주세요.";
-  const coverage = `${goals.length}개 관리 목적 중 ${coveredGoalIds.length}개 연결 · 우선·보완 ${core.length}개${alternatives.length ? ` · 대안 ${alternatives.length}개` : ""}`;
-  const contextNotice = concerns.has("피부 열감")
-    ? "피부 열감은 진정 관리 목적에 연결했어요. 피부 온도를 낮추거나 열감의 원인을 해결하는 효과를 확인한 추천은 아니에요." : "";
+  let types = [], invalid = false;
+  try { types = validateRecommendationTypes(kind, input.recommendationTypes || []); } catch { invalid = true; }
+  const allowed = types.length ? types : RECOMMENDATION_TYPES[kind] || [];
+  const status = invalid ? "unavailable" : live?.status || "not_requested";
+  const seen = new Set(), usedTypes = new Set();
+  const products = ready && !invalid && ["complete", "partial"].includes(status) ? (Array.isArray(live.products)?live.products:[]).filter(p => {
+    if (!p || !Array.isArray(p.matchedConcerns) || !Array.isArray(p.cautions)
+      || typeof p.reason !== "string" || typeof p.productEvidence !== "string") return false;
+    const detail = normalizeOliveYoungProductUrl(p.productUrl);
+    const url = detail || (p.productUrl == null && p.verificationScope === "category_list"
+      && p.searchUrl === oliveYoungSearchUrl(p.name) ? p.searchUrl : null);
+    if (!url || (detail && detail !== p.productUrl) || !allowed.includes(p.type) || !matchesRecommendationType(p.name,p.brand,p.type)
+      || seen.has(url) || (types.length && usedTypes.has(p.type))) return false;
+    seen.add(url); usedTypes.add(p.type); return true;
+  }).slice(0, types.length || 3).map(p=>({...p,imageUrl:normalizeOliveYoungImageUrl(p.imageUrl)})) : [];
+  const missingTypes = types.filter(type => !products.some(p=>p.type===type));
+  const lead = types.length ? `${types.join(" · ")} 종류마다 제품 1개씩 비교해요. 확인하지 못한 종류는 다른 종류로 대체하지 않아요.`
+    : `${kind === "pack" ? "에센스·세럼·앰플" : "스킨·토너·에센스·세럼·앰플·크림·로션"} 중 피부 고민에 맞춰 최대 3개를 비교해요.`;
+  const strategy = "추천할 때마다 올리브영 공개 목록의 제품명과 본품 종류를 다시 확인해요. 상세 링크를 읽을 수 있으면 상세 페이지도 확인하고, 목록만 확인한 제품은 별도로 표시해요. 확인한 후보 중 여러 고민과 연결되는 조합을 비교하며 같은 조건이면 API 비교 순서를 사용해요. 전체 상품 중 개인에게 가장 효과적인 순위를 검증한 결과는 아니에요.";
+  const notice = "사용자 고민과 확인한 상품 정보를 연결한 API 추천이에요. 개인 적합성·질환 치료·제품의 동시 사용을 확인한 결과는 아니에요.";
+  const shopNotice = "고정 제품 목록과 이전 추천 결과를 사용하지 않아요. 목록만 확인한 후보는 제품명 검색으로 연결하며 상세 성분·가격·재고·현재 옵션은 미확인이에요. 페이지 접근·종류 확인에 실패하면 추천하지 않아요. 구매 페이지의 현재 라벨과 사용법을 확인해 주세요.";
   const mixingNotice = kind !== "pack" ? "" : input.mixStatus === "prohibited"
-    ? "제조사의 혼합 금지 안내를 확인하셨으므로 이 팩에는 앰플·세럼을 섞지 마세요. 아래는 혼합용 추천이 아닌 별도 제품 후보예요."
-    : "혼합 가능 여부 미확인. 아래 후보를 이 모델링팩에 섞어 써도 된다는 뜻은 아니에요. 제조사가 지정한 혼합액·사용법을 따라 주세요.";
-  const matchedConcerns = goals.flatMap(goal => goal.concerns.filter(c => concerns.has(c)));
-  const lead = !ready ? "전성분 판독을 완료한 뒤 제품 후보를 확인할 수 있어요."
-    : !products.length ? "현재 선택한 고민에 맞춰 확인한 앰플·세럼 후보가 아직 없어요."
-    : `${matchedConcerns.join(" · ")} 고민을 함께 고려해 앰플·세럼 후보를 골랐어요. 업로드한 제품과의 병용 적합성을 판정한 추천은 아니에요.`;
-  const missingNotice = uncoveredConcerns.length ? `아직 연결하지 못한 고민: ${uncoveredConcerns.join(" · ")}` : "";
-  const copyLines = ready ? ["", "[GlowPick 추천!]", lead, coverage, strategy,
-    ...[contextNotice, missingNotice, mixingNotice].filter(Boolean),
-    ...products.flatMap(product => [`[${product.role}] ${product.brand} ${product.name} · ${product.labels.join(" / ")}`,
-      `연결한 고민: ${product.matchedConcerns.join(" · ")}`, product.selectionReason,
-      ...product.reasons, `확인한 성분: ${product.keyIngredients.join(", ")}`, product.note, product.attention,
-      product.oliveYoung ? `올리브영 상품 등록 확인 · ${product.oliveYoung.checkedAt}` : "올리브영 상품 등록 미확인"].filter(Boolean)), shopNotice, notice] : [];
-  return { ready, products, lead, notice, mixingNotice, strategy, coverage, contextNotice, missingNotice,
-    coreIds: core.map(p => p.id), coveredGoalIds, uncoveredConcerns, shopNotice, copyLines };
+    ? "제조사의 혼합 금지 안내를 확인하셨으므로 이 팩에는 섞지 마세요. 추천은 별도 제품 후보예요."
+    : "혼합 가능 여부 미확인. 추천된 에센스·세럼·앰플을 이 모델링팩에 섞어도 된다는 뜻은 아니에요. 제조사가 지정한 혼합액과 사용법을 따라 주세요.";
+  const coverage = status === "loading" ? "현재 올리브영 목록과 상품 종류를 확인하고 있어요…"
+    : `확인된 제품 ${products.length}개${types.length ? ` · 선택한 ${types.length}종 중 ${types.length-missingTypes.length}종 확인` : " · 종류 미선택 자동 추천"}`;
+  const contextNotice = !ready ? "전성분 판독을 완료하면 제품 추천을 확인할 수 있어요."
+    : invalid ? "추천할 제품 종류를 다시 선택해 주세요."
+    : status === "loading" ? "성분 분석은 완료됐어요. 제품 추천을 위해 올리브영 공개 페이지를 읽고 있어요."
+    : live?.message || (products.length ? "현재 확인한 올리브영 페이지의 제품 후보예요." : "제품 후보를 아직 조회하지 않았어요.");
+  const missingNotice = status !== "loading" && missingTypes.length ? `추천하지 못한 종류: ${missingTypes.join(" · ")}. 확인된 다른 종류로 임의 대체하지 않았어요.` : "";
+  const copyLines = ready && status !== "loading" ? ["", "[GlowPick 추천!]", lead, coverage, contextNotice,
+    ...[missingNotice,mixingNotice].filter(Boolean),
+    ...products.flatMap(p=>[`${p.type} 추천: ${p.brand} ${p.name}`, `연결한 고민: ${p.matchedConcerns.join(" · ")}`,
+      p.reason, `${p.verificationScope === "category_list" ? "현재 목록 표시 문구" : "상품 페이지에서 확인한 내용"}: ${p.productEvidence}`,
+      p.verificationScope === "category_list" ? "현재 목록 확인 · 상품 상세 정보 미확인" : "상품 상세 페이지 확인", `종류 확인: ${p.typeEvidence}`,
+      ...p.cautions, `조회 시각: ${p.checkedAt}`]), shopNotice, notice] : [];
+  return {ready,status,products,lead,strategy,notice,shopNotice,mixingNotice,coverage,contextNotice,missingNotice,copyLines};
 }
 // END SHARED PRODUCT RECOMMENDATIONS
 
@@ -148,7 +104,7 @@ export function prepareReport(kind, input, response) {
     ingredients: extraction.ingredients, rawText: extraction.rawText || "읽은 원문이 없습니다.",
     helpful, cautions, unknown: extraction.ingredients.filter(name => !classified.has(normalizeIngredient(name))),
     notes, sources, warnings, mixingText };
-  model.recommendations = prepareRecommendations(kind, input, complete, isMock);
+  model.recommendations = prepareRecommendations(kind, input, complete, isMock, response.recommendations);
   model.copyText = [kind === "pack" ? "GlowPick 모델링팩 리포트" : "GlowPick 화장품 리포트",
     `제품: ${model.productName}`, `피부 타입: ${input.skinType}`, `피부 고민: ${input.concerns.join(", ")}`,
     banner, `설명 상태: ${analysis.status}`, "", "[도움과 관련된 일반 기능]",

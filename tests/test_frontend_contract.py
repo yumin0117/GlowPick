@@ -44,13 +44,24 @@ class FrontendContractTest(unittest.TestCase):
     def test_static_bundle_contains_every_relative_module_import(self):
         from scripts.package_static import PUBLIC
         root = Path(__file__).resolve().parents[1]
-        self.assertEqual(len(PUBLIC), 9)
+        self.assertEqual(len(PUBLIC), 10)
         for path in PUBLIC:
             if not path.endswith(".js"):
                 continue
             source = (root / path).read_text(encoding="utf-8")
             for filename in re.findall(r'from\s+["\']\./([^"\']+)["\']', source):
                 self.assertIn("BeautyAI/" + filename, PUBLIC, path)
+
+    def test_public_entrypoint_allowlists_include_the_same_modules(self):
+        from scripts.package_static import PUBLIC
+        from scripts.deploy_existing_space import FILES
+        root = Path(__file__).resolve().parents[1]
+        expected = {Path(path).name for path in PUBLIC}
+        self.assertEqual(FILES, expected)
+        for path, variable in [("scripts/dev-static.mjs", "files"), ("mobile/scripts/build-web.mjs", "names")]:
+            text = (root / path).read_text(encoding="utf-8")
+            names = json.loads(re.search(rf"const {variable} = (\[[^;]+\]);", text).group(1))
+            self.assertEqual(set(names), expected - {"README.md"})
 
     def test_static_public_bundle_matches_python_contract_and_reviewed_sources(self):
         root = Path(__file__).resolve().parents[1]
@@ -59,7 +70,8 @@ class FrontendContractTest(unittest.TestCase):
         self.assertEqual(values["SCHEMAS"], {model.__name__: model.model_json_schema()
                          for model in (UserInput, Extraction, ModelAnalysis, ReviewedClaim)})
         self.assertEqual(values["CLAIMS"], json.loads((root / "data/reviewed_claims.json").read_text(encoding="utf-8")))
-        self.assertEqual(values["RECOMMENDATIONS"], json.loads((root / "data/recommendation_catalog.json").read_text(encoding="utf-8")))
+        self.assertNotIn("RECOMMENDATIONS", values)
+        self.assertFalse((root / "data/recommendation_catalog.json").exists())
         for name, path in [("EXTRACT_PROMPT", "extract.txt"), ("EXPLAIN_PROMPT", "explain.txt")]:
             self.assertEqual(values[name], (root / "prompts" / path).read_text(encoding="utf-8"))
 
