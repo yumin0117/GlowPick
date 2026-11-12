@@ -23,7 +23,7 @@ export function prepareRecommendations(kind, input, complete, isMock = false, li
   const missingTypes = types.filter(type => !products.some(p=>p.type===type));
   const lead = types.length ? `${types.join(" · ")} 종류마다 제품 1개씩 비교해요. 확인하지 못한 종류는 다른 종류로 대체하지 않아요.`
     : `${kind === "pack" ? "에센스·세럼·앰플" : "스킨·토너·에센스·세럼·앰플·크림·로션"} 중 피부 고민에 맞춰 최대 3개를 비교해요.`;
-  const strategy = "피부 고민과 원하는 종류에 맞춰 올리브영 공식 목록의 제품을 비교해요. 실시간 조회가 지연되면 수집 시각이 기록된 목록에서 API가 선택해요.";
+  const strategy = "피부 고민과 원하는 종류에 맞춰 올리브영 공식 목록의 제품을 비교해요. 실시간 조회가 지연되면 확인된 목록에서 API가 선택해요.";
   const notice = "구매 전 현재 상품 정보와 사용법을 확인해 주세요.";
   const shopNotice = "상품 링크나 사진이 없어도 확인한 제품명과 추천 이유를 표시해요. 가격·재고는 올리브영에서 확인해 주세요.";
   const mixingNotice = kind !== "pack" ? "" : input.mixStatus === "prohibited"
@@ -40,8 +40,8 @@ export function prepareRecommendations(kind, input, complete, isMock = false, li
     ...[missingNotice,mixingNotice].filter(Boolean),
     ...products.flatMap(p=>[`${p.type} 추천: ${p.brand} ${p.name}`, `연결한 고민: ${p.matchedConcerns.join(" · ")}`,
       p.reason, `${p.verificationScope === "category_list" ? "현재 목록 표시 문구" : "상품 페이지에서 확인한 내용"}: ${p.productEvidence}`,
-      p.verificationScope === "catalog_snapshot" ? `올리브영 목록 수집 시각: ${p.checkedAt}` : p.verificationScope === "category_list" ? "현재 목록 확인 · 상품 상세 정보 미확인" : "상품 상세 페이지 확인", `종류 확인: ${p.typeEvidence}`,
-      ...p.cautions, `조회 시각: ${p.checkedAt}`]), shopNotice, notice] : [];
+      p.verificationScope === "catalog_snapshot" ? "올리브영 공식 목록 기반 추천" : p.verificationScope === "category_list" ? "현재 목록 확인 · 상품 상세 정보 미확인" : "상품 상세 페이지 확인", `종류 확인: ${p.typeEvidence}`,
+      ...p.cautions]), shopNotice, notice] : [];
   return {ready,status,products,lead,strategy,notice,shopNotice,mixingNotice,coverage,contextNotice,missingNotice,copyLines};
 }
 // END SHARED PRODUCT RECOMMENDATIONS

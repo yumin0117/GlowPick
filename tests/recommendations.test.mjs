@@ -113,7 +113,7 @@ test('missing types use API-selected IDs from actual inventory without accepting
   assert.equal(result.products[0].verificationScope,'catalog_snapshot');
   assert.equal(result.products[0].productUrl,skin.productUrl);assert.equal(result.products[0].selectionMethod,'api_listing_selection');
   const report=prepareRecommendations('cosmetic',{...input,recommendationTypes:['스킨','토너']},true,false,result);
-  assert.equal(report.products.length,2);assert.match(report.copyLines.join('\n'),/목록 수집 시각/u);
+  assert.equal(report.products.length,2);assert.doesNotMatch(report.copyLines.join('\n'),/수집 시각|조회 시각|2026-11-12T/u);
 });
 
 test('official inventory covers all seven types with dated provenance and real photo/item paths',()=>{

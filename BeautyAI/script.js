@@ -198,7 +198,6 @@ function renderRecommendations(recommendations) {
     card.append(textNode("p","종류 확인: "+product.typeEvidence,"pick-note"));
     product.cautions.forEach(note=>card.append(textNode("p",note,"pick-note")));
     if(product.mixingStatus==="unknown")card.append(textNode("span","이 팩과의 혼합 조합 미확인","pick-mix-badge"));
-    card.append(textNode("p",(needsCheck?"목록 수집 시각: ":"올리브영 페이지 조회: ")+new Date(product.checkedAt).toLocaleString("ko-KR",{timeZone:"Asia/Seoul"}),"pick-shop-status"));
     const link=textNode("a",product.productUrl?"올리브영 상품 보기 ↗":"올리브영에서 이 제품 검색 ↗","pick-shop-link");
     link.href=product.productUrl||product.searchUrl;link.target="_blank";link.rel="noopener noreferrer";
     link.setAttribute("aria-label",`${product.brand} ${product.name} 올리브영 상품 정보 (새 창)`);
