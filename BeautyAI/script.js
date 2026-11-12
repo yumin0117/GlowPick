@@ -227,7 +227,8 @@ function skinRelatedGeneralNotes(analysis,concerns){
 }
 // BEGIN YM GLOWPICK RECOMMENDATIONS
 const RECOMMENDATIONS = {
-  "version": "2026-11-12",
+  "version": "2026-11-12-all-concerns-oliveyoung",
+  "retailerPreference": "oliveyoung_kr",
   "reviewStatus": "manufacturer_information_checked",
   "independentHumanReview": false,
   "scope": "concern-matched product candidates; no acne treatment, personal suitability, or mixing approval",
@@ -247,7 +248,31 @@ const RECOMMENDATIONS = {
         "여드름",
         "트러블",
         "민감함",
-        "홍조"
+        "홍조",
+        "피부 열감"
+      ]
+    },
+    {
+      "id": "pore_balance",
+      "label": "모공·번들거림 관리",
+      "concerns": [
+        "모공",
+        "피지"
+      ]
+    },
+    {
+      "id": "brightening",
+      "label": "피부톤 관리",
+      "concerns": [
+        "칙칙한 피부톤"
+      ]
+    },
+    {
+      "id": "firming",
+      "label": "탄력·잔주름 관리",
+      "concerns": [
+        "탄력",
+        "주름"
       ]
     }
   ],
@@ -260,6 +285,12 @@ const RECOMMENDATIONS = {
       "goals": [
         "hydration"
       ],
+      "attentionConcerns": [
+        "민감함",
+        "홍조",
+        "피부 열감"
+      ],
+      "attentionReason": "식물 오일이 표기되어 있어요. 민감함·홍조·열감이 고민이면 개인별 반응을 먼저 확인해 주세요.",
       "reasons": {
         "hydration": "공식 제품 정보에서 수분 관리용으로 안내하고, 글리세린·베타인·소듐하이알루로네이트가 표기되어 있어 보습 후보로 골랐어요."
       },
@@ -318,6 +349,14 @@ const RECOMMENDATIONS = {
     },
     {
       "id": "skin1004-centella-ampoule",
+      "oliveYoung": {
+        "status": "listing_confirmed",
+        "goodsNo": "A000000161581",
+        "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000161581",
+        "title": "스킨1004 마다가스카르 센텔라 앰플 55ml",
+        "checkedAt": "2026-11-12",
+        "matchScope": "product_name_only"
+      },
       "brand": "스킨1004",
       "name": "마다가스카르 센텔라 앰플",
       "type": "앰플",
@@ -351,12 +390,28 @@ const RECOMMENDATIONS = {
     },
     {
       "id": "aestura-acica365-serum-ph45",
+      "oliveYoung": {
+        "status": "listing_confirmed",
+        "goodsNo": "A000000222839",
+        "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000222839",
+        "title": "에스트라 에이시카365 흔적진정세럼 pH4.5 40ml 기획",
+        "checkedAt": "2026-11-12",
+        "matchScope": "product_name_only"
+      },
       "brand": "에스트라",
       "name": "에이시카365 흔적진정세럼 pH4.5",
       "type": "세럼",
       "goals": [
         "soothing"
       ],
+      "attentionConcerns": [
+        "건조함",
+        "속건조",
+        "민감함",
+        "홍조",
+        "피부 열감"
+      ],
+      "attentionReason": "글루코노락톤(PHA) 함유 제품이에요. 건조함·민감함이 함께 고민이면 제조사 사용법과 개인별 반응을 먼저 확인해 주세요.",
       "reasons": {
         "soothing": "제조사가 외부 자극으로 민감해진 피부의 진정 관리를 안내하는 세럼이에요. 여드름 치료 제품으로 추천하는 것은 아니에요."
       },
@@ -404,40 +459,360 @@ const RECOMMENDATIONS = {
       "sourceTitle": "에스트라 공식 제품 정보·전성분",
       "checkedAt": "2026-11-12",
       "mixingStatus": "unknown"
+    },
+    {
+      "id": "skin1004-poremizing-fresh-ampoule",
+      "brand": "스킨1004",
+      "name": "마다가스카르 센텔라 포어마이징 프레쉬 앰플",
+      "type": "앰플",
+      "goals": [
+        "pore_balance",
+        "soothing"
+      ],
+      "reasons": {
+        "pore_balance": "제조사가 모공 외관 관리와 유분감이 적은 마무리를 안내해 모공·번들거림 관리 후보로 연결했어요. 피지 분비 억제나 모공 축소를 보장하지는 않아요.",
+        "soothing": "공식 제품 정보에 진정 관리 용도가 안내되어 있어요. 여드름 치료나 피부 온도를 낮추는 효과를 뜻하지는 않아요."
+      },
+      "keyIngredients": [
+        "Centella Asiatica Extract",
+        "Mineral Salts",
+        "Panthenol"
+      ],
+      "ingredients": [
+        "Water",
+        "Butylene Glycol",
+        "Propanediol",
+        "1,2-Hexanediol",
+        "Aloe Barbadensis Leaf Extract",
+        "Centella Asiatica Extract",
+        "Glycereth-26",
+        "Hydroxyacetophenone",
+        "Glycerin",
+        "Carbomer",
+        "Tromethamine",
+        "Panthenol",
+        "Ethylhexylglycerin",
+        "Disodium EDTA",
+        "Dipotassium Glycyrrhizate",
+        "Ammonium Polyacryloyldimethyl Taurate",
+        "Biosaccharide Gum-1",
+        "Hyaluronic Acid",
+        "Hydrolyzed Hyaluronic Acid",
+        "Sodium Hyaluronate",
+        "Hydroxyethylcellulose",
+        "Chamomilla Recutita (Matricaria) Flower Extract",
+        "Mineral Salts",
+        "Tripeptide-3",
+        "Acetyl Hexapeptide-8",
+        "Acetyl Octapeptide-3",
+        "Copper Tripeptide-1",
+        "Palmitoyl Pentapeptide-4",
+        "Palmitoyl Tetrapeptide-7",
+        "Palmitoyl Tripeptide-1",
+        "Tripeptide-1",
+        "Tripeptide-2"
+      ],
+      "note": "모공의 외관·사용감에 관한 제조사 정보예요. 실제 구매 제품의 전성분과 사용법을 확인해 주세요.",
+      "sourceUrl": "https://www.skin1004.com/products/poremizing-fresh-ampoule",
+      "sourceTitle": "SKIN1004 공식 Poremizing Fresh Ampoule 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "boj-glow-deep-serum",
+      "brand": "조선미녀",
+      "name": "글로우 딥 세럼 라이스 + 알파알부틴",
+      "type": "세럼",
+      "goals": [
+        "hydration",
+        "brightening"
+      ],
+      "reasons": {
+        "hydration": "제조사가 수분 공급용으로 안내하고 글리세린이 표기된 세럼으로, 건조함이 피부톤 고민과 함께 있을 때 살펴볼 후보예요.",
+        "brightening": "공식 제품 정보에서 알파알부틴·쌀겨수를 중심으로 칙칙해 보이는 피부톤 관리를 안내해 연결했어요. 개인별 미백 효과를 확정한 결과는 아니에요."
+      },
+      "keyIngredients": [
+        "Oryza Sativa (Rice) Bran Water",
+        "Alpha-Arbutin",
+        "Glycerin"
+      ],
+      "ingredients": [
+        "Oryza Sativa (Rice) Bran Water",
+        "Water",
+        "Glycerin",
+        "Butylene Glycol",
+        "1,2-Hexanediol",
+        "Dipropylene Glycol",
+        "Alpha-Arbutin",
+        "Niacinamide",
+        "Methyl Gluceth-20",
+        "Panthenol",
+        "Polyglycerin-3",
+        "Trehalose",
+        "Glyceryl Glucoside",
+        "Hydrolyzed Jojoba Esters",
+        "Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer",
+        "Ethylhexylglycerin",
+        "Hydroxyethylcellulose",
+        "Xanthan Gum",
+        "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+        "Arginine",
+        "Disodium EDTA",
+        "Sorbitan Isostearate",
+        "Glucose",
+        "Coix Lacryma-Jobi Ma-Yuen Seed Extract",
+        "Coptis Japonica Root Extract",
+        "Glycine Soja (Soybean) Seed Extract",
+        "Hordeum Distichon (Barley) Extract",
+        "Oryza Sativa (Rice) Extract",
+        "Sesamum Indicum (Sesame) Seed Extract",
+        "Triticum Vulgare (Wheat) Seed Extract",
+        "Vigna Radiata Seed Extract",
+        "Zea Mays (Corn) Kernel Extract"
+      ],
+      "note": "식물 유래 성분을 포함하므로 개인별 반응을 확인해 주세요. 낮 사용 시 제조사의 자외선 차단 안내를 함께 확인해 주세요.",
+      "sourceUrl": "https://beautyofjoseon.com/products/glow-deep-serum-rice-alpha-arbutin",
+      "sourceTitle": "조선미녀 공식 Glow Deep Serum 제품 정보·Full Ingredient List",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "cosrx-six-peptide-booster",
+      "oliveYoung": {
+        "status": "listing_confirmed",
+        "goodsNo": "A000000204071",
+        "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000204071",
+        "title": "코스알엑스 더 6 펩타이드 스킨 부스터 세럼 150ml 기획",
+        "checkedAt": "2026-11-12",
+        "matchScope": "product_name_only"
+      },
+      "brand": "코스알엑스",
+      "name": "더 6 펩타이드 스킨 부스터 세럼 (오리지널)",
+      "type": "세럼",
+      "goals": [
+        "hydration",
+        "pore_balance",
+        "firming"
+      ],
+      "reasons": {
+        "hydration": "공식 제품 정보에서 수분 공급을 안내하고 글리세린·소듐하이알루로네이트가 표기되어 있어 보습 후보로 연결했어요.",
+        "firming": "제조사가 펩타이드·아데노신을 중심으로 탄력과 잔주름 외관 관리를 안내해 후보로 골랐어요. 개인별 주름 개선 효과를 보장하지는 않아요.",
+        "pore_balance": "공식 제품 정보에서 모공·피지 관리용 부스터로 안내해 연결했어요. 모공 축소나 피지 분비 억제를 보장하는 추천은 아니에요."
+      },
+      "keyIngredients": [
+        "Glycerin",
+        "Acetyl Hexapeptide-8",
+        "Adenosine"
+      ],
+      "ingredients": [
+        "Water",
+        "Dipropylene Glycol",
+        "Glycerin",
+        "Pentylene Glycol",
+        "1,2-Hexanediol",
+        "Niacinamide",
+        "Acetyl Hexapeptide-8",
+        "Copper Tripeptide-1",
+        "sh-Polypeptide-121",
+        "Dipeptide Diaminobutyroyl Benzylamide Diacetate",
+        "Oligopeptide-68",
+        "Palmitoyl Tripeptide-8",
+        "Allantoin",
+        "Sodium Hyaluronate",
+        "Acetyl Glucosamine",
+        "Serine",
+        "Alanine",
+        "Glycine",
+        "Threonine",
+        "Arginine",
+        "Proline",
+        "Betaine",
+        "Sodium PCA",
+        "Sodium Lactate",
+        "PCA",
+        "Glutamic Acid",
+        "Lysine HCl",
+        "Tocopherol",
+        "Dextran",
+        "Glycine Soja (Soybean) Oil",
+        "Hydrogenated Lecithin",
+        "Ammonium Acryloyldimethyltaurate/VP Copolymer",
+        "Polyacrylate Crosspolymer-6",
+        "Butylene Glycol",
+        "Xanthan Gum",
+        "Ethylhexylglycerin",
+        "Adenosine",
+        "Polyquaternium-51",
+        "Disodium EDTA",
+        "Citric Acid",
+        "Caprylyl Glycol",
+        "t-Butyl Alcohol",
+        "Potassium Sorbate",
+        "Sodium Oleate"
+      ],
+      "note": "첫 단계 부스터로 안내된 제품이에요. 리뉴얼·판매 지역에 따라 구성이 달라질 수 있어 실제 라벨과 제조사 사용 순서를 확인해 주세요.",
+      "sourceUrl": "https://www.cosrx.com/products/the-6-peptide-skin-booster-serum",
+      "sourceTitle": "COSRX 공식 The 6 Peptide Skin Booster Serum Original 제품 정보·Ingredient List",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "skin1004-tone-brightening-capsule-ampoule",
+      "oliveYoung": {
+        "status": "listing_confirmed",
+        "goodsNo": "A000000218121",
+        "url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000218121",
+        "title": "스킨1004 마다가스카르 센텔라 톤 브라이트닝 캡슐 앰플 100ml",
+        "checkedAt": "2026-11-12",
+        "matchScope": "product_name_only"
+      },
+      "brand": "스킨1004",
+      "name": "마다가스카르 센텔라 톤 브라이트닝 캡슐 앰플",
+      "type": "앰플",
+      "goals": [
+        "hydration",
+        "brightening"
+      ],
+      "reasons": {
+        "hydration": "공식 제품 정보에서 수분 유지를 안내하고 글리세린·베타인이 표기되어 있어 피부톤과 건조함을 함께 살펴볼 후보예요.",
+        "brightening": "제조사가 나이아신아마이드·트라넥사믹애씨드를 중심으로 칙칙해 보이는 피부톤 관리를 안내해 연결했어요. 개인별 미백 효과를 보장하지는 않아요."
+      },
+      "keyIngredients": [
+        "Niacinamide",
+        "Tranexamic Acid",
+        "Glycerin"
+      ],
+      "ingredients": [
+        "Water",
+        "Butylene Glycol",
+        "Niacinamide",
+        "Glycerin",
+        "Tranexamic Acid",
+        "1,2-Hexanediol",
+        "Betaine",
+        "Centella Asiatica Extract",
+        "Zea Mays (Corn) Starch",
+        "Xanthan Gum",
+        "Microcrystalline Cellulose",
+        "Mannitol",
+        "Panthenol",
+        "Pentylene Glycol",
+        "Ethylhexylglycerin",
+        "Hydroxyethylcellulose",
+        "Madecassoside",
+        "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+        "Arginine",
+        "Hydrogenated Lecithin",
+        "Xylitylglucoside",
+        "Anhydroxylitol",
+        "Xylitol",
+        "Glucose",
+        "3-O-Ethyl Ascorbic Acid",
+        "Lactobacillus Ferment"
+      ],
+      "note": "성분은 제조사 공개 버전 기준이에요. 올리브영 구매 제품의 용량·버전·현재 라벨과 사용법을 확인해 주세요.",
+      "sourceUrl": "https://www.skin1004.com/products/skin1004-madagascar-centella-tone-brightening-capsule-ampoule",
+      "sourceTitle": "SKIN1004 공식 Tone Brightening Capsule Ampoule 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
     }
   ]
 };
 function prepareRecommendations(kind, input, complete, isMock = false) {
-  const notice = "선택한 고민과 제조사 공개 정보를 연결한 제품 후보예요. 개인 적합성·제품 간 우열·여드름 치료 효과를 평가한 결과는 아니에요. 구입 전 현재 라벨과 사용법을 확인해 주세요.";
-  const goals = RECOMMENDATIONS.goals.filter(goal => goal.concerns.some(c => (input.concerns || []).includes(c)));
+  const notice = "선택한 고민과 제조사 공개 정보를 연결한 제품 후보예요. 개인 적합성·제품 간 우열·여드름 치료 효과를 평가한 결과는 아니에요. 표시된 제품은 비교·선택할 후보이며 모두 함께 쓰라는 뜻은 아니에요. 구입 전 현재 라벨과 사용법을 확인해 주세요.";
+  // Canonical goal order makes selection independent of checkbox order or synonyms.
+  const concerns = new Set(input.concerns || []);
+  const goals = RECOMMENDATIONS.goals.filter(goal => goal.concerns.some(c => concerns.has(c)));
   const ready = complete && !isMock;
-  const products = ready ? RECOMMENDATIONS.products.flatMap(product => {
+  const candidates = ready ? RECOMMENDATIONS.products.flatMap((product, index) => {
     const matched = goals.filter(goal => product.goals.includes(goal.id));
     if (!matched.length) return [];
-    const source = new URL(product.sourceUrl);
+    let source;
+    try { source = new URL(product.sourceUrl); } catch { return []; }
     if (source.protocol !== "https:" || source.username || source.password
-      || !["tonymoly.com", "www.skin1004.com", "www.aestura.com"].includes(source.hostname)) return [];
-    return [{ id: product.id, brand: product.brand, name: product.name, type: product.type,
+      || !["tonymoly.com", "www.skin1004.com", "www.aestura.com", "beautyofjoseon.com", "www.cosrx.com"].includes(source.hostname)) return [];
+    const needsCheck = (product.attentionConcerns || []).some(c => concerns.has(c)
+      || (c === "민감함" && input.skinType === "민감성"));
+    let oliveYoung = null;
+    try {
+      const listing = product.oliveYoung, url = new URL(listing?.url);
+      if (listing.status === "listing_confirmed" && listing.checkedAt && listing.matchScope === "product_name_only"
+        && url.origin === "https://www.oliveyoung.co.kr" && !url.username && !url.password
+        && url.pathname === "/store/goods/getGoodsDetail.do" && /^A\d{12}$/u.test(listing.goodsNo)
+        && url.search === `?goodsNo=${listing.goodsNo}`)
+        oliveYoung = { url: url.href, goodsNo: listing.goodsNo, checkedAt: listing.checkedAt, title: listing.title };
+    } catch { /* An unverified or malformed retailer link never receives preferred status. */ }
+    return [{ id: product.id, brand: product.brand, name: product.name, type: product.type, index,
+      goalIds: matched.map(goal => goal.id),
+      matchedConcerns: matched.flatMap(goal => goal.concerns.filter(c => concerns.has(c))),
       labels: matched.map(goal => goal.label), reasons: matched.map(goal => product.reasons[goal.id]),
+      attention: needsCheck ? product.attentionReason : "",
+      oliveYoung,
       keyIngredients: product.keyIngredients, note: product.note, sourceUrl: product.sourceUrl,
       checkedAt: product.checkedAt, mixingStatus: kind === "pack" ? "unknown" : "not_applicable" }];
   }) : [];
+  const compare = (a, b) => b.goalIds.length - a.goalIds.length
+    || Number(Boolean(a.attention)) - Number(Boolean(b.attention))
+    || Number(Boolean(b.oliveYoung)) - Number(Boolean(a.oliveYoung)) || a.index - b.index;
+  candidates.sort(compare);
+  // Exhaustive bounded set cover, rather than a greedy list: maximize covered goals,
+  // then minimize conditional checks, unconfirmed Olive Young listings and core size.
+  let best = { items: [], covered: 0, checks: 0, unlisted: 0 };
+  function choose(items, start) {
+    const covered = new Set(items.flatMap(p => p.goalIds)).size;
+    const checks = items.filter(p => p.attention).length;
+    const unlisted = items.filter(p => !p.oliveYoung).length;
+    if (covered > best.covered || (covered === best.covered && (checks < best.checks
+      || (checks === best.checks && (unlisted < best.unlisted
+        || (unlisted === best.unlisted && items.length < best.items.length))))))
+      best = { items: [...items], covered, checks, unlisted };
+    if (items.length === 3) return;
+    for (let i = start; i < candidates.length; i++) choose([...items, candidates[i]], i + 1);
+  }
+  choose([], 0);
+  const core = [...best.items].sort(compare);
+  const alternatives = candidates.filter(p => !core.includes(p) && !p.attention)
+    .sort((a,b) => Number(Boolean(b.oliveYoung)) - Number(Boolean(a.oliveYoung)) || compare(a,b))
+    .slice(0, 3 - core.length);
+  const products = [...core, ...alternatives].map((p, i) => ({ ...p,
+    role: i === 0 ? "우선 후보" : i < core.length ? "보완 후보" : "대안 후보",
+    selectionReason: i < core.length
+      ? `선택한 ${goals.length}개 관리 목적 중 ${p.goalIds.length}개와 연결돼요.${core.length > 1 ? " 다른 보완 후보와 함께 살펴보면 선택한 목적을 더 넓게 비교할 수 있어요." : ""}`
+      : `선택한 ${goals.length}개 관리 목적 중 ${p.goalIds.length}개에 대한 다른 후보예요. 우선 후보와 함께 사용할 필요는 없어요.${p.goalIds.length < goals.length ? " 선택한 모든 목적을 연결하는 대안은 아니에요." : ""}`
+  }));
+  const coveredGoalIds = goals.filter(g => core.some(p => p.goalIds.includes(g.id))).map(g => g.id);
+  const uncoveredConcerns = [...concerns].filter(c => !goals.some(g => coveredGoalIds.includes(g.id) && g.concerns.includes(c)));
+  const strategy = "등록된 후보의 최대 3개 조합을 비교해, 관리 목적을 가장 넓게 연결하는 우선·보완 후보를 골랐어요. 그다음 추가 확인이 필요한 제품 수가 적고, 올리브영 등록을 확인한 제품이 우선인 쪽을 택해요. 이 조건이 같으면 우선·보완 후보 수가 적은 쪽을 택해요. 대안은 별도 비교용이에요. 같은 관리 목적은 한 번만 계산하며 동률은 등록 순서로 표시해요. 효과 순위는 아니에요.";
+  const shopNotice = "올리브영 상품명 기준으로 등록을 확인했어요. 성분은 제조사 공개 버전 기준이며, 가격·재고·기획 구성은 달라질 수 있어요. 구매 페이지의 현재 라벨·사용법을 확인해 주세요.";
+  const coverage = `${goals.length}개 관리 목적 중 ${coveredGoalIds.length}개 연결 · 우선·보완 ${core.length}개${alternatives.length ? ` · 대안 ${alternatives.length}개` : ""}`;
+  const contextNotice = concerns.has("피부 열감")
+    ? "피부 열감은 진정 관리 목적에 연결했어요. 피부 온도를 낮추거나 열감의 원인을 해결하는 효과를 확인한 추천은 아니에요." : "";
   const mixingNotice = kind !== "pack" ? "" : input.mixStatus === "prohibited"
     ? "제조사의 혼합 금지 안내를 확인하셨으므로 이 팩에는 앰플·세럼을 섞지 마세요. 아래는 혼합용 추천이 아닌 별도 제품 후보예요."
     : "혼합 가능 여부 미확인. 아래 후보를 이 모델링팩에 섞어 써도 된다는 뜻은 아니에요. 제조사가 지정한 혼합액·사용법을 따라 주세요.";
-  const matchedConcerns = [...new Set(goals.flatMap(goal => goal.concerns.filter(c => (input.concerns || []).includes(c))))];
+  const matchedConcerns = goals.flatMap(goal => goal.concerns.filter(c => concerns.has(c)));
   const lead = !ready ? "전성분 판독을 완료한 뒤 제품 후보를 확인할 수 있어요."
     : !products.length ? "현재 선택한 고민에 맞춰 확인한 앰플·세럼 후보가 아직 없어요."
-    : `${matchedConcerns.join(" · ")} 고민에 맞춰 ${goals.map(goal => goal.label).join("·")}용 앰플·세럼을 골랐어요. 업로드한 제품과의 병용 적합성을 판정한 추천은 아니에요.`;
-  const copyLines = ready ? ["", "[GlowPick 추천!]", lead, ...(mixingNotice ? [mixingNotice] : []),
-    ...products.flatMap(product => [`${product.brand} ${product.name} · ${product.labels.join(" / ")}`,
-      ...product.reasons, `확인한 성분: ${product.keyIngredients.join(", ")}`, product.note]), notice] : [];
-  return { ready, products, lead, notice, mixingNotice, copyLines };
+    : `${matchedConcerns.join(" · ")} 고민을 함께 고려해 앰플·세럼 후보를 골랐어요. 업로드한 제품과의 병용 적합성을 판정한 추천은 아니에요.`;
+  const missingNotice = uncoveredConcerns.length ? `아직 연결하지 못한 고민: ${uncoveredConcerns.join(" · ")}` : "";
+  const copyLines = ready ? ["", "[GlowPick 추천!]", lead, coverage, strategy,
+    ...[contextNotice, missingNotice, mixingNotice].filter(Boolean),
+    ...products.flatMap(product => [`[${product.role}] ${product.brand} ${product.name} · ${product.labels.join(" / ")}`,
+      `연결한 고민: ${product.matchedConcerns.join(" · ")}`, product.selectionReason,
+      ...product.reasons, `확인한 성분: ${product.keyIngredients.join(", ")}`, product.note, product.attention,
+      product.oliveYoung ? `올리브영 상품 등록 확인 · ${product.oliveYoung.checkedAt}` : "올리브영 상품 등록 미확인"].filter(Boolean)), shopNotice, notice] : [];
+  return { ready, products, lead, notice, mixingNotice, strategy, coverage, contextNotice, missingNotice,
+    coreIds: core.map(p => p.id), coveredGoalIds, uncoveredConcerns, shopNotice, copyLines };
 }
 function renderRecommendations(recommendations) {
   $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
   $("recommendationLead").textContent = recommendations.lead;
   $("recommendationNotice").textContent = recommendations.notice;
+  $("recommendationShop").textContent = recommendations.shopNotice;
+  $("recommendationCoverage").textContent = recommendations.coverage;
+  $("recommendationStrategy").textContent = recommendations.strategy;
+  $("recommendationContext").textContent = [recommendations.contextNotice, recommendations.missingNotice].filter(Boolean).join(" ");
+  $("recommendationContext").classList.toggle("hidden", !$("recommendationContext").textContent);
   $("recommendationMixing").textContent = recommendations.mixingNotice;
   $("recommendationMixing").classList.toggle("hidden", !recommendations.mixingNotice);
   $("recommendationList").replaceChildren();
@@ -447,11 +822,24 @@ function renderRecommendations(recommendations) {
     top.append(textNode("span", product.brand, "pick-brand"), textNode("span", product.type, "pick-type"));
     const tags = textNode("div", "", "pick-tags");
     product.labels.forEach(label => tags.append(textNode("span", label)));
-    card.append(top, textNode("h4", product.name), tags);
+    card.append(textNode("span", product.role, "pick-role"), top, textNode("h4", product.name), tags);
+    card.append(textNode("p", "연결한 고민: " + product.matchedConcerns.join(" · "), "pick-matched"));
+    card.append(textNode("p", product.selectionReason, "pick-selection"));
     product.reasons.forEach(reason => card.append(textNode("p", reason, "pick-reason")));
     card.append(textNode("p", "제품 성분 포인트: " + product.keyIngredients.join(" · "), "pick-ingredients"));
     card.append(textNode("p", product.note, "pick-note"));
+    if (product.attention) card.append(textNode("p", product.attention, "pick-attention"));
     if (product.mixingStatus === "unknown") card.append(textNode("span", "이 팩과의 혼합 조합 미확인", "pick-mix-badge"));
+    card.append(textNode("p", product.oliveYoung ? `올리브영 상품 등록 확인 · ${product.oliveYoung.checkedAt}`
+      : "올리브영 상품 등록 미확인", "pick-shop-status"));
+    if (product.oliveYoung) {
+      const shopLink = textNode("a", "올리브영 상품 보기 ↗", "pick-shop-link");
+      shopLink.href = product.oliveYoung.url;
+      shopLink.target = "_blank";
+      shopLink.rel = "noopener noreferrer";
+      shopLink.setAttribute("aria-label", `${product.brand} ${product.name} 올리브영 상품 정보 (새 창)`);
+      card.append(shopLink);
+    }
     const link = textNode("a", "공식 제품 정보 ↗", "pick-link");
     link.href = product.sourceUrl;
     link.target = "_blank";
