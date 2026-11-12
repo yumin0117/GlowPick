@@ -527,7 +527,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -539,7 +539,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -550,7 +550,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -562,7 +562,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -573,7 +573,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -584,7 +584,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -596,7 +596,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -607,7 +607,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -618,7 +618,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -629,7 +629,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -640,7 +640,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -652,7 +652,7 @@ export const GUIDANCE = {
         "건조함",
         "속건조"
       ],
-      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요. 개인별 효과와 제품 적합성을 판단한 결과는 아니에요."
+      "reason": "보습·유연 관련 일반 기능을 살펴볼 수 있어요."
     },
     {
       "evidenceIds": [
@@ -838,6 +838,1355 @@ export const GUIDANCE = {
       "skinTypes": [],
       "statement": "향료 알레르기 정보에서 확인할 수 있는 성분이에요. 해당 성분에 알레르기가 있거나 민감하게 반응한 적이 있다면 제품 표시를 확인해 주세요. 모든 사람에게 유해하다는 뜻은 아니에요.",
       "sourceUrl": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-products-specific-topics/fragrance-allergens-labelling_en"
+    }
+  ]
+};
+export const RETAIL_LISTINGS = {
+  "version": 1,
+  "checkedAt": "2026-11-12T07:10:25.499Z",
+  "scope": "captured_public_lists_not_full_inventory",
+  "products": [
+    {
+      "id": "A000001002386",
+      "name": "[11월 올영픽] 에스트라 아토베리어365 크림 80ml 더블 기획 (+세라-히알 앰플 15ml)",
+      "brand": "에스트라",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002386",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100238605ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002019",
+      "name": "[11월 올영픽] 라로슈포제 시카플라스트 멀티 리페어 크림 100ml 기획 (+시카크림 15ml+시카에센스 7.5ml)",
+      "brand": "라로슈포제",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002019",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100201908ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000192782",
+      "name": "[4일특가/1+1/1등 모공 수분천재크림] 에스네이처 아쿠아 스쿠알란 수분크림 60ml 더블기획",
+      "brand": "에스네이처",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000192782",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0019/A00000019278293ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000258291",
+      "name": "[NEW/1등수분세럼] 토리든 다이브인 저분자 히알루론산 세럼 50ml 리필 기획(+리필 50ml)",
+      "brand": "토리든",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258291",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025829122ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000236420",
+      "name": "[11월 올영픽/스피큘 레티놀] 아이오페 레티젝션 세럼 30+25mL 리필 기획",
+      "brand": "아이오페",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000236420",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023642020ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000269434",
+      "name": "[11월 올영픽/입문 레티놀] 아이오페 슈퍼바운스 세럼 30+30mL 리필 기획",
+      "brand": "아이오페",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000269434",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026943405ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000264301",
+      "name": "[11월 올영픽/1등미백앰플] 메디큐브 PDRN 핑크 앰플 30ml 한정기획 (+리필팩 50ml+앰플 10ml)",
+      "brand": "메디큐브",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000264301",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026430152ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000259555",
+      "name": "[11월 올영픽/26년 성분 업그레이드] 달바 퍼스트 스프레이 세럼 펩타이드 100ml 더블기획",
+      "brand": "달바",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000259555",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025955534ko.png",
+      "categoryPath": "01 > 스킨케어 > 페이셜미스트",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002935",
+      "name": "[하준맘 개발] 리바이포유 히알프렙 수분탱글앰플 45ml",
+      "brand": "리바이포유",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002935",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100293506ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000222698",
+      "name": "[수지세럼] 아누아 피디알엔 히알루론산 캡슐 100 세럼 30mL 기획 (+30mL 리필팩)",
+      "brand": "아누아",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000222698",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022269818ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000231885",
+      "name": "[속건조필수템] 웰라쥬 리얼 히알루로닉 블루 100 앰플 75ml 2입 기획",
+      "brand": "웰라쥬",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000231885",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023188538ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002385",
+      "name": "[11월 올영픽] 에스트라 아토베리어365 로션 300ml 기획 (+로션 30ml+캡슐토너 25ml)",
+      "brand": "에스트라",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002385",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100238503ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000263542",
+      "name": "[잠티PICK] 피지오겔 데일리뮨 앰플20ml 더블 기획(+마스크1매)",
+      "brand": "피지오겔",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000263542",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026354273ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000261742",
+      "name": "[1+1/업그레이드 수분흔적세럼] 메디힐 마데카소사이드 더마 세럼 50+50mL 기획",
+      "brand": "메디힐",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000261742",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026174202ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000261065",
+      "name": "[모공탄력/수분장벽/숙면팩] 셀리맥스 더 비타 A 레티날 샷 타이트닝 듀얼 크림 50ml",
+      "brand": "셀리맥스",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000261065",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026106505ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000223625",
+      "name": "[각질쓱싹/대용량] 디오디너리 글리코릭 애시드 7% 엑스폴리에이팅 토너 240ml",
+      "brand": "디오디너리",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000223625",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022362501ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002932",
+      "name": "[하준맘 개발] 리바이포유 히알프렙 수분광버블세럼 95ml",
+      "brand": "리바이포유",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002932",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100293206ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002209",
+      "name": "[11월 올영픽/대용량]  제로이드 인텐시브 크림 80ml + 50ml 기획 (+인텐시브 크림 마스크 2매)",
+      "brand": "제로이드",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002209",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100220904ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002234",
+      "name": "[설윤 PICK/11월 올영픽] 바이오더마 하이드라비오 토너 500ml 기획 (+250ml)",
+      "brand": "바이오더마",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002234",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100223405ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000199701",
+      "name": "[1등리프팅] 바이오힐보 프로바이오덤 3D리프팅 크림&리프트업 괄사기획 [단품/기획]",
+      "brand": "바이오힐보",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000199701",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0019/A000000199701115ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001004246",
+      "name": "[NEW/민스코마켓특가/5분장벽개선]셀퓨전씨 레이저 리페어 크림 50ml",
+      "brand": "셀퓨전씨",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001004246",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100424605ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000226201",
+      "name": "[단독기획] 아누아 TXA 나이아신 흔적 세럼 30ml 2입",
+      "brand": "아누아",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000226201",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022620115ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000231589",
+      "name": "[11월 올영픽/대용량] 제로이드 수딩 크림 80ml + 50ml 기획",
+      "brand": "제로이드",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000231589",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023158942ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000261864",
+      "name": "[1등크림] 에스트라 아토베리어365 크림 80ml 기획(+토너25ml+클렌징폼3g*3EA)",
+      "brand": "에스트라",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000261864",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026186405ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002936",
+      "name": "[하준맘 개발] 리바이포유 히알프렙 수분잠금크림 60ml",
+      "brand": "리바이포유",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002936",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100293606ko.png",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000239660",
+      "name": "피지오겔 DMT 페이셜 크림 150ml 기획(+토너 50ml)",
+      "brand": "피지오겔",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000239660",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023966020ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002058",
+      "name": "[피지연화] 셀라딕스 트러블 세범 밸런싱 131 앰플",
+      "brand": "셀라딕스",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002058",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100205804ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000245087",
+      "name": "[장원영PICK] 닥터엘시아 345 릴리프 크림 50ml 기획 (+10ml*2ea+튜브링거)",
+      "brand": "닥터엘시아",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000245087",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024508711ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000258834",
+      "name": "[11월 올영픽] 에스트라 아토베리어365 하이드로 수딩크림 80ml 기획 (+수딩크림 10ml+클렌징폼 30g)",
+      "brand": "에스트라",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258834",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025883415ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001003724",
+      "name": "[NEW/민스코마켓특가/1분속수분]셀퓨전씨 레이저 리페어 앰플 35ml",
+      "brand": "셀퓨전씨",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001003724",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100372405ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000245091",
+      "name": "[11월 올영픽] 에스트라 아토베리어365 세라-히알 속수분 앰플 30ml+30ml 리필 기획",
+      "brand": "에스트라",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000245091",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024509114ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001001887",
+      "name": "[11월 올영픽] 넘버즈인 3번 보들보들 모공결 세럼 30ml 더블 기획 (+결세럼팩 1매)",
+      "brand": "넘버즈인",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001001887",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100188702ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002589",
+      "name": "[11월 올영픽+본품증정/속보습/속광] 셀리맥스 더 리얼 노니 에너지 앰플 80ml 기획 (+미스트 50ml)",
+      "brand": "셀리맥스",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002589",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100258905ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000269535",
+      "name": "[11월 올영픽/저자극레티놀앰플] 이니스프리 레티놀 시카 모공 흔적 앰플 30ml 더블 기획 (+겔 마스크 1매)",
+      "brand": "이니스프리",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000269535",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026953512ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000231892",
+      "name": "[수지 PICK/단독기획] 아누아 피디알엔 히알루론산 100 수분 크림 60mL 2입 기획",
+      "brand": "아누아",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000231892",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023189227ko.png",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000231779",
+      "name": "[11월 올영픽/본품 50%용량 증정] 라로슈포제 시카플라스트 리페어 에센스 30ml 기획 (+7.5ml*2ea)",
+      "brand": "라로슈포제",
+      "type": "에센스",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000231779",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023177921ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002035",
+      "name": "아비브 어성초 테카 캡슐 세럼 카밍 드롭 50ml 더블기획",
+      "brand": "아비브",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002035",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100203504ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000268107",
+      "name": "[호빵맨 콜라보]이즈앤트리 어니언 뉴페어 겔크림 플러스 50ml 더블 기획 (+마우스패드)",
+      "brand": "이즈앤트리",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000268107",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026810703ko.png",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000250346",
+      "name": "[11월 올영픽/물광탄력] 아이오페 XMD 스템3 클리니컬 리커버리 세럼 23ml기획 (+세럼 15ml+크림 5ml)",
+      "brand": "아이오페",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000250346",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025034619ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002587",
+      "name": "[NEW/물광수분] 메디필 물톡스 펩타이드 글로우 캡슐 세럼 30ml 기획 (+10ml+화장솜 5매)",
+      "brand": "메디필",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002587",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100258706ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000265815",
+      "name": "[여배우 물광크림] 메디큐브 PDRN 핑크 콜라겐 캡슐크림 55g 기획 (+4.5g*2ea+앰플 마스크 1ea)",
+      "brand": "메디큐브",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000265815",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026581516ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000189837",
+      "name": "[흔적미백] 넘버즈인 5번 글루타치온C 흔적 앰플 30ml+30ml 듀오기획",
+      "brand": "넘버즈인",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000189837",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A00000018983731ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000264460",
+      "name": "에스트라 아토베리어365 로션 150ml 기획(+토너25ml+클렌징폼3g*3EA)",
+      "brand": "에스트라",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000264460",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026446004ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000235050",
+      "name": "[리뉴얼] 코스알엑스 어드밴스드 더 비타민C 23 세럼 20g 2입",
+      "brand": "코스알엑스",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000235050",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023505018ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000219609",
+      "name": "파티온 노스카나인 트러블 세럼 50ml 리필 기획 (+리필40ml+크림10ml)",
+      "brand": "파티온",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000219609",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021960906ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002384",
+      "name": "에스트라 아토베리어365 하이드로 에센스 200ml 기획 (+크림 20ml)",
+      "brand": "에스트라",
+      "type": "에센스",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002384",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100238403ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000203925",
+      "name": "[기미잡티광채세럼] 라로슈포제 멜라B3 세럼 30ml",
+      "brand": "라로슈포제",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000203925",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A00000020392508ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002591",
+      "name": "[11월 올영픽/흔적,기미,미백] 셀리맥스 트라넥삼산 잡티 크림 35ml 기획 (+7ml+세럼 10ml)",
+      "brand": "셀리맥스",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002591",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100259104ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000231884",
+      "name": "[속건조필수템] 웰라쥬 리얼 히알루로닉 블루 100 앰플 100ml 기획 (+원데이키트2ea)",
+      "brand": "웰라쥬",
+      "type": "앰플",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000231884",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023188427ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000225217",
+      "name": "더마팩토리 나이아신아마이드 20% 세럼 30ml",
+      "brand": "더마팩토리",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000225217",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022521705ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000255290",
+      "name": "[쿨링진정/대용량]블랑네이처 9배 고농축 어성초 토너 300ml",
+      "brand": "블랑네이처",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000255290",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025529014ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000263681",
+      "name": "토리든 다이브인 저분자 히알루론산 수딩 크림 100ml 더블 기획 (+메쉬백) (시나모롤)",
+      "brand": "토리든",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000263681",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026368111ko.png",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000189181",
+      "name": "[수부지토너]브링그린 티트리 시카 수딩 토너 (500ml/250ml)",
+      "brand": "브링그린",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000189181",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A00000018918178ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000255227",
+      "name": "[설윤 PICK/11월 올영픽] 바이오더마 하이드라비오 에센스 로션 200ml 2입 기획 (+미스트펌프 증정)",
+      "brand": "바이오더마",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000255227",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025522714ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000188004",
+      "name": "[4일특가/1등 화잘먹 수분세럼] 에스네이처 아쿠아 스쿠알란 세럼 50ml 리필기획 (+50ml  리필+크림 10ml)",
+      "brand": "에스네이처",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000188004",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A000000188004135ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000200646",
+      "name": "[3일진정세럼]브링그린 징크테카 트러블 세럼 대용량 기획",
+      "brand": "브링그린",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000200646",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A000000200646163ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001001884",
+      "name": "[11월 올영픽] 아벤느 이드랑스 수분 에센스-인-로션 200ml 기획(+에센스 펌프용기)",
+      "brand": "아벤느",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001001884",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100188402ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000232213",
+      "name": "[11월올영픽/물먹광채] VT 피디알엔 에센스 100 30ml 더블 기획 (+리들샷 100 10ml)",
+      "brand": "VT",
+      "type": "에센스",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000232213",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023221340ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000137180",
+      "name": "[대용량/1등토너] 라운드랩 1025 독도 토너 500ml 기획 (+100ml)",
+      "brand": "라운드랩",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000137180",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0013/A00000013718040ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000244953",
+      "name": "[11월 올영픽] 라로슈포제 히알루 B5 수분탄력 크림 50ml 기획 (+3ml+히알루세럼10ml)",
+      "brand": "라로슈포제",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000244953",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024495320ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000258935",
+      "name": "리쥬란 더마 힐러 포어 타이트닝 크림 50ml(단품/기획)",
+      "brand": "리쥬란",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258935",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025893511ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000248500",
+      "name": "[단독기획]  아누아 어성초 77 B3 징크 트러블 세럼 30ml 더블 기획",
+      "brand": "아누아",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000248500",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024850006ko.png",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000263073",
+      "name": "[설윤 PICK] 바이오더마 하이드라비오 에센스 로션 200ml 기획 (+펌프용기+파우치)",
+      "brand": "바이오더마",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000263073",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026307308ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001001700",
+      "name": "[히퍼증정/수부지장벽케어] 라운드랩 자작나무 수분 크림 80ml 1+1 기획 (+데코보코 히퍼 1종)",
+      "brand": "라운드랩",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001001700",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100170009ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000214168",
+      "name": "[11월 올영픽/NO.1 국민수분크림] 키엘 울트라 훼이셜 크림 28ml/50ml/150ml (기획/단품)",
+      "brand": "키엘",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000214168",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021416867ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000263562",
+      "name": "[1등 잡티이별세럼/산리오 콜라보] 구달 청귤 비타C 잡티케어 세럼 알파 50ml 리필 기획(+폼폼푸린 마그넷 피규어)",
+      "brand": "구달",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000263562",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026356216ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000243499",
+      "name": "[1등 속광로션/단독기획] 온그리디언츠 스킨 베리어 카밍 로션 이엑스 220ml 기획 (+80ml)",
+      "brand": "온그리디언츠",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000243499",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024349924ko.png",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000207054",
+      "name": "[대용량/속보습폭발] 더랩바이블랑두 올리고 히알루론산 딥 토너 500ml 대용량 기획 (+100ml)",
+      "brand": "더랩바이블랑두",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000207054",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A00000020705415ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000207225",
+      "name": "[트러블진정세럼] 넘버즈인 1번 판토텐산 액티브업 수딩세럼 50ml 리필기획 (50ml+50ml)",
+      "brand": "넘버즈인",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000207225",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A00000020722532ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000161508",
+      "name": "[대용량] 라운드랩 1025 독도 로션 400ml",
+      "brand": "라운드랩",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000161508",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0016/A00000016150822ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000258293",
+      "name": "[NEW] 토리든 다이브인 저분자 히알루론산 토너 300ml 기획 (+100ml)",
+      "brand": "토리든",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258293",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025829305ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002383",
+      "name": "[11월 올영픽] 에스트라 아토베리어365 캡슐토너 300ml 기획 (+크림 10ml+클렌징폼 3g*3EA)",
+      "brand": "에스트라",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002383",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100238305ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000233390",
+      "name": "[콜라겐/모공세럼] 바이오힐보 프로바이오덤 콜라겐 리모델링 세럼 30ml (기획/더블)",
+      "brand": "바이오힐보",
+      "type": "세럼",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000233390",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023339073ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 에센스",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000249903",
+      "name": "[2700만개 판매] 유세린 하이알루론 3X 나이트크림 50ml",
+      "brand": "유세린",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000249903",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024990304ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000000249580",
+      "name": "[트러블 피부 추천/약산성 장벽 케어] 제로이드 핌프로브 레드 컨트롤 크림 pH4 80ml",
+      "brand": "제로이드",
+      "type": "크림",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000249580",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024958014ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 크림",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/main/getBestList.do?dispCatNo=900000100100001&fltDispCatNo=10000010001&pageIdx=1&rowsPerPage=8",
+      "checkedAt": "2026-11-12T07:09:52.916Z"
+    },
+    {
+      "id": "A000001002343",
+      "name": "[사우나 밀크 보습] 라네즈 크림 스킨 세라펩타이드 리파이너 170ml (+170ml리필+세안밴드세트)",
+      "brand": "라네즈",
+      "type": "스킨",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002343",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100234302ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000159921",
+      "name": "[시카장벽토너] 라로슈포제 시카플라스트 로션 B5 판테놀 시카에센스 토너 200ml",
+      "brand": "라로슈포제",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000159921",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0015/A00000015992114ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000267652",
+      "name": "[NEW] 토리든 다이브인 저분자 히알루론산 인텐시브 토너 250ml 기획 (+크림 20ml)",
+      "brand": "토리든",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000267652",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026765211ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000258792",
+      "name": "[리뉴얼] 토니모리 세라마이드 모찌 토너 500ml 기획 (+100ml + 크림 30ml)",
+      "brand": "토니모리",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000258792",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025879206ko.png",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000248498",
+      "name": "[단독기획] 아누아 어성초 77 히알루론산 수분 진정 토너 350ml 리필 기획세트 (+350ml 리필팩)",
+      "brand": "아누아",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000248498",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024849808ko.png",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000252322",
+      "name": "[NEW/미니어처증정] 닥터지 레드 블레미쉬 10-시카 캡슐 수딩 토너 300ml 기획 (+100ml)",
+      "brand": "닥터지",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000252322",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025232204ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000262618",
+      "name": "[산리오캐릭터즈 콜라보] 아누아 어성초 77 히알루론산 수분 진정 토너 500ml 기획 (+포차코 스티커)",
+      "brand": "아누아",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000262618",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026261814ko.png",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000157178",
+      "name": "[수분생기] 라운드랩 자작나무 수분 토너 1+1 기획 (300ml+300ml)",
+      "brand": "라운드랩",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000157178",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0015/A00000015717818ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000231891",
+      "name": "[수지 PICK] 아누아 피디알엔 100 히알루론산 부스터 토너 250ml 기획 (+40ml)",
+      "brand": "아누아",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000231891",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0023/A00000023189115ko.png",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000190395",
+      "name": "[쿨링진정]넘버즈인 1번 진정 맑게담은 청초토너 300ml 리필기획(+300ml 증정)",
+      "brand": "넘버즈인",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000190395",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0019/A00000019039521ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000132162",
+      "name": "[1등토너] 라운드랩 1025 독도 토너 200ml 기획 (+50ml)",
+      "brand": "라운드랩",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000132162",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0013/A00000013216235ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000222849",
+      "name": "[속건조해결] 파티온 포도당 하이드로 에센스토너 300ml 더블 기획(2개입)",
+      "brand": "파티온",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000222849",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022284909ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000223627",
+      "name": "[각질쓱싹] 디오디너리 글리코릭 애시드 7% 엑스폴리에이팅 토너 100ml",
+      "brand": "디오디너리",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000223627",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022362703ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000146589",
+      "name": "[수분진정] 아비브 어성초 카밍 토너 스킨부스터 200ml",
+      "brand": "아비브",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000146589",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0014/A00000014658918ko.png",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000000218549",
+      "name": "에스트라 에이시카365 수분토너 pH4.5 200ml",
+      "brand": "에스트라",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000218549",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021854909ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013",
+      "checkedAt": "2026-11-12T07:10:22.932Z"
+    },
+    {
+      "id": "A000001002210",
+      "name": "[11월 올영픽] 제로이드 인텐시브 로션 160ml 기획 (+크림 10ml+앰플 7ml)",
+      "brand": "제로이드",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002210",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100221005ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000149211",
+      "name": "[수분탄력] AHC 온리포맨 올인원 에센스 더블 기획 (120ml+120ml)",
+      "brand": "AHC",
+      "type": "에센스",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000149211",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0014/A00000014921129ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000001001833",
+      "name": "[11월 올영픽/청담샵로션] 넘버즈인 3번 보들보들 결 화잘먹 로션 150ml 기획 (+100ml)",
+      "brand": "넘버즈인",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001001833",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100183312ko.png",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000248426",
+      "name": "아누아 어성초 77 히알루론산 수분 진정 로션 200ml",
+      "brand": "아누아",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000248426",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0024/A00000024842602ko.png",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000263075",
+      "name": "[설윤PICK] 바이오더마 아토덤 페이셜 로션 150ml 기획 (+파우치)",
+      "brand": "바이오더마",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000263075",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026307511ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000001002237",
+      "name": "[설윤 PICK/11월 올영픽바이오더마 아토덤 페이셜 로션 150ml 기획 (+센시비오 H2O 100ml)",
+      "brand": "바이오더마",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002237",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100223705ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000209904",
+      "name": "제로이드 수딩 로션 160ml",
+      "brand": "제로이드",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000209904",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A00000020990415ko.png",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000185235",
+      "name": "[지성/증정 기획] 닥터지 레드 블레미쉬 포 맨 올인원 오일컷 로션 150ml (150+30 기획/150 단품)",
+      "brand": "닥터지",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000185235",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A00000018523518ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000198321",
+      "name": "에스트라 아토베리어365 로션 150ml",
+      "brand": "에스트라",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000198321",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0019/A00000019832106ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 로션",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010016",
+      "checkedAt": "2026-11-12T07:10:23.018Z"
+    },
+    {
+      "id": "A000000139347",
+      "name": "[속건조토너] 라로슈포제 똘러리앙 울트라 로션 200ML",
+      "brand": "라로슈포제",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000139347",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0013/A00000013934704ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000213171",
+      "name": "[4일특가/1등 속촉촉 진정토너] 에스네이처 아쿠아 오아시스 토너 300ml 기획 (+젤크림 30ml)",
+      "brand": "에스네이처",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000213171",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A000000213171123ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000175354",
+      "name": "[보습세럼]닥터자르트 세라마이딘 스킨 베리어 세럼 토너 150ml",
+      "brand": "닥터자르트",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000175354",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0017/A00000017535406ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000001002362",
+      "name": "[4일특가/속장벽빌드업/장벽크림토너] 에스네이처 딥 아쿠아 스쿠알란 베리어 토너 200ml",
+      "brand": "에스네이처",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000001002362",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0100/A00000100236213ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000200039",
+      "name": "[흔적미백] 넘버즈인 5번 글루타치온씨 비타수액 에센셜 토너 200ml",
+      "brand": "넘버즈인",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000200039",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A00000020003920ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000189488",
+      "name": "[속보습루틴] 더랩바이블랑두 저분자 히알루론산 딥 토너 200ml + 50ml 기획",
+      "brand": "더랩바이블랑두",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000189488",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A00000018948820ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000252696",
+      "name": "[깐달걀 토너] 아누아 어성초 77 히알루론산 수분 진정 토너 350ml",
+      "brand": "아누아",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000252696",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025269610ko.png",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000148285",
+      "name": "[대용량/총500ml] 마녀공장 비피다 바이옴 앰플 토너 400ml+100ml 기획",
+      "brand": "마녀공장",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000148285",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0014/A00000014828522ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000210415",
+      "name": "[약산성토너] 헤브블루 살몬 PDRN 센텔라 토너 200ml 기획 (+연어 크림 20ml)",
+      "brand": "헤브블루",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000210415",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021041519ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000223425",
+      "name": "[미백/잡티케어] 달바 비타 토닝 세럼 토너 180ml",
+      "brand": "달바",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000223425",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0022/A00000022342507ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000211003",
+      "name": "[1등 속보습] 라네즈 크림 스킨 170ml 단품기획 (+50ml)",
+      "brand": "라네즈",
+      "type": "스킨",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000211003",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021100308ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000211164",
+      "name": "[흔적미백] 넘버즈인 5번 글루타치온씨 비타수액 에센셜 토너 200ml 리필 기획(+200ml 리필)",
+      "brand": "넘버즈인",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000211164",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0021/A00000021116423ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000154506",
+      "name": "[트러블완화/진정] 원씽 어성초 추출물 토너 150ml",
+      "brand": "원씽",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000154506",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0015/A00000015450613ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000267481",
+      "name": "제로이드 핌프로브 토너 200ml 기획 (+젤클렌저 25ml)",
+      "brand": "제로이드",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000267481",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026748113ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000002839",
+      "name": "바이오더마 센시비오 토너 250ml",
+      "brand": "바이오더마",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000002839",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0000/A00000000283908ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000259949",
+      "name": "[깐달걀피부/각질케어] 비욘드 엔젤 아쿠아 이온 히알루 이중 장벽 보습 토너 350ml",
+      "brand": "비욘드",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000259949",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025994909ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000251196",
+      "name": "바이오더마 세비엄 로션 200ml (2604)",
+      "brand": "바이오더마",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000251196",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025119601ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000250711",
+      "name": "[화잘먹] 넘버즈인 3번 보들보들 퍼스트 결부스팅 토너 200ml 기획 (+50ml)",
+      "brand": "넘버즈인",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000250711",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0025/A00000025071126ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000188874",
+      "name": "[첫수분토너/대용량] 웰라쥬 리얼 히알루로닉 100 토너 300ml 기획 (+화장솜 60매)",
+      "brand": "웰라쥬",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000188874",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A00000018887447ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000206025",
+      "name": "[온라인몰 단독기획]유리아쥬 제모스 토너 500ml 2입 기획",
+      "brand": "유리아쥬",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000206025",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0020/A00000020602503ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000181475",
+      "name": "[즉각진정/결케어] 메이크프렘 인테카 진정 토너 200ml 기획(+리필 100ml+크림 31ml)",
+      "brand": "메이크프렘",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000181475",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0018/A00000018147514ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000124507",
+      "name": "클럽맨피노드 오리지날 에프터쉐이브로션 177ml",
+      "brand": "클럽맨피노드",
+      "type": "로션",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000124507",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0012/A00000012450703ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
+    },
+    {
+      "id": "A000000268069",
+      "name": "[조슈아PICK/장벽보습] 리얼베리어 익스트림 프로세라 토너 300ml 기획 (+로션 40ml+ 클렌징폼 15ml)",
+      "brand": "리얼베리어",
+      "type": "토너",
+      "productUrl": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000268069",
+      "imageUrl": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/thumbnails/400/10/0000/0026/A00000026806911ko.jpg",
+      "categoryPath": "01 > 스킨케어 > 스킨/토너",
+      "sourceListUrl": "https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010013&pageIdx=2&rowsPerPage=24",
+      "checkedAt": "2026-11-12T07:10:25.499Z"
     }
   ]
 };

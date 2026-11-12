@@ -30,7 +30,7 @@ test("new GUI preserves response states, general notes, order and evidence", () 
 test("dryness card uses a reviewed moisturizing ID and gives no personal efficacy verdict", () => {
   const report = prepareReport("cosmetic", input, response());
   assert.deepEqual(report.helpful.map(note => note.ingredient), ["글리세린"]);
-  assert.match(report.helpful[0].reason, /개인별 효과와 제품 적합성을 판단한 결과는 아니/u);
+  assert.equal(report.helpful[0].reason, "보습 관련 일반 기능을 살펴볼 수 있어요.");
   assert.deepEqual(report.unknown, ["NEW"]);
 });
 

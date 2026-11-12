@@ -4,7 +4,7 @@ import { prepareReport } from "./report-model.js";
 const $ = id => document.getElementById(id);
 const uploaded = { cosmetic: null, pack: null };
 const objectUrls = { cosmetic: null, pack: null };
-let isBusy = false, lastReportText = "", copyTimer;
+let isBusy = false, lastReportText = "", copyTimer, recommendationRetryContext = null;
 const skinHints = {
   "건성": "건조함과 당김을 자주 느끼는 피부 타입이에요.",
   "지성": "피지 분비가 비교적 많고 쉽게 번들거릴 수 있어요.",
@@ -23,6 +23,7 @@ function textNode(tag, content, className) {
 function clearReport() {
   $("results").classList.add("hidden");
   lastReportText = "";
+  recommendationRetryContext = null;
   clearTimeout(copyTimer);
   $("copyReport").textContent = "결과 복사 ↗";
 }
@@ -117,6 +118,7 @@ $("copyConcerns").addEventListener("click", () => {
   $("packMessage").textContent = selected.size ? "화장품 분석에서 선택한 고민을 가져왔어요." : "가져올 고민이 없어요. 직접 선택해 주세요.";
 });
 document.querySelectorAll('input:not([type="file"]), textarea').forEach(input => {
+  if(input.id==="geminiApiKey")return;
   if (input.id === "geminiApiKey") return;
   for (const event of ["input", "change"]) input.addEventListener(event, () => { clearReport(); clearMessages(); });
 });
@@ -162,6 +164,8 @@ function setupRecommendationTypes() {
 function renderRecommendations(recommendations) {
   $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
   $("recommendationBox").setAttribute("aria-busy",String(recommendations.status==="loading"));
+  $("retryRecommendations").classList.toggle("hidden",recommendations.status==="loading");
+  $("recommendationBadge").textContent="올리브영 목록 기반";
   for(const [id,value] of [["recommendationLead",recommendations.lead],["recommendationNotice",recommendations.notice],
     ["recommendationShop",recommendations.shopNotice],["recommendationCoverage",recommendations.coverage],
     ["recommendationStrategy",recommendations.strategy],["recommendationMixing",recommendations.mixingNotice]]) $(id).textContent=value;
@@ -180,21 +184,23 @@ function renderRecommendations(recommendations) {
       image.addEventListener("error",()=>{image.classList.add("hidden");photoNote.classList.remove("hidden");},{once:true});
       image.src=product.imageUrl;photoNote.classList.add("hidden");photo.append(image);
     }
-    photo.append(photoNote);card.append(photo);
+    photo.append(photoNote);
     const top=textNode("div","","pick-card-top");
     top.append(textNode("span",product.brand,"pick-brand"),textNode("span",`${index+1} / ${recommendations.products.length}`,"pick-type"));
     card.append(top,textNode("h4",product.name));
+    if(product.imageUrl)card.append(photo);
     card.append(textNode("p","연결한 고민: "+product.matchedConcerns.join(" · "),"pick-matched"));
     card.append(textNode("p",product.reason,"pick-reason"));
     const listOnly=product.verificationScope==="category_list";
-    card.append(textNode("p",(listOnly?"현재 목록 표시 문구: ":"상품 페이지에서 확인: ")+product.productEvidence,"pick-ingredients"));
-    card.append(textNode("p",listOnly?"현재 목록 확인 · 상품 상세 정보 미확인":"상품 상세 페이지 확인","pick-shop-status"));
+    const needsCheck=product.verificationScope==="catalog_snapshot";
+    card.append(textNode("p",(needsCheck?"":listOnly?"현재 목록 표시 문구: ":"상품 페이지에서 확인: ")+product.productEvidence,"pick-ingredients"));
+    card.append(textNode("p",needsCheck?"공식 목록에서 수집한 제품 · 현재 재고는 구매 페이지에서 확인해 주세요.":listOnly?"현재 목록 확인 · 상품 상세 정보 미확인":"상품 상세 페이지 확인","pick-shop-status"));
     card.append(textNode("p","종류 확인: "+product.typeEvidence,"pick-note"));
     product.cautions.forEach(note=>card.append(textNode("p",note,"pick-note")));
     if(product.mixingStatus==="unknown")card.append(textNode("span","이 팩과의 혼합 조합 미확인","pick-mix-badge"));
-    card.append(textNode("p","올리브영 페이지 조회: "+new Date(product.checkedAt).toLocaleString("ko-KR",{timeZone:"Asia/Seoul"}),"pick-shop-status"));
-    const link=textNode("a",listOnly?"올리브영에서 이 제품 검색 ↗":"올리브영 상품 보기 ↗","pick-shop-link");
-    link.href=listOnly?product.searchUrl:product.productUrl;link.target="_blank";link.rel="noopener noreferrer";
+    card.append(textNode("p",(needsCheck?"목록 수집 시각: ":"올리브영 페이지 조회: ")+new Date(product.checkedAt).toLocaleString("ko-KR",{timeZone:"Asia/Seoul"}),"pick-shop-status"));
+    const link=textNode("a",product.productUrl?"올리브영 상품 보기 ↗":"올리브영에서 이 제품 검색 ↗","pick-shop-link");
+    link.href=product.productUrl||product.searchUrl;link.target="_blank";link.rel="noopener noreferrer";
     link.setAttribute("aria-label",`${product.brand} ${product.name} 올리브영 상품 정보 (새 창)`);
     card.append(link);$("recommendationList").append(card);
   });
@@ -280,6 +286,7 @@ async function run(kind) {
       throw new Error(`${prefix}${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · ${[...details, `요청 ${response.requestId || "-"}`].join(" · ")})`);
     }
     if (response.extraction.status === "complete" && !response.meta?.isMock) {
+      recommendationRetryContext={kind,reportInput,input,types,response};
       renderReport(kind,reportInput,{...response,recommendations:{status:"loading",products:[]}});
       message.textContent="성분 분석 완료 · 현재 올리브영 목록과 상품 종류를 확인하고 있어요…";
       try { response.recommendations=await recommendProducts({kind,types,input,ingredients:response.extraction.ingredients},key); }
@@ -293,6 +300,22 @@ async function run(kind) {
 }
 $("cosmeticAnalyze").addEventListener("click", () => run("cosmetic"));
 $("packAnalyze").addEventListener("click", () => run("pack"));
+$("retryRecommendations").addEventListener("click",async()=>{
+  if(isBusy||!recommendationRetryContext)return;
+  const ctx=recommendationRetryContext;
+  let key=$("geminiApiKey").value.trim();
+  if(!key){$(ctx.kind+"Message").textContent="추천에 사용할 API 키를 입력해 주세요.";$("geminiApiKey").focus();return;}
+  const controls=[...document.querySelectorAll("button, input, textarea")],previous=controls.map(el=>el.disabled);
+  isBusy=true;maskApiKey();controls.forEach(el=>{el.disabled=true;});
+  renderReport(ctx.kind,ctx.reportInput,{...ctx.response,recommendations:{status:"loading",products:[]}});
+  try{
+    const result=await recommendProducts({kind:ctx.kind,types:ctx.types,input:ctx.input,ingredients:ctx.response.extraction.ingredients},key);
+    if(!result.products?.length&&ctx.response.recommendations?.products?.length)
+      ctx.response.recommendations={...ctx.response.recommendations,message:"새 조회를 완료하지 못해 앞서 확인한 추천을 유지했어요. "+result.message};
+    else ctx.response.recommendations=result;
+  }catch{ctx.response.recommendations=ctx.response.recommendations||{status:"unavailable",products:[],message:"다시 추천을 눌러 주세요."};}
+  finally{key="";renderReport(ctx.kind,ctx.reportInput,ctx.response);controls.forEach((el,i)=>{el.disabled=previous[i];});isBusy=false;}
+});
 $("copyReport").addEventListener("click", async () => {
   if (!lastReportText) return;
   try { await navigator.clipboard.writeText(lastReportText); $("copyReport").textContent = "복사 완료 ✓"; }

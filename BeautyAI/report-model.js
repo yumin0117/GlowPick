@@ -14,7 +14,7 @@ export function prepareRecommendations(kind, input, complete, isMock = false, li
     if (!p || !Array.isArray(p.matchedConcerns) || !Array.isArray(p.cautions)
       || typeof p.reason !== "string" || typeof p.productEvidence !== "string") return false;
     const detail = normalizeOliveYoungProductUrl(p.productUrl);
-    const url = detail || (p.productUrl == null && p.verificationScope === "category_list"
+    const url = detail || (p.productUrl == null && ["category_list","catalog_snapshot"].includes(p.verificationScope)
       && p.searchUrl === oliveYoungSearchUrl(p.name) ? p.searchUrl : null);
     if (!url || (detail && detail !== p.productUrl) || !allowed.includes(p.type) || !matchesRecommendationType(p.name,p.brand,p.type)
       || seen.has(url) || (types.length && usedTypes.has(p.type))) return false;
@@ -23,14 +23,14 @@ export function prepareRecommendations(kind, input, complete, isMock = false, li
   const missingTypes = types.filter(type => !products.some(p=>p.type===type));
   const lead = types.length ? `${types.join(" · ")} 종류마다 제품 1개씩 비교해요. 확인하지 못한 종류는 다른 종류로 대체하지 않아요.`
     : `${kind === "pack" ? "에센스·세럼·앰플" : "스킨·토너·에센스·세럼·앰플·크림·로션"} 중 피부 고민에 맞춰 최대 3개를 비교해요.`;
-  const strategy = "추천할 때마다 올리브영 공개 목록의 제품명과 본품 종류를 다시 확인해요. 상세 링크를 읽을 수 있으면 상세 페이지도 확인하고, 목록만 확인한 제품은 별도로 표시해요. 확인한 후보 중 여러 고민과 연결되는 조합을 비교하며 같은 조건이면 API 비교 순서를 사용해요. 전체 상품 중 개인에게 가장 효과적인 순위를 검증한 결과는 아니에요.";
-  const notice = "사용자 고민과 확인한 상품 정보를 연결한 API 추천이에요. 개인 적합성·질환 치료·제품의 동시 사용을 확인한 결과는 아니에요.";
-  const shopNotice = "고정 제품 목록과 이전 추천 결과를 사용하지 않아요. 목록만 확인한 후보는 제품명 검색으로 연결하며 상세 성분·가격·재고·현재 옵션은 미확인이에요. 페이지 접근·종류 확인에 실패하면 추천하지 않아요. 구매 페이지의 현재 라벨과 사용법을 확인해 주세요.";
+  const strategy = "피부 고민과 원하는 종류에 맞춰 올리브영 공식 목록의 제품을 비교해요. 실시간 조회가 지연되면 수집 시각이 기록된 목록에서 API가 선택해요.";
+  const notice = "구매 전 현재 상품 정보와 사용법을 확인해 주세요.";
+  const shopNotice = "상품 링크나 사진이 없어도 확인한 제품명과 추천 이유를 표시해요. 가격·재고는 올리브영에서 확인해 주세요.";
   const mixingNotice = kind !== "pack" ? "" : input.mixStatus === "prohibited"
     ? "제조사의 혼합 금지 안내를 확인하셨으므로 이 팩에는 섞지 마세요. 추천은 별도 제품 후보예요."
     : "혼합 가능 여부 미확인. 추천된 에센스·세럼·앰플을 이 모델링팩에 섞어도 된다는 뜻은 아니에요. 제조사가 지정한 혼합액과 사용법을 따라 주세요.";
   const coverage = status === "loading" ? "현재 올리브영 목록과 상품 종류를 확인하고 있어요…"
-    : `확인된 제품 ${products.length}개${types.length ? ` · 선택한 ${types.length}종 중 ${types.length-missingTypes.length}종 확인` : " · 종류 미선택 자동 추천"}`;
+    : `추천 제품 ${products.length}개${types.length ? ` · 선택한 ${types.length}종 중 ${types.length-missingTypes.length}종 추천` : " · 종류 미선택 자동 추천"}`;
   const contextNotice = !ready ? "전성분 판독을 완료하면 제품 추천을 확인할 수 있어요."
     : invalid ? "추천할 제품 종류를 다시 선택해 주세요."
     : status === "loading" ? "성분 분석은 완료됐어요. 제품 추천을 위해 올리브영 공개 페이지를 읽고 있어요."
@@ -40,7 +40,7 @@ export function prepareRecommendations(kind, input, complete, isMock = false, li
     ...[missingNotice,mixingNotice].filter(Boolean),
     ...products.flatMap(p=>[`${p.type} 추천: ${p.brand} ${p.name}`, `연결한 고민: ${p.matchedConcerns.join(" · ")}`,
       p.reason, `${p.verificationScope === "category_list" ? "현재 목록 표시 문구" : "상품 페이지에서 확인한 내용"}: ${p.productEvidence}`,
-      p.verificationScope === "category_list" ? "현재 목록 확인 · 상품 상세 정보 미확인" : "상품 상세 페이지 확인", `종류 확인: ${p.typeEvidence}`,
+      p.verificationScope === "catalog_snapshot" ? `올리브영 목록 수집 시각: ${p.checkedAt}` : p.verificationScope === "category_list" ? "현재 목록 확인 · 상품 상세 정보 미확인" : "상품 상세 페이지 확인", `종류 확인: ${p.typeEvidence}`,
       ...p.cautions, `조회 시각: ${p.checkedAt}`]), shopNotice, notice] : [];
   return {ready,status,products,lead,strategy,notice,shopNotice,mixingNotice,coverage,contextNotice,missingNotice,copyLines};
 }
