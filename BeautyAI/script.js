@@ -225,8 +225,247 @@ function skinRelatedGeneralNotes(analysis,concerns){
   if(!concerns.some(c=>['건조함','속건조'].includes(c)))return [];
   return (analysis.ingredientNotes||[]).filter(note=>['글리세린','glycerin','판테놀','panthenol'].includes(normalizeIngredient(note.ingredient))).map(note=>({ingredient:note.ingredient,reason:'보습 관련 일반 기능이 확인되어 선택한 건조 고민과 관련이 있을 수 있어요. 개인별 효과와 제품 적합성은 별도 확인이 필요해요.'}));
 }
+// BEGIN YM GLOWPICK RECOMMENDATIONS
+const RECOMMENDATIONS = {
+  "version": "2026-11-12",
+  "reviewStatus": "manufacturer_information_checked",
+  "independentHumanReview": false,
+  "scope": "concern-matched product candidates; no acne treatment, personal suitability, or mixing approval",
+  "goals": [
+    {
+      "id": "hydration",
+      "label": "보습",
+      "concerns": [
+        "건조함",
+        "속건조"
+      ]
+    },
+    {
+      "id": "soothing",
+      "label": "진정 관리",
+      "concerns": [
+        "여드름",
+        "트러블",
+        "민감함",
+        "홍조"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "tonymoly-wonder-hyaluronic-ampoule",
+      "brand": "토니모리",
+      "name": "원더 히알루론산 촉촉 앰플",
+      "type": "앰플",
+      "goals": [
+        "hydration"
+      ],
+      "reasons": {
+        "hydration": "공식 제품 정보에서 수분 관리용으로 안내하고, 글리세린·베타인·소듐하이알루로네이트가 표기되어 있어 보습 후보로 골랐어요."
+      },
+      "keyIngredients": [
+        "글리세린",
+        "베타인",
+        "소듐하이알루로네이트 (330ppm)"
+      ],
+      "ingredients": [
+        "정제수",
+        "글리세린",
+        "다이프로필렌글라이콜",
+        "메틸프로판다이올",
+        "글리세레스-26",
+        "부틸렌글라이콜",
+        "하이드록시아세토페논",
+        "1,2-헥산다이올",
+        "알지닌",
+        "프로판다이올",
+        "폴리글리세릴-10라우레이트",
+        "베타인",
+        "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+        "알란토인",
+        "카보머",
+        "글리세릴아크릴레이트/아크릴릭애씨드코폴리머",
+        "해수",
+        "병풀추출물",
+        "에틸헥실글리세린",
+        "피브이엠/엠에이코폴리머",
+        "쇠비름추출물",
+        "소듐하이알루로네이트 (330ppm)",
+        "다이소듐이디티에이",
+        "마트리카리아꽃추출물",
+        "체이스트트리추출물",
+        "로즈마리잎오일",
+        "말라카이트추출물",
+        "서양배추출물",
+        "다마스크장미꽃수",
+        "오리스뿌리추출물",
+        "멜론추출물",
+        "하이드롤라이즈드소듐하이알루로네이트 (20ppm)",
+        "서양송악잎/줄기추출물",
+        "하이알루로닉애씨드 (10ppm)",
+        "판테놀",
+        "하이드롤라이즈드하이알루로닉애씨드 (1ppm)",
+        "하이드록시프로필트라이모늄하이알루로네이트 (1ppm)",
+        "소듐아세틸레이티드하이알루로네이트 (200ppb)",
+        "소듐하이알루로네이트크로스폴리머 (10ppb)",
+        "포타슘하이알루로네이트 (2ppb)"
+      ],
+      "note": "식물 추출물·오일에 민감하다면 전체 전성분을 먼저 확인해 주세요.",
+      "sourceUrl": "https://tonymoly.com/products/wonder-hyaluronic-acid-chok-chok-ampoule.do?i_sProductcd=TM20260601000153193",
+      "sourceTitle": "토니모리 공식 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "skin1004-centella-ampoule",
+      "brand": "스킨1004",
+      "name": "마다가스카르 센텔라 앰플",
+      "type": "앰플",
+      "goals": [
+        "hydration",
+        "soothing"
+      ],
+      "reasons": {
+        "hydration": "제조사가 수분 공급을 안내하는 앰플로, 글리세린·부틸렌글라이콜이 표기되어 있어요.",
+        "soothing": "제조사가 병풀추출물을 중심으로 진정 관리를 안내하는 앰플이에요. 여드름 치료 효과를 뜻하지는 않아요."
+      },
+      "keyIngredients": [
+        "Glycerin",
+        "Butylene Glycol",
+        "Centella Asiatica Extract"
+      ],
+      "ingredients": [
+        "Water",
+        "Glycerin",
+        "Butylene Glycol",
+        "Centella Asiatica Extract",
+        "1,2-Hexanediol",
+        "Cellulose Gum",
+        "Ethylhexylglycerin"
+      ],
+      "note": "국가·리뉴얼 버전에 따라 표기가 다를 수 있으니 실제 구입 제품의 라벨을 확인해 주세요.",
+      "sourceUrl": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule",
+      "sourceTitle": "SKIN1004 공식 제품 정보·FULL INGREDIENTS",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    },
+    {
+      "id": "aestura-acica365-serum-ph45",
+      "brand": "에스트라",
+      "name": "에이시카365 흔적진정세럼 pH4.5",
+      "type": "세럼",
+      "goals": [
+        "soothing"
+      ],
+      "reasons": {
+        "soothing": "제조사가 외부 자극으로 민감해진 피부의 진정 관리를 안내하는 세럼이에요. 여드름 치료 제품으로 추천하는 것은 아니에요."
+      },
+      "keyIngredients": [
+        "글리세린",
+        "아시아티코사이드",
+        "마데카소사이드"
+      ],
+      "ingredients": [
+        "정제수",
+        "글리세린",
+        "부틸렌글라이콜",
+        "다이프로필렌글라이콜",
+        "베타인",
+        "나이아신아마이드",
+        "글루코노락톤",
+        "1,2-헥산다이올",
+        "다이에톡시에틸석시네이트",
+        "트로메타민",
+        "수크로오스스테아레이트",
+        "스쿠알란",
+        "하이드로제네이티드레시틴",
+        "폴리글리세릴-10스테아레이트",
+        "폴리글리세릴-10라우레이트",
+        "카보머",
+        "카프릴릴메티콘",
+        "폴리아크릴레이트크로스폴리머-6",
+        "에틸헥실글리세린",
+        "콜레스테롤",
+        "잔탄검",
+        "아시아티코사이드",
+        "마데카식애씨드",
+        "아시아틱애씨드",
+        "소듐하이알루로네이트",
+        "셀룰로오스검",
+        "3-O-에틸아스코빅애씨드",
+        "징크피씨에이",
+        "소듐글루코네이트",
+        "글리세릴카프릴레이트",
+        "마데카소사이드",
+        "소듐트라이메타포스페이트"
+      ],
+      "note": "글루코노락톤(PHA)이 포함되어 있어요. 각질 관리 제품을 함께 쓸 때 제조사 사용 안내를 확인해 주세요.",
+      "sourceUrl": "https://www.aestura.com/web/product/view.do?prdSeq=1137",
+      "sourceTitle": "에스트라 공식 제품 정보·전성분",
+      "checkedAt": "2026-11-12",
+      "mixingStatus": "unknown"
+    }
+  ]
+};
+function prepareRecommendations(kind, input, complete, isMock = false) {
+  const notice = "선택한 고민과 제조사 공개 정보를 연결한 제품 후보예요. 개인 적합성·제품 간 우열·여드름 치료 효과를 평가한 결과는 아니에요. 구입 전 현재 라벨과 사용법을 확인해 주세요.";
+  const goals = RECOMMENDATIONS.goals.filter(goal => goal.concerns.some(c => (input.concerns || []).includes(c)));
+  const ready = complete && !isMock;
+  const products = ready ? RECOMMENDATIONS.products.flatMap(product => {
+    const matched = goals.filter(goal => product.goals.includes(goal.id));
+    if (!matched.length) return [];
+    const source = new URL(product.sourceUrl);
+    if (source.protocol !== "https:" || source.username || source.password
+      || !["tonymoly.com", "www.skin1004.com", "www.aestura.com"].includes(source.hostname)) return [];
+    return [{ id: product.id, brand: product.brand, name: product.name, type: product.type,
+      labels: matched.map(goal => goal.label), reasons: matched.map(goal => product.reasons[goal.id]),
+      keyIngredients: product.keyIngredients, note: product.note, sourceUrl: product.sourceUrl,
+      checkedAt: product.checkedAt, mixingStatus: kind === "pack" ? "unknown" : "not_applicable" }];
+  }) : [];
+  const mixingNotice = kind !== "pack" ? "" : input.mixStatus === "prohibited"
+    ? "제조사의 혼합 금지 안내를 확인하셨으므로 이 팩에는 앰플·세럼을 섞지 마세요. 아래는 혼합용 추천이 아닌 별도 제품 후보예요."
+    : "혼합 가능 여부 미확인. 아래 후보를 이 모델링팩에 섞어 써도 된다는 뜻은 아니에요. 제조사가 지정한 혼합액·사용법을 따라 주세요.";
+  const matchedConcerns = [...new Set(goals.flatMap(goal => goal.concerns.filter(c => (input.concerns || []).includes(c))))];
+  const lead = !ready ? "전성분 판독을 완료한 뒤 제품 후보를 확인할 수 있어요."
+    : !products.length ? "현재 선택한 고민에 맞춰 확인한 앰플·세럼 후보가 아직 없어요."
+    : `${matchedConcerns.join(" · ")} 고민에 맞춰 ${goals.map(goal => goal.label).join("·")}용 앰플·세럼을 골랐어요. 업로드한 제품과의 병용 적합성을 판정한 추천은 아니에요.`;
+  const copyLines = ready ? ["", "[GlowPick 추천!]", lead, ...(mixingNotice ? [mixingNotice] : []),
+    ...products.flatMap(product => [`${product.brand} ${product.name} · ${product.labels.join(" / ")}`,
+      ...product.reasons, `확인한 성분: ${product.keyIngredients.join(", ")}`, product.note]), notice] : [];
+  return { ready, products, lead, notice, mixingNotice, copyLines };
+}
+function renderRecommendations(recommendations) {
+  $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
+  $("recommendationLead").textContent = recommendations.lead;
+  $("recommendationNotice").textContent = recommendations.notice;
+  $("recommendationMixing").textContent = recommendations.mixingNotice;
+  $("recommendationMixing").classList.toggle("hidden", !recommendations.mixingNotice);
+  $("recommendationList").replaceChildren();
+  for (const product of recommendations.products) {
+    const card = textNode("article", "", "pick-card");
+    const top = textNode("div", "", "pick-card-top");
+    top.append(textNode("span", product.brand, "pick-brand"), textNode("span", product.type, "pick-type"));
+    const tags = textNode("div", "", "pick-tags");
+    product.labels.forEach(label => tags.append(textNode("span", label)));
+    card.append(top, textNode("h4", product.name), tags);
+    product.reasons.forEach(reason => card.append(textNode("p", reason, "pick-reason")));
+    card.append(textNode("p", "제품 성분 포인트: " + product.keyIngredients.join(" · "), "pick-ingredients"));
+    card.append(textNode("p", product.note, "pick-note"));
+    if (product.mixingStatus === "unknown") card.append(textNode("span", "이 팩과의 혼합 조합 미확인", "pick-mix-badge"));
+    const link = textNode("a", "공식 제품 정보 ↗", "pick-link");
+    link.href = product.sourceUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", `${product.brand} ${product.name} 공식 제품 정보 (새 창)`);
+    card.append(link);
+    $("recommendationList").append(card);
+  }
+}
+// END YM GLOWPICK RECOMMENDATIONS
 function renderReport(data){
   const {kind,input,extraction,analysis}=data;const complete=extraction.status==='complete';
+  const recommendations=prepareRecommendations(kind,input,complete,data.meta?.isMock===true);
+  renderRecommendations(recommendations);
   $('reportTitle').textContent=kind==='pack'?'나의 모델링팩 성분 리포트':'내 피부 성분 리포트';
   $('reportSubtitle').textContent=complete?'확인된 정보와 아직 확인이 필요한 내용을 구분해 표시했어요.':'판독이 충분하지 않아 재촬영 안내를 먼저 확인해 주세요.';
   $('reportStatus').textContent=statusLabels[extraction.status]||'판독 상태 확인';
@@ -261,7 +500,7 @@ function renderReport(data){
     ?'사용자가 제조사 혼합 금지 안내를 확인했다고 선택했어요. 직접 혼합하지 말고 제품 안내를 따라 주세요.'
     :'현재 등록된 자료만으로는 특정 모델링팩과 앰플의 직접 혼합 적합성을 확인할 수 없어요. 제조사의 제품별 안내를 먼저 확인해 주세요.';
   const textLines=[kind==='pack'?'GlowPick 모델링팩 리포트':'GlowPick 화장품 리포트',`제품: ${$('resultProduct').textContent}`,`피부 타입: ${input.skinType}`,`피부 고민: ${input.concerns.join(', ')}`,`판독 상태: ${statusLabels[extraction.status]}`,'','[도움과 관련된 일반 기능]',...helpful.map(x=>`${x.ingredient}: ${x.reason}`),'','[주의 안내]','개인별 주의 판단 근거 부족','',`[전성분 ${extraction.ingredients.length}개]`,...extraction.ingredients,'','※ 개인 피부 적합성 및 혼합 적합성을 보증하지 않습니다.'];
-  lastReportText=textLines.join('\n');
+  lastReportText=[...textLines,...recommendations.copyLines].join('\n');
   $('results').classList.remove('hidden');$('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
