@@ -106,6 +106,7 @@ public class GlowPickSmokeTest {
         Uri uri = FileProvider.getUriForFile(context, "io.github.yumin0117.glowpick.fileprovider", photo);
         Intents.init();
         try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+          try {
             await(scenario, "!!document.getElementById('cosmeticChoose') && document.readyState === 'complete'");
             assertEquals("https://localhost", read(scenario, "location.origin"));
             assertTrue(Boolean.TRUE.equals(read(scenario, "document.title.includes('GlowPick')")));
@@ -123,8 +124,9 @@ public class GlowPickSmokeTest {
             await(scenario, "document.getElementById('tab-pack').getAttribute('aria-selected') === 'true'");
             onWebView().withElement(findElement(Locator.ID, "tab-cosmetic")).perform(webClick());
             await(scenario, "document.getElementById('tab-cosmetic').getAttribute('aria-selected') === 'true'");
+          } finally { saveScreenshot(context); }
         } finally {
-            try { saveScreenshot(context); } finally { Intents.release(); }
+            Intents.release();
         }
     }
 
