@@ -4,7 +4,7 @@ import { prepareReport } from "./report-model.js";
 const $ = id => document.getElementById(id);
 const uploaded = { cosmetic: null, pack: null };
 const objectUrls = { cosmetic: null, pack: null };
-let isBusy = false, lastReportText = "", copyTimer, recommendationRetryContext = null;
+let isBusy = false, lastReportText = "", copyTimer;
 const skinHints = {
   "건성": "건조함과 당김을 자주 느끼는 피부 타입이에요.",
   "지성": "피지 분비가 비교적 많고 쉽게 번들거릴 수 있어요.",
@@ -23,7 +23,6 @@ function textNode(tag, content, className) {
 function clearReport() {
   $("results").classList.add("hidden");
   lastReportText = "";
-  recommendationRetryContext = null;
   clearTimeout(copyTimer);
   $("copyReport").textContent = "결과 복사 ↗";
 }
@@ -164,7 +163,6 @@ function setupRecommendationTypes() {
 function renderRecommendations(recommendations) {
   $("recommendationBox").classList.toggle("hidden", !recommendations.ready);
   $("recommendationBox").setAttribute("aria-busy",String(recommendations.status==="loading"));
-  $("retryRecommendations").classList.toggle("hidden",recommendations.status==="loading");
   $("recommendationBadge").textContent="올리브영 목록 기반";
   for(const [id,value] of [["recommendationLead",recommendations.lead],["recommendationNotice",recommendations.notice],
     ["recommendationShop",recommendations.shopNotice],["recommendationCoverage",recommendations.coverage],
@@ -285,7 +283,6 @@ async function run(kind) {
       throw new Error(`${prefix}${response.error?.message || "분석을 완료하지 못했어요."} (${response.error?.code || "UNKNOWN"} · ${[...details, `요청 ${response.requestId || "-"}`].join(" · ")})`);
     }
     if (response.extraction.status === "complete" && !response.meta?.isMock) {
-      recommendationRetryContext={kind,reportInput,input,types,response};
       renderReport(kind,reportInput,{...response,recommendations:{status:"loading",products:[]}});
       message.textContent="성분 분석 완료 · 현재 올리브영 목록과 상품 종류를 확인하고 있어요…";
       try { response.recommendations=await recommendProducts({kind,types,input,ingredients:response.extraction.ingredients},key); }
@@ -299,22 +296,6 @@ async function run(kind) {
 }
 $("cosmeticAnalyze").addEventListener("click", () => run("cosmetic"));
 $("packAnalyze").addEventListener("click", () => run("pack"));
-$("retryRecommendations").addEventListener("click",async()=>{
-  if(isBusy||!recommendationRetryContext)return;
-  const ctx=recommendationRetryContext;
-  let key=$("geminiApiKey").value.trim();
-  if(!key){$(ctx.kind+"Message").textContent="추천에 사용할 API 키를 입력해 주세요.";$("geminiApiKey").focus();return;}
-  const controls=[...document.querySelectorAll("button, input, textarea")],previous=controls.map(el=>el.disabled);
-  isBusy=true;maskApiKey();controls.forEach(el=>{el.disabled=true;});
-  renderReport(ctx.kind,ctx.reportInput,{...ctx.response,recommendations:{status:"loading",products:[]}});
-  try{
-    const result=await recommendProducts({kind:ctx.kind,types:ctx.types,input:ctx.input,ingredients:ctx.response.extraction.ingredients},key);
-    if(!result.products?.length&&ctx.response.recommendations?.products?.length)
-      ctx.response.recommendations={...ctx.response.recommendations,message:"새 조회를 완료하지 못해 앞서 확인한 추천을 유지했어요. "+result.message};
-    else ctx.response.recommendations=result;
-  }catch{ctx.response.recommendations=ctx.response.recommendations||{status:"unavailable",products:[],message:"다시 추천을 눌러 주세요."};}
-  finally{key="";renderReport(ctx.kind,ctx.reportInput,ctx.response);controls.forEach((el,i)=>{el.disabled=previous[i];});isBusy=false;}
-});
 $("copyReport").addEventListener("click", async () => {
   if (!lastReportText) return;
   try { await navigator.clipboard.writeText(lastReportText); $("copyReport").textContent = "복사 완료 ✓"; }

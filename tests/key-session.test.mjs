@@ -120,31 +120,10 @@ test('photo load failures retain the product card with an honest fallback instea
   assert.match(photo.children[1].textContent,/사진을 확인하지 못/u);assert.equal(get('recommendationList').children.length,1);
 });
 
-test('recommendation-only retry preserves the label report and never sends the photo for extraction again',async()=>{
-  const answer={ok:true,extraction:{status:'complete',ingredients:['글리세린'],rawText:'글리세린',warnings:[]},
-    analysis:{status:'needs_evidence',summary:'검사',warnings:[]},meta:{isMock:false}};
-  const {get,calls,recCalls}=await setup(answer);get('geminiApiKey').value='synthetic-retry-current-tab-key';
-  await get('cosmeticAnalyze').fire('click');assert.equal(calls.length,1);assert.equal(recCalls.length,1);
-  await get('retryRecommendations').fire('click');
-  assert.equal(calls.length,1);assert.equal(recCalls.length,2);assert.equal(get('results').classList.contains('hidden'),false);
-  assert.ok(get('recommendationList').children.length>0);assert.equal(get('geminiApiKey').value,'synthetic-retry-current-tab-key');
-});
-
 test('helpful ingredient descriptions omit repeated personal-effect disclaimer',async()=>{
   const {GUIDANCE}=await import('../BeautyAI/ai-assets.js');
   assert.ok(GUIDANCE.helpful.length>1);
   assert.ok(GUIDANCE.helpful.every(rule=>!rule.reason.includes('개인별 효과와 제품 적합성')));
-});
-
-test('a later retry failure keeps already displayed recommendation names',async()=>{
-  const answer={ok:true,extraction:{status:'complete',ingredients:['글리세린'],rawText:'글리세린',warnings:[]},
-    analysis:{status:'needs_evidence',summary:'검사',warnings:[]},meta:{isMock:false}};
-  const product={brand:'검사',name:'수분 토너',type:'토너',productUrl:'https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A999999999999',
-    matchedConcerns:['건조함'],cautions:[],reason:'수분 비교',productEvidence:'수분',typeEvidence:'토너',checkedAt:'2026-11-12T00:00:00Z'};
-  const {get}=await setup(answer,['건조함'],(_p,_key,n)=>n===1?{status:'complete',products:[product]}:{status:'unavailable',products:[],message:'조회 지연'});
-  get('geminiApiKey').value='synthetic-retry-key';await get('cosmeticAnalyze').fire('click');await get('retryRecommendations').fire('click');
-  assert.equal(get('recommendationList').children.length,1);
-  assert.match(get('recommendationContext').textContent,/앞서 확인한 추천을 유지/u);
 });
 
 test('real UI renders dynamic cards and exact selected types, then hides them on partial extraction', async () => {

@@ -260,13 +260,13 @@ export function createRecommendationClient({ fetcher = (...args) => fetch(...arg
         code:null,lookupCode:lastCode,message:products.some(p=>p.selectionMethod==="listing_comparison")?"현재 조회가 지연되어 확인된 올리브영 목록에서 고민과 종류를 비교해 추천했어요.":"피부 고민과 선택한 종류에 맞춰 제품을 추천했어요."};
     }catch(error){
       const code=/^HTTP_\d{3}$|^(TIMEOUT|NETWORK|KEY_REQUIRED|INVALID_INPUT|INVALID_RESPONSE|BUSY|LIST_NOT_VERIFIED)$/u.test(error.message)?error.message:"INVALID_RESPONSE";
-      const messages={TIMEOUT:"추천 조회 시간이 초과됐어요. 다시 추천을 눌러 주세요.",NETWORK:"추천 API 연결을 확인한 뒤 다시 추천을 눌러 주세요.",
+      const messages={TIMEOUT:"추천 조회 시간이 초과됐어요. 잠시 후 다시 분석해 주세요.",NETWORK:"추천 API 연결을 확인한 뒤 다시 분석해 주세요.",
         KEY_REQUIRED:"추천에 사용할 API 키를 입력해 주세요.",BUSY:"진행 중인 추천이 끝난 뒤 다시 시도해 주세요.",
-        INVALID_RESPONSE:"추천 응답을 읽지 못했어요. 다시 추천을 눌러 주세요.",INVALID_INPUT:"추천할 종류와 피부 고민을 확인해 주세요.",
-        LIST_NOT_VERIFIED:"올리브영 목록에 접속하지 못했어요. 다시 추천을 눌러 주세요.",
-        HTTP_429:"무료 API 한도에 도달했어요. 한도가 회복된 뒤 다시 추천해 주세요.",HTTP_401:"추천 API 키를 확인해 주세요.",HTTP_403:"추천 API 권한을 확인해 주세요."};
+        INVALID_RESPONSE:"추천 응답을 읽지 못했어요. 잠시 후 다시 분석해 주세요.",INVALID_INPUT:"추천할 종류와 피부 고민을 확인해 주세요.",
+        LIST_NOT_VERIFIED:"올리브영 목록에 접속하지 못했어요. 잠시 후 다시 분석해 주세요.",
+        HTTP_429:"무료 API 한도에 도달했어요. 한도가 회복된 뒤 다시 분석해 주세요.",HTTP_401:"추천 API 키를 확인해 주세요.",HTTP_403:"추천 API 권한을 확인해 주세요."};
       return {status:"unavailable",products:[],missingTypes:Array.isArray(types)?types:[],code,
-        message:messages[code]||"추천 요청이 완료되지 않았어요. 다시 추천을 눌러 주세요."};
+        message:messages[code]||"추천 요청이 완료되지 않았어요. 잠시 후 다시 분석해 주세요."};
     }finally{apiKey="";if(acquired)busy=false;}
   }};
 }
