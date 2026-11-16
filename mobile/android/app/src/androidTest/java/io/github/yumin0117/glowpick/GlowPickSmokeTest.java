@@ -5,6 +5,7 @@ import static androidx.test.espresso.web.sugar.Web.onWebView;
 import static androidx.test.espresso.web.webdriver.DriverAtoms.findElement;
 import static androidx.test.espresso.web.webdriver.DriverAtoms.webClick;
 import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
@@ -62,16 +63,35 @@ public class GlowPickSmokeTest {
         fail("Web screen condition not met: " + expression);
     }
 
-    // File inputs require genuine user activation; WebDriver's JS click cannot grant it.
+    private void awaitVisualFrame(ActivityScenario<MainActivity> scenario) throws Exception {
+        CountDownLatch drawn = new CountDownLatch(1);
+        scenario.onActivity(activity -> {
+            WebView view = activity.getBridge().getWebView();
+            view.postVisualStateCallback(1, new WebView.VisualStateCallback() {
+                @Override public void onComplete(long requestId) {
+                    view.postOnAnimation(() -> view.postOnAnimation(drawn::countDown));
+                }
+            });
+        });
+        assertTrue("WebView did not render the scrolled frame", drawn.await(10, TimeUnit.SECONDS));
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    }
+
+    // DOM scroll completion precedes compositor updates; wait before native coordinate input.
+    // File inputs still require genuine user activation, not a JavaScript click.
     private void tapFileChooser(ActivityScenario<MainActivity> scenario) throws Exception {
         read(scenario, "(()=>{document.getElementById('cosmeticChoose').scrollIntoView({block:'center',behavior:'instant'});return true})()");
+        awaitVisualFrame(scenario);
         JSONObject rect = (JSONObject) read(scenario, "(()=>{const r=document.getElementById('cosmeticChoose').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2,scale:devicePixelRatio}})()");
+        android.util.Log.i("GlowPickSmoke", "File chooser bounds: " + rect);
+        assertTrue(Boolean.TRUE.equals(read(scenario, "(()=>{const e=document.getElementById('cosmeticChoose'),r=e.getBoundingClientRect();return e.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2))})()")));
         float cssX = (float) rect.getDouble("x"), cssY = (float) rect.getDouble("y");
         float scale = (float) rect.getDouble("scale");
         onView(isAssignableFrom(WebView.class)).perform(new GeneralClickAction(Tap.SINGLE, view -> {
             int[] position = new int[2]; view.getLocationOnScreen(position);
             return new float[]{position[0] + cssX * scale, position[1] + cssY * scale};
         }, Press.FINGER));
+        intended(hasAction(Intent.ACTION_GET_CONTENT));
     }
 
     @Test public void bundledScreenPhotoPickerTabsAndKeyGuardWork() throws Exception {
@@ -103,6 +123,12 @@ public class GlowPickSmokeTest {
             await(scenario, "document.getElementById('tab-pack').getAttribute('aria-selected') === 'true'");
             onWebView().withElement(findElement(Locator.ID, "tab-cosmetic")).perform(webClick());
             await(scenario, "document.getElementById('tab-cosmetic').getAttribute('aria-selected') === 'true'");
+        } finally {
+            try { saveScreenshot(context); } finally { Intents.release(); }
+        }
+    }
+
+    private void saveScreenshot(Context context) throws Exception {
             Bitmap screenshot = InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();
             assertNotNull(screenshot);
             // Gradle uninstalls the app after testing, deleting its private/external-files dirs.
@@ -116,6 +142,5 @@ public class GlowPickSmokeTest {
                 assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG, 100, stream));
             }
             screenshot.recycle();
-        } finally { Intents.release(); }
     }
 }
